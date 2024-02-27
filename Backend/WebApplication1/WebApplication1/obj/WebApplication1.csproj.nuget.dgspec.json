@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Programming\\React\\Photomoto-1\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "E:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "E:\\Programming\\React\\Photomoto-1\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "E:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Programming\\React\\Photomoto-1\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "E:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "E:\\Programming\\React\\Photomoto-1\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "E:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "E:\\Programming\\React\\Photomoto-1\\Backend\\WebApplication1\\WebApplication1\\obj\\",
+        "outputPath": "E:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
