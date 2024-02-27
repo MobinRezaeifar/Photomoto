@@ -5,6 +5,7 @@ import { MdCamera } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { AddRegister, fetchRegister } from "../Redux/action";
 import Swal from "sweetalert2";
+import CryptoJS from "crypto-js";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,18 @@ const Register = () => {
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
   const [Role, setRole] = useState("");
+
+
+  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
+  const iv = CryptoJS.enc.Utf8.parse("1234567890123456"); 
+  function encryptAES(message) {
+    return CryptoJS.AES.encrypt(message, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    }).toString();
+  }
+
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -38,11 +51,11 @@ const Register = () => {
 
   const submitRegister = async () => {
     if (Username && Password && Email && Role) {
-      sessionStorage.setItem("username", Username);
-      sessionStorage.setItem("role", Role);
-      sessionStorage.setItem("password", Password);
-      sessionStorage.setItem("email", Email);
-      
+      sessionStorage.setItem("u", encryptAES(Username));
+      sessionStorage.setItem("r", encryptAES(Role));
+      sessionStorage.setItem("p", encryptAES(Password));
+      sessionStorage.setItem("e", encryptAES(Email));
+
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -61,7 +74,7 @@ const Register = () => {
       await dispatch(
         AddRegister({
           username: Username,
-          password: Password,
+          password: encryptAES(Password),
           profileImg: "",
           email: Email,
           role: Role,
@@ -90,6 +103,17 @@ const Register = () => {
       });
     }
   };
+
+
+  function decryptAES(message) {
+    const bytes = CryptoJS.AES.decrypt(message, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
+
 
   return (
     <div className="h-screen w-screen px-20 flex justify-center items-center">
