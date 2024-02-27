@@ -34,24 +34,86 @@ const Home = () => {
     >
       {dimensions.width > 900 ? (
         <>
-          <div className="w-[60px] h-full flex flex-col gap-3 items-center p-4 justify-around bg-[#393939] absolute left-0"  style={{borderRadius:"0 10px  10px 0"}}>
-            <FaUserAlt size={25} />
-            <MdConnectWithoutContact size={25} />
-            <GoSearch size={25} />
-            <IoChatbubbleEllipsesOutline size={25} />
-            <IoHome size={25} />
+          <div
+            className="w-[4%] h-full flex flex-col gap-3 items-center p-4 justify-around bg-[#393939] absolute left-0"
+            // style={{ borderRadius: "0 10px  10px 0" }}
+          >
+            <FaUserAlt size={25} style={{ cursor: "pointer" }} />
+            <MdConnectWithoutContact size={25} style={{ cursor: "pointer" }} />
+            <GoSearch size={25} style={{ cursor: "pointer" }} />
+            <IoChatbubbleEllipsesOutline
+              size={25}
+              style={{ cursor: "pointer" }}
+            />
+            <IoHome size={25} style={{ cursor: "pointer" }} />
           </div>
-          <div className="w-[100%] h-full bg-white"></div>
+          <div
+            className="w-[100%] h-full bg-white overflow-y-scroll"
+            style={{ paddingLeft: "4%" }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
+            deleniti beatae aperiam eum, accusamus laboriosam ut consequuntur
+            tempora assumenda et, suscipit mollitia qui doloribus voluptas
+            voluptatem a pariatur eius harum? Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Voluptates deleniti beatae aperiam
+            eum, accusamus laboriosam ut consequuntur tempora assumenda et,
+            suscipit mollitia qui doloribus voluptas voluptatem a pariatur eius
+            harum? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Voluptates deleniti beatae aperiam eum, accusamus laboriosam ut
+            consequuntur tempora assumenda et, suscipit mollitia qui doloribus
+            voluptas voluptatem a pariatur eius harum? Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Voluptates deleniti beatae
+            aperiam eum, accusamus laboriosam ut consequuntur tempora assumenda
+            et, suscipit mollitia qui doloribus voluptas voluptatem a pariatur
+            eius harum? Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Voluptates deleniti beatae aperiam eum, accusamus laboriosam
+            ut consequuntur tempora assumenda et, suscipit mollitia qui
+            doloribus voluptas voluptatem a pariatur eius harum? Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Volup ut consequuntur
+            tempora assumenda et, suscipit mollitia qui doloribus voluptas
+            voluptatem a pariatur eius harum?
+          </div>
         </>
       ) : (
         <>
-          <div className="w-full h-full bg-white"></div>
-          <div className="h-[7%] w-full flex absolute bottom-0  py-6 justify-around items-center bg-[#393939]" style={{borderRadius:"17px 17px 0 0"}}>
-            <FaUserAlt size={25} />
-            <MdConnectWithoutContact size={25} />
-            <GoSearch size={25} />
-            <IoChatbubbleEllipsesOutline size={25} />
-            <IoHome size={25} />
+          <div
+            className="w-full overflow-y-scroll h-full bg-white"
+            style={{ paddingBottom: "7%" }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
+            deleniti beatae aperiam eum, accusamus laboriosam ut consequuntur
+            tempora assumenda et, suscipit mollitia qui doloribus voluptas
+            voluptatem a pariatur eius harum? Lorem ipsum dolor sit amet,
+            consectetur adipisicing elit. Voluptates deleniti beatae aperiam
+            eum, accusamus laboriosam ut consequuntur tempora assumenda et,
+            suscipit mollitia qui doloribus voluptas voluptatem a pariatur eius
+            harum? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Voluptates deleniti beatae aperiam eum, accusamus laboriosam ut
+            consequuntur tempora assumenda et, suscipit mollitia qui doloribus
+            voluptas voluptatem a pariatur eius harum? Lorem ipsum dolor sit
+            amet, consectetur adipisicing elit. Voluptates deleniti beatae
+            aperiam eum, accusamus laboriosam ut consequuntur tempora assumenda
+            et, suscipit mollitia qui doloribus voluptas voluptatem a pariatur
+            eius harum? Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Voluptates deleniti beatae aperiam eum, accusamus laboriosam
+            ut consequuntur tempora assumenda et, suscipit mollitia qui
+            doloribus voluptas voluptatem a pariatur eius harum? Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit. Volup ut consequuntur
+            tempora assumenda et, suscipit mollitia qui doloribus voluptas
+            voluptatem a pariatur eius harum?
+          </div>
+          <div
+            className="h-[7%] w-full flex absolute bottom-0  py-6 justify-around items-center bg-[#393939]"
+            // style={{ borderRadius: "17px 17px 0 0" }}
+          >
+            <FaUserAlt size={25} style={{ cursor: "pointer" }} />
+            <MdConnectWithoutContact size={25} style={{ cursor: "pointer" }} />
+            <GoSearch size={25} style={{ cursor: "pointer" }} />
+            <IoChatbubbleEllipsesOutline
+              size={25}
+              style={{ cursor: "pointer" }}
+            />
+            <IoHome size={25} style={{ cursor: "pointer" }} />
           </div>
         </>
       )}
