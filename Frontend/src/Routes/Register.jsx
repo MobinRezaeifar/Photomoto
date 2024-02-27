@@ -45,6 +45,7 @@ const Register = () => {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
+  
   useEffect(() => {
     dispatch(fetchRegister());
   }, [dispatch]);
