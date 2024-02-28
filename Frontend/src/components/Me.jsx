@@ -14,6 +14,9 @@ const Me = ({ Change, change }) => {
   const Registers = useSelector((state) => state.Registers);
   const dispatch = useDispatch();
   const [ProfileImg, setProfileImg] = useState("");
+  const [Post, setPost] = useState(0);
+  const [Connection, setConnection] = useState(0);
+  const [Bio, setBio] = useState("");
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -68,6 +71,9 @@ const Me = ({ Change, change }) => {
                 email: data.email,
                 role: data.role,
                 hash: data.hash,
+                connection: data.connection,
+                post: data.post,
+                bio: data.bio,
               })
             );
           }
@@ -88,6 +94,9 @@ const Me = ({ Change, change }) => {
   useEffect(() => {
     Registers.map((data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+        setConnection(data.connection);
+        setPost(data.post);
+        setBio(data.bio);
         if (data.profileImg) {
           setProfileImg(
             `https://motionsbackend.liara.run/api/FileManager/downloadfile?FileName=${data.profileImg}`
@@ -100,8 +109,8 @@ const Me = ({ Change, change }) => {
   });
 
   return (
-    <div className="h-[100vh] overflow-y-auto w-full ">
-      <div className="flex justify-between w-full items-center  p-6">
+    <div className="h-full overflow-y-auto w-full ">
+      <div className="flex justify-between w-full items-center  p-8">
         <span
           className={`${
             dimensions.width > 900 ? "text-4xl" : "text-2xl"
@@ -109,7 +118,7 @@ const Me = ({ Change, change }) => {
         >
           {decryptAES(sessionStorage.getItem("u"))}
         </span>
-        <span className="flex items-center gap-1">
+        <span className="flex items-center gap-2">
           <BiSolidAddToQueue
             className="animated2"
             size={dimensions.width > 900 ? 38 : 32}
@@ -128,7 +137,7 @@ const Me = ({ Change, change }) => {
           margin: "0 1rem",
         }}
       />
-      <div className="px-6 pt-4 flex justify-between">
+      <div className="px-8 pt-4 flex justify-between">
         <Badge
           count={
             <Upload onChange={(e) => handleChange(e)}>
@@ -156,14 +165,23 @@ const Me = ({ Change, change }) => {
           />
         </Badge>
 
-        <div className="flex">
-          <div className="flex flex-col">
-            <span>Connection</span> <span>9999</span>
+        <div
+          className={`flex justify-between gap-4  items-center ${
+            dimensions.width > 900 ? "text-2xl" : "text-xl"
+          }`}
+          style={{ marginTop: dimensions.width > 900 ? "-40px" : "-20px" }}
+        >
+          <div className="flex flex-col justify-center items-center">
+            <span>{Post}</span>
+            <span>Post</span>
           </div>
-          <div className="flex flex-col">
-            <span>Connection</span> <span>9999</span>
+          <div className="flex flex-col justify-center items-center">
+            <span>{Connection}</span> <span>Connection</span>
           </div>
         </div>
+      </div>
+      <div className="px-8 py-4">
+        <span>{Bio}</span>
       </div>
     </div>
   );

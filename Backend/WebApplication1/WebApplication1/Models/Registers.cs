@@ -28,5 +28,15 @@ namespace WebApplication1.Models
 
         [BsonElement("hash")]
         public string? Hash { get; set; }
+
+        [BsonElement("post")]
+        public int Post { get; set; }
+
+        [BsonElement("connection")]
+        public int Connection { get; set; }
+
+        [BsonElement("bio")]
+        public string? Bio { get; set; }
+
     }
 }

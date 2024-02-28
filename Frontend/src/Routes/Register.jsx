@@ -62,6 +62,9 @@ const Register = () => {
           email: Email,
           role: Role,
           hash: "",
+          connection: 0,
+          post: 0,
+          bio: `Hello, Im ${Username} and I just became a member of Photomoto platform`,
         })
         .then(
           () => {
