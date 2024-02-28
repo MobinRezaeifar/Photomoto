@@ -11,7 +11,7 @@ const LeftNav = () => {
 
   return (
     <div
-      className="w-[4%] h-full flex flex-col gap-3 items-center p-4 justify-around bg-zinc-800 absolute left-0"
+      className="w-[4%] h-full flex flex-col gap-3 items-center p-4 justify-around bg-[#37415171] absolute left-0"
       style={{ borderRadius: "0 6px  6px 0" }}
     >
       <FaUserAlt

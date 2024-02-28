@@ -46,6 +46,8 @@ namespace WebApplication1.Services
         {
             bool exists = _register.Find(register => register.Username == username).Any();
             return exists;
+     
         }
     }
+
 }

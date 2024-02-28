@@ -238,3 +238,5 @@ E:\Programming\React\Photomoto-1\Backend\WebApplication1\WebApplication1\obj\Deb
 E:\Programming\React\Photomoto-1\Backend\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 E:\Programming\React\Photomoto-1\Backend\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 E:\Programming\React\Photomoto-1\Backend\WebApplication1\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+E:\Programming\React\Photomoto\Backend\WebApplication1\WebApplication1\bin\Debug\net8.0\libman.json
+E:\Programming\React\Photomoto\Backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll

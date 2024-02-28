@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Services;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace WebApplication1.Controllers
 {
@@ -62,6 +63,29 @@ namespace WebApplication1.Controllers
             }
 
             _registersService.Update(id, register);
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult Patch(string id, [FromBody] JsonPatchDocument<Registers> patchDoc)
+        {
+            var existingRegister = _registersService.Get(id);
+
+            if (existingRegister == null)
+            {
+                return NotFound($"register with Id = {id} not found");
+            }
+
+            
+            patchDoc.ApplyTo(existingRegister);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _registersService.Update(id, existingRegister);
 
             return NoContent();
         }

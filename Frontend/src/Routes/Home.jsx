@@ -10,7 +10,7 @@ import Search from "../components/Search";
 import Chat from "../components/Chat";
 import Homee from "../components/Homee";
 
-const Home = () => {
+const Home = ({ Change, change }) => {
   let navigate = useNavigate();
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -33,7 +33,7 @@ const Home = () => {
   }, []);
 
   if (sessionStorage.getItem("e") == null) {
-    navigate("/login");
+    navigate("/register");
   }
   const Issue = useSelector((state) => state.Issue);
   return (
@@ -46,10 +46,10 @@ const Home = () => {
         <>
           <LeftNav />
           <div
-            className="w-[100%] h-full  overflow-y-auto bg-[#393939]"
+            className="w-[100%] h-full  overflow-y-auto "
             style={{ paddingLeft: "4%" }}
           >
-            {Issue == "me" && <Me />}
+            {Issue == "me" && <Me Change={Change} change={change} />}
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
             {Issue == "chat" && <Chat />}
@@ -59,10 +59,10 @@ const Home = () => {
       ) : (
         <>
           <div
-            className="w-full overflow-y-auto h-full bg-[#393939]"
+            className="w-full overflow-y-auto h-full "
             style={{ paddingBottom: "7%" }}
           >
-            {Issue == "me" && <Me />}
+            {Issue == "me" && <Me Change={Change} change={change} />}
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
             {Issue == "chat" && <Chat />}
