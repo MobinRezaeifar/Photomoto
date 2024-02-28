@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#borderrnone{
+    border: none;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+}
+#borderrnone:hover{
+    border: none;
+}
+:where(.css-dev-only-do-not-override-1k979oh).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
+    background-color: transparent;
+}

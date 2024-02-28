@@ -11,7 +11,7 @@ const BottomNav = () => {
 
   return (
     <div
-      className="h-[7%] w-full flex absolute bottom-0  py-6 justify-around items-center bg-[#393939]"
+      className="h-[7%] w-full flex absolute bottom-0  py-6 justify-around items-center bg-zinc-800"
       style={{ borderRadius: "6px 6px 0 0" }}
     >
       <FaUserAlt

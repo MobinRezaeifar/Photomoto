@@ -121,3 +121,9 @@
 .animated {
   transition: transform 2s;
 }
+.animated2:hover {
+  transform: rotate(-10deg);
+}
+.animated2 {
+  transition: transform 0.5s;
+}

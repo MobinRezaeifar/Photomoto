@@ -46,7 +46,7 @@ const Home = () => {
         <>
           <LeftNav />
           <div
-            className="w-[100%] h-full  overflow-y-auto"
+            className="w-[100%] h-full  overflow-y-auto bg-[#393939]"
             style={{ paddingLeft: "4%" }}
           >
             {Issue == "me" && <Me />}
@@ -59,7 +59,7 @@ const Home = () => {
       ) : (
         <>
           <div
-            className="w-full overflow-y-auto h-full "
+            className="w-full overflow-y-auto h-full bg-[#393939]"
             style={{ paddingBottom: "7%" }}
           >
             {Issue == "me" && <Me />}
