@@ -4,7 +4,6 @@
 
 .form-container {
   max-width: 700px;
-
   /* margin: 30px; */
   background-color: #001925;
   padding: 30px;
@@ -90,14 +89,14 @@
 }
 
 .form-container .form .button-container .reset-button-container .reset-button {
-    flex-basis: 100%;
+  flex-basis: 100%;
 
   position: relative;
   text-align: center;
   padding: 10px;
   color: #ff7a01;
   font-weight: bold;
-  background: #002733   ;
+  background: #002733;
   clip-path: polygon(
     0 0,
     100% 0,
@@ -115,4 +114,10 @@
   .reset-button:hover {
   background: #ff7a01;
   color: #002733;
+}
+.animated:hover {
+  transform: rotate(180deg);
+}
+.animated {
+  transition: transform 2s;
 }
