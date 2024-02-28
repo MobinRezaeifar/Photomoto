@@ -36,10 +36,16 @@ namespace WebApplication1.Controllers
             return register;
         }
 
-
         [HttpPost]
         public ActionResult<Registers> Post([FromBody] Registers register)
         {
+            bool isUsernameExists = _registersService.IsUsernameExists(register.Username);
+
+            if (isUsernameExists)
+            {
+                return BadRequest("این username قبلا با یک نفر دیگر ثبت نام کرده است.");
+            }
+
             _registersService.Create(register);
 
             return CreatedAtAction(nameof(Get), new { id = register.Id }, register);

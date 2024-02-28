@@ -1,11 +1,12 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using WebApplication1.Configuration;
 using WebApplication1.Models;
 
 namespace WebApplication1.Services
 
 {
-    public class RegistersService :IRegistersService
+    public class RegistersService : IRegistersService
     {
         private readonly IMongoCollection<Registers> _register;
 
@@ -39,6 +40,12 @@ namespace WebApplication1.Services
         public void Update(string id, Registers register)
         {
             _register.ReplaceOne(register => register.Id == id, register);
+        }
+
+        public bool IsUsernameExists(string username)
+        {
+            bool exists = _register.Find(register => register.Username == username).Any();
+            return exists;
         }
     }
 }

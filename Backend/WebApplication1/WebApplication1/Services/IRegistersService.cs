@@ -9,5 +9,6 @@ namespace WebApplication1.Services
         Registers Create (Registers registers);
         void Update (string id, Registers registers);
         void Remove (string id);
+        bool IsUsernameExists(string username);
     }
 }
