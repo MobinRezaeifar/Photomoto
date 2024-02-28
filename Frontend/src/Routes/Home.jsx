@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { GoSearch } from "react-icons/go";
-import { MdOutlineLocationSearching } from "react-icons/md";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { MdConnectWithoutContact } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [dimensions, setDimensions] = useState({
@@ -26,6 +26,11 @@ const Home = () => {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
+
+  let navigate = useNavigate();
+  if (sessionStorage.getItem("e") == null) {
+    navigate("/login");
+  }
   return (
     <div
       className={`h-screen w-screen flex ${
@@ -48,7 +53,7 @@ const Home = () => {
             <IoHome size={25} style={{ cursor: "pointer" }} />
           </div>
           <div
-            className="w-[100%] h-full bg-white overflow-y-scroll"
+            className="w-[100%] h-full bg-white overflow-y-auto"
             style={{ paddingLeft: "4%" }}
           >
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
