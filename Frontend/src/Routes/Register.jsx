@@ -8,6 +8,7 @@ import { AddRegister, fetchRegister } from "../Redux/action";
 import Swal from "sweetalert2";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -53,29 +54,8 @@ const Register = () => {
 
   const submitRegister = async () => {
     if (Username && Password && Email && Role) {
-      navigate("/photomoto");
-      sessionStorage.setItem("u", encryptAES(Username));
-      sessionStorage.setItem("r", encryptAES(Role));
-      sessionStorage.setItem("p", encryptAES(Password));
-      sessionStorage.setItem("e", encryptAES(Email));
-
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        },
-      });
-      Toast.fire({
-        icon: "success",
-        title: "Successful registration",
-      });
-      await dispatch(
-        AddRegister({
+      axios
+        .post("https://localhost:7028/api/Registers", {
           username: Username,
           password: encryptAES(Password),
           profileImg: "",
@@ -83,11 +63,51 @@ const Register = () => {
           role: Role,
           hash: "",
         })
-      );
-      await setEmail("");
-      await setPassword("");
-      await setRole("");
-      await setUsername("");
+        .then(
+          () => {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Successful registration",
+            });
+            setEmail("");
+            setPassword("");
+            setRole("");
+            setUsername("");
+            navigate("/photomoto");
+            sessionStorage.setItem("u", encryptAES(Username));
+            sessionStorage.setItem("r", encryptAES(Role));
+            sessionStorage.setItem("p", encryptAES(Password));
+            sessionStorage.setItem("e", encryptAES(Email));
+          },
+          (error) => {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "error",
+              title: "This username is already exist",
+            });
+          }
+        );
     } else {
       const Toast = Swal.mixin({
         toast: true,
