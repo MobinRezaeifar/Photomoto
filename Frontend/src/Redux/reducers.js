@@ -1,5 +1,7 @@
 const initialState = {
   Registers: [],
+  Issue : ""
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +33,9 @@ const reducer = (state = initialState, action) => {
           (register) => register.id !== action.payload
         ),
       };
+
+      case "ISSUE":
+        return { ...state, Issue: action.payload };
 
     default:
       return state;

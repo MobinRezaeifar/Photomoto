@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import photo1 from "../Assets/Photo1.png";
 import "./Register.css";
@@ -6,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddRegister, fetchRegister } from "../Redux/action";
 import Swal from "sweetalert2";
 import CryptoJS from "crypto-js";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -13,10 +15,10 @@ const Register = () => {
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
   const [Role, setRole] = useState("");
-
+  let navigate = useNavigate();
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456"); 
+  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
   function encryptAES(message) {
     return CryptoJS.AES.encrypt(message, key, {
       iv: iv,
@@ -24,7 +26,6 @@ const Register = () => {
       padding: CryptoJS.pad.Pkcs7,
     }).toString();
   }
-
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -45,13 +46,14 @@ const Register = () => {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
-  
+
   useEffect(() => {
     dispatch(fetchRegister());
   }, [dispatch]);
 
   const submitRegister = async () => {
     if (Username && Password && Email && Role) {
+      navigate("/photomoto");
       sessionStorage.setItem("u", encryptAES(Username));
       sessionStorage.setItem("r", encryptAES(Role));
       sessionStorage.setItem("p", encryptAES(Password));
@@ -105,7 +107,6 @@ const Register = () => {
     }
   };
 
-
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
       iv: iv,
@@ -114,7 +115,6 @@ const Register = () => {
     });
     return bytes.toString(CryptoJS.enc.Utf8);
   }
-
 
   return (
     <div className="h-screen w-screen px-20 flex justify-center items-center">
@@ -193,8 +193,20 @@ const Register = () => {
                     : "mb-2 mt-1 justify-around"
                 } `}
               >
-                <a href="/login">Login</a>
-                <a href="/login">I have an account</a>
+                <a
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Login
+                </a>
+                <a
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  I have an account
+                </a>
               </div>
 
               <ul

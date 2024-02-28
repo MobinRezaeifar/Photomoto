@@ -1,12 +1,17 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
-import { FaUserAlt } from "react-icons/fa";
-import { IoHome } from "react-icons/io5";
-import { GoSearch } from "react-icons/go";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { MdConnectWithoutContact } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import LeftNav from "../components/LeftNav";
+import BottomNav from "../components/BottomNav";
+import { useSelector } from "react-redux";
+import Me from "../components/Me";
+import Connection from "../components/Connection";
+import Search from "../components/Search";
+import Chat from "../components/Chat";
+import Homee from "../components/Homee";
 
 const Home = () => {
+  let navigate = useNavigate();
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -27,10 +32,10 @@ const Home = () => {
     };
   }, []);
 
-  let navigate = useNavigate();
   if (sessionStorage.getItem("e") == null) {
     navigate("/login");
   }
+  const Issue = useSelector((state) => state.Issue);
   return (
     <div
       className={`h-screen w-screen flex ${
@@ -39,87 +44,31 @@ const Home = () => {
     >
       {dimensions.width > 900 ? (
         <>
-          <div
-            className="w-[4%] h-full flex flex-col gap-3 items-center p-4 justify-around bg-[#393939] absolute left-0"
-            // style={{ borderRadius: "0 10px  10px 0" }}
-          >
-            <FaUserAlt size={25} style={{ cursor: "pointer" }} />
-            <MdConnectWithoutContact size={25} style={{ cursor: "pointer" }} />
-            <GoSearch size={25} style={{ cursor: "pointer" }} />
-            <IoChatbubbleEllipsesOutline
-              size={25}
-              style={{ cursor: "pointer" }}
-            />
-            <IoHome size={25} style={{ cursor: "pointer" }} />
-          </div>
+          <LeftNav />
           <div
             className="w-[100%] h-full bg-white overflow-y-auto"
             style={{ paddingLeft: "4%" }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
-            deleniti beatae aperiam eum, accusamus laboriosam ut consequuntur
-            tempora assumenda et, suscipit mollitia qui doloribus voluptas
-            voluptatem a pariatur eius harum? Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Voluptates deleniti beatae aperiam
-            eum, accusamus laboriosam ut consequuntur tempora assumenda et,
-            suscipit mollitia qui doloribus voluptas voluptatem a pariatur eius
-            harum? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptates deleniti beatae aperiam eum, accusamus laboriosam ut
-            consequuntur tempora assumenda et, suscipit mollitia qui doloribus
-            voluptas voluptatem a pariatur eius harum? Lorem ipsum dolor sit
-            amet, consectetur adipisicing elit. Voluptates deleniti beatae
-            aperiam eum, accusamus laboriosam ut consequuntur tempora assumenda
-            et, suscipit mollitia qui doloribus voluptas voluptatem a pariatur
-            eius harum? Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Voluptates deleniti beatae aperiam eum, accusamus laboriosam
-            ut consequuntur tempora assumenda et, suscipit mollitia qui
-            doloribus voluptas voluptatem a pariatur eius harum? Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit. Volup ut consequuntur
-            tempora assumenda et, suscipit mollitia qui doloribus voluptas
-            voluptatem a pariatur eius harum?
+            {Issue == "me" && <Me />}
+            {Issue == "connection" && <Connection />}
+            {Issue == "search" && <Search />}
+            {Issue == "chat" && <Chat />}
+            {Issue == "home" && <Homee />}
           </div>
         </>
       ) : (
         <>
           <div
-            className="w-full overflow-y-scroll h-full bg-white"
+            className="w-full overflow-y-auto h-full bg-white"
             style={{ paddingBottom: "7%" }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
-            deleniti beatae aperiam eum, accusamus laboriosam ut consequuntur
-            tempora assumenda et, suscipit mollitia qui doloribus voluptas
-            voluptatem a pariatur eius harum? Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Voluptates deleniti beatae aperiam
-            eum, accusamus laboriosam ut consequuntur tempora assumenda et,
-            suscipit mollitia qui doloribus voluptas voluptatem a pariatur eius
-            harum? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptates deleniti beatae aperiam eum, accusamus laboriosam ut
-            consequuntur tempora assumenda et, suscipit mollitia qui doloribus
-            voluptas voluptatem a pariatur eius harum? Lorem ipsum dolor sit
-            amet, consectetur adipisicing elit. Voluptates deleniti beatae
-            aperiam eum, accusamus laboriosam ut consequuntur tempora assumenda
-            et, suscipit mollitia qui doloribus voluptas voluptatem a pariatur
-            eius harum? Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Voluptates deleniti beatae aperiam eum, accusamus laboriosam
-            ut consequuntur tempora assumenda et, suscipit mollitia qui
-            doloribus voluptas voluptatem a pariatur eius harum? Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit. Volup ut consequuntur
-            tempora assumenda et, suscipit mollitia qui doloribus voluptas
-            voluptatem a pariatur eius harum?
+            {Issue == "me" && <Me />}
+            {Issue == "connection" && <Connection />}
+            {Issue == "search" && <Search />}
+            {Issue == "chat" && <Chat />}
+            {Issue == "home" && <Homee />}
           </div>
-          <div
-            className="h-[7%] w-full flex absolute bottom-0  py-6 justify-around items-center bg-[#393939]"
-            // style={{ borderRadius: "17px 17px 0 0" }}
-          >
-            <FaUserAlt size={25} style={{ cursor: "pointer" }} />
-            <MdConnectWithoutContact size={25} style={{ cursor: "pointer" }} />
-            <GoSearch size={25} style={{ cursor: "pointer" }} />
-            <IoChatbubbleEllipsesOutline
-              size={25}
-              style={{ cursor: "pointer" }}
-            />
-            <IoHome size={25} style={{ cursor: "pointer" }} />
-          </div>
+          <BottomNav />
         </>
       )}
     </div>
