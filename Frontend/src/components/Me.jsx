@@ -6,29 +6,26 @@ import { BiSolidAddToQueue } from "react-icons/bi";
 import { IoIosAddCircle } from "react-icons/io";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 
-const props = {
-  name: "file",
-  action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
-  headers: {
-    authorization: "authorization-text",
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
+import axios from "axios";
+import { fetchRegister, updateRegister } from "../Redux/action";
+
 const Me = () => {
+  const Registers = useSelector((state) => state.Registers);
+  const dispatch = useDispatch();
+
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+  useEffect(() => {
+    dispatch(fetchRegister());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchRegister());
+  }, []);
 
   const updateSize = () => {
     setDimensions({
@@ -56,6 +53,32 @@ const Me = () => {
     });
     return bytes.toString(CryptoJS.enc.Utf8);
   }
+  const handleChange = async (info) => {
+    console.log(typeof info.file.originFileObj.name)
+    if (info) {
+      Registers.map(async (data) => {
+        if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+          await dispatch(
+            updateRegister(data.id, {
+              id:data.id,
+              username: data.username,
+              password: data.password,
+              profileImg: info.file.originFileObj.name,
+              email: data.email,
+              role: data.role,
+              hash: data.hash,
+            })
+          );
+        }
+      });
+      var form = new FormData();
+      form.append("file", info.file.originFileObj);
+      await axios.post(
+        "https://localhost:7028/api/FileManager/uploadfile",
+        form
+      );
+    }
+  };
 
   return (
     <div className="h-[100vh] overflow-y-auto w-full ">
@@ -88,10 +111,18 @@ const Me = () => {
       />
       <div className="px-6 pt-4 ">
         <Badge
-          // count={}
           count={
-            <Upload {...props}>
-              <Button  id="borderrnone" icon={<IoIosAddCircle color="#4096ff" style={{position:"absolute",top:"10px",right:"2px"}} size={dimensions.width > 900 ? 30 : 20}/>}></Button>
+            <Upload onChange={(e) => handleChange(e)}>
+              <Button
+                id="borderrnone"
+                icon={
+                  <IoIosAddCircle
+                    color="#4096ff"
+                    style={{ position: "absolute", top: "10px", right: "2px" }}
+                    size={dimensions.width > 900 ? 30 : 20}
+                  />
+                }
+              ></Button>
             </Upload>
           }
         >

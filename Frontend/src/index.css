@@ -15,3 +15,15 @@
 :where(.css-dev-only-do-not-override-1k979oh).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover{
     background-color: transparent;
 }
+.ant-upload-list-item-name{
+    display: none;
+}
+.ant-upload-list-item-actions{
+    display: none;
+}
+.ant-upload-icon{
+    display: none;
+}
+.ant-upload-list.ant-upload-list-text{
+    display: none;
+}
