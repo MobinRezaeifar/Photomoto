@@ -17,7 +17,6 @@ const Me = ({ Change, change }) => {
   const [Post, setPost] = useState(0);
   const [Connection, setConnection] = useState(0);
   const [Bio, setBio] = useState("");
-
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -99,7 +98,7 @@ const Me = ({ Change, change }) => {
         setBio(data.bio);
         if (data.profileImg) {
           setProfileImg(
-            `https://motionsbackend.liara.run/api/FileManager/downloadfile?FileName=${data.profileImg}`
+            `https://localhost:7028/api/FileManager/downloadfile?FileName=${data.profileImg}`
           );
         } else {
           setProfileImg("https://wallpapercave.com/dwp1x/wp9566386.jpg");

@@ -3,6 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Services;
 using Microsoft.AspNetCore.JsonPatch;
+using MongoDB.Driver;
+using MongoDB.Bson;
+using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using System.Runtime.InteropServices.JavaScript;
+using Microsoft.Win32;
 
 namespace WebApplication1.Controllers
 {
@@ -67,19 +75,22 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{id}")]
-        public ActionResult Patch(string id, [FromBody] JsonPatchDocument<Registers> patchDoc)
+
+
+        [HttpPatch("api/registers/{id}")]
+        public IActionResult Patch(string id, [FromBody] JsonPatchDocument<Registers> patchDoc)
         {
             var existingRegister = _registersService.Get(id);
 
             if (existingRegister == null)
             {
-                return NotFound($"register with Id = {id} not found");
+                return NotFound($"Register with ID {id} not found.");
             }
-            
+
             patchDoc.ApplyTo(existingRegister);
 
-            if (!ModelState.IsValid)
+            // Validate the updated model
+            if (!TryValidateModel(existingRegister))
             {
                 return BadRequest(ModelState);
             }
@@ -89,7 +100,8 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // DELETE api/<StudentsController>/5
+
+
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {

@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using Newtonsoft.Json.Linq;
 using WebApplication1.Configuration;
 using WebApplication1.Models;
 
@@ -46,7 +47,14 @@ namespace WebApplication1.Services
         {
             bool exists = _register.Find(register => register.Username == username).Any();
             return exists;
-     
+
+        }
+
+        public Task UpdateOne(BsonDocument bson, string id)
+        {
+            var filter = Builders<Registers>.Filter.Eq("_id", ObjectId.Parse(id));
+            var update = new BsonDocument("$set", bson);
+            return _register.UpdateOneAsync(filter, update);
         }
     }
 

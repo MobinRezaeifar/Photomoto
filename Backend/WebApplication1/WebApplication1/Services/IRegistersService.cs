@@ -1,4 +1,7 @@
-﻿using WebApplication1.Models;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using Newtonsoft.Json.Linq;
+using WebApplication1.Models;
 
 namespace WebApplication1.Services
 {
@@ -10,5 +13,6 @@ namespace WebApplication1.Services
         void Update (string id, Registers registers);
         void Remove (string id);
         bool IsUsernameExists(string username);
+        Task UpdateOne(BsonDocument bson, string id);
     }
 }
