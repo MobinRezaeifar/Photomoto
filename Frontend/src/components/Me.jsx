@@ -9,9 +9,11 @@ import { Button, message, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { fetchRegister, updateRegister } from "../Redux/action";
+import { BsChatText } from "react-icons/bs";
 
 const Me = ({ Change, change }) => {
   const Registers = useSelector((state) => state.Registers);
+  const [SelecteTab, setSelecteTab] = useState("posts");
   const dispatch = useDispatch();
   const [ProfileImg, setProfileImg] = useState("");
   const [Post, setPost] = useState(0);
@@ -179,9 +181,85 @@ const Me = ({ Change, change }) => {
           </div>
         </div>
       </div>
-      <div className="px-8 py-4">
+      <div className="px-8 py-4 flex items-center justify-between">
         <span>{Bio}</span>
+        <div className="flex gap-2">
+          <div
+            style={{
+              boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
+              // backgroundColor: "red",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            className="bg-slate-600 cursor-pointer"
+          >
+            <lord-icon
+              src="https://cdn.lordicon.com/cvmfhtvr.json"
+              trigger="hover"
+              colors="primary:#e4e4e4,secondary:#e4e4e4"
+              style={{ transform: "scale(1.3)" }}
+            ></lord-icon>
+          </div>
+          <div
+            style={{
+              boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
+              // backgroundColor: "red",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            className="bg-slate-600 cursor-pointer "
+          >
+            <BsChatText size={27} className="animated3" />
+          </div>
+        </div>
       </div>
+
+      {/*  */}
+
+      <div className="w-full h-full  flex justify-center text-center">
+        <div
+          className="w-1/2"
+          onClick={() => {
+            setSelecteTab("posts");
+          }}
+        >
+          <span>Posts</span>
+          <div
+           style={{
+            borderTop:
+              SelecteTab == "posts"
+                ? "1px solid white"
+                : "1px solid rgba(128, 128, 128, 0.163)",
+          }}
+          />
+        </div>
+        <div
+          className="w-1/2 "
+          onClick={() => {
+            setSelecteTab("others");
+          }}
+        >
+          <span>Others</span>
+          <div
+            style={{
+              borderTop:
+                SelecteTab == "others"
+                  ? "1px solid white"
+                  : "1px solid rgba(128, 128, 128, 0.163)",
+            }}
+          />
+        </div>
+      </div>
+
+      {/*  */}
     </div>
   );
 };
