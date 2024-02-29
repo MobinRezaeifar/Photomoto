@@ -24,7 +24,7 @@ builder.Services.AddSingleton<IMongoClient>(s =>
         new MongoClient(builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString")));
 
 builder.Services.AddScoped<IRegistersService, RegistersService>();
-//builder.Services.AddScoped<IListNotesService, ListNotesService>();
+builder.Services.AddScoped<IPostsService, PostsService>();
 
 builder.Services.AddControllers();
 
