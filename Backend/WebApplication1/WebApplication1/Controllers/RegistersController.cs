@@ -76,7 +76,6 @@ namespace WebApplication1.Controllers
             {
                 return NotFound($"register with Id = {id} not found");
             }
-
             
             patchDoc.ApplyTo(existingRegister);
 
