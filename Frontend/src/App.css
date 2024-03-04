@@ -1,0 +1,18 @@
+.animated:hover {
+  transform: rotate(180deg);
+}
+.animated {
+  transition: transform 2s;
+}
+.animated2:hover {
+  transform: rotate(-10deg);
+}
+.animated2 {
+  transition: transform 0.5s;
+}
+.animated3:hover {
+  transform: scale(1.2);
+}
+.animated3 {
+  transition: transform 0.5s;
+}

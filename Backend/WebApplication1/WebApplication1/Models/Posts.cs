@@ -7,7 +7,7 @@ namespace WebApplication1.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string Id { get; set; } = String.Empty;
 
         [BsonElement("postImg")]
         public string? PostImg { get; set; }
@@ -20,7 +20,6 @@ namespace WebApplication1.Models
 
         [BsonElement("like")]
         public int Like { get; set; }
-        [BsonElement("comments")]
-        public List<Comment> Comments { get; set; }
+        
     }
 }
