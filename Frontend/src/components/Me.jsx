@@ -58,11 +58,14 @@ const Me = ({ Change, change }) => {
     return bytes.toString(CryptoJS.enc.Utf8);
   }
 
+  let mainUser = decryptAES(sessionStorage.getItem("u"))
+
+
   const handleChange = async (info) => {
     if (info) {
       try {
         Registers.map(async (data) => {
-          if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+          if (data.username == mainUser) {
             await dispatch(
               updateRegister(data.id, {
                 id: data.id,
@@ -121,12 +124,12 @@ const Me = ({ Change, change }) => {
         </span>
         <span className="flex items-center gap-2">
           <BiSolidAddToQueue
-            className="animated2"
+            className="animated2 cursor-pointer"
             size={dimensions.width > 900 ? 38 : 32}
             // style={{ marginTop: "1.9rem" }}
           />
           <IoSettingsOutline
-            className="animated"
+            className="animated cursor-pointer"
             size={dimensions.width > 900 ? 38 : 32}
             // style={{ marginTop: "1.9rem" }}
           />
@@ -183,7 +186,8 @@ const Me = ({ Change, change }) => {
       </div>
       <div className="px-14 py-4 flex items-center justify-between ">
         <span>{Bio}</span>
-        <div className="flex gap-2">
+        {decryptAES(sessionStorage.getItem("u")) != mainUser && (
+          <div className="flex gap-2">
           <div
             style={{
               boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
@@ -220,11 +224,13 @@ const Me = ({ Change, change }) => {
             <BsChatText size={27} className="animated3" />
           </div>
         </div>
+        )}
+        
       </div>
 
       {/*  */}
 
-      <div className="flex justify-center text-center px-8">
+      <div className="flex justify-center text-center px-8 mb-2">
         <div
           className="w-1/2 cursor-pointer"
           onClick={() => {
@@ -233,7 +239,7 @@ const Me = ({ Change, change }) => {
         >
           <span>Posts</span>
           <div
-          className="my-2"
+            className="mt-2"
             style={{
               borderTop:
                 SelecteTab == "posts"
@@ -249,7 +255,8 @@ const Me = ({ Change, change }) => {
           }}
         >
           <span>Others</span>
-          <div className="mt-4"
+          <div
+            className="mt-2"
             style={{
               borderTop:
                 SelecteTab == "others"
@@ -263,98 +270,93 @@ const Me = ({ Change, change }) => {
       <div className="px-8 py-4">
         {SelecteTab == "posts" ? (
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-4">
-           
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
-                  alt=""
-                />
-              </div>
-          
-            
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
-                  alt=""
-                />
-              </div>
-            
-           
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
-                  alt=""
-                />
-              </div>
-            
-           
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
-                  alt=""
-                />
-              </div>
-              <div>
-                <img
-                  class="h-auto max-w-full rounded-lg"
-                  src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
-                  alt=""
-                />
-              </div>
-            
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
+                alt=""
+              />
+            </div>
+
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
+                alt=""
+              />
+            </div>
+
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
+                alt=""
+              />
+            </div>
+
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                class="h-auto max-w-full rounded-lg"
+                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
+                alt=""
+              />
+            </div>
           </div>
         ) : (
           <h1>
