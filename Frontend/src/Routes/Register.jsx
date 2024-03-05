@@ -15,7 +15,8 @@ const Register = () => {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [Email, setEmail] = useState("");
-  const [Role, setRole] = useState("");
+  const [Gender, setGender] = useState("");
+  const [FullName, setFullName] = useState("");
   let navigate = useNavigate();
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -53,18 +54,19 @@ const Register = () => {
   }, [dispatch]);
 
   const submitRegister = async () => {
-    if (Username && Password && Email && Role) {
+    if (Username && Password && Email && Gender && FullName) {
       axios
         .post("https://localhost:7028/api/Registers", {
           username: Username,
           password: encryptAES(Password),
+          fullName: FullName,
           profileImg: "",
           email: Email,
-          role: Role,
+          gender: Gender,
           hash: "",
           connection: 0,
           post: 0,
-          bio: `Hello, Im ${Username} and I just became a member of Photomoto platform`,
+          bio: `Hello, Im ${FullName} and I just became a member of Photomoto platform`,
         })
         .then(
           () => {
@@ -85,13 +87,15 @@ const Register = () => {
             });
             setEmail("");
             setPassword("");
-            setRole("");
+            setGender("");
             setUsername("");
+            setFullName("");
             navigate("/photomoto");
             sessionStorage.setItem("u", encryptAES(Username));
-            sessionStorage.setItem("r", encryptAES(Role));
+            sessionStorage.setItem("g", encryptAES(Gender));
             sessionStorage.setItem("p", encryptAES(Password));
             sessionStorage.setItem("e", encryptAES(Email));
+            sessionStorage.setItem("f", encryptAES(FullName));
           },
           (error) => {
             const Toast = Swal.mixin({
@@ -161,10 +165,10 @@ const Register = () => {
         <div className={` ${dimensions.width > 900 ? "w-[50%]" : "w-[100%]"} `}>
           <div
             className="form-container"
-            style={{ height: dimensions.width > 900 ? "450px" : "500px" }}
+            style={{ height: dimensions.width > 900 ? "450px" : "530px" }}
           >
             <div className="form  h-full">
-              <div style={{ height: dimensions.width > 900 ? "53%" : "60%" }}>
+              <div style={{ height: dimensions.width > 900 ? "53%" : "67%" }}>
                 <span
                   style={{
                     color: "white",
@@ -199,15 +203,24 @@ const Register = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-
-                <input
-                  placeholder="Email..."
-                  id="mail"
-                  type="email"
-                  className="input"
-                  value={Email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <div className={`${dimensions.width > 900 && "flex"} gap-2`}>
+                  <input
+                    placeholder="Fullname..."
+                    id="fullname"
+                    type="text"
+                    className="input"
+                    value={FullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                  />
+                  <input
+                    placeholder="Email..."
+                    id="mail"
+                    type="email"
+                    className="input"
+                    value={Email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
               </div>
               <div
                 className={`flex  px-2 text-gray-500 ${
@@ -233,13 +246,13 @@ const Register = () => {
               </div>
 
               <ul
-                class={` w-full gap-6  mb-4 grid-cols-2 ${
+                class={` w-full gap-6  mb-4 grid-cols-3 ${
                   dimensions.width > 900
                     ? "grid grid-cols-2"
                     : "flex justify-around"
                 }`}
               >
-                <li onClick={() => setRole("client")}>
+                <li onClick={() => setGender("male")}>
                   <input
                     type="radio"
                     id="hosting-small"
@@ -259,18 +272,52 @@ const Register = () => {
                   >
                     {dimensions.width > 900 && (
                       <div class="block">
-                        <div class="w-full text-lg font-semibold">Client</div>
+                        <div class="w-full text-lg font-semibold">Male</div>
                       </div>
                     )}
 
                     <lord-icon
-                      src="https://cdn.lordicon.com/piolrlvu.json"
+                      src="https://cdn.lordicon.com/mebvgwrs.json"
                       trigger="hover"
-                      style={{ transform: "scale(1.7)" }}
+                      style={{ transform: "scale(1.3)" }}
                     ></lord-icon>
                   </label>
                 </li>
-                <li onClick={() => setRole("photographer")}>
+                <li onClick={() => setGender("female")}>
+                  <input
+                    type="radio"
+                    id="hosting-smalll"
+                    name="hosting"
+                    value="hosting-smalll"
+                    class="hidden peer"
+                    required
+                  />
+                  <label
+                    style={{ backgroundColor: "#002733" }}
+                    for="hosting-smalll"
+                    class={`inline-flex items-center ${
+                      dimensions.width > 900
+                        ? "justify-between w-full"
+                        : "justify-center "
+                    } p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700`}
+                  >
+                    {dimensions.width > 900 && (
+                      <div class="block mr-2">
+                        <div class="w-full text-lg font-semibold">Female</div>
+                      </div>
+                    )}
+
+                    <lord-icon
+                      src="https://cdn.lordicon.com/pyarizrk.json"
+                      trigger="hover"
+                      style={{
+                        transform:
+                          dimensions.width > 900 ? "scale(2.5)" : "scale(1.3)",
+                      }}
+                    ></lord-icon>
+                  </label>
+                </li>
+                <li onClick={() => setGender("other")}>
                   <input
                     type="radio"
                     id="hosting-big"
@@ -289,16 +336,14 @@ const Register = () => {
                   >
                     {dimensions.width > 900 && (
                       <div class="block">
-                        <div class="w-full text-lg font-semibold">
-                          Photographer
-                        </div>
+                        <div class="w-full text-lg font-semibold">Other</div>
                       </div>
                     )}
 
                     <lord-icon
-                      src="https://cdn.lordicon.com/bmlkvhui.json"
+                      src="https://cdn.lordicon.com/fmasbomy.json"
                       trigger="hover"
-                      style={{ transform: "scale(1.7)" }}
+                      style={{ transform: "scale(1.1)" }}
                     ></lord-icon>
                   </label>
                 </li>

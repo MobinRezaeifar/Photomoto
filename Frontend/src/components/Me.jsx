@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -10,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { fetchRegister, updateRegister } from "../Redux/action";
 import { BsChatText } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import CreatePostModel from "./CreatePostModel";
 
 const Me = ({ Change, change }) => {
   const Registers = useSelector((state) => state.Registers);
@@ -58,8 +62,7 @@ const Me = ({ Change, change }) => {
     return bytes.toString(CryptoJS.enc.Utf8);
   }
 
-  let mainUser = decryptAES(sessionStorage.getItem("u"))
-
+  let mainUser = decryptAES(sessionStorage.getItem("u"));
 
   const handleChange = async (info) => {
     if (info) {
@@ -112,6 +115,10 @@ const Me = ({ Change, change }) => {
     });
   });
 
+
+  const navigate = useNavigate();
+  const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
+
   return (
     <div className="h-full overflow-y-auto w-full ">
       <div className="flex justify-between w-full items-center  p-8">
@@ -124,11 +131,18 @@ const Me = ({ Change, change }) => {
         </span>
         <span className="flex items-center gap-2">
           <BiSolidAddToQueue
+            onClick={() => {
+              // navigate("/photomoto/edit");
+              setShowCreatePostModel(true);
+            }}
+            title="Create Post"
             className="animated2 cursor-pointer"
             size={dimensions.width > 900 ? 38 : 32}
             // style={{ marginTop: "1.9rem" }}
           />
+          <CreatePostModel show={ShowCreatePostModel} setShow={setShowCreatePostModel} dimensions={dimensions}/>
           <IoSettingsOutline
+            title="Setting"
             className="animated cursor-pointer"
             size={dimensions.width > 900 ? 38 : 32}
             // style={{ marginTop: "1.9rem" }}
@@ -185,47 +199,50 @@ const Me = ({ Change, change }) => {
         </div>
       </div>
       <div className="px-14 py-4 flex items-center justify-between ">
+        
+        <div className="flex flex-col">
+        <span className="text-xl font-serif text-white">{decryptAES(sessionStorage.getItem("f"))}</span>
         <span>{Bio}</span>
+        </div>
         {decryptAES(sessionStorage.getItem("u")) != mainUser && (
           <div className="flex gap-2">
-          <div
-            style={{
-              boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-              // backgroundColor: "red",
-              borderRadius: "50%",
-              width: "50px",
-              height: "50px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            className="bg-slate-600 cursor-pointer"
-          >
-            <lord-icon
-              src="https://cdn.lordicon.com/cvmfhtvr.json"
-              trigger="hover"
-              colors="primary:#e4e4e4,secondary:#e4e4e4"
-              style={{ transform: "scale(1.3)" }}
-            ></lord-icon>
+            <div
+              style={{
+                boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
+                // backgroundColor: "red",
+                borderRadius: "50%",
+                width: "50px",
+                height: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              className="bg-slate-600 cursor-pointer"
+            >
+              <lord-icon
+                src="https://cdn.lordicon.com/cvmfhtvr.json"
+                trigger="hover"
+                colors="primary:#e4e4e4,secondary:#e4e4e4"
+                style={{ transform: "scale(1.3)" }}
+              ></lord-icon>
+            </div>
+            <div
+              style={{
+                boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
+                // backgroundColor: "red",
+                borderRadius: "50%",
+                width: "50px",
+                height: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              className="bg-slate-600 cursor-pointer "
+            >
+              <BsChatText size={27} className="animated3" />
+            </div>
           </div>
-          <div
-            style={{
-              boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-              // backgroundColor: "red",
-              borderRadius: "50%",
-              width: "50px",
-              height: "50px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            className="bg-slate-600 cursor-pointer "
-          >
-            <BsChatText size={27} className="animated3" />
-          </div>
-        </div>
         )}
-        
       </div>
 
       {/*  */}

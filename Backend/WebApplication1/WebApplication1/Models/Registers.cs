@@ -13,6 +13,8 @@ namespace WebApplication1.Models
 
         [BsonElement("username")]
         public string? Username { get; set; }
+        [BsonElement("fullname")]
+        public string? FullName { get; set; }
 
         [BsonElement("password")]
         public string? Password { get; set; }
@@ -23,8 +25,8 @@ namespace WebApplication1.Models
         [BsonElement("email")]
         public string? Email { get; set; }
 
-        [BsonElement("role")]
-        public string? Role { get; set; }
+        [BsonElement("gender")]
+        public string? Gender { get; set; }
 
         [BsonElement("hash")]
         public string? Hash { get; set; }
