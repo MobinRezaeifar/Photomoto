@@ -88,7 +88,7 @@ function CreatePostModel({ show, dimensions, setShow }) {
                         }}
                       />
                     </div>
-                  </div>
+                  </div>   
 
                   <Dragger {...props}>
                     <p className="ant-upload-drag-icon">
