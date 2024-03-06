@@ -17,6 +17,27 @@ export const addRegiaterSuccess = (user) => ({
     type: 'DELETE_REGISTER_SUCCESS',
     payload: id,
   });
+
+
+export const addPostSuccess = (post) => ({
+    type: 'ADD_POST_SUCCESS',
+    payload: post,
+  });
+  
+  export const fetchPostsSuccess = (posts) => ({
+    type: 'FETCH_POSTS_SUCCESS',
+    payload: posts,
+  });
+  
+  export const updatePostsSuccess = (updatePost) => ({
+    type: 'UPDATE_POST_SUCCESS',
+    payload: updatePost,
+  });
+  
+  export const deletePostSuccess = (id) => ({
+    type: 'DELETE_POST_SUCCESS',
+    payload: id,
+  });
   
 
   
@@ -80,6 +101,72 @@ export const addRegiaterSuccess = (user) => ({
         dispatch(deleteRegisterSuccess(id));
       } catch (error) {
         console.error(`Error deleting register with ID ${id}:`, error);
+      }
+    };
+  };
+  
+  
+
+  export const AddPost = (newPost) => {
+    return async (dispatch) => {
+      try {
+        const response = await fetch('https://localhost:7028/api/Posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newPost),
+        });
+  
+        const post = await response.json();
+        dispatch(addPostSuccess(post));
+      } catch (error) {
+        console.error('Error adding post:', error);
+      }
+    };
+  };
+  
+  export const fetchPosts = () => {
+    return async (dispatch) => {
+      try {
+        const response = await fetch('https://localhost:7028/api/Posts');
+        const post = await response.json();
+        dispatch(fetchPostsSuccess(post));
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      }
+    };
+  };
+  
+  export const updatePost = (id, updatePost) => {
+    return async (dispatch) => {
+      try {
+        const response = await fetch(`https://localhost:7028/api/Posts/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatePost),
+        });
+  
+        const post = await response.json();
+        dispatch(updatePostsSuccess(post));
+      } catch (error) {
+        console.error(`Error updating post with ID ${id}:`, error);
+      }
+    };
+  };
+  
+  export const deletePost = (id) => {
+    return async (dispatch) => {
+      try {
+        await fetch(`https://localhost:7028/api/Posts/${id}`, {
+          method: 'DELETE',
+        });
+  
+        dispatch(deletePostSuccess(id));
+      } catch (error) {
+        console.error(`Error deleting post with ID ${id}:`, error);
       }
     };
   };
