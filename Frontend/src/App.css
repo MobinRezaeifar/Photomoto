@@ -19,6 +19,7 @@
 :where(.css-dev-only-do-not-override-1k979oh).ant-upload-wrapper
   .ant-upload-drag {
   border: 2px dashed white;
+  border-radius: 2px 2px 12px 12px;
 }
 :where(.css-dev-only-do-not-override-1k979oh).ant-upload-wrapper
   .ant-upload-drag:hover {
