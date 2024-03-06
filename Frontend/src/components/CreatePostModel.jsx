@@ -1,18 +1,27 @@
 import React from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+import { BsBodyText } from "react-icons/bs";
 import { InboxOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
+import { SiApostrophe } from "react-icons/si";
+import axios from "axios";
+
 const { Dragger } = Upload;
 const props = {
   name: "file",
   multiple: true,
   action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
-  onChange(info) {
+  async onChange(info) {
     const { status } = info.file;
     if (status !== "uploading") {
-      console.log(info.file, info.fileList);
+      
+      var form = new FormData();
+      form.append("file", info.file.originFileObj);
+      await axios.post(
+        "https://localhost:7028/api/FileManager/uploadfile",
+        form
+      );
     }
     if (status === "done") {
       message.success(`${info.file.name} file uploaded successfully.`);
@@ -24,10 +33,6 @@ const props = {
     console.log("Dropped files", e.dataTransfer.files);
   },
 };
-
-
-
-
 
 function CreatePostModel({ show, dimensions, setShow }) {
   return (
@@ -62,12 +67,12 @@ function CreatePostModel({ show, dimensions, setShow }) {
                     Create Post
                   </h1>
 
-                  <div className="col-span-2 mt-4">
+                  <div className="col-span-2 mt-8">
                     <label
                       htmlFor="description"
-                      className="block mb-2 text-[18px]  font-medium  "
+                      className="items-center gap-2  mb-2 text-[18px]  font-medium  flex"
                     >
-                      Description
+                      <BsBodyText size={24} /> Description
                     </label>
                     <div
                       style={{
@@ -78,7 +83,7 @@ function CreatePostModel({ show, dimensions, setShow }) {
                       }}
                     >
                       <CKEditor
-                      className="test"
+                        className="test"
                         editor={ClassicEditor}
                         data=""
                         onReady={(editor) => {
@@ -95,8 +100,8 @@ function CreatePostModel({ show, dimensions, setShow }) {
                     </div>
                   </div>
                   <br />
-                  <span className="block  text-[18px]  font-medium  ">
-                    Photo Post
+                  <span className="flex items-center gap-2 text-[18px]  font-medium  ">
+                    <SiApostrophe size={24} /> Photo Post
                   </span>
                   <Dragger
                     {...props}

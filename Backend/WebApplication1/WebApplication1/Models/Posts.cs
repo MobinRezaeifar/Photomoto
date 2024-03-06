@@ -20,6 +20,8 @@ namespace WebApplication1.Models
 
         [BsonElement("like")]
         public int Like { get; set; }
-        
+        [BsonElement("type")]
+        public string? Type { get; set; }
+
     }
 }

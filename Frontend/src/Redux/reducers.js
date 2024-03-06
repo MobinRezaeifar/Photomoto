@@ -1,5 +1,6 @@
 const initialState = {
   Registers: [],
+  Posts: [],
   Issue : ""
 
 };
@@ -31,6 +32,33 @@ const reducer = (state = initialState, action) => {
         ...state,
         Registers: state.Registers.filter(
           (register) => register.id !== action.payload
+        ),
+      };
+    case "ADD_POST_SUCCESS":
+      return {
+        ...state,
+        Posts: [...state.Posts, action.payload],
+      };
+
+    case "FETCH_POSTS_SUCCESS":
+      return {
+        ...state,
+        Posts: action.payload,
+      };
+
+    case "UPDATE_POST_SUCCESS":
+      return {
+        ...state,
+        Posts: state.Posts.map((post) =>
+          post.id === action.payload.id ? action.payload : post
+        ),
+      };
+
+    case "DELETE_POST_SUCCESS":
+      return {
+        ...state,
+        Posts: state.Posts.filter(
+          (post) => post.id !== action.payload
         ),
       };
 
