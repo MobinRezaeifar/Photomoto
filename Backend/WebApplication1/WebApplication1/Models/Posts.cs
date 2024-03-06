@@ -9,8 +9,8 @@ namespace WebApplication1.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = String.Empty;
 
-        [BsonElement("postImg")]
-        public string? PostImg { get; set; }
+        [BsonElement("postMedia")]
+        public string? PostMedia { get; set; }
 
         [BsonElement("disc")]
         public string? Disc { get; set; }

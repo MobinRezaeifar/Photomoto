@@ -14,6 +14,7 @@ import { fetchRegister, updateRegister } from "../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "./CreatePostModel";
+import Posts from "./Posts";
 
 const Me = ({ Change, change }) => {
   const Registers = useSelector((state) => state.Registers);
@@ -30,7 +31,7 @@ const Me = ({ Change, change }) => {
 
   useEffect(() => {
     dispatch(fetchRegister());
-  }, [change]);
+  }, [dispatch]);
   useEffect(() => {
     dispatch(fetchRegister());
   }, []);
@@ -74,13 +75,16 @@ const Me = ({ Change, change }) => {
                 id: data.id,
                 username: data.username,
                 password: data.password,
-                profileImg: info.file.originFileObj.name,
+                profileImg:
+                  "https://localhost:7028/api/FileManager/downloadfile?FileName=" +
+                  info.file.originFileObj.name,
                 email: data.email,
-                role: data.role,
                 hash: data.hash,
                 connection: data.connection,
                 post: data.post,
                 bio: data.bio,
+                gender: data.gender,
+                fullName: data.fullName,
               })
             );
           }
@@ -105,16 +109,13 @@ const Me = ({ Change, change }) => {
         setPost(data.post);
         setBio(data.bio);
         if (data.profileImg) {
-          setProfileImg(
-            `https://localhost:7028/api/FileManager/downloadfile?FileName=${data.profileImg}`
-          );
+          setProfileImg(data.profileImg);
         } else {
           setProfileImg("https://wallpapercave.com/dwp1x/wp9566386.jpg");
         }
       }
     });
   });
-
 
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
@@ -140,7 +141,11 @@ const Me = ({ Change, change }) => {
             size={dimensions.width > 900 ? 38 : 32}
             // style={{ marginTop: "1.9rem" }}
           />
-          <CreatePostModel show={ShowCreatePostModel} setShow={setShowCreatePostModel} dimensions={dimensions}/>
+          <CreatePostModel
+            show={ShowCreatePostModel}
+            setShow={setShowCreatePostModel}
+            dimensions={dimensions}
+          />
           <IoSettingsOutline
             title="Setting"
             className="animated cursor-pointer"
@@ -198,11 +203,12 @@ const Me = ({ Change, change }) => {
           </div>
         </div>
       </div>
-      <div className="px-14 py-4 flex items-center justify-between ">
-        
+      <div className="px-10 py-4 flex items-center justify-between ">
         <div className="flex flex-col">
-        <span className="text-xl font-serif text-white">{decryptAES(sessionStorage.getItem("f"))}</span>
-        <span>{Bio}</span>
+          <span className="text-xl font-serif text-white">
+            {decryptAES(sessionStorage.getItem("f"))}
+          </span>
+          <span>{Bio}</span>
         </div>
         {decryptAES(sessionStorage.getItem("u")) != mainUser && (
           <div className="flex gap-2">
@@ -254,7 +260,7 @@ const Me = ({ Change, change }) => {
             setSelecteTab("posts");
           }}
         >
-          <span>Posts</span>
+          <span className="text-white"> Posts</span>
           <div
             className="mt-2"
             style={{
@@ -271,7 +277,7 @@ const Me = ({ Change, change }) => {
             setSelecteTab("others");
           }}
         >
-          <span>Others</span>
+          <span className="text-white">Others</span>
           <div
             className="mt-2"
             style={{
@@ -284,97 +290,9 @@ const Me = ({ Change, change }) => {
         </div>
       </div>
       {/*  */}
-      <div className="px-8 py-4">
+      <div className="px-8 py-4 w-full">
         {SelecteTab == "posts" ? (
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-4">
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
-                alt=""
-              />
-            </div>
-
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
-                alt=""
-              />
-            </div>
-
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
-                alt=""
-              />
-            </div>
-
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                class="h-auto max-w-full rounded-lg"
-                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg"
-                alt=""
-              />
-            </div>
-          </div>
+          <Posts mainUser={mainUser} dimensions={dimensions} />
         ) : (
           <h1>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia

@@ -63,3 +63,69 @@
   border-bottom: 2px solid white;
   color: red;
 }
+
+
+
+
+[class^=box-] {
+  /* color: #4d4c4c; */
+  background-color: #343340b9;
+  /* border-radius: 5px; */
+  width: 100%;
+  height: 165px;
+  min-width: 80px;
+  max-width: 100%;
+  padding: 0;
+}
+[class^=box-] .stats {
+  background-color: #333;
+  float: left;
+  top: 0;
+  width: 100%;
+  font-size: 20px;
+  padding: 5px 10px;
+  text-align: left;
+  font-weight: 100;
+  opacity: 0;
+  width: 98%;
+  color: white;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+[class^=box-] .stats span:last-of-type {
+  float: right;
+}
+[class^=box-] .stats .btl {
+  font-size: 80%;
+  vertical-align: middle;
+}
+[class^=box-]:hover .stats {
+  opacity: 1;
+}
+@media (max-width: 1200px) {
+  [class^=box-] {
+    min-height: 212.5px;
+  }
+}
+@media (max-width: 990px) {
+  [class^=box-] {
+    min-height: 220px;
+  }
+}
+@media (max-width: 620px) {
+  [class^=box-] {
+    min-height: 170px;
+  }
+}
+@media (max-width: 520px) {
+  [class^=box-] {
+    min-height: 143.33px;
+  }
+}
+@media (max-width: 420px) {
+  [class^=box-] {
+    min-height: 110px;
+  }
+}

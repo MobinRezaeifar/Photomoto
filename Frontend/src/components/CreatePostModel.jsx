@@ -7,7 +7,7 @@ import { message, Upload, Image } from "antd";
 import { SiApostrophe } from "react-icons/si";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { AddPost } from "../Redux/action";
+import { AddPost, updateRegister } from "../Redux/action";
 import CryptoJS from "crypto-js";
 
 const { Dragger } = Upload;
@@ -15,7 +15,9 @@ const { Dragger } = Upload;
 function CreatePostModel({ show, dimensions, setShow }) {
   const [Desc, setDesc] = useState("");
   const [PostImg, setPostImg] = useState("");
+  const [PostVideo, setPostVideo] = useState("");
   const [FileMedia, setFileMedia] = useState({});
+  const Registers = useSelector((state) => state.Registers);
   const dispatch = useDispatch();
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -42,9 +44,15 @@ function CreatePostModel({ show, dimensions, setShow }) {
           form
         );
         setFileMedia(info.file);
-        setPostImg(
-          `https://localhost:7028/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
-        );
+        if (info.file.originFileObj.type.startsWith("video")) {
+          setPostVideo(
+            `https://localhost:7028/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
+          );
+        } else {
+          setPostImg(
+            `https://localhost:7028/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
+          );
+        }
       }
       if (status === "done") {
         // message.success(`${info.file.name} file uploaded successfully.`);
@@ -63,13 +71,32 @@ function CreatePostModel({ show, dimensions, setShow }) {
     setDesc("");
     await dispatch(
       AddPost({
-        postImg: `https://localhost:7028/api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
+        postMedia: `https://localhost:7028/api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
         disc: Desc,
         owner: decryptAES(sessionStorage.getItem("u")),
         like: 0,
         type: FileMedia.originFileObj.type,
       })
     );
+    Registers.map(async (data) => {
+      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+        await dispatch(
+          updateRegister(data.id, {
+            id: data.id,
+            username: data.username,
+            password: data.password,
+            profileImg: data.profileImg,
+            email: data.email,
+            hash: data.hash,
+            connection: data.connection,
+            post: data.post + 1,
+            bio: data.bio,
+            gender: data.gender,
+            fullName: data.fullName,
+          })
+        );
+      }
+    });
   };
 
   return (
@@ -107,12 +134,13 @@ function CreatePostModel({ show, dimensions, setShow }) {
 
                     <lord-icon
                       src="https://cdn.lordicon.com/snqonmhs.json"
-                      trigger="morph"
+                      trigger="in"
                       colors="primary:#ffffff,secondary:#e83a30"
                       style={{ transform: "scale(1.3)", cursor: "pointer" }}
                       onClick={() => {
                         setShow(false);
                         setDesc("");
+                        setPostImg("");
                       }}
                     ></lord-icon>
                   </div>
@@ -145,34 +173,50 @@ function CreatePostModel({ show, dimensions, setShow }) {
                   </div>
                   <br />
                   <span className="flex items-center gap-2 text-[18px] font-medium">
-                    <SiApostrophe size={24} /> Photo Post
+                    <SiApostrophe size={24} /> Post Media
                   </span>
-                  {PostImg ? (
-                    <div className="w-full text-center mt-4">
-                      <Image width={300} src={PostImg} />
-                    </div>
-                  ) : (
-                    <Dragger
-                      {...props}
-                      style={{
-                        marginTop: "10px",
-                        width:
-                          dimensions.width < 564
-                            ? dimensions.width - 90
-                            : "500px",
-                      }}
-                    >
-                      <p className="ant-upload-drag-icon">
-                        <InboxOutlined />
-                      </p>
-                      <p
-                        className="ant-upload-text "
-                        style={{ color: "white" }}
-                      >
-                        Click or drag file to this area to upload
-                      </p>
-                    </Dragger>
-                  )}
+
+                  {(() => {
+                    if (PostImg || PostVideo) {
+                      if (PostImg) {
+                        return (
+                          <div className="w-full text-center mt-4">
+                            <Image width={300} src={PostImg} />
+                          </div>
+                        );
+                      }
+                      if (PostVideo) {
+                        return (
+                          <div className="w-full flex justify-center mt-4">
+                            <video controls width={400} src={PostVideo} />
+                          </div>
+                        );
+                      }
+                    } else {
+                      return (
+                        <Dragger
+                          {...props}
+                          style={{
+                            marginTop: "10px",
+                            width:
+                              dimensions.width < 564
+                                ? dimensions.width - 90
+                                : "500px",
+                          }}
+                        >
+                          <p className="ant-upload-drag-icon">
+                            <InboxOutlined />
+                          </p>
+                          <p
+                            className="ant-upload-text "
+                            style={{ color: "white" }}
+                          >
+                            Click or drag file to this area to upload
+                          </p>
+                        </Dragger>
+                      );
+                    }
+                  })()}
                 </div>
               </div>
             </div>
@@ -180,16 +224,14 @@ function CreatePostModel({ show, dimensions, setShow }) {
               <button
                 onClick={() => CreatePost()}
                 type="button"
-                className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
+                className="inline-flex w-full justify-center rounded-md mb-3  px-12  text-sm font-semibold text-white shadow-sm  sm:ml-3 sm:w-auto"
               >
-                Add
-              </button>
-              <button
-                onClick={() => setShow(false)}
-                type="button"
-                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-              >
-                Cancel
+                <lord-icon
+                  src="https://cdn.lordicon.com/dangivhk.json"
+                  trigger="hover"
+                  colors="primary:#ffffff,secondary:#08a88a"
+                  style={{ transform: "scale(1.5)", cursor: "pointer" }}
+                ></lord-icon>
               </button>
             </div>
           </div>
