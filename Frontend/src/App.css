@@ -16,3 +16,49 @@
 .animated3 {
   transition: transform 0.5s;
 }
+:where(.css-dev-only-do-not-override-1k979oh).ant-upload-wrapper
+  .ant-upload-drag {
+  border: 2px dashed white;
+}
+:where(.css-dev-only-do-not-override-1k979oh).ant-upload-wrapper
+  .ant-upload-drag:hover {
+  border: 2px dashed white;
+}
+:where(.css-dev-only-do-not-override-1k979oh).ant-upload-wrapper
+  .ant-upload-drag
+  p.ant-upload-drag-icon
+  .anticon {
+  color: white;
+}
+.ck-blurred.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline {
+  border-radius: 0 0 7px 7px;
+  color: white;
+  background-color: rgb(76, 87, 103);
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.ck.ck-editor__main > .ck-editor__editable:focus {
+  border: none;
+  border-radius: 0 0 7px 7px;
+}
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+  border: none;
+  border-radius: 0 0 7px 7px;
+}
+
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline.ck-focused {
+  border-radius: 0 0 7px 7px;
+  border: none;
+  color: white;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  background-color: rgb(76, 87, 103);
+}
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners{
+  background-color: rgb(76, 87, 103);
+  border-bottom: 2px solid white;
+  color: red;
+}

@@ -25,6 +25,10 @@ const props = {
   },
 };
 
+
+
+
+
 function CreatePostModel({ show, dimensions, setShow }) {
   return (
     <div
@@ -69,11 +73,12 @@ function CreatePostModel({ show, dimensions, setShow }) {
                       style={{
                         width:
                           dimensions.width < 564
-                            ? dimensions.width - 200
+                            ? dimensions.width - 90
                             : "500px",
                       }}
                     >
                       <CKEditor
+                      className="test"
                         editor={ClassicEditor}
                         data=""
                         onReady={(editor) => {
@@ -88,18 +93,26 @@ function CreatePostModel({ show, dimensions, setShow }) {
                         }}
                       />
                     </div>
-                  </div>   
-
-                  <Dragger {...props}>
+                  </div>
+                  <br />
+                  <span className="block  text-[18px]  font-medium  ">
+                    Photo Post
+                  </span>
+                  <Dragger
+                    {...props}
+                    style={{
+                      marginTop: "10px",
+                      width:
+                        dimensions.width < 564
+                          ? dimensions.width - 90
+                          : "500px",
+                    }}
+                  >
                     <p className="ant-upload-drag-icon">
                       <InboxOutlined />
                     </p>
-                    <p className="ant-upload-text">
+                    <p className="ant-upload-text " style={{ color: "white" }}>
                       Click or drag file to this area to upload
-                    </p>
-                    <p className="ant-upload-hint">
-                      Support for a single or bulk upload. Strictly prohibited
-                      from uploading company data or other banned files.
                     </p>
                   </Dragger>
                 </div>
