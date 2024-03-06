@@ -2,26 +2,26 @@ import React from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-import { InboxOutlined } from '@ant-design/icons';
-import { message, Upload } from 'antd';
+import { InboxOutlined } from "@ant-design/icons";
+import { message, Upload } from "antd";
 const { Dragger } = Upload;
 const props = {
-  name: 'file',
+  name: "file",
   multiple: true,
-  action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
+  action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
   onChange(info) {
     const { status } = info.file;
-    if (status !== 'uploading') {
+    if (status !== "uploading") {
       console.log(info.file, info.fileList);
     }
-    if (status === 'done') {
+    if (status === "done") {
       message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
+    } else if (status === "error") {
       message.error(`${info.file.name} file upload failed.`);
     }
   },
   onDrop(e) {
-    console.log('Dropped files', e.dataTransfer.files);
+    console.log("Dropped files", e.dataTransfer.files);
   },
 };
 
@@ -44,12 +44,12 @@ function CreatePostModel({ show, dimensions, setShow }) {
           >
             <div className="bg-gray-700  px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
-                  <lord-icon
-                    src="https://cdn.lordicon.com/pbhjpofq.json"
-                    trigger="hover"
-                    style={{ transform: "scale(1.3)" }}
-                    className="testt"
-                  ></lord-icon>
+                <lord-icon
+                  src="https://cdn.lordicon.com/pbhjpofq.json"
+                  trigger="hover"
+                  style={{ transform: "scale(1.3)" }}
+                  className="testt"
+                ></lord-icon>
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                   <h1
                     className="text-xl font-semibold leading-6 text-[white] mt-1"
@@ -91,16 +91,17 @@ function CreatePostModel({ show, dimensions, setShow }) {
                   </div>
 
                   <Dragger {...props}>
-    <p className="ant-upload-drag-icon">
-      <InboxOutlined />
-    </p>
-    <p className="ant-upload-text">Click or drag file to this area to upload</p>
-    <p className="ant-upload-hint">
-      Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-      banned files.
-    </p>
-  </Dragger>
-
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined />
+                    </p>
+                    <p className="ant-upload-text">
+                      Click or drag file to this area to upload
+                    </p>
+                    <p className="ant-upload-hint">
+                      Support for a single or bulk upload. Strictly prohibited
+                      from uploading company data or other banned files.
+                    </p>
+                  </Dragger>
                 </div>
               </div>
             </div>
