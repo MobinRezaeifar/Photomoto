@@ -39,7 +39,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/photomoto" element={<Home Change={Change} change={change}/>} />
-          <Route path="/login" element={<Login />} />
+          {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/photomoto/edit" element={<CreatePost />} />
         </Routes>
       </BrowserRouter>

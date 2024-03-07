@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../Redux/action";
+import ShowPostModel from "./ShowPostModel";
 
 const Posts = ({ mainUser, dimensions }) => {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const Posts = ({ mainUser, dimensions }) => {
           })}
         </div>
       </div>
+      <ShowPostModel/>
     </div>
   );
 };

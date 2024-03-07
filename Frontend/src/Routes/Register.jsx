@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Login from "./Login";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -134,14 +135,14 @@ const Register = () => {
     }
   };
 
-  // function decryptAES(message) {
-  //   const bytes = CryptoJS.AES.decrypt(message, key, {
-  //     iv: iv,
-  //     mode: CryptoJS.mode.CBC,
-  //     padding: CryptoJS.pad.Pkcs7,
-  //   });
-  //   return bytes.toString(CryptoJS.enc.Utf8);
-  // }
+  function decryptAES(message) {
+    const bytes = CryptoJS.AES.decrypt(message, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
 
   return (
     <div className="h-screen w-screen px-20 flex justify-center items-center">
@@ -363,6 +364,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <Login  />
     </div>
   );
 };
