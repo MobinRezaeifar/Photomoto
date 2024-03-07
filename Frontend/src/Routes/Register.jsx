@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Login from "./Login";
+import Login from "../components/Login";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,8 @@ const Register = () => {
   const [Gender, setGender] = useState("");
   const [FullName, setFullName] = useState("");
   let navigate = useNavigate();
+  const [ShowLogin, setShowLogin] = useState(false);
+
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -231,15 +233,15 @@ const Register = () => {
                 } `}
               >
                 <a
-                  onClick={() => {
-                    navigate("/login");
+                   onClick={() => {
+                    setShowLogin(true);
                   }}
                 >
                   Login
                 </a>
                 <a
                   onClick={() => {
-                    navigate("/login");
+                    setShowLogin(true);
                   }}
                 >
                   I have an account
@@ -350,7 +352,7 @@ const Register = () => {
                 </li>
               </ul>
 
-              <div className="button-container">
+              <div className="button-container cursor-pointer">
                 <div
                   className="reset-button-container"
                   onClick={submitRegister}
@@ -364,7 +366,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <Login  />
+      <Login ShowLogin={ShowLogin} setShowLogin={setShowLogin}/>
     </div>
   );
 };

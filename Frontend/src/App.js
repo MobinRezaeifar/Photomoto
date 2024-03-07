@@ -2,7 +2,6 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./Routes/Register";
 import Home from "./Routes/Home";
-import Login from "./Routes/Login";
 import { useState } from "react";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import CreatePost from "./Routes/CreatePost";

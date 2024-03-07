@@ -7,8 +7,7 @@ import CryptoJS from "crypto-js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [ShowLogin, setShowLogin] = useState(false);
+const Login = ({ ShowLogin, setShowLogin }) => {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -93,6 +92,7 @@ const Login = () => {
   return (
     <>
       <div
+        style={{ backgroundColor: "#001925" }}
         id="drawer-swipe"
         class={`${
           ShowLogin
@@ -104,8 +104,12 @@ const Login = () => {
         aria-modal="true"
       >
         <div
-          class="p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
-          onClick={() => setShowLogin(!ShowLogin)}
+          class="p-4 cursor-pointer "
+          onClick={() => {
+            setShowLogin(!ShowLogin);
+            setPassword("");
+            setUsername("");
+          }}
         >
           <span class="absolute w-8 h-1 -translate-x-1/2 bg-gray-300 rounded-lg top-3 left-1/2 dark:bg-gray-600"></span>
           <h5
@@ -119,7 +123,7 @@ const Login = () => {
                 src="https://img.icons8.com/external-aficons-studio-flat-aficons-studio/68/external-login-user-interface-aficons-studio-flat-aficons-studio.png"
                 alt="external-login-user-interface-aficons-studio-flat-aficons-studio"
               />
-              Login
+              <span className="text-2xl text-white font-bold">Login</span>
             </div>
             <div>
               {Password && Username && (
@@ -127,7 +131,7 @@ const Login = () => {
                   onClick={LoginUser}
                   src="https://cdn.lordicon.com/dangivhk.json"
                   trigger="hover"
-                  colors="primary:#ffffff,secondary:#08a88a"
+                  colors="primary:#ffffff,secondary:#ff7a01"
                   style={{
                     transform: "scale(1.3)",
                     cursor: "pointer",
@@ -162,6 +166,7 @@ const Login = () => {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="username..."
                 required
+                style={{ backgroundColor: "#002733" }}
               />
             </div>
           </form>
@@ -174,6 +179,7 @@ const Login = () => {
                 <RiLockPasswordLine size={25} />
               </div>
               <input
+                style={{ backgroundColor: "#002733" }}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}

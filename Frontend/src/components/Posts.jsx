@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../Redux/action";
 import ShowPostModel from "./ShowPostModel";
 
-const Posts = ({ mainUser, dimensions }) => {
+const Posts = ({ mainUser, dimensions, ProfileImg }) => {
   const dispatch = useDispatch();
+  const [showPostModel, setShowPostModel] = useState(false);
   const Posts = useSelector((state) => state.Posts);
+  const [SelectePost, setSelectePost] = useState({});
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
@@ -18,9 +20,12 @@ const Posts = ({ mainUser, dimensions }) => {
             if (post.owner == mainUser) {
               return (
                 <div
-                  className="col-span-1"
+                  className="col-span-1 cursor-pointer"
                   key={index}
-                  onClick={() => console.log(post.id)}
+                  onClick={() => {
+                    setShowPostModel(true);
+                    setSelectePost(post);
+                  }}
                 >
                   <a target="_blank">
                     {post.type.startsWith("video") ? (
@@ -51,7 +56,14 @@ const Posts = ({ mainUser, dimensions }) => {
           })}
         </div>
       </div>
-      <ShowPostModel/>
+      <ShowPostModel
+        ProfileImg={ProfileImg}
+        showPostModel={showPostModel}
+        setShowPostModel={setShowPostModel}
+        SelectePost={SelectePost}
+        dimensions={dimensions}
+        Posts={Posts}
+      />
     </div>
   );
 };

@@ -292,7 +292,7 @@ const Me = ({ Change, change }) => {
       {/*  */}
       <div className="px-8 py-4 w-full">
         {SelecteTab == "posts" ? (
-          <Posts mainUser={mainUser} dimensions={dimensions} />
+          <Posts mainUser={mainUser} dimensions={dimensions} ProfileImg={ProfileImg}/>
         ) : (
           <h1>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
