@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { AddPost, updateRegister } from "../Redux/action";
 import CryptoJS from "crypto-js";
+import moment from "jalali-moment";
 
 const { Dragger } = Upload;
 
@@ -64,7 +65,7 @@ function CreatePostModel({ show, dimensions, setShow }) {
       console.log("Dropped files", e.dataTransfer.files);
     },
   };
-
+  const now = Date.now();
   const CreatePost = async () => {
     setShow(false);
     setPostImg("");
@@ -74,8 +75,9 @@ function CreatePostModel({ show, dimensions, setShow }) {
         postMedia: `https://localhost:7028/api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
         disc: Desc,
         owner: decryptAES(sessionStorage.getItem("u")),
-        like: 0,
+        likes: [],
         type: FileMedia.originFileObj.type,
+        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
       })
     );
     Registers.map(async (data) => {
@@ -220,20 +222,26 @@ function CreatePostModel({ show, dimensions, setShow }) {
                 </div>
               </div>
             </div>
-            <div className="bg-gray-700  px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button
-                onClick={() => CreatePost()}
-                type="button"
-                className="inline-flex w-full justify-center rounded-md mb-3  px-12  text-sm font-semibold text-white shadow-sm  sm:ml-3 sm:w-auto"
-              >
-                <lord-icon
-                  src="https://cdn.lordicon.com/dangivhk.json"
-                  trigger="hover"
-                  colors="primary:#ffffff,secondary:#08a88a"
-                  style={{ transform: "scale(1.5)", cursor: "pointer" }}
-                ></lord-icon>
-              </button>
-            </div>
+            {(() => {
+              if (PostImg || PostVideo) {
+                return (
+                  <div className="bg-gray-700  px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    <button
+                      onClick={() => CreatePost()}
+                      type="button"
+                      className="inline-flex w-full justify-center rounded-md mb-3  px-12  text-sm font-semibold text-white shadow-sm  sm:ml-3 sm:w-auto"
+                    >
+                      <lord-icon
+                        src="https://cdn.lordicon.com/dangivhk.json"
+                        trigger="hover"
+                        colors="primary:#ffffff,secondary:#08a88a"
+                        style={{ transform: "scale(1.5)", cursor: "pointer" }}
+                      ></lord-icon>
+                    </button>
+                  </div>
+                );
+              }
+            })()}
           </div>
         </div>
       </div>

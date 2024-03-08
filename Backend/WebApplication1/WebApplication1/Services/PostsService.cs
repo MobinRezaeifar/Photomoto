@@ -25,6 +25,7 @@ namespace WebApplication1.Services
             return _posts.Find(posts => true).ToList();
         }
 
+
         public Posts Get(string id)
         {
             return _posts.Find(posts => posts.Id == id).FirstOrDefault();

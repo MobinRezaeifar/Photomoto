@@ -21,7 +21,6 @@ const Register = () => {
   let navigate = useNavigate();
   const [ShowLogin, setShowLogin] = useState(false);
 
-
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
   function encryptAES(message) {
@@ -233,7 +232,7 @@ const Register = () => {
                 } `}
               >
                 <a
-                   onClick={() => {
+                  onClick={() => {
                     setShowLogin(true);
                   }}
                 >
@@ -366,7 +365,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <Login ShowLogin={ShowLogin} setShowLogin={setShowLogin}/>
+      <Login ShowLogin={ShowLogin} setShowLogin={setShowLogin} />
     </div>
   );
 };

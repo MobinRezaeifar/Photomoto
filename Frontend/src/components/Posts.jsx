@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../Redux/action";
 import ShowPostModel from "./ShowPostModel";
 
-const Posts = ({ mainUser, dimensions, ProfileImg }) => {
+const Posts = ({ mainUser, dimensions, ProfileImg, Change, change }) => {
   const dispatch = useDispatch();
   const [showPostModel, setShowPostModel] = useState(false);
   const Posts = useSelector((state) => state.Posts);
@@ -63,6 +63,8 @@ const Posts = ({ mainUser, dimensions, ProfileImg }) => {
         SelectePost={SelectePost}
         dimensions={dimensions}
         Posts={Posts}
+        Change={Change}
+        change={change}
       />
     </div>
   );

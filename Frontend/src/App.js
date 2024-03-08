@@ -4,7 +4,6 @@ import Register from "./Routes/Register";
 import Home from "./Routes/Home";
 import { useState } from "react";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
-import CreatePost from "./Routes/CreatePost";
 
 
 
@@ -39,7 +38,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/photomoto" element={<Home Change={Change} change={change}/>} />
           {/* <Route path="/login" element={<Login />} /> */}
-          <Route path="/photomoto/edit" element={<CreatePost />} />
         </Routes>
       </BrowserRouter>
     </main>

@@ -35,6 +35,9 @@ const Me = ({ Change, change }) => {
   useEffect(() => {
     dispatch(fetchRegister());
   }, []);
+  useEffect(() => {
+    dispatch(fetchRegister());
+  }, [change]);
 
   const updateSize = () => {
     setDimensions({
@@ -292,7 +295,13 @@ const Me = ({ Change, change }) => {
       {/*  */}
       <div className="px-8 py-4 w-full">
         {SelecteTab == "posts" ? (
-          <Posts mainUser={mainUser} dimensions={dimensions} ProfileImg={ProfileImg}/>
+          <Posts
+          Change={Change}
+change={change}
+            mainUser={mainUser}
+            dimensions={dimensions}
+            ProfileImg={ProfileImg}
+          />
         ) : (
           <h1>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia

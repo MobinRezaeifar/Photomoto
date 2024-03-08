@@ -18,10 +18,13 @@ namespace WebApplication1.Models
         [BsonElement("owner")]
         public string? Owner { get; set; }
 
-        [BsonElement("like")]
-        public int Like { get; set; }
+        [BsonElement("likes")]
+        public List<Like> Likes { get; set; }
+
         [BsonElement("type")]
         public string? Type { get; set; }
+        [BsonElement("time")]
+        public string? Time { get; set; }
 
     }
 }
