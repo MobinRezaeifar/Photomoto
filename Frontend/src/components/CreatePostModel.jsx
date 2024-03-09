@@ -46,17 +46,17 @@ function CreatePostModel({ show, dimensions, setShow }) {
         var form = new FormData();
         form.append("file", info.file.originFileObj);
         await axios.post(
-          "localhost:5221/api/FileManager/uploadfile",
+          "http://localhost:5221/api/FileManager/uploadfile",
           form
         );
         setFileMedia(info.file);
         if (info.file.originFileObj.type.startsWith("video")) {
           setPostVideo(
-            `localhost:5221/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
+            `http://localhost:5221/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
           );
         } else {
           setPostImg(
-            `localhost:5221/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
+            `http://localhost:5221/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
           );
         }
       }
@@ -77,7 +77,7 @@ function CreatePostModel({ show, dimensions, setShow }) {
     setDesc("");
     await dispatch(
       AddPost({
-        postMedia: `localhost:5221/api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
+        postMedia: `http://localhost:5221/api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
         disc: Desc,
         owner: decryptAES(sessionStorage.getItem("u")),
         likes: [],
