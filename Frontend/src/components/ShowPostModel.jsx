@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable eqeqeq */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar } from "antd";
 import CryptoJS from "crypto-js";
 import { AiOutlineComment } from "react-icons/ai";
@@ -67,7 +67,7 @@ const ShowPostModel = ({
   let LikedProfile = dimensions.width > 900 ? "w-10 h-10" : "w-7 h-7";
 
   const LikePost = async () => {
-    dispatch(
+    await dispatch(
       updatePost(Post.id, {
         ...Post,
         likes: [
@@ -80,8 +80,8 @@ const ShowPostModel = ({
       })
     );
 
-    dispatch(fetchRegister());
-    dispatch(fetchPosts());
+    await dispatch(fetchRegister());
+    await dispatch(fetchPosts());
   };
 
   const items = [
@@ -91,11 +91,11 @@ const ShowPostModel = ({
         <span
           className="flex items-center text-lg text-red-500"
           onClick={async () => {
-            dispatch(deletePost(Post.id));
+            await dispatch(deletePost(Post.id));
             setShowPostModel(false);
             Registers.map(async (data) => {
               if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-                dispatch(
+                await dispatch(
                   updateRegister(data.id, {
                     ...data,
                     post: data.post - 1,
@@ -103,7 +103,7 @@ const ShowPostModel = ({
                 );
               }
             });
-            dispatch(fetchRegister());
+            await dispatch(fetchRegister());
           }}
         >
           <RiDeleteBin6Line size={24} /> Delete Post
@@ -127,7 +127,7 @@ const ShowPostModel = ({
   ];
   const now = Date.now();
   const SendComment = async () => {
-    dispatch(
+    await dispatch(
       updatePost(Post.id, {
         ...Post,
         comment: [
@@ -141,11 +141,9 @@ const ShowPostModel = ({
         ],
       })
     );
-    dispatch(fetchPosts());
+    await dispatch(fetchPosts());
     setcommentText("");
   };
-  const commentsContainer = useRef();
-  console.log(commentsContainer);
 
   return (
     <div
@@ -355,7 +353,6 @@ const ShowPostModel = ({
             {ShowComment && (
               <div className="h-[70%] w-full  p-4 ">
                 <div
-                  ref={commentsContainer}
                   className={`overflow-y-auto  ${
                     isEqual(Post.comment, []) ? "h-[1rem]" : "h-[10rem]"
                   }`}
