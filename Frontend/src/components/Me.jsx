@@ -10,13 +10,13 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { fetchRegister, updateRegister } from "../Redux/action";
+import { fetchPosts, fetchRegister, updateRegister } from "../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "./CreatePostModel";
 import Posts from "./Posts";
 
-const Me = ({ Change, change }) => {
+const Me = () => {
   const Registers = useSelector((state) => state.Registers);
   const [SelecteTab, setSelecteTab] = useState("posts");
   const dispatch = useDispatch();
@@ -31,13 +31,11 @@ const Me = ({ Change, change }) => {
 
   useEffect(() => {
     dispatch(fetchRegister());
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(fetchRegister());
   }, []);
+
   useEffect(() => {
     dispatch(fetchRegister());
-  }, [change]);
+  }, [dispatch]);
 
   const updateSize = () => {
     setDimensions({
@@ -90,6 +88,7 @@ const Me = ({ Change, change }) => {
                 fullName: data.fullName,
               })
             );
+            await dispatch(fetchRegister())
           }
         });
         var form = new FormData();
@@ -98,18 +97,19 @@ const Me = ({ Change, change }) => {
           "https://localhost:7028/api/FileManager/uploadfile",
           form
         );
-        await Change("change");
       } catch (err) {
         console.log(err);
       }
     }
   };
 
+
+
   useEffect(() => {
-    Registers.map((data) => {
+    Registers.map(async (data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
         setConnection(data.connection);
-        setPost(data.post);
+        await setPost(data.post);
         setBio(data.bio);
         if (data.profileImg) {
           setProfileImg(data.profileImg);
@@ -119,6 +119,7 @@ const Me = ({ Change, change }) => {
       }
     });
   });
+
 
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
@@ -296,8 +297,6 @@ const Me = ({ Change, change }) => {
       <div className="px-8 py-4 w-full">
         {SelecteTab == "posts" ? (
           <Posts
-          Change={Change}
-change={change}
             mainUser={mainUser}
             dimensions={dimensions}
             ProfileImg={ProfileImg}

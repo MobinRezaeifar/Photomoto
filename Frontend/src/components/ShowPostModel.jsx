@@ -24,8 +24,6 @@ const ShowPostModel = ({
   SelectePost,
   dimensions,
   Posts,
-  Change,
-  change,
 }) => {
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -34,17 +32,14 @@ const ShowPostModel = ({
   const [ShowComment, setShowComment] = useState(false);
   const [commentText, setcommentText] = useState("");
 
-  // useEffect(() => {
-  //   dispatch(fetchRegister());
-  //   dispatch(fetchPosts());
-  // }, []);
-  // useEffect(() => {
-  //   dispatch(fetchRegister());
-  //   dispatch(fetchPosts());
-  // }, [change]);
   useEffect(() => {
+    dispatch(fetchRegister());
     dispatch(fetchPosts());
-  }, [change]);
+  }, []);
+  useEffect(() => {
+    dispatch(fetchRegister());
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
@@ -60,7 +55,6 @@ const ShowPostModel = ({
   const LikePost = async (id) => {
     Posts.map(async (data) => {
       if (data.id == id) {
-        await Change("change");
         await dispatch(
           updatePost(id, {
             ...data,
@@ -75,6 +69,8 @@ const ShowPostModel = ({
         );
       }
     });
+    await dispatch(fetchRegister());
+    await dispatch(fetchPosts());
   };
 
   const items = [
@@ -107,7 +103,6 @@ const ShowPostModel = ({
   const SendComment = () => {
     Posts.map(async (data) => {
       if (data.id == SelectePost.id) {
-        await Change("change");
         await dispatch(
           updatePost(data.id, {
             ...data,
@@ -122,6 +117,7 @@ const ShowPostModel = ({
             ],
           })
         );
+        await dispatch(fetchPosts());
         setcommentText("");
       }
     });
@@ -344,8 +340,7 @@ const ShowPostModel = ({
                     return (
                       <a
                         href=""
-                        class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-
+                        class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <div class="flex-shrink-0">
                           <img

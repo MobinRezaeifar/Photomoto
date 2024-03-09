@@ -7,7 +7,12 @@ import { message, Upload, Image } from "antd";
 import { SiApostrophe } from "react-icons/si";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { AddPost, updateRegister } from "../Redux/action";
+import {
+  AddPost,
+  fetchPosts,
+  fetchRegister,
+  updateRegister,
+} from "../Redux/action";
 import CryptoJS from "crypto-js";
 import moment from "jalali-moment";
 
@@ -78,30 +83,21 @@ function CreatePostModel({ show, dimensions, setShow }) {
         likes: [],
         type: FileMedia.originFileObj.type,
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-        comment:[]
+        comment: [],
       })
     );
     Registers.map(async (data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
         await dispatch(
           updateRegister(data.id, {
-            id: data.id,
-            username: data.username,
-            password: data.password,
-            profileImg: data.profileImg,
-            email: data.email,
-            hash: data.hash,
-            connection: data.connection,
+            ...data,
             post: data.post + 1,
-            bio: data.bio,
-            gender: data.gender,
-            fullName: data.fullName,
           })
         );
+        await dispatch(fetchRegister());
       }
     });
   };
-
   return (
     <div
       className={`relative z-10 ${!show && "hidden"} `}
