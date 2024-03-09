@@ -3,7 +3,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { BsBodyText } from "react-icons/bs";
 import { InboxOutlined } from "@ant-design/icons";
-import { message, Upload, Image } from "antd";
+import { message, Upload } from "antd";
 import { SiApostrophe } from "react-icons/si";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,17 @@ import {
 } from "../Redux/action";
 import CryptoJS from "crypto-js";
 import moment from "jalali-moment";
+import {
+  DownloadOutlined,
+  RotateLeftOutlined,
+  RotateRightOutlined,
+  SwapOutlined,
+  ZoomInOutlined,
+  DeleteOutlined,
+  ZoomOutOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
+import { Image, Space } from "antd";
 
 const { Dragger } = Upload;
 
@@ -98,6 +109,22 @@ function CreatePostModel({ show, dimensions, setShow }) {
       }
     });
   };
+
+  const onDownload = (src) => {
+    fetch(src)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "image.png";
+        document.body.appendChild(link);
+        link.click();
+        URL.revokeObjectURL(url);
+        link.remove();
+      });
+  };
+
   return (
     <div
       className={`relative z-10 ${!show && "hidden"} `}
@@ -180,14 +207,95 @@ function CreatePostModel({ show, dimensions, setShow }) {
                       if (PostImg) {
                         return (
                           <div className="w-full text-center mt-4">
-                            <Image width={300} src={PostImg} />
+                            <Image
+                              width={200}
+                              src={PostImg}
+                              preview={{
+                                toolbarRender: (
+                                  _,
+                                  {
+                                    transform: { scale },
+                                    actions: {
+                                      onFlipY,
+                                      onFlipX,
+                                      onRotateLeft,
+                                      onRotateRight,
+                                      onZoomOut,
+                                      onZoomIn,
+                                    },
+                                  }
+                                ) => (
+                                  <Space
+                                    size={12}
+                                    className="toolbar-wrapper rounded-[1.7rem] p-4"
+                                    style={{
+                                      backgroundColor: "rgba(55, 65, 81, 0.3)",
+                                    }}
+                                  >
+                                    <DeleteOutlined
+                                      onClick={() => {
+                                        setPostImg("");
+                                        setPostVideo("");
+                                      }}
+                                      style={{ fontSize: "25px" }}
+                                    />
+                                    <DownloadOutlined
+                                      style={{ fontSize: "32px" }}
+                                      onClick={() =>
+                                        onDownload(PostImg || PostVideo)
+                                      }
+                                    />
+                                    <SwapOutlined
+                                      style={{ fontSize: "25px" }}
+                                      rotate={90}
+                                      onClick={onFlipY}
+                                    />
+                                    <SwapOutlined
+                                      onClick={onFlipX}
+                                      style={{ fontSize: "25px" }}
+                                    />
+                                    <RotateLeftOutlined
+                                      style={{ fontSize: "25px" }}
+                                      onClick={onRotateLeft}
+                                    />
+                                    <RotateRightOutlined
+                                      style={{ fontSize: "25px" }}
+                                      onClick={onRotateRight}
+                                    />
+                                    <ZoomOutOutlined
+                                      style={{ fontSize: "25px" }}
+                                      disabled={scale === 1}
+                                      onClick={onZoomOut}
+                                    />
+                                    <ZoomInOutlined
+                                      style={{ fontSize: "25px" }}
+                                      disabled={scale === 50}
+                                      onClick={onZoomIn}
+                                    />
+                                  </Space>
+                                ),
+                              }}
+                            />
                           </div>
                         );
                       }
                       if (PostVideo) {
                         return (
                           <div className="w-full flex justify-center mt-4">
-                            <video controls width={400} src={PostVideo} />
+                            <span className="flex items-start justify-end">
+                              <video controls width={400} src={PostVideo} />
+                              <CloseCircleOutlined
+                                onClick={() => {
+                                  setPostImg("");
+                                  setPostVideo("");
+                                }}
+                                style={{
+                                  fontSize: "25px",
+                                  position: "absolute",
+                                  color: "rgba(255, 0, 0, 0.7)",
+                                }}
+                              />
+                            </span>
                           </div>
                         );
                       }
