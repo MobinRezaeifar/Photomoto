@@ -78,7 +78,7 @@ const Me = () => {
                 username: data.username,
                 password: data.password,
                 profileImg:
-                  "https://localhost:7028/api/FileManager/downloadfile?FileName=" +
+                  "localhost:5221/api/FileManager/downloadfile?FileName=" +
                   info.file.originFileObj.name,
                 email: data.email,
                 hash: data.hash,
@@ -95,7 +95,7 @@ const Me = () => {
         var form = new FormData();
         form.append("file", info.file.originFileObj);
         await axios.post(
-          "https://localhost:7028/api/FileManager/uploadfile",
+          "localhost:5221/api/FileManager/uploadfile",
           form
         );
       } catch (err) {

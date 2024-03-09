@@ -44,7 +44,7 @@ export const addPostSuccess = (post) => ({
   export const AddRegister = (newUser) => {
     return async (dispatch) => {
       try {
-        const response = await fetch('https://localhost:7028/api/Registers', {
+        const response = await fetch('localhost:5221/api/Registers', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const addPostSuccess = (post) => ({
   export const fetchRegister = () => {
     return async (dispatch) => {
       try {
-        const response = await fetch('https://localhost:7028/api/Registers');
+        const response = await fetch('localhost:5221/api/Registers');
         const register = await response.json();
         dispatch(fetchRegistersSuccess(register));
       } catch (error) {
@@ -75,7 +75,7 @@ export const addPostSuccess = (post) => ({
   export const updateRegister = (id, updatedRegister) => {
     return async (dispatch) => {
       try {
-        const response = await fetch(`https://localhost:7028/api/Registers/${id}`, {
+        const response = await fetch(`localhost:5221/api/Registers/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export const addPostSuccess = (post) => ({
   export const deleteRegister = (id) => {
     return async (dispatch) => {
       try {
-        await fetch(`https://localhost:7028/api/Registers/${id}`, {
+        await fetch(`localhost:5221/api/Registers/${id}`, {
           method: 'DELETE',
         });
   
@@ -110,7 +110,7 @@ export const addPostSuccess = (post) => ({
   export const AddPost = (newPost) => {
     return async (dispatch) => {
       try {
-        const response = await fetch('https://localhost:7028/api/Posts', {
+        const response = await fetch('localhost:5221/api/Posts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ export const addPostSuccess = (post) => ({
   export const fetchPosts = () => {
     return async (dispatch) => {
       try {
-        const response = await fetch('https://localhost:7028/api/Posts');
+        const response = await fetch('localhost:5221/api/Posts');
         const post = await response.json();
         dispatch(fetchPostsSuccess(post));
       } catch (error) {
@@ -141,7 +141,7 @@ export const addPostSuccess = (post) => ({
   export const updatePost = (id, updatePost) => {
     return async (dispatch) => {
       try {
-        const response = await fetch(`https://localhost:7028/api/Posts/${id}`, {
+        const response = await fetch(`localhost:5221/api/Posts/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -160,7 +160,7 @@ export const addPostSuccess = (post) => ({
   export const deletePost = (id) => {
     return async (dispatch) => {
       try {
-        await fetch(`https://localhost:7028/api/Posts/${id}`, {
+        await fetch(`localhost:5221/api/Posts/${id}`, {
           method: 'DELETE',
         });
   

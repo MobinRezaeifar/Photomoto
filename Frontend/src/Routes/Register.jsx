@@ -58,7 +58,7 @@ const Register = () => {
   const submitRegister = async () => {
     if (Username && Password && Email && Gender && FullName) {
       axios
-        .post("https://localhost:7028/api/Registers", {
+        .post("localhost:5221/api/Registers", {
           username: Username,
           password: encryptAES(Password),
           fullName: FullName,
