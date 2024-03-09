@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable eqeqeq */
+import React, { useEffect, useRef, useState } from "react";
 import { Avatar } from "antd";
 import CryptoJS from "crypto-js";
 import { AiOutlineComment } from "react-icons/ai";
@@ -17,6 +19,8 @@ import {
 import { Button, Dropdown } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "jalali-moment";
+import { BiCloset, BiWindowClose } from "react-icons/bi";
+import { IoClose } from "react-icons/io5";
 const ShowPostModel = ({
   ProfileImg,
   showPostModel,
@@ -31,11 +35,21 @@ const ShowPostModel = ({
   const Registers = useSelector((state) => state.Registers);
   const [ShowComment, setShowComment] = useState(false);
   const [commentText, setcommentText] = useState("");
+  const [Post, setPost] = useState({});
 
   useEffect(() => {
     dispatch(fetchRegister());
     dispatch(fetchPosts());
   }, []);
+
+  useEffect(() => {
+    Posts.map((data) => {
+      if (data.id == SelectePost) {
+        setPost(data);
+      }
+    });
+  });
+
   useEffect(() => {
     dispatch(fetchRegister());
     dispatch(fetchPosts());
@@ -52,25 +66,22 @@ const ShowPostModel = ({
   let iconSize = dimensions.width > 900 ? 30 : 25;
   let LikedProfile = dimensions.width > 900 ? "w-10 h-10" : "w-7 h-7";
 
-  const LikePost = async (id) => {
-    Posts.map(async (data) => {
-      if (data.id == id) {
-        await dispatch(
-          updatePost(id, {
-            ...data,
-            likes: [
-              ...data.likes,
-              {
-                username: decryptAES(sessionStorage.getItem("u")),
-                profileImg: ProfileImg,
-              },
-            ],
-          })
-        );
-      }
-    });
-    await dispatch(fetchRegister());
-    await dispatch(fetchPosts());
+  const LikePost = async () => {
+    dispatch(
+      updatePost(Post.id, {
+        ...Post,
+        likes: [
+          ...Post.likes,
+          {
+            username: decryptAES(sessionStorage.getItem("u")),
+            profileImg: ProfileImg,
+          },
+        ],
+      })
+    );
+
+    dispatch(fetchRegister());
+    dispatch(fetchPosts());
   };
 
   const items = [
@@ -80,11 +91,11 @@ const ShowPostModel = ({
         <span
           className="flex items-center text-lg text-red-500"
           onClick={async () => {
-            await dispatch(deletePost(SelectePost.id));
+            dispatch(deletePost(Post.id));
             setShowPostModel(false);
             Registers.map(async (data) => {
               if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-                await dispatch(
+                dispatch(
                   updateRegister(data.id, {
                     ...data,
                     post: data.post - 1,
@@ -92,36 +103,49 @@ const ShowPostModel = ({
                 );
               }
             });
+            dispatch(fetchRegister());
           }}
         >
           <RiDeleteBin6Line size={24} /> Delete Post
         </span>
       ),
     },
+    {
+      key: "2",
+      label: (
+        <span
+          className="flex items-center text-lg text-red-500"
+          onClick={async () => {
+            setShowComment(false);
+            setShowPostModel(false);
+          }}
+        >
+          <IoClose size={24} /> Close
+        </span>
+      ),
+    },
   ];
   const now = Date.now();
-  const SendComment = () => {
-    Posts.map(async (data) => {
-      if (data.id == SelectePost.id) {
-        await dispatch(
-          updatePost(data.id, {
-            ...data,
-            comment: [
-              ...data.comment,
-              {
-                text: commentText,
-                owner: decryptAES(sessionStorage.getItem("u")),
-                profileImg: ProfileImg,
-                time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-              },
-            ],
-          })
-        );
-        await dispatch(fetchPosts());
-        setcommentText("");
-      }
-    });
+  const SendComment = async () => {
+    dispatch(
+      updatePost(Post.id, {
+        ...Post,
+        comment: [
+          ...Post.comment,
+          {
+            text: commentText,
+            owner: decryptAES(sessionStorage.getItem("u")),
+            profileImg: ProfileImg,
+            time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+          },
+        ],
+      })
+    );
+    dispatch(fetchPosts());
+    setcommentText("");
   };
+  const commentsContainer = useRef();
+  console.log(commentsContainer);
 
   return (
     <div
@@ -162,15 +186,15 @@ const ShowPostModel = ({
                 </div>
               </div>
             )}
-            {SelectePost.type && SelectePost.type.startsWith("video") ? (
+            {Post.type && Post.type.startsWith("video") ? (
               <video
-                src={SelectePost.postMedia}
+                src={Post.postMedia}
                 className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
                 controls
               />
             ) : (
               <img
-                src={SelectePost.postMedia}
+                src={Post.postMedia}
                 className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
                 style={{
                   backgroundSize: "cover",
@@ -184,13 +208,13 @@ const ShowPostModel = ({
                 dimensions.width > 900 ? "px-4" : "px-2"
               }`}
             >
-              {!isEqual(SelectePost.likes, []) ? (
+              {!isEqual(Post.likes, []) ? (
                 <div class="flex -space-x-4 rtl:space-x-reverse items-center justify-between">
                   {(() => {
                     let counter = 0;
                     if (counter < 4) {
-                      if (SelectePost.likes) {
-                        return SelectePost.likes.map((data) => {
+                      if (Post.likes) {
+                        return Post.likes.map((data) => {
                           counter++;
                           return (
                             <img
@@ -204,10 +228,8 @@ const ShowPostModel = ({
                     }
                   })()}
                   &nbsp; &nbsp; &nbsp;
-                  {SelectePost.likes && (
-                    <span>
-                      Liked by {SelectePost.likes[0].username} and other
-                    </span>
+                  {Post.likes && (
+                    <span>Liked by {Post.likes[0].username} and other</span>
                   )}
                 </div>
               ) : (
@@ -216,10 +238,10 @@ const ShowPostModel = ({
               <div className="flex justify-around px-2 pt-4 gap-2">
                 <span className="flex flex-col items-center">
                   {(() => {
-                    if (!isEqual(SelectePost, {})) {
-                      if (!isEqual(SelectePost.likes, [])) {
-                        for (let i = 0; i < SelectePost.likes.length; i++) {
-                          const data = SelectePost.likes[i];
+                    if (!isEqual(Post, {})) {
+                      if (!isEqual(Post.likes, [])) {
+                        for (let i = 0; i < Post.likes.length; i++) {
+                          const data = Post.likes[i];
                           if (
                             data.username ==
                             decryptAES(sessionStorage.getItem("u"))
@@ -237,7 +259,7 @@ const ShowPostModel = ({
                                 size={iconSize}
                                 style={{ cursor: "pointer" }}
                                 onClick={() => {
-                                  LikePost(SelectePost.id);
+                                  LikePost(Post.id);
                                 }}
                               />
                             );
@@ -248,15 +270,15 @@ const ShowPostModel = ({
                           <FaRegHeart
                             size={iconSize}
                             style={{ cursor: "pointer" }}
-                            onClick={() => {
-                              LikePost(SelectePost.id);
+                            onClick={async () => {
+                              LikePost(Post.id);
                             }}
                           />
                         );
                       }
                     }
                   })()}
-                  <span>{SelectePost.likes && SelectePost.likes.length}</span>
+                  <span>{Post.likes && Post.likes.length}</span>
                 </span>
 
                 <span
@@ -267,11 +289,10 @@ const ShowPostModel = ({
                     size={iconSize}
                     style={{ cursor: "pointer" }}
                   />
-                  {SelectePost.comment && SelectePost.comment.length}
+                  {Post.comment && Post.comment.length}
                 </span>
                 <LuShare2 size={iconSize} style={{ cursor: "pointer" }} />
-                {decryptAES(sessionStorage.getItem("u")) ==
-                  SelectePost.owner && (
+                {decryptAES(sessionStorage.getItem("u")) == Post.owner && (
                   <Dropdown
                     trigger={["click"]}
                     menu={{
@@ -294,13 +315,13 @@ const ShowPostModel = ({
                 {decryptAES(sessionStorage.getItem("u"))}
               </span>
               <div
-                dangerouslySetInnerHTML={{ __html: SelectePost.disc }}
+                dangerouslySetInnerHTML={{ __html: Post.disc }}
                 style={{ color: "white", fontSize: "20px" }}
               />
             </div>
             <div className="px-4">
               {(() => {
-                if (!isEqual(SelectePost.comment, [])) {
+                if (!isEqual(Post.comment, [])) {
                   if (ShowComment) {
                     return (
                       <span
@@ -317,14 +338,16 @@ const ShowPostModel = ({
                         onClick={() => setShowComment(true)}
                         className="cursor-pointer"
                       >
-                        View All{" "}
-                        {SelectePost.comment && SelectePost.comment.length}{" "}
-                        Comments
+                        View All {Post.comment && Post.comment.length} Comments
                       </span>
                     );
                   }
                 } else {
-                  return <span>There are no comments</span>;
+                  return (
+                    <span onClick={() => setShowComment(!ShowComment)}>
+                      There are no comments
+                    </span>
+                  );
                 }
               })()}
             </div>
@@ -332,16 +355,14 @@ const ShowPostModel = ({
             {ShowComment && (
               <div className="h-[70%] w-full  p-4 ">
                 <div
+                  ref={commentsContainer}
                   className={`overflow-y-auto  ${
-                    isEqual(SelectePost.comment, []) ? "h-[1rem]" : "h-[10rem]"
+                    isEqual(Post.comment, []) ? "h-[1rem]" : "h-[10rem]"
                   }`}
                 >
-                  {SelectePost.comment.map((data) => {
+                  {Post.comment.map((data) => {
                     return (
-                      <a
-                        href=""
-                        class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-                      >
+                      <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
                         <div class="flex-shrink-0">
                           <img
                             class="rounded-full w-11 h-11"
@@ -357,7 +378,7 @@ const ShowPostModel = ({
                             {data.time}
                           </div>
                         </div>
-                      </a>
+                      </span>
                     );
                   })}
                 </div>
@@ -388,9 +409,7 @@ const ShowPostModel = ({
               </div>
             )}
 
-            <span className="px-4 text-sm text-[#80808085]">
-              °{SelectePost.time}°
-            </span>
+            <span className="px-4 text-sm text-[#80808085]">°{Post.time}°</span>
           </div>
         </div>
       </div>

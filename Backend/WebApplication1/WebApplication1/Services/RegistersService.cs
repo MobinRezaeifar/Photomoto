@@ -15,7 +15,7 @@ namespace WebApplication1.Services
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _register = database.GetCollection<Registers>(settings.RegistersCollection);
-        }
+        } 
 
         public Registers Create(Registers register)
         {

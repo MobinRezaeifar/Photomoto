@@ -11,7 +11,6 @@ const Posts = ({ mainUser, dimensions, ProfileImg }) => {
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
-
   return (
     <div className="container">
       <div id="instagram">
@@ -24,7 +23,7 @@ const Posts = ({ mainUser, dimensions, ProfileImg }) => {
                   key={index}
                   onClick={() => {
                     setShowPostModel(true);
-                    setSelectePost(post);
+                    setSelectePost(post.id);
                   }}
                 >
                   <a target="_blank">

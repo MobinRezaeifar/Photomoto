@@ -15,6 +15,7 @@ import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "./CreatePostModel";
 import Posts from "./Posts";
+import { Empty } from "antd";
 
 const Me = () => {
   const Registers = useSelector((state) => state.Registers);
@@ -88,7 +89,7 @@ const Me = () => {
                 fullName: data.fullName,
               })
             );
-            await dispatch(fetchRegister())
+            await dispatch(fetchRegister());
           }
         });
         var form = new FormData();
@@ -103,13 +104,11 @@ const Me = () => {
     }
   };
 
-
-
   useEffect(() => {
     Registers.map(async (data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
         setConnection(data.connection);
-        await setPost(data.post);
+        setPost(data.post);
         setBio(data.bio);
         if (data.profileImg) {
           setProfileImg(data.profileImg);
@@ -119,7 +118,6 @@ const Me = () => {
       }
     });
   });
-
 
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
@@ -295,20 +293,30 @@ const Me = () => {
       </div>
       {/*  */}
       <div className="px-8 py-4 w-full">
-        {SelecteTab == "posts" ? (
-          <Posts
-            mainUser={mainUser}
-            dimensions={dimensions}
-            ProfileImg={ProfileImg}
-          />
-        ) : (
-          <h1>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia
-            officiis assumenda veritatis ipsam, sequi nihil numquam quis
-            quibusdam. Recusandae beatae error harum a, cum pariatur mollitia
-            porro nobis nesciunt aliquam?
-          </h1>
-        )}
+        {(() => {
+          if (SelecteTab == "posts") {
+            if (Post == 0) {
+              return <Empty description="There Are No Posts"/>;
+            } else {
+              return (
+                <Posts
+                  mainUser={mainUser}
+                  dimensions={dimensions}
+                  ProfileImg={ProfileImg}
+                />
+              );
+            }
+          } else {
+            return (
+              <h1>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Officia officiis assumenda veritatis ipsam, sequi nihil numquam
+                quis quibusdam. Recusandae beatae error harum a, cum pariatur
+                mollitia porro nobis nesciunt aliquam?
+              </h1>
+            );
+          }
+        })()}
       </div>
     </div>
   );
