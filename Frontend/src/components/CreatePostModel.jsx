@@ -78,6 +78,7 @@ function CreatePostModel({ show, dimensions, setShow }) {
         likes: [],
         type: FileMedia.originFileObj.type,
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+        comment:[]
       })
     );
     Registers.map(async (data) => {

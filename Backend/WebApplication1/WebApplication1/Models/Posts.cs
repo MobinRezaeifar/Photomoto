@@ -26,5 +26,8 @@ namespace WebApplication1.Models
         [BsonElement("time")]
         public string? Time { get; set; }
 
+        [BsonElement("comment")]
+        public List<Comment> Comment { get; set; }
+
     }
 }

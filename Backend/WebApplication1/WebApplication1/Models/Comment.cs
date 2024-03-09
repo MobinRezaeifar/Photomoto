@@ -5,13 +5,16 @@ namespace WebApplication1.Models
 {
     public class Comment
     {
-        [BsonElement("id")]
-        public string? Id { get; set; }
 
         [BsonElement("text")]
         public string? Text { get; set; }
 
         [BsonElement("owner")]
         public string? Owner { get; set; }
+        [BsonElement("profileImg")]
+        public string? ProfileImg { get; set; }
+
+        [BsonElement("time")]
+        public string? Time { get; set; }
     }
 }
