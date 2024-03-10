@@ -1,8 +1,8 @@
 const initialState = {
   Registers: [],
   Posts: [],
-  Issue : ""
-
+  Issue: "",
+  ShowPostModel: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -57,13 +57,14 @@ const reducer = (state = initialState, action) => {
     case "DELETE_POST_SUCCESS":
       return {
         ...state,
-        Posts: state.Posts.filter(
-          (post) => post.id !== action.payload
-        ),
+        Posts: state.Posts.filter((post) => post.id !== action.payload),
       };
 
-      case "ISSUE":
-        return { ...state, Issue: action.payload };
+    case "ISSUE":
+      return { ...state, Issue: action.payload };
+
+    case "SHOWPOSTMODEL":
+      return { ...state, ShowPostModel: action.payload };
 
     default:
       return state;

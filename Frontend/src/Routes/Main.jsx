@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import LeftNav from "../components/LeftNav";
 import BottomNav from "../components/BottomNav";
 import { useSelector } from "react-redux";
-import Me from "../components/Me";
+import Me from "../components/Me/Me";
 import Connection from "../components/Connection";
-import Search from "../components/Search";
+import Search from "../components/Search/Search";
 import Chat from "../components/Chat";
-import Homee from "../components/Homee";
+import Homee from "../components/Home";
 
-const Home = () => {
+const Main = () => {
   let navigate = useNavigate();
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -75,4 +75,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Main;

@@ -12,7 +12,7 @@ import {
   fetchPosts,
   fetchRegister,
   updateRegister,
-} from "../Redux/action";
+} from "../../Redux/action";
 import CryptoJS from "crypto-js";
 import moment from "jalali-moment";
 import {
@@ -131,6 +131,7 @@ function CreatePostModel({ show, dimensions, setShow }) {
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
+      id="CreatePostModel"
     >
       <div className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity"></div>
 

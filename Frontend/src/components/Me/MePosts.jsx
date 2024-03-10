@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../Redux/action";
-import ShowPostModel from "./ShowPostModel";
-
-const Posts = ({ mainUser, dimensions, ProfileImg }) => {
+import { fetchPosts } from "../../Redux/action";
+import ShowPostModel from "../ShowPostModel";
+import { motion } from "framer-motion";
+const MePosts = ({ mainUser, dimensions, ProfileImg }) => {
   const dispatch = useDispatch();
-  const [showPostModel, setShowPostModel] = useState(false);
   const Posts = useSelector((state) => state.Posts);
   const [SelectePost, setSelectePost] = useState({});
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
+
+  const showPostModel = useSelector((state) => state.ShowPostModel);
+
   return (
     <div className="container">
       <div id="instagram">
@@ -22,22 +24,28 @@ const Posts = ({ mainUser, dimensions, ProfileImg }) => {
                   className="col-span-1 cursor-pointer"
                   key={index}
                   onClick={() => {
-                    setShowPostModel(true);
+                    dispatch({
+                      type: "SHOWPOSTMODEL",
+                      payload: true,
+                    });
                     setSelectePost(post.id);
                   }}
                 >
                   <a target="_blank">
                     {post.type.startsWith("video") ? (
-                      <video
+                      <motion.video
                         className={`box-${index}`}
                         style={{
                           border: "1px solid #4d4c4c",
                           backgroundSize: "100%",
                         }}
                         src={post.postMedia}
+                        initial={{ opacity: 0, y: -550 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
                       />
                     ) : (
-                      <div
+                      <motion.div
                         className={`box-${index} bg-cover`}
                         style={{
                           backgroundImage: `url(${post.postMedia})`,
@@ -46,7 +54,11 @@ const Posts = ({ mainUser, dimensions, ProfileImg }) => {
                           backgroundRepeat: " no-repeat",
                           backgroundSize: "cover",
                         }}
-                      ></div>
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+                      ></motion.div>
                     )}
                   </a>
                 </div>
@@ -58,14 +70,12 @@ const Posts = ({ mainUser, dimensions, ProfileImg }) => {
       <ShowPostModel
         ProfileImg={ProfileImg}
         showPostModel={showPostModel}
-        setShowPostModel={setShowPostModel}
         SelectePost={SelectePost}
         dimensions={dimensions}
         Posts={Posts}
-        
       />
     </div>
   );
 };
 
-export default Posts;
+export default MePosts;

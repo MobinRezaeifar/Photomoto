@@ -26,6 +26,15 @@
 }
 .ant-upload-list.ant-upload-list-text{
     display: none;
-    
     /* color: #37415171; */
+}
+#CreatePostModel{
+    transition: all 5s ease-in-out;
+}
+
+.trapezius {
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 10px solid transparent; /* رنگ و ضخامت را می‌توانید تغییر دهید */
+    transform: perspective(500px) rotateX(20deg);
 }

@@ -24,7 +24,6 @@ import { IoClose } from "react-icons/io5";
 const ShowPostModel = ({
   ProfileImg,
   showPostModel,
-  setShowPostModel,
   SelectePost,
   dimensions,
   Posts,
@@ -92,7 +91,10 @@ const ShowPostModel = ({
           className="flex items-center text-lg text-red-500"
           onClick={async () => {
             await dispatch(deletePost(Post.id));
-            setShowPostModel(false);
+            dispatch({
+              type: "SHOWPOSTMODEL",
+              payload: false,
+            });
             Registers.map(async (data) => {
               if (data.username == decryptAES(sessionStorage.getItem("u"))) {
                 await dispatch(
@@ -117,7 +119,10 @@ const ShowPostModel = ({
           className="flex items-center text-lg text-red-500"
           onClick={async () => {
             setShowComment(false);
-            setShowPostModel(false);
+            dispatch({
+              type: "SHOWPOSTMODEL",
+              payload: false,
+            });
           }}
         >
           <IoClose size={24} /> Close
@@ -178,7 +183,10 @@ const ShowPostModel = ({
                     colors="primary:#ffffff,secondary:#e83a30"
                     style={{ transform: "scale(1.3)", cursor: "pointer" }}
                     onClick={() => {
-                      setShowPostModel(false);
+                      dispatch({
+                        type: "SHOWPOSTMODEL",
+                        payload: false,
+                      });
                     }}
                   ></lord-icon>
                 </div>

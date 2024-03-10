@@ -10,11 +10,11 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { fetchPosts, fetchRegister, updateRegister } from "../Redux/action";
+import { fetchPosts, fetchRegister, updateRegister } from "../../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "./CreatePostModel";
-import Posts from "./Posts";
+import MePosts from "./MePosts";
 import { Empty } from "antd";
 
 const Me = () => {
@@ -143,16 +143,16 @@ const Me = () => {
             size={dimensions.width > 900 ? 38 : 32}
             // style={{ marginTop: "1.9rem" }}
           />
-          <CreatePostModel
-            show={ShowCreatePostModel}
-            setShow={setShowCreatePostModel}
-            dimensions={dimensions}
-          />
           <IoSettingsOutline
             title="Setting"
             className="animated cursor-pointer"
             size={dimensions.width > 900 ? 38 : 32}
             // style={{ marginTop: "1.9rem" }}
+          />
+          <CreatePostModel
+            show={ShowCreatePostModel}
+            setShow={setShowCreatePostModel}
+            dimensions={dimensions}
           />
         </span>
       </div>
@@ -299,7 +299,7 @@ const Me = () => {
               return <Empty description="There Are No Posts"/>;
             } else {
               return (
-                <Posts
+                <MePosts
                   mainUser={mainUser}
                   dimensions={dimensions}
                   ProfileImg={ProfileImg}
