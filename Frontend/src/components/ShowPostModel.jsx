@@ -21,13 +21,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "jalali-moment";
 import { BiCloset, BiWindowClose } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
-const ShowPostModel = ({
-  ProfileImg,
-  showPostModel,
-  SelectePost,
-  dimensions,
-  Posts,
-}) => {
+const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
   const dispatch = useDispatch();
@@ -35,6 +29,8 @@ const ShowPostModel = ({
   const [ShowComment, setShowComment] = useState(false);
   const [commentText, setcommentText] = useState("");
   const [Post, setPost] = useState({});
+  const showPostModel = useSelector((state) => state.ShowPostModel);
+  const [ProfileImg, setProfileImg] = useState("");
 
   useEffect(() => {
     dispatch(fetchRegister());
@@ -53,7 +49,6 @@ const ShowPostModel = ({
     dispatch(fetchRegister());
     dispatch(fetchPosts());
   }, [dispatch]);
-
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
       iv: iv,
@@ -150,6 +145,18 @@ const ShowPostModel = ({
     setcommentText("");
   };
 
+  useEffect(() => {
+    Registers.map(async (data) => {
+      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+        if (data.profileImg) {
+          setProfileImg(data.profileImg);
+        } else {
+          setProfileImg("https://wallpapercave.com/dwp1x/wp9566386.jpg");
+        }
+      }
+    });
+  });
+
   return (
     <div
       className={`relative z-10 ${!showPostModel && "hidden"}`}
@@ -170,10 +177,8 @@ const ShowPostModel = ({
                 className={`h-5 flex items-center justify-between px-4 py-8 `}
               >
                 <div className="flex items-center gap-2">
-                  <Avatar src={ProfileImg} size="large" />
-                  <span className="text-2xl">
-                    {decryptAES(sessionStorage.getItem("u"))}
-                  </span>
+                  <Avatar src={Post.profileImg} size="large" />
+                  <span className="text-2xl">{Post.owner}</span>
                 </div>
 
                 <div className="flex items-center">
@@ -215,25 +220,26 @@ const ShowPostModel = ({
               }`}
             >
               {!isEqual(Post.likes, []) ? (
-                <div class="flex -space-x-4 rtl:space-x-reverse items-center justify-between">
-                  {(() => {
-                    let counter = 0;
-                    if (counter < 4) {
-                      if (Post.likes) {
-                        return Post.likes.map((data) => {
-                          counter++;
-                          return (
-                            <img
-                              class={`${LikedProfile} border-2 border-white rounded-full dark:border-gray-800`}
-                              src={data.profileImg}
-                              alt=""
-                            />
-                          );
-                        });
+                <div className="flex items-center gap-1">
+                  <Avatar.Group
+                    maxCount={4}
+                    className="flex items-center"
+                    size="large"
+                    maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
+                  >
+                    {(() => {
+                      let counter = 0;
+                      if (counter < 4) {
+                        if (Post.likes) {
+                          return Post.likes.map((data) => {
+                            counter++;
+                            return <Avatar src={data.profileImg} />;
+                          });
+                        }
                       }
-                    }
-                  })()}
-                  &nbsp; &nbsp; &nbsp;
+                    })()}
+                    &nbsp; &nbsp; &nbsp;
+                  </Avatar.Group>
                   {Post.likes && (
                     <span>Liked by {Post.likes[0].username} and other</span>
                   )}
@@ -246,8 +252,9 @@ const ShowPostModel = ({
                   {(() => {
                     if (!isEqual(Post, {})) {
                       if (!isEqual(Post.likes, [])) {
-                        for (let i = 0; i < Post.likes.length; i++) {
+                        for (let i = 0; i <= Post.likes.length; i++) {
                           const data = Post.likes[i];
+                          console.log(Post.likes[i]);
                           if (
                             data.username ==
                             decryptAES(sessionStorage.getItem("u"))
@@ -317,9 +324,7 @@ const ShowPostModel = ({
             </div>
 
             <div className="flex px-4  gap-2 mb-2">
-              <span className=" text-xl">
-                {decryptAES(sessionStorage.getItem("u"))}
-              </span>
+              <span className=" text-xl">{Post.owner}</span>
               <div
                 dangerouslySetInnerHTML={{ __html: Post.disc }}
                 style={{ color: "white", fontSize: "20px" }}
@@ -367,17 +372,14 @@ const ShowPostModel = ({
                 >
                   {Post.comment.map((data) => {
                     return (
-                      <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700 items-center">
                         <div class="flex-shrink-0">
-                          <img
-                            class="rounded-full w-11 h-11"
-                            src={data.profileImg}
-                            alt=""
-                          />
+                          <Avatar size={45} src={data.profileImg} />
                         </div>
                         <div class="w-full ps-3">
                           <div class="text-gray-500 text-xl mb-1.5 dark:text-gray-400">
-                            {data.text}
+                            {data.owner}{" "}
+                            <span className="text-white">{data.text}</span>
                           </div>
                           <div class="text-xs text-blue-600 dark:text-blue-500">
                             {data.time}

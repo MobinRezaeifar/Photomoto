@@ -23,11 +23,15 @@ namespace WebApplication1.Models
 
         [BsonElement("type")]
         public string? Type { get; set; }
+        
         [BsonElement("time")]
         public string? Time { get; set; }
 
         [BsonElement("comment")]
         public List<Comment> Comment { get; set; }
+
+        [BsonElement("profileImg")]
+        public string? ProfileImg { get; set; }
 
     }
 }

@@ -6,6 +6,7 @@ import ShowPostModel from "../ShowPostModel";
 const Search = () => {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
+  const [SelectePost, setSelectePost] = useState("");
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
@@ -28,7 +29,6 @@ const Search = () => {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
-
 
   return (
     <div>
@@ -71,7 +71,17 @@ const Search = () => {
         <div className="grid  grid-cols-2 sm:grid-cols-4 2xl:grid-cols-6">
           {Posts.map((post, index) => {
             return (
-              <div className="col-span-1 cursor-pointer" key={index}>
+              <div
+                onClick={() => {
+                  dispatch({
+                    type: "SHOWPOSTMODEL",
+                    payload: true,
+                  });
+                  setSelectePost(post.id);
+                }}
+                className="col-span-1 cursor-pointer"
+                key={index}
+              >
                 <a target="_blank">
                   {post.type.startsWith("video") ? (
                     <motion.video
@@ -107,7 +117,7 @@ const Search = () => {
           })}
         </div>
       </div>
-      <ShowPostModel />
+      <ShowPostModel dimensions={dimensions} Posts={Posts} SelectePost={SelectePost}/>
     </div>
   );
 };

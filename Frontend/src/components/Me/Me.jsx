@@ -153,6 +153,7 @@ const Me = () => {
             show={ShowCreatePostModel}
             setShow={setShowCreatePostModel}
             dimensions={dimensions}
+            ProfileImg={ProfileImg}
           />
         </span>
       </div>

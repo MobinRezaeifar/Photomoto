@@ -11,7 +11,6 @@ const MePosts = ({ mainUser, dimensions, ProfileImg }) => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  const showPostModel = useSelector((state) => state.ShowPostModel);
 
   return (
     <div className="container">
@@ -69,7 +68,6 @@ const MePosts = ({ mainUser, dimensions, ProfileImg }) => {
       </div>
       <ShowPostModel
         ProfileImg={ProfileImg}
-        showPostModel={showPostModel}
         SelectePost={SelectePost}
         dimensions={dimensions}
         Posts={Posts}
