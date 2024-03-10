@@ -30,7 +30,7 @@
     "sweetalert2": "^11.10.5",
     "tailwind-merge": "^2.2.1",
     "toast": "^0.5.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4" 
   },
   "scripts": {
     "start": "react-scripts start",
