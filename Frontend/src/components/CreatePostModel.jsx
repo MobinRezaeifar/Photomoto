@@ -240,7 +240,7 @@ function CreatePostModel({ show, dimensions, setShow }) {
                                       style={{ fontSize: "25px" }}
                                     />
                                     <DownloadOutlined
-                                      style={{ fontSize: "32px" }}
+                                      style={{ fontSize: "25px" }}
                                       onClick={() =>
                                         onDownload(PostImg || PostVideo)
                                       }
