@@ -234,8 +234,8 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                           return Post.likes.map((data) => {
                             counter++;
                             return <Avatar src={data.profileImg} />;
-                          });
-                        }
+                          }); 
+                        } 
                       } 
                     })()}
                     &nbsp; &nbsp; &nbsp;
