@@ -236,7 +236,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                             return <Avatar src={data.profileImg} />;
                           });
                         }
-                      }
+                      } 
                     })()}
                     &nbsp; &nbsp; &nbsp;
                   </Avatar.Group>
