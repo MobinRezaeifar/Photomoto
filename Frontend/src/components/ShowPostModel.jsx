@@ -267,7 +267,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                           data.username !=
                           decryptAES(sessionStorage.getItem("u"))
                         ) {
-                          return (
+                          return ( 
                             <FaRegHeart
                               size={iconSize}
                               style={{ cursor: "pointer" }}
