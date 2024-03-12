@@ -249,11 +249,44 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
               )}
               <div className="flex justify-around px-2 pt-4 gap-2">
                 <span className="flex flex-col items-center">
-                  {(() => {
-                    Post.Likes.map((data) => {
-                      console.log(data);
-                    });
-                  })()}
+                  {!isEqual(Post, {}) &&
+                    (!isEqual(Post.likes, []) ? (
+                      Post.likes.map((data) => {
+                        if (
+                          data.username ==
+                          decryptAES(sessionStorage.getItem("u"))
+                        ) {
+                          return (
+                            <FaHeart
+                              color="red"
+                              size={iconSize}
+                              style={{ cursor: "pointer" }}
+                            />
+                          );
+                        } else if (
+                          data.username !=
+                          decryptAES(sessionStorage.getItem("u"))
+                        ) {
+                          return (
+                            <FaRegHeart
+                              size={iconSize}
+                              style={{ cursor: "pointer" }}
+                              onClick={() => {
+                                LikePost(Post.id);
+                              }}
+                            />
+                          );
+                        }
+                      })
+                    ) : (
+                      <FaRegHeart
+                        size={iconSize}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          LikePost(Post.id);
+                        }}
+                      />
+                    ))}
 
                   <span>{Post.likes && Post.likes.length}</span>
                 </span>
@@ -269,7 +302,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                   {Post.comment && Post.comment.length}
                 </span>
                 <LuShare2 size={iconSize} style={{ cursor: "pointer" }} />
-                {decryptAES(sessionStorage.getItem("u")) == Post.owner && (
+                {ShowComment && (
                   <Dropdown
                     trigger={["click"]}
                     menu={{
