@@ -56,7 +56,7 @@ const BottomNav = () => {
         onClick={() => {
           dispatch({
             type: "ISSUE",
-            payload: "chat",
+            payload: "direct",
           });
         }}
       />

@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import Me from "../components/Me/Me";
 import Connection from "../components/Connection";
 import Search from "../components/Search/Search";
-import Chat from "../components/Chat";
 import Homee from "../components/Home";
+import Direct from "../components/Direct";
 
 const Main = () => {
   let navigate = useNavigate();
@@ -52,7 +52,7 @@ const Main = () => {
             {Issue == "me" && <Me/>}
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
-            {Issue == "chat" && <Chat />}
+            {Issue == "direct" && <Direct />}
             {Issue == "home" && <Homee />}
           </div>
         </>
@@ -65,7 +65,7 @@ const Main = () => {
             {Issue == "me" && <Me  />}
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
-            {Issue == "chat" && <Chat />}
+            {Issue == "direct" && <Direct />}
             {Issue == "home" && <Homee />}
           </div>
           <BottomNav />

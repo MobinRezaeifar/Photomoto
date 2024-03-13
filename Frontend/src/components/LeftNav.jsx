@@ -54,7 +54,7 @@ const LeftNav = () => {
         onClick={() => {
           dispatch({
             type: "ISSUE",
-            payload: "chat",
+            payload: "direct",
           });
         }}
       />
