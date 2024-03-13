@@ -11,7 +11,7 @@ const LeftNav = () => {
 
   return (
     <div
-      className="w-[4%] h-full flex flex-col gap-3 items-center p-4 justify-around bg-[#37415171] absolute left-0"
+      className="w-[4%] h-full flex flex-col gap-3 items-center p-4 justify-around bg-[#37415171] absolute right-0"
       style={{ borderRadius: "0 6px  6px 0" }}
     >
       <FaUserAlt
@@ -48,7 +48,7 @@ const LeftNav = () => {
         }}
       />
       <IoChatbubbleEllipsesOutline
-        className={`hover:bg-gray-700 ${Issue == "chat" && "bg-gray-700"}`}
+        className={`hover:bg-gray-700 ${Issue == "direct" && "bg-gray-700"}`}
         size={32}
         style={{ cursor: "pointer", borderRadius: "50%", padding: "3px" }}
         onClick={() => {

@@ -50,7 +50,7 @@ const BottomNav = () => {
         }}
       />
       <IoChatbubbleEllipsesOutline
-        className={`hover:bg-gray-700 ${Issue == "chat" && "bg-gray-700"}`}
+        className={`hover:bg-gray-700 ${Issue == "direct" && "bg-gray-700"}`}
         size={32}
         style={{ cursor: "pointer", borderRadius: "50%", padding: "3px" }}
         onClick={() => {
