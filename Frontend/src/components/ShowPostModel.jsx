@@ -249,13 +249,15 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
               )}
               <div className="flex justify-around px-2 pt-4 gap-2">
                 <span className="flex flex-col items-center">
-                  {!isEqual(Post, {}) &&
-                    (!isEqual(Post.likes, []) ? (
-                      Post.likes.map((data) => {
-                        if (
-                          data.username ==
-                          decryptAES(sessionStorage.getItem("u"))
-                        ) {
+                  {(() => {
+                    if (!isEqual(Post, {})) {
+                      if (!isEqual(Post.likes, [])) {
+                        let likeStatus = Post.likes.some(
+                          (x) =>
+                            x.username ==
+                            decryptAES(sessionStorage.getItem("u"))
+                        );
+                        if (likeStatus) {
                           return (
                             <FaHeart
                               color="red"
@@ -263,11 +265,8 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                               style={{ cursor: "pointer" }}
                             />
                           );
-                        } else if (
-                          data.username !=
-                          decryptAES(sessionStorage.getItem("u"))
-                        ) {
-                          return ( 
+                        } else {
+                          return (
                             <FaRegHeart
                               size={iconSize}
                               style={{ cursor: "pointer" }}
@@ -277,16 +276,19 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                             />
                           );
                         }
-                      })
-                    ) : (
-                      <FaRegHeart
-                        size={iconSize}
-                        style={{ cursor: "pointer" }}
-                        onClick={() => {
-                          LikePost(Post.id);
-                        }}
-                      />
-                    ))}
+                      } else {
+                        return (
+                          <FaRegHeart
+                            size={iconSize}
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              LikePost(Post.id);
+                            }}
+                          />
+                        );
+                      }
+                    }
+                  })()}
 
                   <span>{Post.likes && Post.likes.length}</span>
                 </span>
