@@ -9,7 +9,7 @@ function App() {
     <main>
       <BrowserRouter>
         <Routes>
-          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Register />} />
           <Route path="/photomoto" element={<Main />} />
           <Route path="/photomoto/:username" element={<ShowAccount />} />
         </Routes>

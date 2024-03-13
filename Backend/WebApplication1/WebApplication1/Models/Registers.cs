@@ -35,7 +35,7 @@ namespace WebApplication1.Models
         public int Post { get; set; }
 
         [BsonElement("connection")]
-        public int Connection { get; set; }
+        public List<Connection> Connection { get; set; }
 
         [BsonElement("bio")]
         public string? Bio { get; set; }

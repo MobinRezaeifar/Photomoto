@@ -66,7 +66,7 @@ const Register = () => {
           email: Email,
           gender: Gender,
           hash: "",
-          connection: 0,
+          connection: [],
           post: 0,
           bio: `Hello, Im ${FullName} and I just became a member of Photomoto platform`,
         })

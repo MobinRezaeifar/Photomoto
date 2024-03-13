@@ -10,7 +10,12 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { fetchPosts, fetchRegister, updateRegister } from "../../Redux/action";
+import {
+  fetchPosts,
+  fetchRegister,
+  updatePost,
+  updateRegister,
+} from "../../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "./CreatePostModel";
@@ -19,6 +24,7 @@ import { Empty } from "antd";
 
 const Me = () => {
   const Registers = useSelector((state) => state.Registers);
+  const Posts = useSelector((state) => state.Posts);
   const [SelecteTab, setSelecteTab] = useState("posts");
   const dispatch = useDispatch();
   const [ProfileImg, setProfileImg] = useState("");
@@ -70,25 +76,29 @@ const Me = () => {
   const handleChange = async (info) => {
     if (info) {
       try {
+        Posts.map(async (data) => {
+          if (data.owner == mainUser) {
+            await dispatch(
+              updatePost(data.id, {
+                ...data,
+                profileImg:
+                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                  info.file.originFileObj.name,
+              })
+            );
+          }
+        });
         Registers.map(async (data) => {
           if (data.username == mainUser) {
             await dispatch(
               updateRegister(data.id, {
-                id: data.id,
-                username: data.username,
-                password: data.password,
+                ...data,
                 profileImg:
                   "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
                   info.file.originFileObj.name,
-                email: data.email,
-                hash: data.hash,
-                connection: data.connection,
-                post: data.post,
-                bio: data.bio,
-                gender: data.gender,
-                fullName: data.fullName,
               })
             );
+
             await dispatch(fetchRegister());
           }
         });
@@ -107,7 +117,7 @@ const Me = () => {
   useEffect(() => {
     Registers.map(async (data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        setConnection(data.connection);
+        setConnection(data.connection.length);
         setPost(data.post);
         setBio(data.bio);
         if (data.profileImg) {
@@ -121,6 +131,8 @@ const Me = () => {
 
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
+
+
 
   return (
     <div className="h-full overflow-y-auto w-full ">
@@ -229,6 +241,7 @@ const Me = () => {
               className="bg-slate-600 cursor-pointer"
             >
               <lord-icon
+                
                 src="https://cdn.lordicon.com/cvmfhtvr.json"
                 trigger="hover"
                 colors="primary:#e4e4e4,secondary:#e4e4e4"
@@ -297,7 +310,7 @@ const Me = () => {
         {(() => {
           if (SelecteTab == "posts") {
             if (Post == 0) {
-              return <Empty description="There Are No Posts"/>;
+              return <Empty description="There Are No Posts" />;
             } else {
               return (
                 <MePosts

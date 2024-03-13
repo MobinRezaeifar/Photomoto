@@ -2,20 +2,13 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
-import { IoSettingsOutline } from "react-icons/io5";
 import { Avatar, Badge } from "antd";
-import { BiSolidAddToQueue } from "react-icons/bi";
-import { IoIosAddCircle } from "react-icons/io";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { fetchPosts, fetchRegister, updateRegister } from "../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { Empty } from "antd";
 import MePosts from "./MePosts";
-import CreatePostModel from "./Me/CreatePostModel";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 
@@ -71,47 +64,10 @@ const ShowAccount = () => {
 
   let mainUser = decryptAES(sessionStorage.getItem("u"));
 
-  const handleChange = async (info) => {
-    if (info) {
-      try {
-        Registers.map(async (data) => {
-          if (data.username == mainUser) {
-            await dispatch(
-              updateRegister(data.id, {
-                id: data.id,
-                username: data.username,
-                password: data.password,
-                profileImg:
-                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                  info.file.originFileObj.name,
-                email: data.email,
-                hash: data.hash,
-                connection: data.connection,
-                post: data.post,
-                bio: data.bio,
-                gender: data.gender,
-                fullName: data.fullName,
-              })
-            );
-            await dispatch(fetchRegister());
-          }
-        });
-        var form = new FormData();
-        form.append("file", info.file.originFileObj);
-        await axios.post(
-          "http://localhost:5221/api/FileManager/uploadfile",
-          form
-        );
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
-
   useEffect(() => {
     Registers.map(async (data) => {
       if (data.username == username) {
-        setConnection(data.connection);
+        setConnection(data.connection.length);
         setPost(data.post);
         setBio(data.bio);
         setFullName(data.fullName);
@@ -125,8 +81,41 @@ const ShowAccount = () => {
   });
 
   const navigate = useNavigate();
-  const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
-
+  const ConnectionHandeling = async () => {
+    await dispatch(fetchRegister());
+    Registers.map(async (data) => {
+      if (data.username == username) {
+        await dispatch(
+          updateRegister(data.id, {
+            ...data,
+            connection: [
+              ...data.connection,
+              {
+                username: decryptAES(sessionStorage.getItem("u")),
+                profileImg: "",
+              },
+            ],
+          })
+        );
+      }
+      await dispatch(fetchRegister());
+      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+        await dispatch(
+          updateRegister(data.id, {
+            ...data,
+            connection: [
+              ...data.connection,
+              {
+                username,
+                profileImg: "",
+              },
+            ],
+          })
+        );
+      }
+    });
+    await dispatch(fetchRegister());
+  };
   return (
     <div className="h-full overflow-y-auto w-full">
       <div className="flex justify-between w-full items-center  p-8">
@@ -200,26 +189,65 @@ const ShowAccount = () => {
         </div>
         {username != mainUser && (
           <div className="flex gap-2">
-            <div
-              style={{
-                boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-                // backgroundColor: "red",
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              className="bg-slate-600 cursor-pointer"
-            >
-              <lord-icon
-                src="https://cdn.lordicon.com/cvmfhtvr.json"
-                trigger="hover"
-                colors="primary:#e4e4e4,secondary:#e4e4e4"
-                style={{ transform: "scale(1.3)" }}
-              ></lord-icon>
-            </div>
+            {Registers.map((data) => {
+              if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+                let ConnectionStatus = data.connection.some(
+                  (x) => x.username == username
+                );
+
+                if (ConnectionStatus) {
+                  return (
+                    <div
+                      style={{
+                        boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
+                        // backgroundColor: "red",
+                        borderRadius: "50%",
+                        width: "50px",
+                        height: "50px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      className="bg-slate-600 cursor-pointer"
+                    >
+                      <lord-icon
+                        src="https://cdn.lordicon.com/cvmfhtvr.json"
+                        trigger="hover"
+                        colors="primary:lightgreen,secondary:lightgreen"
+                        style={{ transform: "scale(1.3)" }}
+                      ></lord-icon>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div
+                      style={{
+                        boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
+                        // backgroundColor: "red",
+                        borderRadius: "50%",
+                        width: "50px",
+                        height: "50px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      className="bg-slate-600 cursor-pointer"
+                      onClick={() => {
+                        ConnectionHandeling();
+                      }}
+                    >
+                      <lord-icon
+                        src="https://cdn.lordicon.com/cvmfhtvr.json"
+                        trigger="hover"
+                        colors="primary:#e4e4e4,secondary:#e4e4e4"
+                        style={{ transform: "scale(1.3)" }}
+                      ></lord-icon>
+                    </div>
+                  );
+                }
+              }
+            })}
+
             <div
               style={{
                 boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
