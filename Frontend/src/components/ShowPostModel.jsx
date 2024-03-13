@@ -20,6 +20,7 @@ import { Button, Dropdown } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "jalali-moment";
 import { BiCloset, BiWindowClose } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -31,6 +32,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
   const [Post, setPost] = useState({});
   const showPostModel = useSelector((state) => state.ShowPostModel);
   const [ProfileImg, setProfileImg] = useState("");
+  let navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchRegister());
@@ -78,36 +80,57 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
     await dispatch(fetchPosts());
   };
 
-  const items =  [
-    {
-      key: "1",
-      label: (
-        <span
-          className="flex items-center text-lg text-red-500"
-          onClick={async () => {
-            await dispatch(deletePost(Post.id));
-            dispatch({
-              type: "SHOWPOSTMODEL",
-              payload: false,
-            });
-            Registers.map(async (data) => {
-              if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-                await dispatch(
-                  updateRegister(data.id, {
-                    ...data,
-                    post: data.post - 1,
-                  })
-                );
-              }
-            });
-            await dispatch(fetchRegister());
-          }}
-        >
-          <RiDeleteBin6Line size={24} /> Delete Post
-        </span>
-      ),
-    },
-    {
+  const items = [];
+  if (decryptAES(sessionStorage.getItem("u")) == Post.owner) {
+    items.push(
+      {
+        key: "1",
+        label: (
+          <span
+            className="flex items-center text-lg text-red-500"
+            onClick={async () => {
+              await dispatch(deletePost(Post.id));
+              dispatch({
+                type: "SHOWPOSTMODEL",
+                payload: false,
+              });
+              Registers.map(async (data) => {
+                if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+                  await dispatch(
+                    updateRegister(data.id, {
+                      ...data,
+                      post: data.post - 1,
+                    })
+                  );
+                }
+              });
+              await dispatch(fetchRegister());
+            }}
+          >
+            <RiDeleteBin6Line size={24} /> Delete Post
+          </span>
+        ),
+      },
+      {
+        key: "2",
+        label: (
+          <span
+            className="flex items-center text-lg text-red-500"
+            onClick={async () => {
+              setShowComment(false);
+              dispatch({
+                type: "SHOWPOSTMODEL",
+                payload: false,
+              });
+            }}
+          >
+            <IoClose size={24} /> Close
+          </span>
+        ),
+      }
+    );
+  } else {
+    items.push({
       key: "2",
       label: (
         <span
@@ -123,8 +146,9 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
           <IoClose size={24} /> Close
         </span>
       ),
-    },
-  ];
+    });
+  }
+
   const now = Date.now();
   const SendComment = async () => {
     await dispatch(
@@ -178,7 +202,18 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
               >
                 <div className="flex items-center gap-2">
                   <Avatar src={Post.profileImg} size="large" />
-                  <span className="text-2xl cursor-pointer">{Post.owner}</span>
+                  <span
+                    onClick={() => {
+                      navigate(`${Post.owner}`);
+                      dispatch({
+                        type: "SHOWPOSTMODEL",
+                        payload: false,
+                      });
+                    }}
+                    className="text-2xl cursor-pointer"
+                  >
+                    {Post.owner}
+                  </span>
                 </div>
 
                 <div className="flex items-center">
@@ -233,7 +268,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                         if (Post.likes) {
                           return Post.likes.map((data) => {
                             counter++;
-                            return <Avatar  src={data.profileImg} />;
+                            return <Avatar src={data.profileImg} />;
                           });
                         }
                       }
@@ -304,21 +339,17 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                   {Post.comment && Post.comment.length}
                 </span>
                 <LuShare2 size={iconSize} style={{ cursor: "pointer" }} />
-              
-                  <Dropdown
-                    trigger={["click"]}
-                    menu={{
-                      items,
-                    }}
-                    placement="bottomRight"
-                    arrow
-                  >
-                    <FiMoreVertical
-                      className="cursor-pointer"
-                      size={iconSize}
-                    />
-                  </Dropdown>
-              
+
+                <Dropdown
+                  trigger={["click"]}
+                  menu={{
+                    items,
+                  }}
+                  placement="bottomRight"
+                  arrow
+                >
+                  <FiMoreVertical className="cursor-pointer" size={iconSize} />
+                </Dropdown>
               </div>
             </div>
 

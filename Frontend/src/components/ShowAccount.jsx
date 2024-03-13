@@ -10,14 +10,17 @@ import { UploadOutlined } from "@ant-design/icons";
 import { Button, message, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { fetchPosts, fetchRegister, updateRegister } from "../../Redux/action";
+import { fetchPosts, fetchRegister, updateRegister } from "../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import CreatePostModel from "./CreatePostModel";
-import MePosts from "../MePosts";
 import { Empty } from "antd";
+import MePosts from "./MePosts";
+import CreatePostModel from "./Me/CreatePostModel";
+import { useParams } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa6";
 
-const Me = () => {
+const ShowAccount = () => {
+  const { username } = useParams();
   const Registers = useSelector((state) => state.Registers);
   const [SelecteTab, setSelecteTab] = useState("posts");
   const dispatch = useDispatch();
@@ -25,6 +28,7 @@ const Me = () => {
   const [Post, setPost] = useState(0);
   const [Connection, setConnection] = useState(0);
   const [Bio, setBio] = useState("");
+  const [FullName, setFullName] = useState("");
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -106,10 +110,11 @@ const Me = () => {
 
   useEffect(() => {
     Registers.map(async (data) => {
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+      if (data.username == username) {
         setConnection(data.connection);
         setPost(data.post);
         setBio(data.bio);
+        setFullName(data.fullName);
         if (data.profileImg) {
           setProfileImg(data.profileImg);
         } else {
@@ -123,16 +128,20 @@ const Me = () => {
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
 
   return (
-    <div className="h-full overflow-y-auto w-full ">
+    <div className="h-full overflow-y-auto w-full">
       <div className="flex justify-between w-full items-center  p-8">
         <span
           className={`${
             dimensions.width > 900 ? "text-4xl" : "text-2xl"
-          } font-[600]`}
+          } font-[600] flex items-center gap-2`}
         >
-          {decryptAES(sessionStorage.getItem("u"))}
+          <FaArrowLeft
+            className="cursor-pointer"
+            onClick={() => navigate("/photomoto")}
+          />{" "}
+          {username}
         </span>
-        <span className="flex items-center gap-2">
+        {/* <span className="flex items-center gap-2">
           <BiSolidAddToQueue
             onClick={() => {
               // navigate("/photomoto/edit");
@@ -155,7 +164,7 @@ const Me = () => {
             dimensions={dimensions}
             ProfileImg={ProfileImg}
           />
-        </span>
+        </span> */}
       </div>
       <div
         style={{
@@ -164,33 +173,11 @@ const Me = () => {
         }}
       />
       <div className="px-8 pt-4 flex justify-between">
-        <Badge
-          count={
-            <Upload onChange={(e) => handleChange(e)}>
-              <Button
-                id="borderrnone"
-                icon={
-                  <IoIosAddCircle
-                    color="#4096ff"
-                    style={{
-                      position: "absolute",
-                      top: "10px",
-                      right: "2px",
-                    }}
-                    size={dimensions.width > 900 ? 30 : 20}
-                  />
-                }
-              ></Button>
-            </Upload>
-          }
-        >
-          <Avatar
-            size={dimensions.width > 900 ? 120 : 80}
-            src={ProfileImg}
-            shape="circle"
-          />
-        </Badge>
-
+        <Avatar
+          size={dimensions.width > 900 ? 120 : 80}
+          src={ProfileImg}
+          shape="circle"
+        />
         <div
           className={`flex justify-between gap-4  items-center ${
             dimensions.width > 900 ? "text-2xl" : "text-xl"
@@ -208,12 +195,10 @@ const Me = () => {
       </div>
       <div className="px-10 py-4 flex items-center justify-between ">
         <div className="flex flex-col">
-          <span className="text-xl font-serif text-white">
-            {decryptAES(sessionStorage.getItem("f"))}
-          </span>
+          <span className="text-xl font-serif text-white">{FullName}</span>
           <span>{Bio}</span>
         </div>
-        {decryptAES(sessionStorage.getItem("u")) != mainUser && (
+        {username != mainUser && (
           <div className="flex gap-2">
             <div
               style={{
@@ -297,11 +282,11 @@ const Me = () => {
         {(() => {
           if (SelecteTab == "posts") {
             if (Post == 0) {
-              return <Empty description="There Are No Posts"/>;
+              return <Empty description="There Are No Posts" />;
             } else {
               return (
                 <MePosts
-                  mainUser={mainUser}
+                  mainUser={username}
                   dimensions={dimensions}
                   ProfileImg={ProfileImg}
                 />
@@ -323,4 +308,4 @@ const Me = () => {
   );
 };
 
-export default Me;
+export default ShowAccount;

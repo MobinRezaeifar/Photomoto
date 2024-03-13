@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../../Redux/action";
-import ShowPostModel from "../ShowPostModel";
+import { fetchPosts } from "../Redux/action";
+import ShowPostModel from "./ShowPostModel";
 import { motion } from "framer-motion";
 const MePosts = ({ mainUser, dimensions, ProfileImg }) => {
   const dispatch = useDispatch();
