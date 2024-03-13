@@ -78,7 +78,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
     await dispatch(fetchPosts());
   };
 
-  const items = [
+  const items =  [
     {
       key: "1",
       label: (
@@ -178,7 +178,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
               >
                 <div className="flex items-center gap-2">
                   <Avatar src={Post.profileImg} size="large" />
-                  <span className="text-2xl">{Post.owner}</span>
+                  <span className="text-2xl cursor-pointer">{Post.owner}</span>
                 </div>
 
                 <div className="flex items-center">
@@ -233,7 +233,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                         if (Post.likes) {
                           return Post.likes.map((data) => {
                             counter++;
-                            return <Avatar src={data.profileImg} />;
+                            return <Avatar  src={data.profileImg} />;
                           });
                         }
                       }
@@ -304,7 +304,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                   {Post.comment && Post.comment.length}
                 </span>
                 <LuShare2 size={iconSize} style={{ cursor: "pointer" }} />
-                {ShowComment && (
+              
                   <Dropdown
                     trigger={["click"]}
                     menu={{
@@ -318,7 +318,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                       size={iconSize}
                     />
                   </Dropdown>
-                )}
+              
               </div>
             </div>
 

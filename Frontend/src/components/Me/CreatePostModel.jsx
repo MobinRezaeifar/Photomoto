@@ -29,7 +29,7 @@ import { Image, Space } from "antd";
 
 const { Dragger } = Upload;
 
-function CreatePostModel({ show, dimensions, setShow ,ProfileImg}) {
+function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
   const [Desc, setDesc] = useState("");
   const [PostImg, setPostImg] = useState("");
   const [PostVideo, setPostVideo] = useState("");
@@ -85,6 +85,7 @@ function CreatePostModel({ show, dimensions, setShow ,ProfileImg}) {
   const CreatePost = async () => {
     setShow(false);
     setPostImg("");
+    setPostVideo("");
     setDesc("");
     await dispatch(
       AddPost({
@@ -95,7 +96,7 @@ function CreatePostModel({ show, dimensions, setShow ,ProfileImg}) {
         type: FileMedia.originFileObj.type,
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         comment: [],
-        profileImg:ProfileImg
+        profileImg: ProfileImg,
       })
     );
     Registers.map(async (data) => {
