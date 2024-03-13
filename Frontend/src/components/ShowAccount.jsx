@@ -194,7 +194,6 @@ const ShowAccount = () => {
                 let ConnectionStatus = data.connection.some(
                   (x) => x.username == username
                 );
-
                 if (ConnectionStatus) {
                   return (
                     <div
