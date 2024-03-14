@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 
 const Direct = () => {
-  const [Connection, setConnection] = useState([]);
   const Registers = useSelector((state) => state.Registers);
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -30,21 +29,28 @@ const Direct = () => {
           ></lord-icon>
           <h1 className="text-2xl font-bold">Direct</h1>
         </div>
-        <div className="h-[92%] overflow-y-auto">
-          <ul className="flex flex-col">
-            {Registers.map(
-              (data) =>
-                data.username == decryptAES(sessionStorage.getItem("u")) &&
-                data.connection.map((connect) => (
+        <div className="h-[92%] overflow-y-auto flex flex-col">
+          {Registers.map(
+            (data) =>
+              data.username == decryptAES(sessionStorage.getItem("u")) &&
+              data.connection.map((connect) => (
+                <div className="w-full my-[0.3rem] px-3">
                   <div
-                    className="w-full     bg-base-100
-                  "
+                    className="w-full hover:bg-base-100"
+                    id="directItem"
+                    style={{
+                      borderRadius: "8px",
+                      fontSize: "20px",
+                      padding: "7px 20px",
+                      border: "1px solid gray",
+                      cursor: "pointer",
+                    }}
                   >
-                    <span>{connect.username}</span>
+                    {connect.username}
                   </div>
-                ))
-            )}
-          </ul>
+                </div>
+              ))
+          )}
         </div>
       </div>
       <div

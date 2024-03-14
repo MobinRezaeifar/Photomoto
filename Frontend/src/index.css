@@ -38,3 +38,7 @@
     border-bottom: 10px solid transparent; /* رنگ و ضخامت را می‌توانید تغییر دهید */
     transform: perspective(500px) rotateX(20deg);
 }
+
+#directItem :hover{
+    
+}

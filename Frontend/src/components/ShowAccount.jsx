@@ -81,6 +81,7 @@ const ShowAccount = () => {
   });
 
   const navigate = useNavigate();
+
   const ConnectionHandeling = async () => {
     await dispatch(fetchRegister());
     Registers.map(async (data) => {
@@ -106,7 +107,7 @@ const ShowAccount = () => {
             connection: [
               ...data.connection,
               {
-                username,
+                username: username,
                 profileImg: "",
               },
             ],
@@ -207,6 +208,9 @@ const ShowAccount = () => {
                         justifyContent: "center",
                       }}
                       className="bg-slate-600 cursor-pointer"
+                      onClick={() => {
+                        ConnectionHandeling();
+                      }}
                     >
                       <lord-icon
                         src="https://cdn.lordicon.com/cvmfhtvr.json"
