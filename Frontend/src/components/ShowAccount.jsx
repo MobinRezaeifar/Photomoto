@@ -93,7 +93,13 @@ const ShowAccount = () => {
               ...data.connection,
               {
                 username: decryptAES(sessionStorage.getItem("u")),
-                profileImg: "",
+                profileImg: Registers.map((dataa) => {
+                  if (
+                    dataa.username == decryptAES(sessionStorage.getItem("u"))
+                  ) {
+                    return dataa.profileImg;
+                  }
+                }),
               },
             ],
           })
@@ -107,8 +113,12 @@ const ShowAccount = () => {
             connection: [
               ...data.connection,
               {
-                username: username,
-                profileImg: "",
+                username,
+                profileImg: Registers.map((dataa) => {
+                  if (dataa.username == username) {
+                    return dataa.profileImg;
+                  }
+                }),
               },
             ],
           })
