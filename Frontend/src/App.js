@@ -11,8 +11,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Register />} />
           <Route path="/photomoto" element={<Main />} />
-          <Route path="/photomoto/:username" element={<ShowAccount />} />
-        </Routes>
+          <Route path="/photomoto/:username " element={<ShowAccount />} />
+        </Routes> 
       </BrowserRouter>
     </main>
   );
