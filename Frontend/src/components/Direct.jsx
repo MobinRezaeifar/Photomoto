@@ -18,6 +18,8 @@ const Direct = () => {
     return bytes.toString(CryptoJS.enc.Utf8);
   }
 
+  console.log(Registers);
+
   return (
     <div className="flex items-center justify-center h-full w-full">
       <div className=" w-[20%] h-full bg-[#37415171]">

@@ -26,7 +26,6 @@ const ShowAccount = () => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
   useEffect(() => {
     dispatch(fetchRegister());
   }, []);
@@ -52,7 +51,7 @@ const ShowAccount = () => {
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
-
+console.log("first")
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
       iv: iv,
@@ -83,6 +82,7 @@ const ShowAccount = () => {
   const navigate = useNavigate();
 
   const ConnectionHandeling = async () => {
+    console.log("first")
     await dispatch(fetchRegister());
     Registers.map(async (data) => {
       if (data.username == username) {
@@ -218,9 +218,7 @@ const ShowAccount = () => {
                         justifyContent: "center",
                       }}
                       className="bg-slate-600 cursor-pointer"
-                      onClick={() => {
-                        ConnectionHandeling();
-                      }}
+                      
                     >
                       <lord-icon
                         src="https://cdn.lordicon.com/cvmfhtvr.json"
