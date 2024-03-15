@@ -3,6 +3,7 @@ const initialState = {
   Posts: [],
   Issue: "",
   ShowPostModel: false,
+  ProfileImg:"https://wallpapercave.com/dwp1x/wp9566386.jpg"
 };
 
 const reducer = (state = initialState, action) => {
@@ -65,6 +66,8 @@ const reducer = (state = initialState, action) => {
 
     case "SHOWPOSTMODEL":
       return { ...state, ShowPostModel: action.payload };
+    case "PROFILEIMG":
+      return { ...state, ProfileImg: action.payload };
 
     default:
       return state;

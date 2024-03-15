@@ -27,7 +27,7 @@ const Me = () => {
   const Posts = useSelector((state) => state.Posts);
   const [SelecteTab, setSelecteTab] = useState("posts");
   const dispatch = useDispatch();
-  const [ProfileImg, setProfileImg] = useState("");
+  const ProfileImg = useSelector((state) => state.ProfileImg);
   const [Post, setPost] = useState(0);
   const [Connection, setConnection] = useState(0);
   const [Bio, setBio] = useState("");
@@ -121,9 +121,15 @@ const Me = () => {
         setPost(data.post);
         setBio(data.bio);
         if (data.profileImg) {
-          setProfileImg(data.profileImg);
+          dispatch({
+            type: "PROFILEIMG",
+            payload: data.profileImg,
+          });
         } else {
-          setProfileImg("https://wallpapercave.com/dwp1x/wp9566386.jpg");
+          dispatch({
+            type: "PROFILEIMG",
+            payload: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
+          });
         }
       }
     });
@@ -131,8 +137,6 @@ const Me = () => {
 
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
-
-
 
   return (
     <div className="h-full overflow-y-auto w-full ">
@@ -241,7 +245,6 @@ const Me = () => {
               className="bg-slate-600 cursor-pointer"
             >
               <lord-icon
-                
                 src="https://cdn.lordicon.com/cvmfhtvr.json"
                 trigger="hover"
                 colors="primary:#e4e4e4,secondary:#e4e4e4"
