@@ -9,10 +9,10 @@ namespace WebApplication1.Services
     {
         List<Registers> Get();
         Registers Get(string id);
-        Registers Create (Registers registers);
-        void Update (string id, Registers registers);
-        void Remove (string id);
+        Registers Create(Registers registers);
+        void Update(string id, Registers registers);
+        void Remove(string id);
         bool IsUsernameExists(string username);
-        Task UpdateOne(BsonDocument bson, string id);
+        void Patch(string id, JObject changes);
     }
 }

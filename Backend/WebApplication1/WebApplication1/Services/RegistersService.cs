@@ -5,7 +5,6 @@ using WebApplication1.Configuration;
 using WebApplication1.Models;
 
 namespace WebApplication1.Services
-
 {
     public class RegistersService : IRegistersService
     {
@@ -15,7 +14,7 @@ namespace WebApplication1.Services
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _register = database.GetCollection<Registers>(settings.RegistersCollection);
-        } 
+        }
 
         public Registers Create(Registers register)
         {
@@ -47,15 +46,16 @@ namespace WebApplication1.Services
         {
             bool exists = _register.Find(register => register.Username == username).Any();
             return exists;
-
         }
 
-        public Task UpdateOne(BsonDocument bson, string id)
+        public void Patch(string id, JObject changes)
         {
-            var filter = Builders<Registers>.Filter.Eq("_id", ObjectId.Parse(id));
-            var update = new BsonDocument("$set", bson);
-            return _register.UpdateOneAsync(filter, update);
+            var filter = Builders<Registers>.Filter.Eq("Id", ObjectId.Parse(id));
+            var update = Builders<Registers>.Update.Set(
+                "Username",
+                changes["Username"]?.ToString()
+            );
+            _register.UpdateOne(filter, update);
         }
     }
-
 }
