@@ -41,7 +41,11 @@ const Direct = () => {
 
   return (
     <div className="flex items-center justify-center h-full w-full">
-      <div className=" w-[20%] h-full bg-[#37415171]">
+      <div
+        className={`w-[20%] h-full bg-[#37415171] ${
+          dimensions.width < 900 && "hidden"
+        }`}
+      >
         <div className="flex items-center w-full p-6 gap-1 h-[8%]">
           <lord-icon
             src="https://cdn.lordicon.com/wwpzpqta.json"
@@ -85,7 +89,7 @@ const Direct = () => {
                                   top: "10px",
                                   right: "2px",
                                 }}
-                                size={dimensions.width > 900 ? 14 : 20}
+                                size={dimensions.width > 900 ? 14 : 12}
                               />
                             }
                           ></Button>
@@ -94,7 +98,7 @@ const Direct = () => {
                     >
                       <Avatar
                         size={dimensions.width > 900 ? 40 : 40}
-                        src={data.profileImg}
+                        src={connect.profileImg}
                         shape="circle"
                       />
                     </Badge>
