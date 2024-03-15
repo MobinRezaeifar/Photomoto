@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 import { Button, Upload, Avatar, Badge } from "antd";
 import { FaCircle } from "react-icons/fa";
+import { AiFillBulb } from "react-icons/ai";
 
 const Direct = () => {
   const [dimensions, setDimensions] = useState({
@@ -11,6 +12,7 @@ const Direct = () => {
     height: window.innerHeight,
   });
   const Registers = useSelector((state) => state.Registers);
+  const [SelectUser, setSelectUser] = useState("");
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -60,13 +62,18 @@ const Direct = () => {
               data.username == decryptAES(sessionStorage.getItem("u")) &&
               data.connection.map((connect) => (
                 <div
-                  className="w-full my-[0.3rem] px-3"
+                  className={`w-full my-[0.3rem] px-3 ${
+                    SelectUser == connect.username &&
+                    "bg-base-100 rounded-s-[60px]"
+                  }`}
                   onClick={() => {
-                    console.log(connect.username);
+                    setSelectUser(connect.username);
                   }}
                 >
                   <div
-                    className="w-full hover:bg-base-100 flex items-center gap-2"
+                    className={`w-full  flex items-center gap-2 ${
+                      SelectUser != connect.username && "hover:bg-base-100"
+                    }`}
                     id="directItem"
                     style={{
                       borderRadius: "8px",
@@ -89,7 +96,7 @@ const Direct = () => {
                                   top: "10px",
                                   right: "2px",
                                 }}
-                                size={dimensions.width > 900 ? 14 : 12}
+                                size={dimensions.width > 900 ? 12 : 11}
                               />
                             }
                           ></Button>
@@ -113,10 +120,18 @@ const Direct = () => {
         </div>
       </div>
       <div className=" w-[80%] h-full bg-base-100">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero hic
-        consectetur assumenda accusamus, explicabo minus architecto distinctio
-        nisi similique laboriosam! Qui, unde vitae. Autem quam libero, optio
-        placeat reprehenderit veritatis?
+        {SelectUser ? (
+          <div className="h-full w-full ">
+            
+          </div>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <h1 className="text-2xl flex items-center gap-2">
+              <AiFillBulb color="yellow" size={30}/>
+              Plase Select User
+            </h1>
+          </div>
+        )}
       </div>
     </div>
   );
