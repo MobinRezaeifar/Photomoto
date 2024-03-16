@@ -1,5 +1,6 @@
 let RegisterApi = "http://localhost:5221/api/Registers";
 let PostApi = "http://localhost:5221/api/Posts";
+let MessagesApi = "http://localhost:5221/api/Messages";
 
 export const addRegiaterSuccess = (user) => ({
   type: "ADD_REGISTER_SUCCESS",
@@ -38,6 +39,26 @@ export const updatePostsSuccess = (updatePost) => ({
 
 export const deletePostSuccess = (id) => ({
   type: "DELETE_POST_SUCCESS",
+  payload: id,
+});
+
+export const addMessagesSuccess = (messages) => ({
+  type: "ADD_MESSAGES_SUCCESS",
+  payload: messages,
+});
+
+export const fetchMessagesSuccess = (messages) => ({
+  type: "FETCH_MESSAGES_SUCCESS",
+  payload: messages,
+});
+
+export const updateMessagesSuccess = (messages) => ({
+  type: "UPDATE_MESSAGES_SUCCESS",
+  payload: messages,
+});
+
+export const deleteMessagesSuccess = (id) => ({
+  type: "DELETE_MESSAGES_SUCCESS",
   payload: id,
 });
 
@@ -165,6 +186,70 @@ export const deletePost = (id) => {
       dispatch(deletePostSuccess(id));
     } catch (error) {
       console.error(`Error deleting post with ID ${id}:`, error);
+    }
+  };
+};
+
+export const AddMessages = (message) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(MessagesApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
+
+      const messages = await response.json();
+      dispatch(addMessagesSuccess(messages));
+    } catch (error) {
+      console.error("Error adding message:", error);
+    }
+  };
+};
+
+export const fetchMessages = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(MessagesApi);
+      const message = await response.json();
+      dispatch(fetchMessagesSuccess(message));
+    } catch (error) {
+      console.error("Error fetching message:", error);
+    }
+  };
+};
+
+export const updateMessages = (id, message) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${MessagesApi}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(message),
+      });
+
+      const messages = await response.json();
+      dispatch(updateMessagesSuccess(messages));
+    } catch (error) {
+      console.error(`Error updating message with ID ${id}:`, error);
+    }
+  };
+};
+
+export const deleteMessages = (id) => {
+  return async (dispatch) => {
+    try {
+      await fetch(`${MessagesApi}/${id}`, {
+        method: "DELETE",
+      });
+
+      dispatch(deleteMessagesSuccess(id));
+    } catch (error) {
+      console.error(`Error deleting message with ID ${id}:`, error);
     }
   };
 };

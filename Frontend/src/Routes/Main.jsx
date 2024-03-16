@@ -6,10 +6,10 @@ import BottomNav from "../components/BottomNav";
 import Me from "../components/Me/Me";
 import Connection from "../components/Connection";
 import Search from "../components/Search/Search";
-import Homee from "../components/Home";
 import Direct from "../components/Direct";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../Redux/action";
+import Home from "../components/Home";
 
 const Main = () => {
   let navigate = useNavigate();
@@ -61,7 +61,7 @@ const Main = () => {
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
             {Issue == "direct" && <Direct />}
-            {Issue == "home" && <Homee />}
+            {Issue == "home" && <Home />}
           </div>
         </>
       ) : (
@@ -74,7 +74,7 @@ const Main = () => {
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
             {Issue == "direct" && <Direct />}
-            {Issue == "home" && <Homee />}
+            {Issue == "home" && <Home/>}
           </div>
           <BottomNav />
         </>

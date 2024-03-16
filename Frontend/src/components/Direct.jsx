@@ -5,6 +5,7 @@ import CryptoJS from "crypto-js";
 import { Button, Upload, Avatar, Badge } from "antd";
 import { FaCircle } from "react-icons/fa";
 import { AiFillBulb } from "react-icons/ai";
+import ChatSide from "./ChatSide";
 
 const Direct = () => {
   const [dimensions, setDimensions] = useState({
@@ -13,6 +14,7 @@ const Direct = () => {
   });
   const Registers = useSelector((state) => state.Registers);
   const [SelectUser, setSelectUser] = useState("");
+  const [SelectUserImg, setSelectUserImg] = useState("");
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -68,6 +70,7 @@ const Direct = () => {
                   }`}
                   onClick={() => {
                     setSelectUser(connect.username);
+                    setSelectUserImg(connect.profileImg);
                   }}
                 >
                   <div
@@ -121,13 +124,13 @@ const Direct = () => {
       </div>
       <div className=" w-[80%] h-full bg-base-100">
         {SelectUser ? (
-          <div className="h-full w-full ">
-            
+          <div className="h-full w-full">
+            <ChatSide SelectUser={SelectUser} SelectUserImg={SelectUserImg} />
           </div>
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <h1 className="text-2xl flex items-center gap-2">
-              <AiFillBulb color="yellow" size={30}/>
+              <AiFillBulb color="yellow" size={30} />
               Plase Select User
             </h1>
           </div>

@@ -1,9 +1,10 @@
 const initialState = {
   Registers: [],
   Posts: [],
+  Messages: [],
   Issue: "",
   ShowPostModel: false,
-  ProfileImg:"https://wallpapercave.com/dwp1x/wp9566386.jpg"
+  ProfileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
 };
 
 const reducer = (state = initialState, action) => {
@@ -59,6 +60,34 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         Posts: state.Posts.filter((post) => post.id !== action.payload),
+      };
+
+    case "ADD_MESSAGES_SUCCESS":
+      return {
+        ...state,
+        Messages: [...state.Messages, action.payload],
+      };
+
+    case "FETCH_MESSAGES_SUCCESS":
+      return {
+        ...state,
+        Messages: action.payload,
+      };
+
+    case "UPDATE_MESSAGES_SUCCESS":
+      return {
+        ...state,
+        Messages: state.Messages.map((Message) =>
+          Message.id === action.payload.id ? action.payload : Message
+        ),
+      };
+
+    case "DELETE_MESSAGES_SUCCESS":
+      return {
+        ...state,
+        Messages: state.Messages.filter(
+          (Message) => Message.id !== action.payload
+        ),
       };
 
     case "ISSUE":
