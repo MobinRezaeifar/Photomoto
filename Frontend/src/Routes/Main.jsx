@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LeftNav from "../components/LeftNav";
 import BottomNav from "../components/BottomNav";
-import { useSelector } from "react-redux";
 import Me from "../components/Me/Me";
 import Connection from "../components/Connection";
 import Search from "../components/Search/Search";
 import Homee from "../components/Home";
 import Direct from "../components/Direct";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRegister } from "../Redux/action";
 
 const Main = () => {
   let navigate = useNavigate();
@@ -33,9 +34,16 @@ const Main = () => {
   }, []);
 
   if (sessionStorage.getItem("e") == null) {
-    navigate("/register");
+    navigate("/");
   }
   const Issue = useSelector((state) => state.Issue);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRegister());
+  }, [dispatch]);
+
   return (
     <div
       className={`h-screen w-screen flex ${

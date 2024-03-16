@@ -207,9 +207,6 @@ const ShowAccount = () => {
                         alignItems: "center",
                         justifyContent: "center",
                       }}
-                      onClick={() => {
-                        ConnectionHandeling();
-                      }}
                       className="bg-slate-600 cursor-pointer"
                     >
                       <lord-icon
@@ -233,8 +230,9 @@ const ShowAccount = () => {
                         justifyContent: "center",
                       }}
                       className="bg-slate-600 cursor-pointer"
-                      onClick={() => {
-                        ConnectionHandeling();
+                      onClick={async () => {
+                        await ConnectionHandeling();
+                        await dispatch(fetchRegister());
                       }}
                     >
                       <lord-icon
