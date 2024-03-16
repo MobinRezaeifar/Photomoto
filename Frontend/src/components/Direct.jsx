@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable eqeqeq */
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +9,7 @@ import { FaCircle } from "react-icons/fa";
 import { AiFillBulb } from "react-icons/ai";
 import ChatSide from "./ChatSide";
 
-const Direct = () => {
+const Direct = ({ Change, change }) => {
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -125,7 +127,12 @@ const Direct = () => {
       <div className=" w-[80%] h-full bg-base-100">
         {SelectUser ? (
           <div className="h-full w-full">
-            <ChatSide SelectUser={SelectUser} SelectUserImg={SelectUserImg} />
+            <ChatSide
+              SelectUser={SelectUser}
+              SelectUserImg={SelectUserImg}
+              Change={Change}
+              change={change}
+            />
           </div>
         ) : (
           <div className="w-full h-full flex items-center justify-center">

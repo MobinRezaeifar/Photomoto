@@ -10,6 +10,7 @@ import Direct from "../components/Direct";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../Redux/action";
 import Home from "../components/Home";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const Main = () => {
   let navigate = useNavigate();
@@ -44,6 +45,26 @@ const Main = () => {
     dispatch(fetchRegister());
   }, [dispatch]);
 
+  const [change, setchange] = useState([]);
+
+  const Change = async (change) => {
+    try {
+      const connection = new HubConnectionBuilder()
+        .withUrl(`http://localhost:5221/change`)
+        .configureLogging(LogLevel.Information)
+        .build();
+      await connection.start();
+
+      connection.invoke("Connect", change).catch((err) => console.error(err));
+
+      connection.on("getChange", (chang) => {
+        setchange(chang);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div
       className={`h-screen w-screen flex ${
@@ -60,7 +81,7 @@ const Main = () => {
             {Issue == "me" && <Me />}
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
-            {Issue == "direct" && <Direct />}
+            {Issue == "direct" && <Direct Change={Change} change={change} />}
             {Issue == "home" && <Home />}
           </div>
         </>
@@ -73,8 +94,8 @@ const Main = () => {
             {Issue == "me" && <Me />}
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
-            {Issue == "direct" && <Direct />}
-            {Issue == "home" && <Home/>}
+            {Issue == "direct" && <Direct Change={Change} change={change} />}
+            {Issue == "home" && <Home />}
           </div>
           <BottomNav />
         </>
