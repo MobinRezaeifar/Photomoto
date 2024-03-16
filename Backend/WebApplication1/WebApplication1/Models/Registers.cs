@@ -28,7 +28,7 @@ namespace WebApplication1.Models
         [BsonElement("gender")]
         public string? Gender { get; set; }
 
-        [BsonElement("hash")]
+        [BsonElement("hash")] 
         public string? Hash { get; set; }
 
         [BsonElement("post")] 
