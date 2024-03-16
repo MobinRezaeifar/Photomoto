@@ -75,28 +75,6 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // [HttpPatch("api/registers/{id}")]
-        // public IActionResult Patch(string id, [FromBody] JsonPatchDocument<Registers> patchDoc)
-        // {
-        //     var existingRegister = _registersService.Get(id);
-
-        //     if (existingRegister == null)
-        //     {
-        //         return NotFound($"Register with ID {id} not found.");
-        //     }
-
-        //     patchDoc.ApplyTo(existingRegister);
-
-        //     if (!TryValidateModel(existingRegister))
-        //     {
-        //         return BadRequest(ModelState);
-        //     }
-
-        //     _registersService.Update(id, existingRegister);
-
-        //     return NoContent();
-        // }
-
         [HttpPatch("api/registers/{id}")]
         public IActionResult Patch(string id, [FromBody] Registers register)
         {
