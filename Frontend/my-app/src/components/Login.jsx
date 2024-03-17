@@ -90,7 +90,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <div
         style={{ backgroundColor: "#001925" }}
         id="drawer-swipe"
@@ -194,7 +194,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
           </form>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

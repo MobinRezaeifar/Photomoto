@@ -72,7 +72,7 @@ const Main = () => {
       } `}
     >
       {dimensions.width > 900 ? (
-        <>
+        <React.Fragment>
           <LeftNav />
           <div
             className="w-[100%] h-full  overflow-y-auto "
@@ -84,9 +84,9 @@ const Main = () => {
             {Issue == "direct" && <Direct Change={Change} change={change} />}
             {Issue == "home" && <Home />}
           </div>
-        </>
+        </React.Fragment>
       ) : (
-        <>
+        <React.Fragment>
           <div
             className="w-full overflow-y-auto h-full "
             style={{ paddingBottom: "7%" }}
@@ -98,7 +98,7 @@ const Main = () => {
             {Issue == "home" && <Home />}
           </div>
           <BottomNav />
-        </>
+        </React.Fragment>
       )}
     </div>
   );

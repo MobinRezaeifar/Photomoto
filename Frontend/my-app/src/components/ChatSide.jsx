@@ -136,10 +136,10 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                 onClick={SendMessage}
               />
             ) : (
-              <>
+              <React.Fragment>
                 <GoFileDirectoryFill size={21} className="cursor-pointer" />
                 <MdKeyboardVoice size={23} className="cursor-pointer" />
-              </>
+              </React.Fragment>
             )}
           </div>
         </div>

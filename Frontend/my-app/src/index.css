@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#borderrnone {
+  border: none;
+  width: 0;
+  height: 0;
+  background-color: transparent;
+}
+#borderrnone:hover {
+  border: none;
+}
+:where(.css-dev-only-do-not-override-1k979oh).ant-btn-default:not(
+    :disabled
+  ):not(.ant-btn-disabled):hover {
+  background-color: transparent;
+}
+.ant-upload-list-item-name {
+  display: none;
+}
+.ant-upload-list-item-actions {
+  display: none;
+}
+.ant-upload-icon {
+  display: none;
+}
+.ant-upload-list.ant-upload-list-text {
+  display: none;
+  /* color: #37415171; */
+}
+#CreatePostModel {
+  transition: all 5s ease-in-out;
+}
+
+.trapezius {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 10px solid transparent; /* رنگ و ضخامت را می‌توانید تغییر دهید */
+  transform: perspective(500px) rotateX(20deg);
+}
+
+#directItem :hover {
+}
