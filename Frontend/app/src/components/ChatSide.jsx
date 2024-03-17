@@ -111,9 +111,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   </div>
                 );
               }
-            } else {
-              return <Empty />;
-            }
+            } 
           })
         ) : (
           <Empty />
