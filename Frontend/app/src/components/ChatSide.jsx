@@ -10,6 +10,7 @@ import { Avatar, Empty } from "antd";
 import { AddMessages, fetchMessages } from "../Redux/action";
 import CryptoJS from "crypto-js";
 import isEqual from "lodash.isequal";
+import axios from "axios";
 
 const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
   const [MessageText, setMessageText] = useState("");
@@ -36,7 +37,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     dispatch(fetchMessages());
   }, [change]);
 
-  const SendMessage = async () => {
+  const SendTextMessage = async () => {
     await Change("change");
     await dispatch(
       AddMessages({
@@ -50,6 +51,12 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     );
     await setMessageText("");
     await Change("change");
+  };
+
+  const SendFileMessage = async (file) => {
+    var form = new FormData();
+    form.append("file", file);
+    await axios.post("http://localhost:5221/api/FileManager/uploadfile", form);
   };
 
   return (
@@ -111,7 +118,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   </div>
                 );
               }
-            } 
+            }
           })
         ) : (
           <Empty />
@@ -131,11 +138,20 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
               <BsFillSendFill
                 size={20}
                 className="cursor-pointer"
-                onClick={SendMessage}
+                onClick={SendTextMessage}
               />
             ) : (
               <React.Fragment>
-                <GoFileDirectoryFill size={21} className="cursor-pointer" />
+                <label class="block" for="file_input">
+                  <GoFileDirectoryFill size={21} className="cursor-pointer" />
+                </label>
+                <input
+                  class="hidden w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                  id="file_input"
+                  type="file"
+                  onChange={(e) => SendFileMessage(e.target.files[0])}
+                ></input>
+
                 <MdKeyboardVoice size={23} className="cursor-pointer" />
               </React.Fragment>
             )}
