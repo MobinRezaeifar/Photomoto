@@ -109,7 +109,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                             <textarea
                               cols={20}
                               value={data.media}
-                              className="bg-transparent"
+                              className="bg-transparent"  
                             />
                           ) : (
                             data.media
