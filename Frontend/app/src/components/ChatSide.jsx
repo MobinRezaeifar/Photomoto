@@ -4,18 +4,31 @@ import React, { useEffect, useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { GoFileDirectoryFill } from "react-icons/go";
 import { BsFillSendFill } from "react-icons/bs";
-import { MdKeyboardVoice } from "react-icons/md";
+import { MdKeyboardVoice, MdOutlineDownloading } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Empty } from "antd";
 import { AddMessages, fetchMessages } from "../Redux/action";
 import CryptoJS from "crypto-js";
 import isEqual from "lodash.isequal";
 import axios from "axios";
+import {
+  DownloadOutlined,
+  RotateLeftOutlined,
+  RotateRightOutlined,
+  SwapOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+} from "@ant-design/icons";
+import { Image, Space } from "antd";
 
 const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
   const [MessageText, setMessageText] = useState("");
   const dispatch = useDispatch();
   const Messages = useSelector((state) => state.Messages);
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -71,6 +84,38 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     );
   };
 
+  const updateSize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+
+  useEffect(() => {
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => {
+      window.removeEventListener("resize", updateSize);
+    };
+  }, []);
+
+  const onDownload = (src) => {
+    fetch(src)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = src.split(
+          "http://localhost:5221/api/FileManager/downloadfile?FileName="
+        )[1];
+        document.body.appendChild(link);
+        link.click();
+        URL.revokeObjectURL(url);
+        link.remove();
+      });
+  };
+
   return (
     <div className="h-screen">
       <div
@@ -97,26 +142,13 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   <div className="flex justify-end w-full mb-4">
                     <div
                       style={{
-                        // maxWidth: "50%",
+                        maxWidth: "50%",
                         display: "flex",
                         alignItems: "end",
                         gap: "0.5rem",
                       }}
                     >
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
-                          {data.media.length > 50 ? (
-                            <textarea
-                              cols={20}
-                              value={data.media}
-                              className="bg-transparent"  
-                            />
-                          ) : (
-                            data.media
-                          )}
-                        </div>
-                      )}
-                      {data.type.startsWith("image") && (
                         <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
                           {data.media.length > 50 ? (
                             <textarea
@@ -129,6 +161,92 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                           )}
                         </div>
                       )}
+                      {data.type.startsWith("image") && (
+                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                          <Image
+                            width={dimensions.width > 900 ? 300 : 200}
+                            src={
+                              "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                              data.media
+                            }
+                            preview={{
+                              toolbarRender: (
+                                _,
+                                {
+                                  transform: { scale },
+                                  actions: {
+                                    onFlipY,
+                                    onFlipX,
+                                    onRotateLeft,
+                                    onRotateRight,
+                                    onZoomOut,
+                                    onZoomIn,
+                                  },
+                                }
+                              ) => (
+                                <Space size={12} className="toolbar-wrapper">
+                                  <DownloadOutlined
+                                    onClick={() =>
+                                      onDownload(
+                                        "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                                          data.media
+                                      )
+                                    }
+                                  />
+                                  <SwapOutlined rotate={90} onClick={onFlipY} />
+                                  <SwapOutlined onClick={onFlipX} />
+                                  <RotateLeftOutlined onClick={onRotateLeft} />
+                                  <RotateRightOutlined
+                                    onClick={onRotateRight}
+                                  />
+                                  <ZoomOutOutlined
+                                    disabled={scale === 1}
+                                    onClick={onZoomOut}
+                                  />
+                                  <ZoomInOutlined
+                                    disabled={scale === 50}
+                                    onClick={onZoomIn}
+                                  />
+                                </Space>
+                              ),
+                            }}
+                          />
+                        </div>
+                      )}
+                      {data.type.startsWith("video") && (
+                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                          <video
+                            width={dimensions.width > 900 ? 300 : 200}
+                            controls
+                            src={
+                              "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                              data.media
+                            }
+                          ></video>
+                        </div>
+                      )}
+                      {data.type.startsWith("application") && (
+                        <div
+                          className=" bg-gray-600 items-center gap-2 rounded-bl-md rounded-t-md px-4 py-2 flex"
+                          style={{ direction: "rtl" }}
+                          title={data.media}
+                        >
+                          <MdOutlineDownloading
+                            color="lightblue"
+                            className="cursor-pointer "
+                            size={35}
+                            onClick={() =>
+                              onDownload(
+                                "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                                  data.media
+                              )
+                            }
+                          />
+                          {data.media.length > 20
+                            ? "..." + data.media.substring(0, 20)
+                            : data.media}
+                        </div>
+                      )}
                       <Avatar src={SelectUserImg} />
                     </div>
                   </div>
@@ -139,23 +257,111 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   <div className="flex justify-start w-full mb-4">
                     <div
                       style={{
-                        // maxWidth: "50%",
+                        maxWidth: "50%",
                         display: "flex",
                         alignItems: "end",
                         gap: "0.5rem",
                       }}
                     >
                       <Avatar src={SelectUserImg} />
-                      <div className=" bg-gray-700 rounded-br-md rounded-t-md px-4 py-2">
-                        {data.media.length > 50 ? (
-                          <textarea
-                            value={data.media}
-                            className="bg-transparent"
+                      {data.type.startsWith("text") && (
+                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
+                          {data.media.length > 50 ? (
+                            <textarea
+                              cols={20}
+                              value={data.media}
+                              className="bg-transparent"
+                            />
+                          ) : (
+                            data.media
+                          )}
+                        </div>
+                      )}
+                      {data.type.startsWith("image") && (
+                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                          <Image
+                            width={dimensions.width > 900 ? 300 : 200}
+                            src={
+                              "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                              data.media
+                            }
+                            preview={{
+                              toolbarRender: (
+                                _,
+                                {
+                                  transform: { scale },
+                                  actions: {
+                                    onFlipY,
+                                    onFlipX,
+                                    onRotateLeft,
+                                    onRotateRight,
+                                    onZoomOut,
+                                    onZoomIn,
+                                  },
+                                }
+                              ) => (
+                                <Space size={12} className="toolbar-wrapper">
+                                  <DownloadOutlined
+                                    onClick={() =>
+                                      onDownload(
+                                        "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                                          data.media
+                                      )
+                                    }
+                                  />
+                                  <SwapOutlined rotate={90} onClick={onFlipY} />
+                                  <SwapOutlined onClick={onFlipX} />
+                                  <RotateLeftOutlined onClick={onRotateLeft} />
+                                  <RotateRightOutlined
+                                    onClick={onRotateRight}
+                                  />
+                                  <ZoomOutOutlined
+                                    disabled={scale === 1}
+                                    onClick={onZoomOut}
+                                  />
+                                  <ZoomInOutlined
+                                    disabled={scale === 50}
+                                    onClick={onZoomIn}
+                                  />
+                                </Space>
+                              ),
+                            }}
                           />
-                        ) : (
-                          data.media
-                        )}
-                      </div>
+                        </div>
+                      )}
+                      {data.type.startsWith("application") && (
+                        <div
+                          className=" bg-gray-600 items-center gap-2 rounded-bl-md rounded-t-md px-4 py-2 flex"
+                          title={data.media}
+                        >
+                          <MdOutlineDownloading
+                            color="lightblue"
+                            className="cursor-pointer "
+                            size={35}
+                            onClick={() =>
+                              onDownload(
+                                "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                                  data.media
+                              )
+                            }
+                          />
+                          {data.media.length > 20
+                            ? data.media.substring(0, 20) + "..."
+                            : data.media}
+                        </div>
+                      )}
+                      {data.type.startsWith("video") && (
+                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                          <video
+                            width={dimensions.width > 900 ? 300 : 200}
+                            controls
+                            src={
+                              "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                              data.media
+                            }
+                          ></video>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

@@ -90,22 +90,20 @@ const Direct = ({ Change, change }) => {
                   >
                     <Badge
                       count={
-                        <Upload>
-                          <Button
-                            id="borderrnone"
-                            icon={
-                              <FaCircle
-                                color="green"
-                                style={{
-                                  position: "absolute",
-                                  top: "10px",
-                                  right: "2px",
-                                }}
-                                size={dimensions.width > 900 ? 12 : 11}
-                              />
-                            }
-                          ></Button>
-                        </Upload>
+                        <Button
+                          id="borderrnone"
+                          icon={
+                            <FaCircle
+                              color="green"
+                              style={{
+                                position: "absolute",
+                                top: "0",
+                                right: "2px",
+                              }}
+                              size={dimensions.width > 900 ? 12 : 11}
+                            />
+                          }
+                        ></Button>
                       }
                     >
                       <Avatar
