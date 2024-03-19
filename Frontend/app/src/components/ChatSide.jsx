@@ -52,7 +52,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     );
     await setMessageText("");
     await Change("change");
-  }; 
+  };
 
   const SendFileMessage = async (file) => {
     var form = new FormData();
@@ -103,17 +103,32 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         gap: "0.5rem",
                       }}
                     >
-                      <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
-                        {data.media.length > 50 ? (
-                          <textarea
-                            cols={20}
-                            value={data.media}
-                            className="bg-transparent"
-                          />
-                        ) : (
-                          data.media
-                        )}
-                      </div>
+                      {data.type.startsWith("text") && (
+                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
+                          {data.media.length > 50 ? (
+                            <textarea
+                              cols={20}
+                              value={data.media}
+                              className="bg-transparent"
+                            />
+                          ) : (
+                            data.media
+                          )}
+                        </div>
+                      )}
+                      {data.type.startsWith("image") && (
+                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
+                          {data.media.length > 50 ? (
+                            <textarea
+                              cols={20}
+                              value={data.media}
+                              className="bg-transparent"
+                            />
+                          ) : (
+                            data.media
+                          )}
+                        </div>
+                      )}
                       <Avatar src={SelectUserImg} />
                     </div>
                   </div>
