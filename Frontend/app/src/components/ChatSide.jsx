@@ -41,6 +41,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     await Change("change");
     await dispatch(
       AddMessages({
+        type: "text",
         media: MessageText,
         sender: decryptAES(sessionStorage.getItem("u")),
         recipient: SelectUser,
@@ -51,19 +52,23 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     );
     await setMessageText("");
     await Change("change");
-  };
+  }; 
 
   const SendFileMessage = async (file) => {
     var form = new FormData();
     form.append("file", file);
     await axios.post("http://localhost:5221/api/FileManager/uploadfile", form);
-    await dispatch(AddMessages({
-      "id": "65f93cc6f44cc34bb3ce1076",
-      "media": "fdssssssssssssssssssssssssssssssssssssssssssfdsssssssssssssss",
-      "sender": "admin",
-      "recipient": "client",
-      "relationship": "admin,client"
-    }))
+    await dispatch(
+      AddMessages({
+        media: file.name,
+        sender: decryptAES(sessionStorage.getItem("u")),
+        recipient: SelectUser,
+        relationship: `${decryptAES(
+          sessionStorage.getItem("u")
+        )},${SelectUser}`,
+        type: file.type,
+      })
+    );
   };
 
   return (
@@ -100,7 +105,8 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                     >
                       <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
                         {data.media.length > 50 ? (
-                          <textarea cols={20}
+                          <textarea
+                            cols={20}
                             value={data.media}
                             className="bg-transparent"
                           />

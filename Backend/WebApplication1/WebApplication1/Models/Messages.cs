@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+
 public class Messages
 {
     [BsonId]
@@ -17,7 +18,7 @@ public class Messages
 
     [BsonElement("relationship")]
     public string? Relationship { get; set; }
-    
+
     [BsonElement("type")]
     public string? Type { get; set; }
 }
