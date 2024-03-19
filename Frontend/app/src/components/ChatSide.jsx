@@ -57,6 +57,13 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     var form = new FormData();
     form.append("file", file);
     await axios.post("http://localhost:5221/api/FileManager/uploadfile", form);
+    await dispatch(AddMessages({
+      "id": "65f93cc6f44cc34bb3ce1076",
+      "media": "fdssssssssssssssssssssssssssssssssssssssssssfdsssssssssssssss",
+      "sender": "admin",
+      "recipient": "client",
+      "relationship": "admin,client"
+    }))
   };
 
   return (
@@ -85,14 +92,21 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   <div className="flex justify-end w-full mb-4">
                     <div
                       style={{
-                        maxWidth: "50%",
+                        // maxWidth: "50%",
                         display: "flex",
-                        alignItems: "center",
+                        alignItems: "end",
                         gap: "0.5rem",
                       }}
                     >
                       <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
-                        {data.media}
+                        {data.media.length > 50 ? (
+                          <textarea cols={20}
+                            value={data.media}
+                            className="bg-transparent"
+                          />
+                        ) : (
+                          data.media
+                        )}
                       </div>
                       <Avatar src={SelectUserImg} />
                     </div>
@@ -104,15 +118,22 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   <div className="flex justify-start w-full mb-4">
                     <div
                       style={{
-                        maxWidth: "50%",
+                        // maxWidth: "50%",
                         display: "flex",
-                        alignItems: "center",
+                        alignItems: "end",
                         gap: "0.5rem",
                       }}
                     >
                       <Avatar src={SelectUserImg} />
                       <div className=" bg-gray-700 rounded-br-md rounded-t-md px-4 py-2">
-                        {data.media}
+                        {data.media.length > 50 ? (
+                          <textarea
+                            value={data.media}
+                            className="bg-transparent"
+                          />
+                        ) : (
+                          data.media
+                        )}
                       </div>
                     </div>
                   </div>
