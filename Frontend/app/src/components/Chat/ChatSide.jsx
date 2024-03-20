@@ -62,7 +62,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     await dispatch(
       AddMessages({
         type: "text",
-        time: Date.now(),
+        time: Date.now() + "",
         media: MessageText,
         sender: decryptAES(sessionStorage.getItem("u")),
         recipient: SelectUser,
@@ -83,7 +83,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     await dispatch(
       AddMessages({
         media: file.name,
-        time: Date.now(),
+        time: Date.now() + "",
         sender: decryptAES(sessionStorage.getItem("u")),
         recipient: SelectUser,
         relationship: `${decryptAES(
