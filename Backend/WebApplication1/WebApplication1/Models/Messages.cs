@@ -21,4 +21,7 @@ public class Messages
 
     [BsonElement("type")]
     public string? Type { get; set; }
+
+    [BsonElement("time")]
+    public string? Time { get; set; }
 }

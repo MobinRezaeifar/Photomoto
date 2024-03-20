@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable eqeqeq */
 /* eslint-disable array-callback-return */
 import React, { useEffect, useRef, useState } from "react";
@@ -61,6 +62,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     await dispatch(
       AddMessages({
         type: "text",
+        time: Date.now(),
         media: MessageText,
         sender: decryptAES(sessionStorage.getItem("u")),
         recipient: SelectUser,
@@ -81,6 +83,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     await dispatch(
       AddMessages({
         media: file.name,
+        time: Date.now(),
         sender: decryptAES(sessionStorage.getItem("u")),
         recipient: SelectUser,
         relationship: `${decryptAES(
@@ -233,7 +236,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                       }}
                     >
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
+                        <div className=" bg-gray-500 text-white rounded-bl-md rounded-t-md px-4 py-2  text-lg">
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
@@ -246,8 +249,9 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         </div>
                       )}
                       {data.type.startsWith("image") && (
-                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                        <div className=" bg-gray-500 text-white rounded-bl-md rounded-t-md p-3 flex flex-col items-end text-lg">
                           <Image
+                            className="mb-3"
                             width={dimensions.width > 900 ? 200 : 100}
                             src={
                               "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
@@ -295,11 +299,20 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                               ),
                             }}
                           />
+                          <span title={data.media}>
+                            {data.media.length > 20
+                              ? data.media.substring(0, 10) +
+                                "..." +
+                                data.type.split("/")[1]
+                              : data.media}
+                          </span>
                         </div>
                       )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                        <div className=" bg-gray-500 text-white rounded-bl-md rounded-t-md p-3 flex flex-col items-end text-lg">
                           <video
+                            muted
+                            className="mb-2"
                             loop
                             width={dimensions.width > 900 ? 200 : 100}
                             controls
@@ -309,16 +322,23 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                               data.media
                             }
                           ></video>
+                          <span title={data.media}>
+                            {data.media.length > 20
+                              ? data.media.substring(0, 10) +
+                                "..." +
+                                data.type.split("/")[1]
+                              : data.media}
+                          </span>
                         </div>
                       )}
-                       {data.type.startsWith("voice") && (
-                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-4 py-2">
+                      {data.type.startsWith("voice") && (
+                        <div className=" bg-gray-500 text-white rounded-br-md rounded-t-md px-4 py-2">
                           <VoiceMessage data={data} />
                         </div>
                       )}
                       {data.type.startsWith("application") && (
                         <div
-                          className=" bg-gray-600 items-center gap-2 rounded-bl-md rounded-t-md px-4 py-2 flex"
+                          className=" bg-gray-500 text-white items-center gap-2 rounded-bl-md rounded-t-md px-4 py-2 flex"
                           style={{ direction: "rtl" }}
                           title={data.media}
                         >
@@ -356,7 +376,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                     >
                       <Avatar src={SelectUserImg} />
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-4 py-2">
+                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md px-4 py-2">
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
@@ -369,8 +389,9 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         </div>
                       )}
                       {data.type.startsWith("image") && (
-                        <div className=" bg-gray-600 rounded-br-md rounded-t-md p-3">
+                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md p-3 flex flex-col items-start text-lg">
                           <Image
+                            className="mb-2"
                             width={dimensions.width > 900 ? 200 : 100}
                             src={
                               "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
@@ -418,11 +439,18 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                               ),
                             }}
                           />
+                          <span title={data.media}>
+                            {data.media.length > 20
+                              ? data.media.substring(0, 10) +
+                                "..." +
+                                data.type.split("/")[1]
+                              : data.media}
+                          </span>
                         </div>
                       )}
                       {data.type.startsWith("application") && (
                         <div
-                          className=" bg-gray-600 items-center gap-2 rounded-br-md rounded-t-md px-4 py-2 flex"
+                          className=" bg-gray-600 text-white  items-center gap-2 rounded-br-md rounded-t-md px-4 py-2 flex"
                           title={data.media}
                         >
                           <MdOutlineDownloading
@@ -442,13 +470,14 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         </div>
                       )}
                       {data.type.startsWith("voice") && (
-                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-4 py-2">
+                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md px-4 py-2">
                           <VoiceMessage data={data} />
                         </div>
                       )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-600 rounded-br-md rounded-t-md p-3">
+                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md p-3">
                           <video
+                            muted
                             loop
                             width={dimensions.width > 900 ? 200 : 100}
                             controls
