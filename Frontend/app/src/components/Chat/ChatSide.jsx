@@ -27,6 +27,7 @@ import {
 import { Image, Space } from "antd";
 import { FaRegStopCircle } from "react-icons/fa";
 import VoiceMessage from "./VoiceMessage";
+import moment from "jalali-moment";
 
 const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
   const [MessageText, setMessageText] = useState("");
@@ -62,7 +63,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     await dispatch(
       AddMessages({
         type: "text",
-        time: Date.now() + "",
+        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         media: MessageText,
         sender: decryptAES(sessionStorage.getItem("u")),
         recipient: SelectUser,
@@ -83,7 +84,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     await dispatch(
       AddMessages({
         media: file.name,
-        time: Date.now() + "",
+        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         sender: decryptAES(sessionStorage.getItem("u")),
         recipient: SelectUser,
         relationship: `${decryptAES(
@@ -130,6 +131,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const recordedChunks = useRef([]);
+  const now = Date.now();
 
   const handleStartRecording = () => {
     navigator.mediaDevices
@@ -154,6 +156,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
               media: filename,
               sender: decryptAES(sessionStorage.getItem("u")),
               recipient: SelectUser,
+              time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
               relationship: `${decryptAES(
                 sessionStorage.getItem("u")
               )},${SelectUser}`,
@@ -236,22 +239,26 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                       }}
                     >
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-500 text-white rounded-bl-md rounded-t-md px-4 py-2  text-lg">
+                        <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2  text-lg flex flex-col items-end">
+                          <span className="text-sm">{data.time}</span>
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
                               value={data.media}
-                              className="bg-transparent"
+                              className="bg-transparent text-white text-lg"
                             />
                           ) : (
-                            data.media
+                            <span className="text-white text-lg">
+                              {data.media}
+                            </span>
                           )}
                         </div>
                       )}
                       {data.type.startsWith("image") && (
-                        <div className=" bg-gray-500 text-white rounded-bl-md rounded-t-md p-3 flex flex-col items-end text-lg">
+                        <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end text-lg">
+                          <span className="mb-2 text-sm">{data.time}</span>
                           <Image
-                            className="mb-3"
+                            className="mb-2"
                             width={dimensions.width > 900 ? 200 : 100}
                             src={
                               "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
@@ -299,7 +306,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                               ),
                             }}
                           />
-                          <span title={data.media}>
+                          <span title={data.media} className="text-white ">
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
                                 "..." +
@@ -309,7 +316,8 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         </div>
                       )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-500 text-white rounded-bl-md rounded-t-md p-3 flex flex-col items-end text-lg">
+                        <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end text-lg">
+                          <span className="text-sm mb-2">{data.time}</span>
                           <video
                             muted
                             className="mb-2"
@@ -322,7 +330,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                               data.media
                             }
                           ></video>
-                          <span title={data.media}>
+                          <span title={data.media} className="text-white ">
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
                                 "..." +
@@ -332,7 +340,9 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         </div>
                       )}
                       {data.type.startsWith("voice") && (
-                        <div className=" bg-gray-500 text-white rounded-br-md rounded-t-md px-4 py-2">
+                        <div className=" bg-gray-500  rounded-br-md rounded-t-md px-4 py-2 flex items-end flex-col">
+                          <span className="text-sm mb-1">{data.time}</span>
+
                           <VoiceMessage data={data} />
                         </div>
                       )}
@@ -376,20 +386,24 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                     >
                       <Avatar src={SelectUserImg} />
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md px-4 py-2">
+                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  text-lg flex flex-col items-start">
+                          <span className="text-sm">{data.time}</span>
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
                               value={data.media}
-                              className="bg-transparent"
+                              className="bg-transparent text-white text-lg"
                             />
                           ) : (
-                            data.media
+                            <span className="text-white text-lg">
+                              {data.media}
+                            </span>
                           )}
                         </div>
                       )}
                       {data.type.startsWith("image") && (
-                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md p-3 flex flex-col items-start text-lg">
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-3 py-2 flex flex-col items-start text-lg">
+                          <span className="mb-2 text-sm">{data.time}</span>
                           <Image
                             className="mb-2"
                             width={dimensions.width > 900 ? 200 : 100}
@@ -439,7 +453,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                               ),
                             }}
                           />
-                          <span title={data.media}>
+                          <span title={data.media} className="text-white ">
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
                                 "..." +
@@ -470,14 +484,17 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         </div>
                       )}
                       {data.type.startsWith("voice") && (
-                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md px-4 py-2">
+                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2 flex flex-col">
+                          <span className="text-sm mb-1">{data.time}</span>
                           <VoiceMessage data={data} />
                         </div>
                       )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-600 text-white rounded-br-md rounded-t-md p-3">
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-3 py-2 flex flex-col items-start text-lg">
+                          <span className="text-sm mb-2">{data.time}</span>
                           <video
                             muted
+                            className="mb-2"
                             loop
                             width={dimensions.width > 900 ? 200 : 100}
                             controls
@@ -487,6 +504,13 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                               data.media
                             }
                           ></video>
+                          <span title={data.media} className="text-white ">
+                            {data.media.length > 20
+                              ? data.media.substring(0, 10) +
+                                "..." +
+                                data.type.split("/")[1]
+                              : data.media}
+                          </span>
                         </div>
                       )}
                     </div>
@@ -502,7 +526,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
       <div className="h-[10%] w-full flex items-center px-8">
         <div className="w-full flex justify-end items-center ">
           <input
-            className="w-full h-[3rem] bg-gray-700 rounded-[6px] px-2 "
+            className="w-full h-[3rem] bg-gray-700 rounded-[6px] px-2 text-white text-lg"
             placeholder="Type..."
             type="text"
             value={MessageText}

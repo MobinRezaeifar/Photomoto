@@ -77,7 +77,7 @@ const VoiceMessage = ({ data }) => {
           class="timeline"
           max="100"
           value="0"
-          style={{ direction: "ltr", marginTop: "6px" }}
+          style={{ direction: "ltr", marginTop: "8px" }}
         />
       </div>
     </div>
