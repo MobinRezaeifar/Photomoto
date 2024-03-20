@@ -152,7 +152,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
                           {data.media.length > 50 ? (
                             <textarea
-                              cols={20}
+                              rows={3}
                               value={data.media}
                               className="bg-transparent"
                             />
@@ -268,7 +268,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
                           {data.media.length > 50 ? (
                             <textarea
-                              cols={20}
+                              rows={3}
                               value={data.media}
                               className="bg-transparent"
                             />
