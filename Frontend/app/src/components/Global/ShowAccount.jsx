@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Empty } from "antd";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
-import Posts from "./Posts";
+import Postss from "./Postss";
 
 const ShowAccount = () => {
   const { username } = useParams();
@@ -312,7 +312,7 @@ const ShowAccount = () => {
               return <Empty description="There Are No Posts" />;
             } else {
               return (
-                <Posts
+                <Postss
                   mainUser={username}
                   dimensions={dimensions}
                   ProfileImg={ProfileImg}

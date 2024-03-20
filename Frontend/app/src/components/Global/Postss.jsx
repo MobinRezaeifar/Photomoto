@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../Redux/action";
 import ShowPostModel from "./ShowPostModel";
 import { motion } from "framer-motion";
-const Posts = ({ mainUser, dimensions, ProfileImg }) => {
+const Postss = ({ mainUser, dimensions, ProfileImg }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.Posts);
   const [SelectePost, setSelectePost] = useState({});
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
-
 
   return (
     <div className="container">
@@ -71,10 +70,10 @@ const Posts = ({ mainUser, dimensions, ProfileImg }) => {
         ProfileImg={ProfileImg}
         SelectePost={SelectePost}
         dimensions={dimensions}
-        Posts={Posts}
+        Posts={posts}
       />
     </div>
   );
 };
 
-export default Posts;
+export default Postss;

@@ -18,8 +18,10 @@ import {
 } from "../../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import CreatePostModel from "./CreatePostModel";
+import CreatePostModel from "../Me/CreatePostModel";
 import { Empty } from "antd";
+import Posts from "../Global/Postss";
+import Postss from "../Global/Postss";
 
 const Me = () => {
   const Registers = useSelector((state) => state.Registers);
@@ -100,6 +102,11 @@ const Me = () => {
 
             await dispatch(fetchRegister());
           }
+          data.connection.map((dataa) => {
+            if (dataa.username == mainUser) {
+              console.log(dataa);
+            }
+          });
         });
         var form = new FormData();
         form.append("file", info.file.originFileObj);
@@ -315,7 +322,7 @@ const Me = () => {
               return <Empty description="There Are No Posts" />;
             } else {
               return (
-                <Posts
+                <Postss
                   mainUser={mainUser}
                   dimensions={dimensions}
                   ProfileImg={ProfileImg}

@@ -239,7 +239,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                       }}
                     >
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2  text-lg flex flex-col items-end">
+                        <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2  text-xl flex flex-col items-end">
                           <span className="text-sm">{data.time}</span>
                           {data.media.length > 50 ? (
                             <textarea
@@ -386,7 +386,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                     >
                       <Avatar src={SelectUserImg} />
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  text-lg flex flex-col items-start">
+                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  text-xl flex flex-col items-start">
                           <span className="text-sm">{data.time}</span>
                           {data.media.length > 50 ? (
                             <textarea

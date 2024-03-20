@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LeftNav from "../components/Nav/LeftNav";
 import BottomNav from "../components/Nav/BottomNav";
-import Me from "../components/Me/Me";
 import Connection from "../components/Issue/Connection";
 import Search from "../components/Search/Search";
 import Direct from "../components/Issue/Direct";
@@ -11,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../Redux/action";
 import Home from "../components/Issue/Home";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import Me from "../components/Issue/Me";
 
 const Main = () => {
   let navigate = useNavigate();
