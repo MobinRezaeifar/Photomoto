@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Login from "../components/Login";
+import Login from "../components/Global/Login";
 
 const Register = () => {
   const dispatch = useDispatch();

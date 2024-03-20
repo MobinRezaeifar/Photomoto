@@ -15,7 +15,7 @@ import {
   fetchRegister,
   updatePost,
   updateRegister,
-} from "../Redux/action";
+} from "../../Redux/action";
 import { Button, Dropdown } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "jalali-moment";

@@ -19,7 +19,6 @@ import {
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "./CreatePostModel";
-import MePosts from "../MePosts";
 import { Empty } from "antd";
 
 const Me = () => {
@@ -316,7 +315,7 @@ const Me = () => {
               return <Empty description="There Are No Posts" />;
             } else {
               return (
-                <MePosts
+                <Posts
                   mainUser={mainUser}
                   dimensions={dimensions}
                   ProfileImg={ProfileImg}

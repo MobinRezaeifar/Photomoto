@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import usernamePhoto from "../Assets/username.png";
+import usernamePhoto from "../../Assets/username.png";
 import { useDispatch, useSelector } from "react-redux";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { fetchRegister } from "../Redux/action";
+import { fetchRegister } from "../../Redux/action";
 import CryptoJS from "crypto-js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";

@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
 import { Avatar, Badge } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts, fetchRegister, updateRegister } from "../Redux/action";
+import { fetchPosts, fetchRegister, updateRegister } from "../../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { Empty } from "antd";
-import MePosts from "./MePosts";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
+import Posts from "./Posts";
 
 const ShowAccount = () => {
   const { username } = useParams();
@@ -312,7 +312,7 @@ const ShowAccount = () => {
               return <Empty description="There Are No Posts" />;
             } else {
               return (
-                <MePosts
+                <Posts
                   mainUser={username}
                   dimensions={dimensions}
                   ProfileImg={ProfileImg}

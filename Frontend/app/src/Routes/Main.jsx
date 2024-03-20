@@ -1,15 +1,15 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import LeftNav from "../components/LeftNav";
-import BottomNav from "../components/BottomNav";
+import LeftNav from "../components/Nav/LeftNav";
+import BottomNav from "../components/Nav/BottomNav";
 import Me from "../components/Me/Me";
-import Connection from "../components/Connection";
+import Connection from "../components/Issue/Connection";
 import Search from "../components/Search/Search";
-import Direct from "../components/Direct";
+import Direct from "../components/Issue/Direct";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../Redux/action";
-import Home from "../components/Home";
+import Home from "../components/Issue/Home";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const Main = () => {
@@ -64,7 +64,6 @@ const Main = () => {
       console.log(e);
     }
   };
-
   return (
     <div
       className={`h-screen w-screen flex ${

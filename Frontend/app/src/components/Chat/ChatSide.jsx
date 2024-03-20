@@ -1,13 +1,17 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable array-callback-return */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { GoFileDirectoryFill } from "react-icons/go";
 import { BsFillSendFill } from "react-icons/bs";
-import { MdKeyboardVoice, MdOutlineDownloading } from "react-icons/md";
+import {
+  MdKeyboardVoice,
+  MdOutlineDownloading,
+  MdOutlineSettingsVoice,
+} from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Empty } from "antd";
-import { AddMessages, fetchMessages } from "../Redux/action";
+import { AddMessages, fetchMessages } from "../../Redux/action";
 import CryptoJS from "crypto-js";
 import isEqual from "lodash.isequal";
 import axios from "axios";
@@ -20,6 +24,8 @@ import {
   ZoomOutOutlined,
 } from "@ant-design/icons";
 import { Image, Space } from "antd";
+import { FaRegStopCircle } from "react-icons/fa";
+import VoiceMessage from "./VoiceMessage";
 
 const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
   const [MessageText, setMessageText] = useState("");
@@ -29,7 +35,8 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
+  let StartBtn = document.getElementById("StartBtn");
+  let StopBtn = document.getElementById("StopBtn");
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
 
@@ -41,7 +48,6 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     });
     return bytes.toString(CryptoJS.enc.Utf8);
   }
-
   useEffect(() => {
     dispatch(fetchMessages());
   }, []);
@@ -68,6 +74,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
   };
 
   const SendFileMessage = async (file) => {
+    await Change("change");
     var form = new FormData();
     form.append("file", file);
     await axios.post("http://localhost:5221/api/FileManager/uploadfile", form);
@@ -82,6 +89,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
         type: file.type,
       })
     );
+    await Change("change");
   };
 
   const updateSize = () => {
@@ -113,6 +121,82 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
         link.click();
         URL.revokeObjectURL(url);
         link.remove();
+      });
+  };
+
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState(null);
+  const recordedChunks = useRef([]);
+
+  const handleStartRecording = () => {
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then((stream) => {
+        const recorder = new MediaRecorder(stream);
+        setMediaRecorder(recorder);
+
+        recorder.ondataavailable = (e) => {
+          recordedChunks.current.push(e.data);
+        };
+
+        recorder.onstop = async () => {
+          const blob = new Blob(recordedChunks.current, { type: "audio/wav" });
+          const url = URL.createObjectURL(blob);
+          const formData = new FormData();
+          let filename = Date.now() + ".wav";
+          formData.append("file", blob, filename);
+          UploadVoice(formData);
+          await dispatch(
+            AddMessages({
+              media: filename,
+              sender: decryptAES(sessionStorage.getItem("u")),
+              recipient: SelectUser,
+              relationship: `${decryptAES(
+                sessionStorage.getItem("u")
+              )},${SelectUser}`,
+              type: "voice",
+            })
+          );
+          await Change("change");
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "recorded_audio.wav";
+          // document.body.appendChild(a);
+          // a.click();
+          window.URL.revokeObjectURL(url);
+          recordedChunks.current = [];
+        };
+
+        recorder.start();
+        StartBtn.classList.add("hidden");
+        StopBtn.classList.remove("hidden");
+        setIsRecording(true);
+      })
+      .catch((error) => console.error("Error accessing microphone:", error));
+  };
+
+  const handleStopRecording = () => {
+    if (mediaRecorder && isRecording) {
+      mediaRecorder.stop();
+      StartBtn.classList.remove("hidden");
+      StopBtn.classList.add("hidden");
+      setIsRecording(false);
+    }
+  };
+
+  const UploadVoice = (formData) => {
+    let url = `http://localhost:5221/api/FileManager/uploadfile`;
+    axios
+      .request({
+        method: "POST",
+        data: formData,
+        url,
+        onUploadProgress: (e) => {
+          var percentComplete = Math.ceil((e.loaded / e.total) * 100);
+        },
+      })
+      .then((response) => {
+        console.log(response);
       });
   };
 
@@ -164,7 +248,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                       {data.type.startsWith("image") && (
                         <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
                           <Image
-                            width={dimensions.width > 900 ? 300 : 200}
+                            width={dimensions.width > 900 ? 200 : 100}
                             src={
                               "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
                               data.media
@@ -216,13 +300,20 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                       {data.type.startsWith("video") && (
                         <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
                           <video
-                            width={dimensions.width > 900 ? 300 : 200}
+                            loop
+                            width={dimensions.width > 900 ? 200 : 100}
                             controls
+                            autoPlay
                             src={
                               "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
                               data.media
                             }
                           ></video>
+                        </div>
+                      )}
+                       {data.type.startsWith("voice") && (
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-4 py-2">
+                          <VoiceMessage data={data} />
                         </div>
                       )}
                       {data.type.startsWith("application") && (
@@ -265,7 +356,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                     >
                       <Avatar src={SelectUserImg} />
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md px-4 py-2">
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-4 py-2">
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
@@ -278,9 +369,9 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                         </div>
                       )}
                       {data.type.startsWith("image") && (
-                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md p-3">
                           <Image
-                            width={dimensions.width > 900 ? 300 : 200}
+                            width={dimensions.width > 900 ? 200 : 100}
                             src={
                               "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
                               data.media
@@ -331,7 +422,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                       )}
                       {data.type.startsWith("application") && (
                         <div
-                          className=" bg-gray-600 items-center gap-2 rounded-bl-md rounded-t-md px-4 py-2 flex"
+                          className=" bg-gray-600 items-center gap-2 rounded-br-md rounded-t-md px-4 py-2 flex"
                           title={data.media}
                         >
                           <MdOutlineDownloading
@@ -350,11 +441,18 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                             : data.media}
                         </div>
                       )}
+                      {data.type.startsWith("voice") && (
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-4 py-2">
+                          <VoiceMessage data={data} />
+                        </div>
+                      )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-600 rounded-bl-md rounded-t-md p-3">
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md p-3">
                           <video
-                            width={dimensions.width > 900 ? 300 : 200}
+                            loop
+                            width={dimensions.width > 900 ? 200 : 100}
                             controls
+                            autoPlay
                             src={
                               "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
                               data.media
@@ -400,7 +498,24 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   onChange={(e) => SendFileMessage(e.target.files[0])}
                 ></input>
 
-                <MdKeyboardVoice size={23} className="cursor-pointer" />
+                <button
+                  type="button"
+                  className=""
+                  onClick={handleStartRecording}
+                  disabled={isRecording}
+                  id="StartBtn"
+                >
+                  <MdOutlineSettingsVoice size={23} />
+                </button>
+                <button
+                  type="button"
+                  className=" hidden"
+                  onClick={handleStopRecording}
+                  disabled={!isRecording}
+                  id="StopBtn"
+                >
+                  <FaRegStopCircle size={25} />
+                </button>
               </React.Fragment>
             )}
           </div>

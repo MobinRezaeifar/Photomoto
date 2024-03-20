@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../Redux/action";
 import { motion } from "framer-motion";
-import ShowPostModel from "../ShowPostModel";
+import ShowPostModel from "../Global/ShowPostModel";
 const Search = () => {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);

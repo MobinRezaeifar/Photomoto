@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../Redux/action";
+import { fetchPosts } from "../../Redux/action";
 import ShowPostModel from "./ShowPostModel";
 import { motion } from "framer-motion";
-const MePosts = ({ mainUser, dimensions, ProfileImg }) => {
+const Posts = ({ mainUser, dimensions, ProfileImg }) => {
   const dispatch = useDispatch();
-  const Posts = useSelector((state) => state.Posts);
+  const posts = useSelector((state) => state.Posts);
   const [SelectePost, setSelectePost] = useState({});
   useEffect(() => {
     dispatch(fetchPosts());
@@ -16,7 +16,7 @@ const MePosts = ({ mainUser, dimensions, ProfileImg }) => {
     <div className="container">
       <div id="instagram">
         <div className="grid  grid-cols-2 sm:grid-cols-4 2xl:grid-cols-6">
-          {Posts.map((post, index) => {
+          {posts.map((post, index) => {
             if (post.owner == mainUser) {
               return (
                 <div
@@ -77,4 +77,4 @@ const MePosts = ({ mainUser, dimensions, ProfileImg }) => {
   );
 };
 
-export default MePosts;
+export default Posts;

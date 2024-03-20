@@ -7,7 +7,7 @@ import CryptoJS from "crypto-js";
 import { Button, Upload, Avatar, Badge } from "antd";
 import { FaCircle } from "react-icons/fa";
 import { AiFillBulb } from "react-icons/ai";
-import ChatSide from "./ChatSide";
+import ChatSide from "../Chat/ChatSide";
 
 const Direct = ({ Change, change }) => {
   const [dimensions, setDimensions] = useState({
