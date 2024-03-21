@@ -204,11 +204,17 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                   <Avatar src={Post.profileImg} size="large" />
                   <span
                     onClick={() => {
-                      navigate(`${Post.owner}`);
-                      dispatch({
-                        type: "SHOWPOSTMODEL",
-                        payload: false,
-                      });
+                      console.log(window.location.href);
+                      if (
+                        window.location.href !==
+                        `http://localhost:3000/photomoto/${Post.owner}`
+                      ) {
+                        navigate(`${Post.owner}`);
+                        dispatch({
+                          type: "SHOWPOSTMODEL",
+                          payload: false,
+                        });
+                      }
                     }}
                     className="text-2xl cursor-pointer"
                   >
@@ -268,12 +274,15 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                         if (Post.likes) {
                           return Post.likes.map((data) => {
                             counter++;
-                            return <Avatar src={data.profileImg} />;
+                            return Registers.map((dataa) => {
+                              if (data.username == dataa.username) {
+                                return <Avatar src={dataa.profileImg} />;
+                              }
+                            });
                           });
                         }
                       }
                     })()}
-                    &nbsp; &nbsp; &nbsp;
                   </Avatar.Group>
                   {Post.likes && (
                     <span>Liked by {Post.likes[0].username} and other</span>

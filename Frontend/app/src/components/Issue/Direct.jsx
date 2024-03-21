@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
 import React, { useEffect } from "react";
@@ -107,11 +108,19 @@ const Direct = ({ Change, change }) => {
                         ></Button>
                       }
                     >
-                      <Avatar
-                        size={dimensions.width > 900 ? 40 : 40}
-                        src={connect.profileImg}
-                        shape="circle"
-                      />
+                      {(() => {
+                        return Registers.map((dataa) => {
+                          if (dataa.username == connect.username) {
+                            return (
+                              <Avatar
+                                size={dimensions.width > 900 ? 40 : 40}
+                                src={dataa.profileImg}
+                                shape="circle"
+                              />
+                            );
+                          }
+                        });
+                      })()}
                     </Badge>
                     <div className="flex flex-col items-start ">
                       <span className="text-white"> {connect.username}</span>

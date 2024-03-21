@@ -62,7 +62,7 @@ const Register = () => {
           username: Username,
           password: encryptAES(Password),
           fullName: FullName,
-          profileImg: "",
+          profileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
           email: Email,
           gender: Gender,
           hash: "",
