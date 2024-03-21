@@ -226,6 +226,7 @@ const ChatSide = ({
       }
     });
   });
+  const messageRenderdiv = document.getElementById("messageRenderdiv");
 
   return (
     <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
@@ -249,8 +250,11 @@ const ChatSide = ({
         <CiMenuKebab size={27} />
       </div>
 
-      <div className="h-[80%] px-8 overflow-y-auto pt-4">
-        {!isEqual(Messages, []) ? (
+      <div id="messageRenderdiv" className="h-[80%] px-8 overflow-y-auto pt-4">
+        {messageRenderdiv && messageRenderdiv.textContent.trim() === "" && (
+          <Empty />
+        )}
+        {!isEqual(Messages, []) &&
           Messages.map((data) => {
             if (
               data.relationship ==
@@ -549,10 +553,7 @@ const ChatSide = ({
                 );
               }
             }
-          })
-        ) : (
-          <Empty />
-        )}
+          })}
       </div>
       <div className="h-[10%] w-full flex items-center px-8">
         <div className={`w-full flex justify-end items-center `}>

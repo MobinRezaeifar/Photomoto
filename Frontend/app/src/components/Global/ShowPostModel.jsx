@@ -204,7 +204,6 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                   <Avatar src={Post.profileImg} size="large" />
                   <span
                     onClick={() => {
-                      console.log(window.location.href);
                       if (
                         window.location.href !==
                         `http://localhost:3000/photomoto/${Post.owner}`
