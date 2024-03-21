@@ -371,7 +371,7 @@ const ChatSide = ({
                         </div>
                       )}
                       {data.type.startsWith("voice") && (
-                        <div className=" bg-gray-500  rounded-br-md rounded-t-md px-4 py-2 flex items-end flex-col">
+                        <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2 flex items-end flex-col">
                           <span className="text-sm mb-1">{data.time}</span>
 
                           <VoiceMessage data={data} />

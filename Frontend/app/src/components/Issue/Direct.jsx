@@ -51,7 +51,7 @@ const Direct = ({ Change, change }) => {
         className={`w-[20%] h-full bg-[#37415171] ${
           !SelectUser && dimensions.width < 900 && "w-full"
         }
-        ${SelectUser && "hidden"}`}
+        ${SelectUser && dimensions.width < 900 && "hidden"}`}
       >
         <div className="flex items-center w-full p-6 gap-1 h-[8%]">
           <lord-icon
