@@ -28,8 +28,16 @@ import { Image, Space } from "antd";
 import { FaRegStopCircle } from "react-icons/fa";
 import VoiceMessage from "./VoiceMessage";
 import moment from "jalali-moment";
+import { FaArrowRight } from "react-icons/fa6";
 
-const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
+const ChatSide = ({
+  SelectUser,
+  SelectUserImg,
+  Change,
+  change,
+  setSelectUser,
+  mainUser,
+}) => {
   const [MessageText, setMessageText] = useState("");
   const dispatch = useDispatch();
   const Messages = useSelector((state) => state.Messages);
@@ -37,10 +45,17 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  const Registers = useSelector((state) => state.Registers);
   let StartBtn = document.getElementById("StartBtn");
   let StopBtn = document.getElementById("StopBtn");
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState(null);
+  const recordedChunks = useRef([]);
+  const now = Date.now();
+  const [TargetProfileImg, setTargetProfileImg] = useState("");
+  const [MainUserImg, setMainUserImg] = useState("");
 
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
@@ -128,11 +143,6 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
       });
   };
 
-  const [isRecording, setIsRecording] = useState(false);
-  const [mediaRecorder, setMediaRecorder] = useState(null);
-  const recordedChunks = useRef([]);
-  const now = Date.now();
-
   const handleStartRecording = () => {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
@@ -206,14 +216,35 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
       });
   };
 
+  useEffect(() => {
+    Registers.map((data) => {
+      if (data.username == SelectUser) {
+        setTargetProfileImg(data.profileImg);
+      }
+      if (data.username == mainUser) {
+        setMainUserImg(data.profileImg);
+      }
+    });
+  });
+
   return (
-    <div className="h-screen">
+    <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
       <div
         className="flex justify-between items-center px-5  h-[10%] rounded-b-[1.2rem] bg-[#37415171] mx-8"
         style={{ boxShadow: "0px 38px 67px -19px rgba(255,255,255,0.02)" }}
       >
         <span className="flex items-center gap-2 text-2xl">
-          <Avatar size={37} src={SelectUserImg} /> {SelectUser}
+          {dimensions.width < 900 && (
+            <FaArrowRight
+              style={{
+                transform: "rotate(180deg)",
+                marginRight: "5px",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectUser("")}
+            />
+          )}
+          <Avatar size={37} src={TargetProfileImg} /> {SelectUser}
         </span>
         <CiMenuKebab size={27} />
       </div>
@@ -232,7 +263,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   <div className="flex justify-end w-full mb-4">
                     <div
                       style={{
-                        maxWidth: "50%",
+                        maxWidth: dimensions.width < 900 ? "100%" : "50%",
                         display: "flex",
                         alignItems: "end",
                         gap: "0.5rem",
@@ -368,7 +399,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                             : data.media}
                         </div>
                       )}
-                      <Avatar src={SelectUserImg} />
+                      <Avatar src={MainUserImg} />
                     </div>
                   </div>
                 );
@@ -378,13 +409,13 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
                   <div className="flex justify-start w-full mb-4">
                     <div
                       style={{
-                        maxWidth: "50%",
+                        maxWidth: dimensions.width < 900 ? "100%" : "50%",
                         display: "flex",
                         alignItems: "end",
                         gap: "0.5rem",
                       }}
                     >
-                      <Avatar src={SelectUserImg} />
+                      <Avatar src={TargetProfileImg} />
                       {data.type.startsWith("text") && (
                         <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  text-xl flex flex-col items-start">
                           <span className="text-sm">{data.time}</span>
@@ -524,7 +555,7 @@ const ChatSide = ({ SelectUser, SelectUserImg, Change, change }) => {
         )}
       </div>
       <div className="h-[10%] w-full flex items-center px-8">
-        <div className="w-full flex justify-end items-center ">
+        <div className={`w-full flex justify-end items-center `}>
           <input
             className="w-full h-[3rem] bg-gray-700 rounded-[6px] px-2 text-white text-lg"
             placeholder="Type..."

@@ -49,8 +49,9 @@ const Direct = ({ Change, change }) => {
     <div className="flex items-center justify-center h-full w-full">
       <div
         className={`w-[20%] h-full bg-[#37415171] ${
-          dimensions.width < 900 && "hidden"
-        }`}
+          !SelectUser && dimensions.width < 900 && "w-full"
+        }
+        ${SelectUser && "hidden"}`}
       >
         <div className="flex items-center w-full p-6 gap-1 h-[8%]">
           <lord-icon
@@ -60,7 +61,7 @@ const Direct = ({ Change, change }) => {
           ></lord-icon>
           <h1 className="text-2xl font-bold">Direct</h1>
         </div>
-        <div className="h-[92%] overflow-y-auto flex flex-col">
+        <div className="h-[42%] overflow-y-auto flex flex-col">
           {Registers.map(
             (data) =>
               data.username == decryptAES(sessionStorage.getItem("u")) &&
@@ -122,7 +123,11 @@ const Direct = ({ Change, change }) => {
           )}
         </div>
       </div>
-      <div className=" w-[80%] h-full bg-base-100">
+      <div
+        className={`w-[80%] h-full bg-base-100 ${
+          !SelectUser && dimensions.width < 900 && "hidden"
+        } ${SelectUser && "w-full"}`}
+      >
         {SelectUser ? (
           <div className="h-full w-full">
             <ChatSide
@@ -130,6 +135,8 @@ const Direct = ({ Change, change }) => {
               SelectUserImg={SelectUserImg}
               Change={Change}
               change={change}
+              setSelectUser={setSelectUser}
+              mainUser={decryptAES(sessionStorage.getItem("u"))}
             />
           </div>
         ) : (
