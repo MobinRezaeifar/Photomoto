@@ -11,6 +11,7 @@ import { Empty } from "antd";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import Postss from "./Postss";
+import Swal from "sweetalert2";
 
 const ShowAccount = () => {
   const { username } = useParams();
@@ -116,6 +117,44 @@ const ShowAccount = () => {
       }
     });
     await dispatch(fetchRegister());
+  };
+
+  const GoDirect = () => {
+    Registers.map((data) => {
+      if (data.username == username) {
+        let status = data.connection.some(
+          (x) => x.username == decryptAES(sessionStorage.getItem("u"))
+        );
+        if (status) {
+          navigate("/photomoto");
+          console.log(status);
+          dispatch({
+            type: "ISSUE",
+            payload: "direct",
+          });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: username,
+          });
+        } else {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Connect First",
+          });
+        }
+      }
+    });
   };
   return (
     <div className="h-full overflow-y-auto w-full">
@@ -259,6 +298,7 @@ const ShowAccount = () => {
                 justifyContent: "center",
               }}
               className="bg-slate-600 cursor-pointer "
+              onClick={GoDirect}
             >
               <BsChatText size={27} className="animated3" />
             </div>
