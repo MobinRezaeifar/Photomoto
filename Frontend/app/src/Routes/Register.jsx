@@ -355,7 +355,7 @@ const Register = () => {
                 <div
                   className="reset-button-container"
                   onClick={submitRegister}
-                > 
+                >
                   <div id="reset-btn" className="reset-button">
                     Submit
                   </div>
