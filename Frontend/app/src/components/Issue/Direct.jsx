@@ -15,9 +15,9 @@ const Direct = ({ Change, change }) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  const dispatch = useDispatch();
   const Registers = useSelector((state) => state.Registers);
-  const [SelectUser, setSelectUser] = useState("");
-  const [SelectUserImg, setSelectUserImg] = useState("");
+  const SelectUserChat = useSelector((state) => state.SelectUserChat);
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -50,9 +50,9 @@ const Direct = ({ Change, change }) => {
     <div className="flex items-center justify-center h-full w-full">
       <div
         className={`w-[20%] h-full bg-[#37415171] ${
-          !SelectUser && dimensions.width < 900 && "w-full"
+          !SelectUserChat && dimensions.width < 900 && "w-full"
         }
-        ${SelectUser && dimensions.width < 900 && "hidden"}`}
+        ${SelectUserChat && dimensions.width < 900 && "hidden"}`}
       >
         <div className="flex items-center w-full p-6 gap-1 h-[8%]">
           <lord-icon
@@ -69,17 +69,19 @@ const Direct = ({ Change, change }) => {
               data.connection.map((connect) => (
                 <div
                   className={`w-full my-[0.3rem] px-3 ${
-                    SelectUser == connect.username &&
+                    SelectUserChat == connect.username &&
                     "bg-base-100 rounded-s-[60px]"
                   }`}
                   onClick={() => {
-                    setSelectUser(connect.username);
-                    setSelectUserImg(connect.profileImg);
+                    dispatch({
+                      type: "SELECTUSERCHAT",
+                      payload: connect.username,
+                    });
                   }}
                 >
                   <div
                     className={`w-full  flex items-center gap-2 ${
-                      SelectUser != connect.username && "hover:bg-base-100"
+                      SelectUserChat != connect.username && "hover:bg-base-100"
                     }`}
                     id="directItem"
                     style={{
@@ -134,17 +136,15 @@ const Direct = ({ Change, change }) => {
       </div>
       <div
         className={`w-[80%] h-full bg-base-100 ${
-          !SelectUser && dimensions.width < 900 && "hidden"
-        } ${SelectUser && "w-full"}`}
+          !SelectUserChat && dimensions.width < 900 && "hidden"
+        } ${SelectUserChat && "w-full"}`}
       >
-        {SelectUser ? (
+        {SelectUserChat ? (
           <div className="h-full w-full">
             <ChatSide
-              SelectUser={SelectUser}
-              SelectUserImg={SelectUserImg}
+              SelectUser={SelectUserChat}
               Change={Change}
               change={change}
-              setSelectUser={setSelectUser}
               mainUser={decryptAES(sessionStorage.getItem("u"))}
             />
           </div>

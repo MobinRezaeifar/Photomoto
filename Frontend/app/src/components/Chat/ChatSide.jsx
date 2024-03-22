@@ -30,14 +30,7 @@ import VoiceMessage from "./VoiceMessage";
 import moment from "jalali-moment";
 import { FaArrowRight } from "react-icons/fa6";
 
-const ChatSide = ({
-  SelectUser,
-  SelectUserImg,
-  Change,
-  change,
-  setSelectUser,
-  mainUser,
-}) => {
+const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
   const dispatch = useDispatch();
   const Messages = useSelector((state) => state.Messages);
@@ -242,7 +235,12 @@ const ChatSide = ({
                 marginRight: "5px",
                 cursor: "pointer",
               }}
-              onClick={() => setSelectUser("")}
+              onClick={() =>
+                dispatch({
+                  type: "SELECTUSERCHAT",
+                  payload: "",
+                })
+              }
             />
           )}
           <Avatar size={37} src={TargetProfileImg} /> {SelectUser}
