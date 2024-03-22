@@ -9,8 +9,10 @@ import { Button, Upload, Avatar, Badge } from "antd";
 import { FaCircle } from "react-icons/fa";
 import { AiFillBulb } from "react-icons/ai";
 import ChatSide from "../Chat/ChatSide";
+import { motion } from "framer-motion";
 
 const Direct = ({ Change, change }) => {
+  
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
