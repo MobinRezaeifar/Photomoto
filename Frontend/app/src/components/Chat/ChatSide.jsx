@@ -254,7 +254,10 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
               }
             />
           )}
-          <span onClick={() => navigate(`${SelectUser}`)}>
+          <span
+            onClick={() => navigate(`${SelectUser}`)}
+            className="cursor-pointer flex items-center gap-2"
+          >
             <Avatar size={37} src={TargetProfileImg} /> {SelectUser}
           </span>
         </span>
