@@ -16,6 +16,7 @@
     "axios": "^1.6.8",
     "crypto-js": "^4.2.0",
     "daisyui": "^4.7.3",
+    "flowbite": "^2.3.0",
     "framer-motion": "^11.0.14",
     "jalali-moment": "^3.3.11",
     "lodash": "^4.17.21",

@@ -30,6 +30,7 @@ import VoiceMessage from "./VoiceMessage";
 import moment from "jalali-moment";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import TextMessageInbound from "./TextMessageInbound";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -231,6 +232,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   useEffect(() => {
     scrollToBottom();
   }, [change]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [SelectUser]);
 
   let messageRenderdiv = document.getElementById("messageRenderdiv");
 
@@ -266,7 +270,10 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
         <CiMenuKebab size={27} />
       </div>
 
-      <div id={`messageRenderdiv`} className="h-[80%] px-8 overflow-y-auto pt-4">
+      <div
+        id={`messageRenderdiv`}
+        className="h-[80%] px-8 overflow-y-auto pt-4"
+      >
         {messageRenderdiv && messageRenderdiv.textContent.trim() === "" && (
           <Empty />
         )}
@@ -290,23 +297,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                       }}
                     >
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2  text-xl flex flex-col items-end">
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="text-sm">{data.time}</span>
-                          {data.media.length > 50 ? (
-                            <textarea
-                              rows={3}
-                              value={data.media}
-                              className={`bg-transparent text-white  mb-2  ${MessageFontSize}`}
-                            />
-                          ) : (
-                            <span
-                              className={`text-white  mb-2 ${MessageFontSize}`}
-                            >
-                              {data.media}
-                            </span>
-                          )}
-                        </div>
+                        <TextMessageInbound
+                          data={data}
+                          MainUserImg={MainUserImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
                       {data.type.startsWith("image") && (
                         <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end">
@@ -436,7 +431,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                           </div>
                         </div>
                       )}
-                      <Avatar src={MainUserImg} />
+                      {/* <Avatar src={MainUserImg} /> */}
                     </div>
                   </div>
                 );
