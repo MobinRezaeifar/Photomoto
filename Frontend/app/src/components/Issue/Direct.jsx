@@ -70,7 +70,7 @@ const Direct = ({ Change, change }) => {
               data.username == decryptAES(sessionStorage.getItem("u")) &&
               data.connection.map((connect) => (
                 <div
-                  className={`w-full my-[0.3rem] px-3 ${
+                  className={`w-full my-[0.3rem] px-3 ${ 
                     SelectUserChat == connect.username &&
                     "bg-base-100 rounded-s-[60px]"
                   }`}
