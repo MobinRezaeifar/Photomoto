@@ -232,6 +232,8 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     scrollToBottom();
   }, [change]);
 
+  let messageRenderdiv = document.getElementById("messageRenderdiv");
+
   return (
     <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
       <div
@@ -256,7 +258,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
           )}
           <span
             onClick={() => navigate(`${SelectUser}`)}
-            className="cursor-pointer flex items-center gap-2"
+            className="cursor-pointer flex items-center gap-2 text-white"
           >
             <Avatar size={37} src={TargetProfileImg} /> {SelectUser}
           </span>
@@ -264,7 +266,10 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
         <CiMenuKebab size={27} />
       </div>
 
-      <div id="messageRenderdiv" className="h-[80%] px-8 overflow-y-auto pt-4">
+      <div id={`messageRenderdiv`} className="h-[80%] px-8 overflow-y-auto pt-4">
+        {messageRenderdiv && messageRenderdiv.textContent.trim() === "" && (
+          <Empty />
+        )}
         {!isEqual(Messages, []) &&
           Messages.map((data) => {
             if (
