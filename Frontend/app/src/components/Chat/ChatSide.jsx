@@ -249,7 +249,6 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
       </div>
 
       <div id="messageRenderdiv" className="h-[80%] px-8 overflow-y-auto pt-4">
-       
         {!isEqual(Messages, []) &&
           Messages.map((data) => {
             if (
@@ -552,7 +551,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
           })}
       </div>
       <div className="h-[10%] w-full flex items-center px-8">
-        <div className={`w-full flex justify-end items-center `}>
+        <div className={`w-full flex justify-end items-center`}>
           <input
             className="w-full h-[3rem] bg-gray-700 rounded-[6px] px-2 text-white text-lg"
             placeholder="Type..."

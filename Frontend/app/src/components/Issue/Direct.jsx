@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
@@ -46,6 +46,7 @@ const Direct = ({ Change, change }) => {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
+  const constraintsRef = useRef(null);
 
   return (
     <div className="flex items-center justify-center h-full w-full">
@@ -63,16 +64,20 @@ const Direct = ({ Change, change }) => {
           ></lord-icon>
           <h1 className="text-2xl font-bold">Direct</h1>
         </div>
-        <div className="h-[42%] overflow-y-auto flex flex-col">
+        <div
+          className="h-[92%] overflow-y-auto flex flex-col" 
+          ref={constraintsRef}
+        >
           {Registers.map(
             (data) =>
               data.username == decryptAES(sessionStorage.getItem("u")) &&
               data.connection.map((connect) => (
                 <motion.div
+                  drag
+                  dragConstraints={constraintsRef}
                   initial={{ opacity: 0, x: !SelectUserChat && -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
-                  // whileHover={{ scale: 1.05 }}
                   className={`w-full my-[0.3rem] px-3 ${
                     SelectUserChat == connect.username &&
                     "bg-base-100 rounded-s-[60px]"
