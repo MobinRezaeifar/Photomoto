@@ -48,7 +48,7 @@ const VoiceMessage = ({ data }) => {
   }
 
   return (
-    <div class="audio-player">
+    <div class="audio-player mb-2">
       <audio
         id={data.file}
         ref={audio}

@@ -29,6 +29,7 @@ import { FaRegStopCircle } from "react-icons/fa";
 import VoiceMessage from "./VoiceMessage";
 import moment from "jalali-moment";
 import { FaArrowRight } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -49,6 +50,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const now = Date.now();
   const [TargetProfileImg, setTargetProfileImg] = useState("");
   const [MainUserImg, setMainUserImg] = useState("");
+  const navigate = useNavigate();
 
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
@@ -219,7 +221,15 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
       }
     });
   });
-  const messageRenderdiv = document.getElementById("messageRenderdiv");
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [change]);
 
   return (
     <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
@@ -243,7 +253,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
               }
             />
           )}
-          <Avatar size={37} src={TargetProfileImg} /> {SelectUser}
+          <span onClick={() => navigate(`${SelectUser}`)}>
+            <Avatar size={37} src={TargetProfileImg} /> {SelectUser}
+          </span>
         </span>
         <CiMenuKebab size={27} />
       </div>
@@ -270,22 +282,24 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                     >
                       {data.type.startsWith("text") && (
                         <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2  text-xl flex flex-col items-end">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm">{data.time}</span>
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
                               value={data.media}
-                              className="bg-transparent text-white text-lg"
+                              className="bg-transparent text-white text-xl mb-2"
                             />
                           ) : (
-                            <span className="text-white text-lg">
+                            <span className="text-white text-xl mb-2">
                               {data.media}
                             </span>
                           )}
                         </div>
                       )}
                       {data.type.startsWith("image") && (
-                        <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end text-lg">
+                        <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="mb-2 text-sm">{data.time}</span>
                           <Image
                             className="mb-2"
@@ -336,7 +350,10 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                               ),
                             }}
                           />
-                          <span title={data.media} className="text-white ">
+                          <span
+                            title={data.media}
+                            className="text-white mb-2 text-xl"
+                          >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
                                 "..." +
@@ -347,6 +364,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                       )}
                       {data.type.startsWith("video") && (
                         <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end text-lg">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm mb-2">{data.time}</span>
                           <video
                             muted
@@ -360,7 +378,10 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                               data.media
                             }
                           ></video>
-                          <span title={data.media} className="text-white ">
+                          <span
+                            title={data.media}
+                            className="text-white mb-2 text-xl"
+                          >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
                                 "..." +
@@ -371,31 +392,35 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                       )}
                       {data.type.startsWith("voice") && (
                         <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2 flex items-end flex-col">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm mb-1">{data.time}</span>
-
                           <VoiceMessage data={data} />
                         </div>
                       )}
                       {data.type.startsWith("application") && (
                         <div
-                          className=" bg-gray-500 text-white items-center gap-2 rounded-bl-md rounded-t-md px-4 py-2 flex"
+                          className=" bg-gray-500  items-start rounded-bl-md rounded-t-md px-4 py-2 flex flex-col"
                           style={{ direction: "rtl" }}
                           title={data.media}
                         >
-                          <MdOutlineDownloading
-                            color="lightblue"
-                            className="cursor-pointer "
-                            size={35}
-                            onClick={() =>
-                              onDownload(
-                                "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                                  data.media
-                              )
-                            }
-                          />
-                          {data.media.length > 20
-                            ? "..." + data.media.substring(0, 20)
-                            : data.media}
+                          <span className="text-[16px]">{data.sender}</span>
+                          <span className="text-sm mb-1">{data.time}</span>
+                          <div className="flex items-center text-white gap-2 mb-2 text-xl">
+                            <MdOutlineDownloading
+                              color="lightblue"
+                              className="cursor-pointer "
+                              size={35}
+                              onClick={() =>
+                                onDownload(
+                                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                                    data.media
+                                )
+                              }
+                            />
+                            {data.media.length > 20
+                              ? "..." + data.media.substring(0, 20)
+                              : data.media}
+                          </div>
                         </div>
                       )}
                       <Avatar src={MainUserImg} />
@@ -417,15 +442,16 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                       <Avatar src={TargetProfileImg} />
                       {data.type.startsWith("text") && (
                         <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  text-xl flex flex-col items-start">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm">{data.time}</span>
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
                               value={data.media}
-                              className="bg-transparent text-white text-lg"
+                              className="bg-transparent text-white text-xl mb-2"
                             />
                           ) : (
-                            <span className="text-white text-lg">
+                            <span className="text-white text-xl mb-2">
                               {data.media}
                             </span>
                           )}
@@ -433,6 +459,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                       )}
                       {data.type.startsWith("image") && (
                         <div className=" bg-gray-600 rounded-br-md rounded-t-md px-3 py-2 flex flex-col items-start text-lg">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="mb-2 text-sm">{data.time}</span>
                           <Image
                             className="mb-2"
@@ -483,7 +510,10 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                               ),
                             }}
                           />
-                          <span title={data.media} className="text-white ">
+                          <span
+                            title={data.media}
+                            className="text-white text-xl mb-2"
+                          >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
                                 "..." +
@@ -494,33 +524,39 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                       )}
                       {data.type.startsWith("application") && (
                         <div
-                          className=" bg-gray-600 text-white  items-center gap-2 rounded-br-md rounded-t-md px-4 py-2 flex"
+                          className=" bg-gray-600  items-start rounded-br-md rounded-t-md px-4 py-2 flex flex-col"
                           title={data.media}
                         >
-                          <MdOutlineDownloading
-                            color="lightblue"
-                            className="cursor-pointer "
-                            size={35}
-                            onClick={() =>
-                              onDownload(
-                                "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                                  data.media
-                              )
-                            }
-                          />
-                          {data.media.length > 20
-                            ? data.media.substring(0, 20) + "..."
-                            : data.media}
+                          <span className="text-[16px]">{data.sender}</span>
+                          <span className="mb-2 text-sm">{data.time}</span>
+                          <div className="flex items-center gap-2 text-white text-xl mb-2">
+                            <MdOutlineDownloading
+                              color="lightblue"
+                              className="cursor-pointer "
+                              size={35}
+                              onClick={() =>
+                                onDownload(
+                                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                                    data.media
+                                )
+                              }
+                            />
+                            {data.media.length > 20
+                              ? data.media.substring(0, 20) + "..."
+                              : data.media}
+                          </div>
                         </div>
                       )}
                       {data.type.startsWith("voice") && (
                         <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2 flex flex-col">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm mb-1">{data.time}</span>
                           <VoiceMessage data={data} />
                         </div>
                       )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-3 py-2 flex flex-col items-start text-lg">
+                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-3 py-2 flex flex-col items-start">
+                          <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm mb-2">{data.time}</span>
                           <video
                             muted
@@ -534,7 +570,10 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                               data.media
                             }
                           ></video>
-                          <span title={data.media} className="text-white ">
+                          <span
+                            title={data.media}
+                            className="text-white text-xl mb-2"
+                          >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
                                 "..." +
@@ -549,6 +588,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
               }
             }
           })}
+        <div ref={messagesEndRef} />
       </div>
       <div className="h-[10%] w-full flex items-center px-8">
         <div className={`w-full flex justify-end items-center`}>
