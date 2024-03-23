@@ -249,9 +249,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
       </div>
 
       <div id="messageRenderdiv" className="h-[80%] px-8 overflow-y-auto pt-4">
-        {messageRenderdiv && messageRenderdiv.textContent.trim() === "" && (
-          <Empty />
-        )}
+       
         {!isEqual(Messages, []) &&
           Messages.map((data) => {
             if (

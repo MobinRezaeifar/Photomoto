@@ -12,7 +12,6 @@ import ChatSide from "../Chat/ChatSide";
 import { motion } from "framer-motion";
 
 const Direct = ({ Change, change }) => {
-  
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -69,8 +68,12 @@ const Direct = ({ Change, change }) => {
             (data) =>
               data.username == decryptAES(sessionStorage.getItem("u")) &&
               data.connection.map((connect) => (
-                <div
-                  className={`w-full my-[0.3rem] px-3 ${ 
+                <motion.div
+                  initial={{ opacity: 0, x: !SelectUserChat && -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  // whileHover={{ scale: 1.05 }}
+                  className={`w-full my-[0.3rem] px-3 ${
                     SelectUserChat == connect.username &&
                     "bg-base-100 rounded-s-[60px]"
                   }`}
@@ -131,7 +134,7 @@ const Direct = ({ Change, change }) => {
                       <span className="text-sm">Connect with you.</span>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))
           )}
         </div>
