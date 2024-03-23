@@ -65,7 +65,7 @@ const Direct = ({ Change, change }) => {
           <h1 className="text-2xl font-bold">Direct</h1>
         </div>
         <div
-          className="h-[92%] overflow-y-auto flex flex-col" 
+          className="h-[92%] overflow-y-auto flex flex-col"
           ref={constraintsRef}
         >
           {Registers.map(
@@ -152,6 +152,7 @@ const Direct = ({ Change, change }) => {
         {SelectUserChat ? (
           <div className="h-full w-full">
             <ChatSide
+              dimensions={dimensions}
               SelectUser={SelectUserChat}
               Change={Change}
               change={change}

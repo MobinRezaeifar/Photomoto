@@ -51,6 +51,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [TargetProfileImg, setTargetProfileImg] = useState("");
   const [MainUserImg, setMainUserImg] = useState("");
   const navigate = useNavigate();
+  const MessageFontSize = `${dimensions.width > 900 ? "text-xl" : "text-lg"}`;
 
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
@@ -288,10 +289,12 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                             <textarea
                               rows={3}
                               value={data.media}
-                              className="bg-transparent text-white text-xl mb-2"
+                              className={`bg-transparent text-white  mb-2  ${MessageFontSize}`}
                             />
                           ) : (
-                            <span className="text-white text-xl mb-2">
+                            <span
+                              className={`text-white  mb-2 ${MessageFontSize}`}
+                            >
                               {data.media}
                             </span>
                           )}
@@ -352,7 +355,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                           />
                           <span
                             title={data.media}
-                            className="text-white mb-2 text-xl"
+                            className={`text-white mb-2  ${MessageFontSize}`}
                           >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
@@ -380,7 +383,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                           ></video>
                           <span
                             title={data.media}
-                            className="text-white mb-2 text-xl"
+                            className={`text-white mb-2  ${MessageFontSize}`}
                           >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
@@ -405,7 +408,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         >
                           <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm mb-1">{data.time}</span>
-                          <div className="flex items-center text-white gap-2 mb-2 text-xl">
+                          <div
+                            className={`flex items-center text-white gap-2 mb-2  ${MessageFontSize}`}
+                          >
                             <MdOutlineDownloading
                               color="lightblue"
                               className="cursor-pointer "
@@ -441,17 +446,19 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                     >
                       <Avatar src={TargetProfileImg} />
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  text-xl flex flex-col items-start">
+                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  flex flex-col items-start">
                           <span className="text-[16px]">{data.sender}</span>
                           <span className="text-sm">{data.time}</span>
                           {data.media.length > 50 ? (
                             <textarea
                               rows={3}
                               value={data.media}
-                              className="bg-transparent text-white text-xl mb-2"
+                              className={`bg-transparent text-white  ${MessageFontSize} mb-2 `}
                             />
                           ) : (
-                            <span className="text-white text-xl mb-2">
+                            <span
+                              className={`text-white  mb-2  ${MessageFontSize}`}
+                            >
                               {data.media}
                             </span>
                           )}
@@ -512,7 +519,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                           />
                           <span
                             title={data.media}
-                            className="text-white text-xl mb-2"
+                            className={`text-white  mb-2  ${MessageFontSize}`}
                           >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
@@ -529,7 +536,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         >
                           <span className="text-[16px]">{data.sender}</span>
                           <span className="mb-2 text-sm">{data.time}</span>
-                          <div className="flex items-center gap-2 text-white text-xl mb-2">
+                          <div
+                            className={`flex items-center gap-2 text-white   ${MessageFontSize}`}
+                          >
                             <MdOutlineDownloading
                               color="lightblue"
                               className="cursor-pointer "
@@ -572,7 +581,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                           ></video>
                           <span
                             title={data.media}
-                            className="text-white text-xl mb-2"
+                            className={`text-white  mb-2  ${MessageFontSize}`}
                           >
                             {data.media.length > 20
                               ? data.media.substring(0, 10) +
