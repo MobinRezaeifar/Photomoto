@@ -94,12 +94,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* تعریف rect ها */}
               {[...Array(40)].map((_, index) => {
-                // محاسبه ارتفاع rect بر اساس پیشرفت
-                const rectHeight = (progress / 100) * 30; // ارتفاع ماکسیمم 30 است
-                // محاسبه موقعیت عمودی rect
-
                 return (
                   <rect
                     key={index}
@@ -108,7 +103,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                     width="3"
                     height="9"
                     rx="1.5"
-                    fill={progress > index * 2.5 ? "#1C64F2" : "#6B7280"} // تغییر رنگ بر اساس پیشرفت
+                    fill={progress > index * 2.5 ? "#1C64F2" : "#6B7280"}
                   />
                 );
               })}
