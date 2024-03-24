@@ -35,6 +35,7 @@ import TextMessageOutbound from "./TextMessageOutbound";
 import FileMessageInbound from "./FileMessageInbound";
 import { size } from "lodash";
 import FileMessageOutbound from "./FileMessageOutbound";
+import ImageMessageInbound from "./ImageMessageInbound";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -310,69 +311,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         />
                       )}
                       {data.type.startsWith("image") && (
-                        <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end">
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="mb-2 text-sm">{data.time}</span>
-                          <Image
-                            className="mb-2"
-                            width={dimensions.width > 900 ? 200 : 100}
-                            src={
-                              "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                              data.media
-                            }
-                            preview={{
-                              toolbarRender: (
-                                _,
-                                {
-                                  transform: { scale },
-                                  actions: {
-                                    onFlipY,
-                                    onFlipX,
-                                    onRotateLeft,
-                                    onRotateRight,
-                                    onZoomOut,
-                                    onZoomIn,
-                                  },
-                                }
-                              ) => (
-                                <Space size={12} className="toolbar-wrapper">
-                                  <DownloadOutlined
-                                    onClick={() =>
-                                      onDownload(
-                                        "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                                          data.media
-                                      )
-                                    }
-                                  />
-                                  <SwapOutlined rotate={90} onClick={onFlipY} />
-                                  <SwapOutlined onClick={onFlipX} />
-                                  <RotateLeftOutlined onClick={onRotateLeft} />
-                                  <RotateRightOutlined
-                                    onClick={onRotateRight}
-                                  />
-                                  <ZoomOutOutlined
-                                    disabled={scale === 1}
-                                    onClick={onZoomOut}
-                                  />
-                                  <ZoomInOutlined
-                                    disabled={scale === 50}
-                                    onClick={onZoomIn}
-                                  />
-                                </Space>
-                              ),
-                            }}
-                          />
-                          <span
-                            title={data.media}
-                            className={`text-white mb-2  ${MessageFontSize}`}
-                          >
-                            {data.media.length > 20
-                              ? data.media.substring(0, 10) +
-                                "..." +
-                                data.type.split("/")[1]
-                              : data.media}
-                          </span>
-                        </div>
+                       <ImageMessageInbound  data={data}
+                       MainUserImg={MainUserImg}
+                       MessageFontSize={MessageFontSize}/>
                       )}
                       {data.type.startsWith("video") && (
                         <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end text-lg">
