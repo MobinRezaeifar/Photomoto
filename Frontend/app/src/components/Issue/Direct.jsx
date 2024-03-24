@@ -68,7 +68,6 @@ const Direct = ({ Change, change }) => {
           className="h-[92%] overflow-y-auto flex flex-col"
           ref={constraintsRef}
         >
-          
           {Registers.map(
             (data) =>
               data.username == decryptAES(sessionStorage.getItem("u")) &&
