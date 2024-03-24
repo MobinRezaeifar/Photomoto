@@ -11,8 +11,10 @@ const VoiceMessage = ({ data }) => {
   );
 
   const PlayVoice = (path) => {
+
     if (path == selectVoice) {
       if (audio.current.paused) {
+        console.log(audio.current.currentTime);
         audio.current.play();
         setPlayIcon(
           <FaCirclePause style={{ cursor: "pointer", color: "red" }} />
@@ -46,7 +48,6 @@ const VoiceMessage = ({ data }) => {
     const time = (timeline.current.value * audio.current.duration) / 100;
     audio.current.currentTime = time;
   }
-
   return (
     <div class="audio-player mb-2">
       <audio

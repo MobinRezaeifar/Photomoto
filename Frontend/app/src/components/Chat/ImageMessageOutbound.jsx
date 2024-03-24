@@ -4,7 +4,7 @@ import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
-const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
+const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const onDownload = (src) => {
     fetch(src)
@@ -23,7 +23,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
       });
   };
   return (
-    <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
+    <div class="flex items-start gap-2.5" >
       <img
         class="lg:w-11 w-9 h-9 lg:h-11 rounded-full"
         src={MainUserImg}
@@ -38,7 +38,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
             {data.time}
           </span>
         </div>
-        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-500">
+        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-600">
           <p
             title={data.media}
             class={`text-lg font-normal text-gray-900 dark:text-white`}
@@ -107,7 +107,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
           onClick={() => {
             setShowMessageMenu(!ShowMessageMenu);
           }}
-          class={`p-2 ml-2 text-sm font-medium text-center text-gray-900 rounded-lg focus:outline-none dark:text-white focus:ring-4 ring-[#393939]`}
+          class={`p-2 mr-2 text-sm font-medium text-center text-gray-900 rounded-lg focus:outline-none dark:text-white focus:ring-4 ring-[#393939]`}
           type="button"
         >
           <svg
@@ -126,7 +126,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
@@ -135,7 +135,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <IoCopy color="" size={22} />
               </motion.li>
               <motion.li
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
@@ -144,7 +144,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <RiDeleteBin6Fill color="" size={22} />
               </motion.li>
               <motion.li
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
@@ -160,4 +160,4 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   );
 };
 
-export default ImageMessageInbound;
+export default ImageMessageOutbound;

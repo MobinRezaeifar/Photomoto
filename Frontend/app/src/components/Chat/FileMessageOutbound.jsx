@@ -160,7 +160,7 @@ function FileMessageOutbound({ data, MainUserImg, MessageFontSize }) {
           onClick={() => {
             setShowMessageMenu(!ShowMessageMenu);
           }}
-          class={`p-2 ml-2 text-sm font-medium text-center text-gray-900 rounded-lg focus:outline-none dark:text-white focus:ring-4 ring-[#393939]`}
+          class={`p-2 mr-2 text-sm font-medium text-center text-gray-900 rounded-lg focus:outline-none dark:text-white focus:ring-4 ring-[#393939]`}
           type="button"
         >
           <svg
