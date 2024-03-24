@@ -77,6 +77,9 @@ public class MessagesController : ControllerBase
             Media = message.Media != null ? message.Media : existingMessages.Media,
             Sender = message.Sender != null ? message.Sender : existingMessages.Sender,
             Recipient = message.Recipient != null ? message.Recipient : existingMessages.Recipient,
+            Type = message.Type != null ? message.Type : existingMessages.Type,
+            Time = message.Time != null ? message.Time : existingMessages.Time,
+            Size = message.Size != null ? message.Size : existingMessages.Size,
             Relationship =
                 message.Relationship != null ? message.Relationship : existingMessages.Relationship,
         };

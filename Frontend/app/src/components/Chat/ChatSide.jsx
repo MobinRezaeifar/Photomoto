@@ -32,6 +32,9 @@ import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import TextMessageInbound from "./TextMessageInbound";
 import TextMessageOutbound from "./TextMessageOutbound";
+import FileMessageInbound from "./FileMessageInbound";
+import { size } from "lodash";
+import FileMessageOutbound from "./FileMessageOutbound";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -83,6 +86,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
         relationship: `${decryptAES(
           sessionStorage.getItem("u")
         )},${SelectUser}`,
+        size: 0,
       })
     );
     await setMessageText("");
@@ -104,6 +108,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
           sessionStorage.getItem("u")
         )},${SelectUser}`,
         type: file.type,
+        size: file.size / (1024 * 1024),
       })
     );
     await Change("change");
@@ -405,34 +410,12 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         </div>
                       )}
                       {data.type.startsWith("application") && (
-                        <div
-                          className=" bg-gray-500  items-start rounded-bl-md rounded-t-md px-4 py-2 flex flex-col"
-                          style={{ direction: "rtl" }}
-                          title={data.media}
-                        >
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="text-sm mb-1">{data.time}</span>
-                          <div
-                            className={`flex items-center text-white gap-2 mb-2  ${MessageFontSize}`}
-                          >
-                            <MdOutlineDownloading
-                              color="lightblue"
-                              className="cursor-pointer "
-                              size={35}
-                              onClick={() =>
-                                onDownload(
-                                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                                    data.media
-                                )
-                              }
-                            />
-                            {data.media.length > 20
-                              ? "..." + data.media.substring(0, 20)
-                              : data.media}
-                          </div>
-                        </div>
+                        <FileMessageInbound
+                          data={data}
+                          MainUserImg={MainUserImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
-                      {/* <Avatar src={MainUserImg} /> */}
                     </div>
                   </div>
                 );
@@ -521,31 +504,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         </div>
                       )}
                       {data.type.startsWith("application") && (
-                        <div
-                          className=" bg-gray-600  items-start rounded-br-md rounded-t-md px-4 py-2 flex flex-col"
-                          title={data.media}
-                        >
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="mb-2 text-sm">{data.time}</span>
-                          <div
-                            className={`flex items-center gap-2 text-white   ${MessageFontSize}`}
-                          >
-                            <MdOutlineDownloading
-                              color="lightblue"
-                              className="cursor-pointer "
-                              size={35}
-                              onClick={() =>
-                                onDownload(
-                                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                                    data.media
-                                )
-                              }
-                            />
-                            {data.media.length > 20
-                              ? data.media.substring(0, 20) + "..."
-                              : data.media}
-                          </div>
-                        </div>
+                        <FileMessageOutbound
+                          data={data}
+                          MainUserImg={TargetProfileImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
                       {data.type.startsWith("voice") && (
                         <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2 flex flex-col">

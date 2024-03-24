@@ -24,4 +24,7 @@ public class Messages
 
     [BsonElement("time")]
     public string? Time { get; set; }
+
+    [BsonElement("size")]
+    public float? Size { get; set; }
 }
