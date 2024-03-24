@@ -9,7 +9,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
-      <img class="w-8 h-8 rounded-full" src={MainUserImg} alt="" />
+      <img class="w-10 h-10 rounded-full" src={MainUserImg} alt="" />
       <div class="flex flex-col gap-1 w-full max-w-[320px]">
         <div class="flex items-center space-x-2 rtl:space-x-reverse gap-1">
           <span class="text-sm font-semibold text-gray-900 dark:text-white">
@@ -62,7 +62,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
@@ -71,7 +71,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <IoCopy color="" size={22} />
               </motion.li>
               <motion.li
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
@@ -80,7 +80,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <RiDeleteBin6Fill color="" size={22} />
               </motion.li>
               <motion.li
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}

@@ -31,6 +31,7 @@ import moment from "jalali-moment";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import TextMessageInbound from "./TextMessageInbound";
+import TextMessageOutbound from "./TextMessageOutbound";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -447,25 +448,12 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         gap: "0.5rem",
                       }}
                     >
-                      <Avatar src={TargetProfileImg} />
                       {data.type.startsWith("text") && (
-                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2  flex flex-col items-start">
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="text-sm">{data.time}</span>
-                          {data.media.length > 50 ? (
-                            <textarea
-                              rows={3}
-                              value={data.media}
-                              className={`bg-transparent text-white  ${MessageFontSize} mb-2 `}
-                            />
-                          ) : (
-                            <span
-                              className={`text-white  mb-2  ${MessageFontSize}`}
-                            >
-                              {data.media}
-                            </span>
-                          )}
-                        </div>
+                        <TextMessageOutbound
+                          data={data}
+                          MainUserImg={TargetProfileImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
                       {data.type.startsWith("image") && (
                         <div className=" bg-gray-600 rounded-br-md rounded-t-md px-3 py-2 flex flex-col items-start text-lg">
