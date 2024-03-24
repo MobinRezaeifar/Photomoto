@@ -37,6 +37,9 @@ import { size } from "lodash";
 import FileMessageOutbound from "./FileMessageOutbound";
 import ImageMessageInbound from "./ImageMessageInbound";
 import ImageMessageOutbound from "./ImageMessageOutbound";
+import VideoMessageInbound from "./VideoMessageInbound";
+import VideoMessageOutbound from "./VideoMessageOutbound";
+import VoiceMessageInbound from "./VoiceMessageInbound";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -319,39 +322,18 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         />
                       )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-500 rounded-bl-md rounded-t-md px-3 py-2 flex flex-col items-end text-lg">
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="text-sm mb-2">{data.time}</span>
-                          <video
-                            muted
-                            className="mb-2"
-                            loop
-                            width={dimensions.width > 900 ? 200 : 100}
-                            controls
-                            autoPlay
-                            src={
-                              "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                              data.media
-                            }
-                          ></video>
-                          <span
-                            title={data.media}
-                            className={`text-white mb-2  ${MessageFontSize}`}
-                          >
-                            {data.media.length > 20
-                              ? data.media.substring(0, 10) +
-                                "..." +
-                                data.type.split("/")[1]
-                              : data.media}
-                          </span>
-                        </div>
+                        <VideoMessageInbound
+                          data={data}
+                          MainUserImg={MainUserImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
                       {data.type.startsWith("voice") && (
-                        <div className=" bg-gray-500  rounded-bl-md rounded-t-md px-4 py-2 flex items-end flex-col">
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="text-sm mb-1">{data.time}</span>
-                          <VoiceMessage data={data} />
-                        </div>
+                        <VoiceMessageInbound
+                          data={data}
+                          MainUserImg={MainUserImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
                       {data.type.startsWith("application") && (
                         <FileMessageInbound
@@ -404,32 +386,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         </div>
                       )}
                       {data.type.startsWith("video") && (
-                        <div className=" bg-gray-600 rounded-br-md rounded-t-md px-3 py-2 flex flex-col items-start">
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="text-sm mb-2">{data.time}</span>
-                          <video
-                            muted
-                            className="mb-2"
-                            loop
-                            width={dimensions.width > 900 ? 200 : 100}
-                            controls
-                            autoPlay
-                            src={
-                              "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                              data.media
-                            }
-                          ></video>
-                          <span
-                            title={data.media}
-                            className={`text-white  mb-2  ${MessageFontSize}`}
-                          >
-                            {data.media.length > 20
-                              ? data.media.substring(0, 10) +
-                                "..." +
-                                data.type.split("/")[1]
-                              : data.media}
-                          </span>
-                        </div>
+                        <VideoMessageOutbound
+                          data={data}
+                          MainUserImg={TargetProfileImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
                     </div>
                   </div>
