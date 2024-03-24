@@ -61,7 +61,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [TargetProfileImg, setTargetProfileImg] = useState("");
   const [MainUserImg, setMainUserImg] = useState("");
   const navigate = useNavigate();
-  const MessageFontSize = `${dimensions.width > 900 ? "text-xl" : "text-lg"}`;
+  const MessageFontSize = `text-md`;
 
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {

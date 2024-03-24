@@ -25,7 +25,7 @@ const VideoMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
         <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-600">
           <p
             title={data.media}
-            class={`text-lg font-normal text-gray-900 dark:text-white`}
+            class={`text-md font-normal text-gray-900 dark:text-white`}
           >
             {(() => {
               let parts = data.media.split(".");
