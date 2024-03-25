@@ -102,7 +102,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                   <rect
                     key={index}
                     x={index * 4.625}
-                    y={15.5 - height / 2} // تغییر ارتفاع بر اساس ارتفاع تصادفی
+                    y={15.5 - height / 3.2}
                     width="3"
                     height={height}
                     rx="1.5"
