@@ -155,6 +155,9 @@ function FileMessageOutbound({ data, MainUserImg, MessageFontSize }) {
 
       <div
         className={`flex items-center  justify-center self-center relative `}
+        onMouseLeave={() => {
+          setShowMessageMenu(false);
+        }}
       >
         <button
           onClick={() => {

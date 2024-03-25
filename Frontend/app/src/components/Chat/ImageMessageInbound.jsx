@@ -102,6 +102,9 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
       </div>
       <div
         className={`flex items-center  justify-center self-center relative `}
+        onMouseLeave={() => {
+          setShowMessageMenu(false);
+        }}
       >
         <button
           onClick={() => {

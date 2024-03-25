@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 
-const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
+const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const [selectVoice, setselectVoice] = useState("");
   const audio = useRef();
@@ -49,7 +49,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   );
 
   return (
-    <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
+    <div class="flex items-start gap-2.5">
       <img
         class="lg:w-11 w-9 h-9 lg:h-11 rounded-full"
         src={MainUserImg}
@@ -72,15 +72,14 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
           ref={audio}
           className="hidden"
         ></audio>
-        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-500">
+        <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-600">
           <div class="flex items-center space-x-2 rtl:space-x-reverse">
             <button
-              className="focus:bg-gray-600 focus:rounded-full p-2"
+            className="focus:bg-gray-500 focus:rounded-full p-2"
               style={{
                 fontSize: "20px",
                 border: "none",
                 outline: "none",
-                marginLeft:"10px"
               }}
               onClick={() => {
                 setselectVoice(data.file);
@@ -113,7 +112,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                     width="3"
                     height={height}
                     rx="1.5"
-                    fill={progress > index * 2.5 ? "#1C64F2" : "rgb(75 85 99)"}
+                    fill={progress > index * 2.5 ? "#1C64F2" : "#6B7280"}
                     onClick={handleClick}
                     style={{ cursor: "pointer" }}
                   />
@@ -192,4 +191,4 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   );
 };
 
-export default VoiceMessageInbound;
+export default VoiceMessageOutbound;

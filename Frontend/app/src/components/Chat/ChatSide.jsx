@@ -26,7 +26,6 @@ import {
 } from "@ant-design/icons";
 import { Image, Space } from "antd";
 import { FaRegStopCircle } from "react-icons/fa";
-import VoiceMessage from "./VoiceMessage";
 import moment from "jalali-moment";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +39,7 @@ import ImageMessageOutbound from "./ImageMessageOutbound";
 import VideoMessageInbound from "./VideoMessageInbound";
 import VideoMessageOutbound from "./VideoMessageOutbound";
 import VoiceMessageInbound from "./VoiceMessageInbound";
+import VoiceMessageOutbound from "./VoiceMessageOutbound";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -129,9 +129,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   useEffect(() => {
     updateSize();
     window.addEventListener("resize", updateSize);
-    return () => {
-      window.removeEventListener("resize", updateSize);
-    };
+    if (window.removeEventListener) {
+      return () => {
+        window.removeEventListener("resize", updateSize);
+      };
+    }
   }, []);
 
   const onDownload = (src) => {
@@ -379,11 +381,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         />
                       )}
                       {data.type.startsWith("voice") && (
-                        <div className=" bg-gray-600  rounded-br-md rounded-t-md px-4 py-2 flex flex-col">
-                          <span className="text-[16px]">{data.sender}</span>
-                          <span className="text-sm mb-1">{data.time}</span>
-                          <VoiceMessage data={data} />
-                        </div>
+                        <VoiceMessageOutbound
+                          data={data}
+                          MainUserImg={TargetProfileImg}
+                          MessageFontSize={MessageFontSize}
+                        />
                       )}
                       {data.type.startsWith("video") && (
                         <VideoMessageOutbound
