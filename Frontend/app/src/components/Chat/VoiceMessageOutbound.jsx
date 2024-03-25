@@ -78,7 +78,7 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
             className="focus:bg-gray-500 focus:rounded-full p-2"
               style={{
                 fontSize: "20px",
-                border: "none",
+                border: "none", 
                 outline: "none",
               }}
               onClick={() => {
