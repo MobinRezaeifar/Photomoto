@@ -102,7 +102,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                     y="15.5"
                     width="3"
                     height="9"
-                    rx="1.5"
+                    rx="1.5" 
                     fill={progress > index * 2.5 ? "#1C64F2" : "#6B7280"}
                   />
                 );
