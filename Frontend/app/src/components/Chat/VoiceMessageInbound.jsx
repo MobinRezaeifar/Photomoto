@@ -44,6 +44,9 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
       audio.current.removeEventListener("timeupdate", updateProgress);
     };
   }, []);
+  const heights = useRef(
+    Array.from({ length: 40 }, () => Math.floor(Math.random() * 20) + 5)
+  );
 
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
@@ -94,21 +97,20 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {[...Array(40)].map((_, index) => {
+              {heights.current.map((height, index) => {
                 return (
                   <rect
                     key={index}
                     x={index * 4.625}
-                    y="15.5"
+                    y={15.5 - height / 2} // تغییر ارتفاع بر اساس ارتفاع تصادفی
                     width="3"
-                    height="9"
-                    rx="1.5" 
+                    height={height}
+                    rx="1.5"
                     fill={progress > index * 2.5 ? "#1C64F2" : "#6B7280"}
                   />
                 );
               })}
             </svg>
-
             <span class="inline-flex self-center items-center p-2 text-sm font-medium text-gray-900 dark:text-white">
               {data.duration}
             </span>
