@@ -126,7 +126,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
 
             <span class="inline-flex self-center items-center p-2 text-sm font-medium text-gray-900 dark:text-white">
               {data.duration}
-            </span>
+            </span> 
           </div>
         </div>
         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
