@@ -157,7 +157,7 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
@@ -166,7 +166,7 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <IoCopy color="" size={22} />
               </motion.li>
               <motion.li
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
@@ -175,7 +175,7 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <RiDeleteBin6Fill color="" size={22} />
               </motion.li>
               <motion.li
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}

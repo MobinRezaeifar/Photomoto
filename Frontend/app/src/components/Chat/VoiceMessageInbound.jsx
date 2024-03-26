@@ -91,6 +91,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
             </button>
 
             <svg
+            style={{direction:"ltr"}}
               class="w-[145px] md:w-[185px] md:h-[40px]"
               aria-hidden="true"
               viewBox="0 0 185 40"
