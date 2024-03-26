@@ -105,10 +105,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                       (index * duration) / heights.current.length;
                     audio.current.currentTime = currentTime;
                   };
-
-                  // محور X را از راست به چپ معکوس کنید
                   const x = 185 - (index + 1) * 4.625;
-
                   return (
                     <rect
                       key={index}
