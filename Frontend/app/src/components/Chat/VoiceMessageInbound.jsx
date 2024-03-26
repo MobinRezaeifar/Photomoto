@@ -80,7 +80,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 fontSize: "20px",
                 border: "none",
                 outline: "none",
-                marginLeft:"10px"
+                marginLeft: "10px",
               }}
               onClick={() => {
                 setselectVoice(data.file);
@@ -90,37 +90,44 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               {PlayIcon}
             </button>
 
-            <svg
-            style={{direction:"ltr"}}
-              class="w-[145px] md:w-[185px] md:h-[40px]"
-              aria-hidden="true"
-              viewBox="0 0 185 40"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {heights.current.map((height, index) => {
-                const handleClick = () => {
-                  const duration = audio.current.duration;
-                  const currentTime =
-                    (index * duration) / heights.current.length;
-                  audio.current.currentTime = currentTime;
-                };
+            <div style={{ direction: "rtl" }}>
+              <svg
+                className="w-[145px] md:w-[185px] md:h-[40px]"
+                aria-hidden="true"
+                viewBox="0 0 185 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {heights.current.map((height, index) => {
+                  const handleClick = () => {
+                    const duration = audio.current.duration;
+                    const currentTime =
+                      (index * duration) / heights.current.length;
+                    audio.current.currentTime = currentTime;
+                  };
 
-                return (
-                  <rect
-                    key={index}
-                    x={index * 4.625}
-                    y={15.5 - height / 3.2}
-                    width="3"
-                    height={height}
-                    rx="1.5"
-                    fill={progress > index * 2.5 ? "#1C64F2" : "rgb(75 85 99)"}
-                    onClick={handleClick}
-                    style={{ cursor: "pointer" }}
-                  />
-                );
-              })}
-            </svg>
+                  // محور X را از راست به چپ معکوس کنید
+                  const x = 185 - (index + 1) * 4.625;
+
+                  return (
+                    <rect
+                      key={index}
+                      x={x}
+                      y={15.5 - height / 3.2}
+                      width="3"
+                      height={height}
+                      rx="1.5"
+                      fill={
+                        progress > index * 2.5 ? "#1C64F2" : "rgb(75 85 99)"
+                      }
+                      onClick={handleClick}
+                      style={{ cursor: "pointer" }}
+                    />
+                  );
+                })}
+              </svg>
+            </div>
+
             <span class="inline-flex self-center items-center p-2 text-sm font-medium text-gray-900 dark:text-white">
               {data.duration}
             </span>
