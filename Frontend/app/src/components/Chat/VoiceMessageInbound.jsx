@@ -4,7 +4,6 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
-import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 
 const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
