@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class RegistersController : ControllerBase
     {
-        private readonly IRegistersService _registersService;
+        private readonly IRegistersService _registersService; 
 
         public RegistersController(IRegistersService registersService)
         {
