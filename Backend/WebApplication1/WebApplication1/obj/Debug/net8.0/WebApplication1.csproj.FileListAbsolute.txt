@@ -362,3 +362,16 @@ D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\obj\Debug
 D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Programming\React\Photomoto\backend\WebApplication1\WebApplication1\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

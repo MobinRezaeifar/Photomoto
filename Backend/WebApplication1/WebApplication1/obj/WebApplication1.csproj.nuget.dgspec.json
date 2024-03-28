@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "D:\\Programming\\React\\Photomoto\\backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "D:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "D:\\Programming\\React\\Photomoto\\backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "D:\\Programming\\React\\Photomoto\\backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "D:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "D:\\Programming\\React\\Photomoto\\backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\mobin\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\React\\Photomoto\\Backend\\WebApplication1\\WebApplication1\\obj\\",
+        "outputPath": "D:\\Programming\\React\\Photomoto\\backend\\WebApplication1\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mobin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
             "Microsoft.AspNetCore.JsonPatch": {
               "target": "Package",
               "version": "[8.0.2, )"
@@ -72,6 +80,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.5.0, )"
             }
           },
           "imports": [
