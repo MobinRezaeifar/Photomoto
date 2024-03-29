@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
                 issuer: "admin@gmail.com",
                 audience: "client@gmail.com",
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(1),
+                expires: DateTime.UtcNow.AddMinutes(60),
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(
