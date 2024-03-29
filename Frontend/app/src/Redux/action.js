@@ -209,10 +209,27 @@ export const AddMessages = (message) => {
   };
 };
 
+// export const fetchMessages = () => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await fetch(MessagesApi);
+//       const message = await response.json();
+//       dispatch(fetchMessagesSuccess(message));
+//     } catch (error) {
+//       console.error("Error fetching message:", error);
+//     }
+//   };
+// };
 export const fetchMessages = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
-      const response = await fetch(MessagesApi);
+      const token = getState().auth.token;
+      const response = await fetch(MessagesApi, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
       const message = await response.json();
       dispatch(fetchMessagesSuccess(message));
     } catch (error) {

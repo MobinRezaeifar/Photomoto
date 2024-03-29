@@ -71,7 +71,12 @@ const Register = () => {
           bio: `Hello, Im ${FullName} and I just became a member of Photomoto platform`,
         })
         .then(
-          () => {
+          (x) => {
+            var responseObject = JSON.parse(x.request.response);
+            dispatch({
+              type: "TOKEN",
+              payload: responseObject.token,
+            });
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",

@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
             return register;
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         public IActionResult Register([FromBody] Registers register)
         {
             bool isUsernameExists = _registersService.IsUsernameExists(register.Username);
