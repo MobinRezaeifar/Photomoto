@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WebApplication1.Models;
 using WebApplication1.Services;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -24,6 +25,7 @@ public class MessagesController : ControllerBase
         _messageService = messageService;
     }
 
+    [Authorize]
     [HttpGet]
     public ActionResult<List<Messages>> Get()
     {
