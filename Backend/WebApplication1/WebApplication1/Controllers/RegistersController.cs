@@ -78,7 +78,7 @@ namespace WebApplication1.Controllers
                 expires: DateTime.UtcNow.AddMinutes(1),
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(
+                        Encoding.UTF8.GetBytes( 
                             "mbnrz1384SomeRandomSecretKeymbnrz1384SomeRandomSecretKeymbnrz1384SomeRandomSecretKey"
                         )
                     ),
