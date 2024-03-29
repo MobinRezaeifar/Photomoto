@@ -5,6 +5,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
+import { Avatar } from "antd";
 
 const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
@@ -50,11 +51,8 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
 
   return (
     <div class="flex items-start gap-2.5">
-      <img
-        class="lg:w-11 w-9 h-9 lg:h-11 rounded-full"
-        src={MainUserImg}
-        alt=""
-      />
+      <Avatar size={40} src={MainUserImg} shape="circle" />
+
       <div class="flex flex-col gap-1">
         <div class="flex items-center space-x-2 rtl:space-x-reverse gap-1">
           <span class="text-sm font-semibold text-gray-900 dark:text-white">
@@ -75,10 +73,10 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
         <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-600">
           <div class="flex items-center space-x-2 rtl:space-x-reverse">
             <button
-            className="focus:bg-gray-500 focus:rounded-full p-2"
+              className="focus:bg-gray-500 focus:rounded-full p-2"
               style={{
                 fontSize: "20px",
-                border: "none", 
+                border: "none",
                 outline: "none",
               }}
               onClick={() => {
