@@ -87,7 +87,7 @@ builder
             ValidIssuer = "admin@gmail.com",
             ValidAudience = "client@gmail.com",
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("mbnrz1384SomeRandomSecretKeymbnrz1384SomeRandomSecretKeymbnrz1384SomeRandomSecretKey")
+                Encoding.UTF8.GetBytes("abcdefghijklomnpqrstuvwxyz12345678900987654321abcdefghijklomnpqrstuvwxyz12345678900987654321")
             ),
             ValidateIssuer = true,
             ValidateAudience = true,
