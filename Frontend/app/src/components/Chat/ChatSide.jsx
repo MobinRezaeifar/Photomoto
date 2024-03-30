@@ -251,7 +251,6 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   useEffect(() => {
     scrollToBottom();
   }, [SelectUser]);
-  console.log(Messages);
   let messageRenderdiv = document.getElementById("messageRenderdiv");
 
   return (

@@ -11,6 +11,7 @@ import { fetchRegister } from "../Redux/action";
 import Home from "../components/Issue/Home";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Me from "../components/Issue/Me";
+import axios from "axios";
 
 const Main = () => {
   let navigate = useNavigate();
@@ -33,10 +34,30 @@ const Main = () => {
       window.removeEventListener("resize", updateSize);
     };
   }, []);
+  const token = useSelector((state) => state.Token);
 
-  if (sessionStorage.getItem("e") == null) {
+  if (sessionStorage.getItem("u") == null) {
     navigate("/");
   }
+  useEffect(() => {
+    if (sessionStorage.getItem("u")) {
+      if (token == "") {
+        axios
+          .post("http://localhost:5221/api/Login", {
+            username: "",
+            password: "",
+          })
+          .then((x) => {
+            var responseObject = JSON.parse(x.request.response);
+            dispatch({
+              type: "TOKEN",
+              payload: responseObject.token,
+            });
+          });
+      }
+    }
+  }, []);
+
   const Issue = useSelector((state) => state.Issue);
 
   const dispatch = useDispatch();
