@@ -25,7 +25,7 @@ public class MessagesController : ControllerBase
         _messageService = messageService;
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpGet]
     public ActionResult<List<Messages>> Get()
     {

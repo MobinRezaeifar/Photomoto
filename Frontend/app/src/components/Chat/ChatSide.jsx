@@ -71,12 +71,15 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     });
     return bytes.toString(CryptoJS.enc.Utf8);
   }
-  useEffect(() => {
-    dispatch(fetchMessages());
-  },[]);
+
+  const token = useSelector((state) => state.Token);
 
   useEffect(() => {
-    dispatch(fetchMessages());
+    dispatch(fetchMessages(token));
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchMessages(token));
   }, [change]);
 
   const SendTextMessage = async () => {

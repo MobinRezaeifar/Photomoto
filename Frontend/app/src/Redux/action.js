@@ -1,3 +1,5 @@
+import axios from "axios";
+
 let RegisterApi = "http://localhost:5221/api/Registers";
 let PostApi = "http://localhost:5221/api/Posts";
 let MessagesApi = "http://localhost:5221/api/Messages";
@@ -209,28 +211,10 @@ export const AddMessages = (message) => {
   };
 };
 
-export const fetchMessages = () => {
-  return async (dispatch) => {
-    try {
-      const response = await fetch(MessagesApi);
-      const message = await response.json();
-      dispatch(fetchMessagesSuccess(message));
-    } catch (error) {
-      console.error("Error fetching message:", error);
-    }
-  };
-};
-
 // export const fetchMessages = () => {
-//   return async (dispatch, getState) => {
+//   return async (dispatch) => {
 //     try {
-//       const token = getState().auth.token;
-//       const response = await fetch(MessagesApi, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           "Content-Type": "application/json",
-//         },
-//       });
+//       const response = await fetch(MessagesApi);
 //       const message = await response.json();
 //       dispatch(fetchMessagesSuccess(message));
 //     } catch (error) {
@@ -238,6 +222,21 @@ export const fetchMessages = () => {
 //     }
 //   };
 // };
+
+export const fetchMessages = (token) => {
+  return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    try {
+      const response = await axios.get(MessagesApi, { headers });
+      dispatch(fetchMessagesSuccess(response.data));
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+};
 
 export const updateMessages = (id, message) => {
   return async (dispatch) => {
