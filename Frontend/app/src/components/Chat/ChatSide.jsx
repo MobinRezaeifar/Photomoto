@@ -5,26 +5,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { GoFileDirectoryFill } from "react-icons/go";
 import { BsFillSendFill } from "react-icons/bs";
-import {
-  MdKeyboardVoice,
-  MdOutlineDownloading,
-  MdOutlineSettingsVoice,
-} from "react-icons/md";
+import { MdOutlineSettingsVoice } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Empty } from "antd";
 import { AddMessages, fetchMessages } from "../../Redux/action";
 import CryptoJS from "crypto-js";
 import isEqual from "lodash.isequal";
 import axios from "axios";
-import {
-  DownloadOutlined,
-  RotateLeftOutlined,
-  RotateRightOutlined,
-  SwapOutlined,
-  ZoomInOutlined,
-  ZoomOutOutlined,
-} from "@ant-design/icons";
-import { Image, Space } from "antd";
 import { FaRegStopCircle } from "react-icons/fa";
 import moment from "jalali-moment";
 import { FaArrowRight } from "react-icons/fa6";
@@ -32,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import TextMessageInbound from "./TextMessageInbound";
 import TextMessageOutbound from "./TextMessageOutbound";
 import FileMessageInbound from "./FileMessageInbound";
-import { size } from "lodash";
 import FileMessageOutbound from "./FileMessageOutbound";
 import ImageMessageInbound from "./ImageMessageInbound";
 import ImageMessageOutbound from "./ImageMessageOutbound";
@@ -132,11 +118,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   useEffect(() => {
     updateSize();
     window.addEventListener("resize", updateSize);
-    if (window.removeEventListener) {
-      return () => {
+    return () => {
+      if (window) {
         window.removeEventListener("resize", updateSize);
-      };
-    }
+      }
+    };
   }, []);
 
   const onDownload = (src) => {

@@ -26,7 +26,9 @@ const Search = () => {
     updateSize();
     window.addEventListener("resize", updateSize);
     return () => {
-      window.removeEventListener("resize", updateSize);
+      if (window) {
+        window.removeEventListener("resize", updateSize);
+      }
     };
   }, []);
 
