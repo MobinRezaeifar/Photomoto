@@ -6,6 +6,7 @@ import { fetchRegister } from "../../Redux/action";
 import CryptoJS from "crypto-js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = ({ ShowLogin, setShowLogin }) => {
   const [Username, setUsername] = useState("");
@@ -66,6 +67,20 @@ const Login = ({ ShowLogin, setShowLogin }) => {
         sessionStorage.setItem("p", encryptAES(data.password));
         sessionStorage.setItem("e", encryptAES(data.email));
         sessionStorage.setItem("f", encryptAES(data.fullName));
+
+        axios
+          .post("http://localhost:5221/api/Login", {
+            username: Username,
+            password: Password,
+          })
+          .then((x) => {
+            var responseObject = JSON.parse(x.request.response);
+            dispatch({
+              type: "TOKEN",
+              payload: responseObject.token,
+            });
+          });
+
         return;
       } else {
         setPassword("");

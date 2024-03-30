@@ -58,6 +58,7 @@ builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(
 builder.Services.AddScoped<IRegistersService, RegistersService>();
 builder.Services.AddScoped<IPostsService, PostsService>();
 builder.Services.AddScoped<IMessagesService, MessagesService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 builder.Services.AddControllers();
 

@@ -2,6 +2,7 @@ using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using WebApplication1.Models;
 using WebApplication1.Services;
-using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -25,6 +25,7 @@ public class MessagesController : ControllerBase
         _messageService = messageService;
     }
 
+    // [Authorize]
     [HttpGet]
     public ActionResult<List<Messages>> Get()
     {

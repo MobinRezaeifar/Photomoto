@@ -38,6 +38,8 @@ const Main = () => {
     navigate("/");
   }
   const Issue = useSelector((state) => state.Issue);
+  const token = useSelector((state) => state.Token);
+  console.log(token);
 
   const dispatch = useDispatch();
 

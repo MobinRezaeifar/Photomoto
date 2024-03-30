@@ -73,7 +73,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   }
   useEffect(() => {
     dispatch(fetchMessages());
-  }, []);
+  },[]);
 
   useEffect(() => {
     dispatch(fetchMessages());
@@ -113,7 +113,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
           sessionStorage.getItem("u")
         )},${SelectUser}`,
         type: file.type,
-        size: file.size / (1024 * 1024), 
+        size: file.size ? file.size / (1024 * 1024) : 0,
       })
     );
     await Change("change");
@@ -248,7 +248,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   useEffect(() => {
     scrollToBottom();
   }, [SelectUser]);
-
+  console.log(Messages);
   let messageRenderdiv = document.getElementById("messageRenderdiv");
 
   return (

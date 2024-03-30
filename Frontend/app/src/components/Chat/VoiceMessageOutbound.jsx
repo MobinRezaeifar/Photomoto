@@ -40,10 +40,11 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
     };
 
     audio.current.addEventListener("timeupdate", updateProgress);
-
-    return () => {
-      audio.current.removeEventListener("timeupdate", updateProgress);
-    };
+    if (audio.current.removeEventListener) {
+      return () => {
+        audio.current.removeEventListener("timeupdate", updateProgress);
+      };
+    }
   }, []);
   const heights = useRef(
     Array.from({ length: 40 }, () => Math.floor(Math.random() * 20) + 5)
