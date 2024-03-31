@@ -11,8 +11,8 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
-      <img
-        class="w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+       <img
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
         src={MainUserImg}
         alt=""
       />

@@ -14,8 +14,8 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
 
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
-      <img
-        class="lg:w-11 w-9 h-9 lg:h-11 rounded-full"
+        <img
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
         src={MainUserImg}
         alt=""
       />

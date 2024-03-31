@@ -51,8 +51,11 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
 
   return (
     <div class="flex items-start gap-2.5">
-      <Avatar size={40} src={MainUserImg} shape="circle" />
-
+      <img
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+        src={MainUserImg}
+        alt=""
+      />
       <div class="flex flex-col gap-1">
         <div class="flex items-center space-x-2 rtl:space-x-reverse gap-1">
           <span class="text-sm font-semibold text-gray-900 dark:text-white">

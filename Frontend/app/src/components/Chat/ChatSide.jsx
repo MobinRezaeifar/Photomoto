@@ -381,7 +381,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
       <div className="h-[10%] w-full flex items-center px-8">
         <div className={`w-full flex justify-end items-center`}>
           <input
-            className="w-full h-[3rem] bg-gray-700 rounded-[6px] px-2 text-white text-lg"
+            className="w-full h-[3rem] bg-gray-700 rounded-[6px] text-white text-lg pr-10 pl-4"
             placeholder="Type..."
             type="text"
             value={MessageText}
