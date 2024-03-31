@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable eqeqeq */
 import React from "react";
 import { useState } from "react";
-import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
@@ -8,7 +9,6 @@ import { useDispatch } from "react-redux";
 import {
   deleteMessages,
   DownloadMedia,
-  DownloadVoice,
 } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineDownloading } from "react-icons/md";
@@ -89,6 +89,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
                 data.media
               }
+              alt=""
               class="rounded-lg"
             />
           </div>

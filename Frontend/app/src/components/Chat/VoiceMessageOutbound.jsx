@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable eqeqeq */
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
-import { Avatar } from "antd";
 import { DownloadMedia } from "../../Redux/action";
 import { MdOutlineDownloading } from "react-icons/md";
 import { useDispatch } from "react-redux";

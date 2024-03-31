@@ -1,8 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { IoCopy } from "react-icons/io5";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { MdOutlineDownloading } from "react-icons/md";
 import { DownloadMedia } from "../../Redux/action";
@@ -85,6 +82,7 @@ const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
                 data.media
               }
               class="rounded-lg"
+              alt=""
             />
           </div>
         </div>
