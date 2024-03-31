@@ -11,7 +11,12 @@ const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const navigate = useNavigate();
 
   return (
-    <div class="flex items-start gap-2.5">
+    <motion.div
+      initial={{ opacity: 0, x: 0 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      class="flex items-start gap-2.5"
+    >
       <img
         onClick={() => navigate(`${data.sender}`)}
         class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
@@ -134,7 +139,7 @@ const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
