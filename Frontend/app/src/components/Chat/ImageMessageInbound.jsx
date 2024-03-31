@@ -5,17 +5,24 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { deleteMessages, DownloadMedia, DownloadVoice } from "../../Redux/action";
+import {
+  deleteMessages,
+  DownloadMedia,
+  DownloadVoice,
+} from "../../Redux/action";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineDownloading } from "react-icons/md";
 
 const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
-        <img
-        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+      <img
+        onClick={() => navigate(`${data.sender}`)}
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
         src={MainUserImg}
         alt=""
       />
@@ -119,9 +126,9 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
-               onClick={() => {
-                dispatch(DownloadMedia(data.media));
-              }}
+                onClick={() => {
+                  dispatch(DownloadMedia(data.media));
+                }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}

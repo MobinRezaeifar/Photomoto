@@ -7,13 +7,16 @@ import { motion } from "framer-motion";
 import { MdOutlineDownloading } from "react-icons/md";
 import { deleteMessages, DownloadMedia } from "../../Redux/action";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
-     <img
-        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+      <img
+        onClick={() => navigate(`${data.sender}`)}
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
         src={MainUserImg}
         alt=""
       />

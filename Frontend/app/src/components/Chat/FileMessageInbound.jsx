@@ -4,29 +4,21 @@ import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { deleteMessages, DownloadMedia } from "../../Redux/action";
+import { MdOutlineDownloading } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 function FileMessageInbound({ data, MainUserImg, MessageFontSize }) {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
-  const onDownload = (src) => {
-    fetch(src)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = src.split(
-          "http://localhost:5221/api/FileManager/downloadfile?FileName="
-        )[1];
-        document.body.appendChild(link);
-        link.click();
-        URL.revokeObjectURL(url);
-        link.remove();
-      });
-  };
+  const navigate = useNavigate();
+  console.log(data);
+  const dispatch = useDispatch();
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
       <img
-        class="lg:w-11 w-9 h-9 lg:h-11 rounded-full"
+        onClick={() => navigate(`${data.sender}`)}
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
         src={MainUserImg}
         alt=""
       />
@@ -125,12 +117,9 @@ function FileMessageInbound({ data, MainUserImg, MessageFontSize }) {
             </div>
             <div class="inline-flex self-center items-center">
               <button
-                onClick={() =>
-                  onDownload(
-                    "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                      data.media
-                  )
-                }
+                onClick={() => {
+                  dispatch(DownloadMedia(data.media));
+                }}
                 class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-600"
                 type="button"
               >
@@ -182,15 +171,21 @@ function FileMessageInbound({ data, MainUserImg, MessageFontSize }) {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
+                onClick={() => {
+                  dispatch(DownloadMedia(data.media));
+                }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
               >
-                <IoCopy color="" size={22} />
+                <MdOutlineDownloading color="" size={25} />{" "}
               </motion.li>
               <motion.li
+                onClick={() => {
+                  dispatch(deleteMessages(data.id));
+                }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}

@@ -6,6 +6,7 @@ import { Avatar } from "antd";
 import { MdOutlineDownloading } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteMessages, DownloadMedia } from "../../Redux/action";
+import { useNavigate } from "react-router-dom";
 const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const [selectVoice, setselectVoice] = useState("");
@@ -14,6 +15,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [progress, setProgress] = useState(0);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
   const PlayVoice = (path) => {
     if (path == selectVoice) {
       if (audio.current.paused) {
@@ -53,7 +55,8 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
       <img
-        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+        onClick={() => navigate(`${data.sender}`)}
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
         src={MainUserImg}
         alt=""
       />

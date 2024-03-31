@@ -5,8 +5,10 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { Avatar } from "antd";
+import { useNavigate } from "react-router-dom";
 const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
+  const navigate = useNavigate();
   return (
     <motion.div
       initial={{ opacity: 0, x: 0 }}
@@ -14,8 +16,9 @@ const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
       transition={{ duration: 0.5 }}
       class="flex items-start gap-2.5"
     >
-     <img
-        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+      <img
+        onClick={() => navigate(`${data.sender}`)}
+        class="md:w-12 w-10 h-10 md:h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 cursor-pointer"
         src={MainUserImg}
         alt=""
       />
