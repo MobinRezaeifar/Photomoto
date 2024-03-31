@@ -125,23 +125,6 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     };
   }, []);
 
-  const onDownload = (src) => {
-    fetch(src)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = src.split(
-          "http://localhost:5221/api/FileManager/downloadfile?FileName="
-        )[1];
-        document.body.appendChild(link);
-        link.click();
-        URL.revokeObjectURL(url);
-        link.remove();
-      });
-  };
-
   const handleStartRecording = () => {
     navigator.mediaDevices
       .getUserMedia({ audio: true })
@@ -265,7 +248,12 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
             onClick={() => navigate(`${SelectUser}`)}
             className="cursor-pointer flex items-center gap-2 text-white"
           >
-            <Avatar size={37} src={TargetProfileImg} /> {SelectUser}
+            <img
+              class="w-11 h-11 p-1 rounded-md ring-2 ring-gray-300 dark:ring-gray-500"
+              src={TargetProfileImg}
+              alt=""
+            />
+            <span className="text-gray-400 font-bold">{SelectUser}</span>
           </span>
         </span>
         <CiMenuKebab size={27} />

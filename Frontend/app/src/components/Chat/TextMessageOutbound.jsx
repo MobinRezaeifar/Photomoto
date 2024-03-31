@@ -4,16 +4,22 @@ import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
+import { Avatar } from "antd";
 const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
-
   return (
-    <div class="flex items-start gap-2.5">
+    <motion.div
+      initial={{ opacity: 0, x: 0 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      class="flex items-start gap-2.5"
+    >
       <img
-        class="lg:w-11 w-9 h-9 lg:h-11 rounded-full"
+        class="w-12 h-12 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
         src={MainUserImg}
         alt=""
       />
+
       <div class="flex flex-col gap-1 w-full max-w-[320px]">
         <div class="flex items-center space-x-2 rtl:space-x-reverse gap-1">
           <span class="text-sm font-semibold text-gray-900 dark:text-white">
@@ -81,7 +87,7 @@ const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
