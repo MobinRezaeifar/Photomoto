@@ -4,6 +4,7 @@ import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
+import { MdOutlineDownloading } from "react-icons/md";
 const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const onDownload = (src) => {
@@ -23,7 +24,7 @@ const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
       });
   };
   return (
-    <div class="flex items-start gap-2.5" >
+    <div class="flex items-start gap-2.5">
       <img
         class="lg:w-11 w-9 h-9 lg:h-11 rounded-full"
         src={MainUserImg}
@@ -52,32 +53,35 @@ const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
           </p>
           <div class="group relative my-2.5">
             <div class="absolute w-full h-full bg-gray-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-              <button
-                onClick={() =>
-                  onDownload(
-                    "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                      data.media
-                  )
-                }
-                data-tooltip-target="download-image"
-                class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-white/30 hover:bg-white/50 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50"
-              >
-                <svg
-                  class="w-5 h-5 text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 16 18"
+              <div className="flex flex-col items-center shadow-xl">
+                <button
+                  onClick={() =>
+                    onDownload(
+                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                        data.media
+                    )
+                  }
+                  data-tooltip-target="download-image"
+                  class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-white/30 hover:bg-white/50 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50"
                 >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    class="w-5 h-5 text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 16 18"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"
+                    />
+                  </svg>
+                </button>
+                {data.size.toFixed(2) + "MB"}
+              </div>
               <div
                 id="download-image"
                 role="tooltip"
@@ -129,31 +133,19 @@ const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
+                onClick={() =>
+                  onDownload(
+                    "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      data.media
+                  )
+                }
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
               >
-                <IoCopy color="" size={22} />
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <RiDeleteBin6Fill color="" size={22} />
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <FiEdit size={22} color="" />
+                <MdOutlineDownloading color="" size={25} />
               </motion.li>
             </ul>
           </div>

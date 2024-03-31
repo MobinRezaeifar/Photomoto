@@ -5,13 +5,17 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { Avatar } from "antd";
-
+import { MdOutlineDownloading } from "react-icons/md";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteMessages, DownloadVoice } from "../../Redux/action";
 const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const [selectVoice, setselectVoice] = useState("");
   const audio = useRef();
   const [PlayIcon, setPlayIcon] = useState(<FaPlay />);
   const [progress, setProgress] = useState(0);
+  const dispatch = useDispatch();
 
   const PlayVoice = (path) => {
     if (path == selectVoice) {
@@ -48,6 +52,25 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const heights = useRef(
     Array.from({ length: 40 }, () => Math.floor(Math.random() * 20) + 5)
   );
+
+  const onDownload = (src) => {
+    axios({
+      url: `http://localhost:5221/api/FileManager/downloadfile?FileName=${src}`,
+      method: "GET",
+      responseType: "blob",
+    })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "audio.mp3");
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
@@ -161,15 +184,21 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
+                onClick={() => {
+                  dispatch(DownloadVoice(data.media));
+                }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
               >
-                <IoCopy color="" size={22} />
+                <MdOutlineDownloading color="" size={25} />
               </motion.li>
               <motion.li
+                onClick={() => {
+                  dispatch(deleteMessages(data.id));
+                }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
@@ -177,15 +206,6 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 className=" p-2 text-center  cursor-pointer"
               >
                 <RiDeleteBin6Fill color="" size={22} />
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <FiEdit size={22} color="" />
               </motion.li>
             </ul>
           </div>

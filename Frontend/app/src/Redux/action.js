@@ -64,6 +64,32 @@ export const deleteMessagesSuccess = (id) => ({
   payload: id,
 });
 
+export const DownloadVoice = (src) => {
+  return async (dispatch) => {
+    try {
+      axios({
+        url: `http://localhost:5221/api/FileManager/downloadfile?FileName=${src}`,
+        method: "GET",
+        responseType: "blob",
+      })
+        .then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", src);
+          document.body.appendChild(link);
+          link.click();
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } catch (error) {
+      console.error("Error adding register:", error);
+    }
+  };
+};
+
+
 export const AddRegister = (newUser) => {
   return async (dispatch) => {
     try {
@@ -228,7 +254,6 @@ export const fetchMessages = (token) => {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-
     try {
       const response = await axios.get(MessagesApi, { headers });
       dispatch(fetchMessagesSuccess(response.data));

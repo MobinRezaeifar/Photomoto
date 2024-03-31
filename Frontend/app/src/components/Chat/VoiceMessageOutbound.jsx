@@ -6,13 +6,16 @@ import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { Avatar } from "antd";
-
+import { DownloadVoice } from "../../Redux/action";
+import { MdOutlineDownloading } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
 const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const [selectVoice, setselectVoice] = useState("");
   const audio = useRef();
   const [PlayIcon, setPlayIcon] = useState(<FaPlay />);
   const [progress, setProgress] = useState(0);
+  const dispatch = useDispatch();
 
   const PlayVoice = (path) => {
     if (path == selectVoice) {
@@ -156,31 +159,16 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
+                onClick={() => {
+                  dispatch(DownloadVoice(data.media));
+                }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
+                className=" p-2 text-center cursor-pointer ml-1"
               >
-                <IoCopy color="" size={22} />
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <RiDeleteBin6Fill color="" size={22} />
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <FiEdit size={22} color="" />
+                <MdOutlineDownloading color="" size={25} />
               </motion.li>
             </ul>
           </div>

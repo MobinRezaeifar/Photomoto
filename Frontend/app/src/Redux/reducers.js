@@ -2,7 +2,7 @@ const initialState = {
   Registers: [],
   Posts: [],
   Messages: [],
-  Issue: "",
+  Issue: "me",
   ShowPostModel: false,
   ProfileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
   SelectUserChat: "",
