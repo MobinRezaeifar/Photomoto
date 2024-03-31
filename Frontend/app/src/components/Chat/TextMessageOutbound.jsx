@@ -77,24 +77,6 @@ const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
               >
                 <IoCopy color="" size={22} />
               </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <RiDeleteBin6Fill color="" size={22} />
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <FiEdit size={22} color="" />
-              </motion.li>
             </ul>
           </div>
         )}

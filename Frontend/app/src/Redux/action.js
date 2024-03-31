@@ -296,6 +296,7 @@ export const updateMessages = (id, message) => {
 
       const messages = await response.json();
       dispatch(updateMessagesSuccess(messages));
+      await Change("change");
     } catch (error) {
       console.error(`Error updating message with ID ${id}:`, error);
     }
