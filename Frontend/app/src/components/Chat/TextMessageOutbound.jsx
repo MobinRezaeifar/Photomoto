@@ -1,14 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { IoCopy } from "react-icons/io5";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
-import { Avatar } from "antd";
 import { useNavigate } from "react-router-dom";
+import { LuCopy, LuCopyCheck } from "react-icons/lu";
 const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const navigate = useNavigate();
+
+  const [copySuccess, setCopySuccess] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 0 }}
@@ -53,6 +54,7 @@ const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
         className={`flex items-center  justify-center self-center relative `}
         onMouseLeave={() => {
           setShowMessageMenu(false);
+          setCopySuccess(false);
         }}
       >
         <button
@@ -78,13 +80,26 @@ const TextMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
+                id="copyCheck"
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(data.media);
+                    setCopySuccess(true);
+                  } catch (err) {
+                    console.error(err);
+                  }
+                }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
               >
-                <IoCopy color="" size={22} />
+                {copySuccess ? (
+                  <LuCopyCheck color="" size={22} />
+                ) : (
+                  <LuCopy color="" size={22} />
+                )}
               </motion.li>
             </ul>
           </div>

@@ -7,11 +7,15 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { deleteMessages } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
+import { LuCopy, LuCopyCheck } from "react-icons/lu";
+
 const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const navigate = useNavigate();
   const [state, setstate] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: state ? 1 : 0, x: 0 }}
@@ -56,6 +60,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
         className={`flex items-center  justify-center self-center relative `}
         onMouseLeave={() => {
           setShowMessageMenu(false);
+          setCopySuccess(false)
         }}
       >
         <button
@@ -81,13 +86,26 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
+                id="copyCheck"
+                onClick={async () => {
+                  try {
+                    await navigator.clipboard.writeText(data.media);
+                    setCopySuccess(true);
+                  } catch (err) {
+                    console.error(err);
+                  }
+                }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
               >
-                <IoCopy color="" size={22} />
+                {copySuccess ? (
+                  <LuCopyCheck color="" size={22} />
+                ) : (
+                  <LuCopy color="" size={22} />
+                )}
               </motion.li>
               <motion.li
                 onClick={async () => {

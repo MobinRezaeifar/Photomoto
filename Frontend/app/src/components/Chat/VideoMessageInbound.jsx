@@ -12,10 +12,11 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [state, setstate] = useState(false);
   return (
     <motion.div
-      initial={{ opacity: 0, x: 0 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: state ? 1 : 0, x: 0 }}
+      animate={{ opacity: state ? 0 : 1, x: 0 }}
       transition={{ duration: 0.5 }}
       class="flex items-start gap-2.5"
       style={{ direction: "rtl" }}
@@ -106,8 +107,9 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <MdOutlineDownloading color="" size={25} />
               </motion.li>
               <motion.li
-                onClick={() => {
-                  dispatch(deleteMessages(data.id));
+                onClick={async () => {
+                  await setstate(true);
+                  await dispatch(deleteMessages(data.id));
                 }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
