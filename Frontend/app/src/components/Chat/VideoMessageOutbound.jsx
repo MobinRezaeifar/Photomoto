@@ -4,8 +4,12 @@ import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { MdOutlineDownloading } from "react-icons/md";
+import { DownloadMedia } from "../../Redux/action";
 const VideoMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
+  const dispatch = useDispatch();
   return (
     <div class="flex items-start gap-2.5">
       <img
@@ -81,32 +85,18 @@ const VideoMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
+               onClick={() => {
+                dispatch(DownloadMedia(data.media));
+              }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
               >
-                <IoCopy color="" size={22} />
+                <MdOutlineDownloading color="" size={25} />
               </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <RiDeleteBin6Fill color="" size={22} />
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.25 }}
-                className=" p-2 text-center  cursor-pointer"
-              >
-                <FiEdit size={22} color="" />
-              </motion.li>
+          
             </ul>
           </div>
         )}

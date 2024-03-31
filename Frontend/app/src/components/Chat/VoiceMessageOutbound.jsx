@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { IoCopy } from "react-icons/io5";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
-import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { Avatar } from "antd";
-import { DownloadVoice } from "../../Redux/action";
+import { DownloadMedia } from "../../Redux/action";
 import { MdOutlineDownloading } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const [selectVoice, setselectVoice] = useState("");
@@ -160,7 +156,7 @@ const VoiceMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
             >
               <motion.li
                 onClick={() => {
-                  dispatch(DownloadVoice(data.media));
+                  dispatch(DownloadMedia(data.media));
                 }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

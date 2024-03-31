@@ -5,28 +5,13 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { deleteMessages } from "../../Redux/action";
+import { deleteMessages, DownloadMedia, DownloadVoice } from "../../Redux/action";
 import { MdOutlineDownloading } from "react-icons/md";
 
 const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
-  const onDownload = (src) => {
-    fetch(src)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const url = URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = src.split(
-          "http://localhost:5221/api/FileManager/downloadfile?FileName="
-        )[1];
-        document.body.appendChild(link);
-        link.click();
-        URL.revokeObjectURL(url);
-        link.remove();
-      });
-  };
+
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
       <img
@@ -59,12 +44,9 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
             <div class="absolute w-full h-full bg-gray-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
               <div className="flex flex-col items-center shadow-xl">
                 <button
-                  onClick={() =>
-                    onDownload(
-                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                        data.media
-                    )
-                  }
+                  onClick={() => {
+                    dispatch(DownloadMedia(data.media));
+                  }}
                   data-tooltip-target="download-image"
                   class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-white/30 hover:bg-white/50 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50"
                 >
@@ -137,12 +119,9 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
               className={`${MessageFontSize} bg-transparent rounded-lg flex flex-col gap-1`}
             >
               <motion.li
-                onClick={() =>
-                  onDownload(
-                    "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                      data.media
-                  )
-                }
+               onClick={() => {
+                dispatch(DownloadMedia(data.media));
+              }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}

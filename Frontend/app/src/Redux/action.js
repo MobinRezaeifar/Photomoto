@@ -1,8 +1,29 @@
 import axios from "axios";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 let RegisterApi = "http://localhost:5221/api/Registers";
 let PostApi = "http://localhost:5221/api/Posts";
 let MessagesApi = "http://localhost:5221/api/Messages";
+
+const change = [];
+
+const Change = async (change) => {
+  try {
+    const connection = new HubConnectionBuilder()
+      .withUrl(`http://localhost:5221/change`)
+      .configureLogging(LogLevel.Information)
+      .build();
+    await connection.start();
+
+    connection.invoke("Connect", change).catch((err) => console.error(err));
+
+    connection.on("getChange", (chang) => {
+      chang.push(chang);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const addRegiaterSuccess = (user) => ({
   type: "ADD_REGISTER_SUCCESS",
@@ -64,7 +85,7 @@ export const deleteMessagesSuccess = (id) => ({
   payload: id,
 });
 
-export const DownloadVoice = (src) => {
+export const DownloadMedia = (src) => {
   return async (dispatch) => {
     try {
       axios({
@@ -88,7 +109,6 @@ export const DownloadVoice = (src) => {
     }
   };
 };
-
 
 export const AddRegister = (newUser) => {
   return async (dispatch) => {
@@ -290,6 +310,7 @@ export const deleteMessages = (id) => {
       });
 
       dispatch(deleteMessagesSuccess(id));
+      await Change("change");
     } catch (error) {
       console.error(`Error deleting message with ID ${id}:`, error);
     }

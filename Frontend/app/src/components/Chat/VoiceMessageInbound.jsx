@@ -1,14 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { IoCopy } from "react-icons/io5";
-import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
 import { Avatar } from "antd";
 import { MdOutlineDownloading } from "react-icons/md";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteMessages, DownloadVoice } from "../../Redux/action";
+import { useDispatch } from "react-redux";
+import { deleteMessages, DownloadMedia } from "../../Redux/action";
 const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const [selectVoice, setselectVoice] = useState("");
@@ -52,25 +49,6 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const heights = useRef(
     Array.from({ length: 40 }, () => Math.floor(Math.random() * 20) + 5)
   );
-
-  const onDownload = (src) => {
-    axios({
-      url: `http://localhost:5221/api/FileManager/downloadfile?FileName=${src}`,
-      method: "GET",
-      responseType: "blob",
-    })
-      .then((response) => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", "audio.mp3");
-        document.body.appendChild(link);
-        link.click();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   return (
     <div class="flex items-start gap-2.5" style={{ direction: "rtl" }}>
@@ -185,7 +163,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
             >
               <motion.li
                 onClick={() => {
-                  dispatch(DownloadVoice(data.media));
+                  dispatch(DownloadMedia(data.media));
                 }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
