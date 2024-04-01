@@ -1,26 +1,74 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable eqeqeq */
-import React from "react";
+import React, { Children } from "react";
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { deleteMessages, DownloadMedia } from "../../Redux/action";
+import isEqual from "lodash/isEqual";
+import {
+  deleteMessages,
+  DownloadMedia,
+  patchMessages,
+} from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineDownloading } from "react-icons/md";
-
+import { RxCrossCircled } from "react-icons/rx";
+import { GoCheckCircle } from "react-icons/go";
+import { Upload } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import {
+  DownloadOutlined,
+  RotateLeftOutlined,
+  RotateRightOutlined,
+  SwapOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+} from "@ant-design/icons";
+import { Image, Space } from "antd";
+import axios from "axios";
 const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const navigate = useNavigate();
   const [state, setstate] = useState(false);
+  const [EditStatus, setEditStatus] = useState(false);
+  const [EditFile, setEditFile] = useState({});
+  const { Dragger } = Upload;
+
+  const props = {
+    name: "file",
+    multiple: true,
+    async onChange(info) {
+      const { status } = info.file;
+      if (status !== "uploading") {
+        var form = new FormData();
+        form.append("file", info.file.originFileObj);
+        await axios.post(
+          "http://localhost:5221/api/FileManager/uploadfile",
+          form
+        );
+        setEditFile(info.file.originFileObj);
+      }
+      if (status === "done") {
+        // message.success(`${info.file.name} file uploaded successfully.`);
+      } else if (status === "error") {
+        // message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
+  };
+  let parts = data.media.split(".");
+
   return (
     <motion.div
       initial={{ opacity: state ? 1 : 0, x: 0 }}
       animate={{ opacity: state ? 0 : 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      class="flex items-start gap-2.5"
+      class="flex items-start gap-2.5 "
       style={{ direction: "rtl" }}
     >
       <img
@@ -39,67 +87,179 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
           </span>
         </div>
         <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-500">
-          <p
+          <span
             title={data.media}
             class={`text-md font-normal text-gray-900 dark:text-white`}
           >
-            {(() => {
-              let parts = data.media.split(".");
-              return data.media.length > 20
+            {!EditStatus &&
+              (data.media.length > 20
                 ? data.media.substring(0, 10) + "..." + parts.pop()
-                : data.media;
-            })()}
-          </p>
-          <div class="group relative my-2.5">
-            <div class="absolute w-full h-full bg-gray-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
-              <div className="flex flex-col items-center shadow-xl">
-                <button
-                  onClick={() => {
-                    dispatch(DownloadMedia(data.media));
-                  }}
-                  data-tooltip-target="download-image"
-                  class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-white/30 hover:bg-white/50 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50"
-                >
-                  <svg
-                    class="w-5 h-5 text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 16 18"
+                : data.media)}
+          </span>
+          {(() => {
+            if (EditStatus) {
+              if (isEqual(EditFile, {})) {
+                return (
+                  <Dragger
+                    {...props}
+                    style={{
+                      width: "100%",
+                    }}
                   >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"
-                    />
-                  </svg>
-                </button>
-                {data.size.toFixed(2) + "MB"}
-              </div>
-              <div
-                id="download-image"
-                role="tooltip"
-                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-              >
-                Download image
-                <div class="tooltip-arrow" data-popper-arrow></div>
-              </div>
-            </div>
-            <img
-              src={
-                "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                data.media
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined />
+                    </p>
+                    <p className="ant-upload-text " style={{ color: "white" }}>
+                      Click or drag file to this area to upload
+                    </p>
+                  </Dragger>
+                );
+              } else {
+                if (EditFile.type.startsWith("video")) {
+                  return (
+                    <video
+                      controls
+                      autoPlay
+                      style={{ width: "100%" }}
+                      src={
+                        "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                        EditFile.name
+                      }
+                    ></video>
+                  );
+                }
+                return (
+                  <Image
+                    style={{ width: "100%" }}
+                    src={
+                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      EditFile.name
+                    }
+                    preview={{
+                      toolbarRender: (
+                        _,
+                        {
+                          transform: { scale },
+                          actions: {
+                            onFlipY,
+                            onFlipX,
+                            onRotateLeft,
+                            onRotateRight,
+                            onZoomOut,
+                            onZoomIn,
+                          },
+                        }
+                      ) => (
+                        <Space size={12} className="toolbar-wrapper">
+                          <DownloadOutlined />
+                          <SwapOutlined rotate={90} onClick={onFlipY} />
+                          <SwapOutlined onClick={onFlipX} />
+                          <RotateLeftOutlined onClick={onRotateLeft} />
+                          <RotateRightOutlined onClick={onRotateRight} />
+                          <ZoomOutOutlined
+                            disabled={scale === 1}
+                            onClick={onZoomOut}
+                          />
+                          <ZoomInOutlined
+                            disabled={scale === 50}
+                            onClick={onZoomIn}
+                          />
+                        </Space>
+                      ),
+                    }}
+                  />
+                );
               }
-              alt=""
-              class="rounded-lg"
-            />
-          </div>
+            } else {
+              return (
+                <div class="group relative my-2.5">
+                  <div class="absolute w-full h-full bg-gray-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg flex items-center justify-center">
+                    <div className="flex flex-col items-center shadow-xl">
+                      <button
+                        onClick={() => {
+                          dispatch(DownloadMedia(data.media));
+                        }}
+                        data-tooltip-target="download-image"
+                        class="inline-flex items-center justify-center rounded-full h-10 w-10 bg-white/30 hover:bg-white/50 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50"
+                      >
+                        <svg
+                          class="w-5 h-5 text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 16 18"
+                        >
+                          <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"
+                          />
+                        </svg>
+                      </button>
+                      {data.size.toFixed(2) + "MB"}
+                    </div>
+                    <div
+                      id="download-image"
+                      role="tooltip"
+                      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+                    >
+                      Download image
+                      <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                  </div>
+                  <img
+                    src={
+                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      data.media
+                    }
+                    alt=""
+                    class="rounded-lg"
+                  />
+                </div>
+              );
+            }
+          })()}
         </div>
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-          Delivered
-        </span>
+        <div className="flex justify-between">
+          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+            Delivered
+          </span>
+          {EditStatus && (
+            <div className=" flex items-center justify-start gap-1 pl-2 pt-1">
+              <RxCrossCircled
+                onClick={() => {
+                  setEditStatus(false);
+                  setEditFile({});
+                }}
+                size={24}
+                color="#820014"
+                className="cursor-pointer"
+              />
+              {!isEqual(EditFile, {}) && (
+                <GoCheckCircle
+                  onClick={async () => {
+                    dispatch(
+                      patchMessages(data.id, {
+                        id: data.id,
+                        media: EditFile.name,
+                        size: EditFile.size,
+                        type: EditFile.type,
+                      })
+                    );
+                    setEditFile({});
+                    setEditStatus(false);
+                    setShowMessageMenu(false);
+                  }}
+                  size={24}
+                  color="#135200"
+                  className="cursor-pointer"
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
       <div
         className={`flex items-center  justify-center self-center relative `}
@@ -161,7 +321,11 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
               >
-                <FiEdit size={22} color="" />
+                <FiEdit
+                  size={22}
+                  color=""
+                  onClick={() => setEditStatus(true)}
+                />
               </motion.li>
             </ul>
           </div>
