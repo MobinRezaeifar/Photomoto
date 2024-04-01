@@ -5,11 +5,17 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { deleteMessages } from "../../Redux/action";
+import {
+  deleteMessages,
+  fetchMessages,
+  patchMessages,
+  updateMessages,
+} from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
 import { LuCopy, LuCopyCheck } from "react-icons/lu";
 import { RxCrossCircled } from "react-icons/rx";
 import { GoCheckCircle } from "react-icons/go";
+import axios from "axios";
 
 const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
@@ -79,17 +85,28 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
             Delivered
           </span>
           {EditState && (
-            <div
-              className=" flex items-center justify-start gap-1 pl-2 pt-1"
-              id="into"
-            >
+            <div className=" flex items-center justify-start gap-1 pl-2 pt-1">
               <RxCrossCircled
+                onClick={() => {
+                  setEditState(false);
+                  setEditText(data.media);
+                }}
                 size={24}
                 color="#820014"
                 className="cursor-pointer"
               />
               {EditText && (
                 <GoCheckCircle
+                  onClick={async () => {
+                    dispatch(
+                      patchMessages(data.id, {
+                        id: data.id,
+                        media: EditText,
+                      })
+                    );
+                    setEditState(false);
+                    setShowMessageMenu(false);
+                  }}
                   size={24}
                   color="#135200"
                   className="cursor-pointer"

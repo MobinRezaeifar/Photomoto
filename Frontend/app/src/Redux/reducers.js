@@ -83,6 +83,13 @@ const reducer = (state = initialState, action) => {
           Message.id === action.payload.id ? action.payload : Message
         ),
       };
+    case "PATCH_MESSAGES_SUCCESS":
+      return {
+        ...state,
+        Messages: state.Messages.map((Message) =>
+          Message.id === action.payload.id ? action.payload : Message
+        ),
+      };
 
     case "DELETE_MESSAGES_SUCCESS":
       return {

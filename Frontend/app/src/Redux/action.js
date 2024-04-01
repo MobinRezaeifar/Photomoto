@@ -79,6 +79,10 @@ export const updateMessagesSuccess = (messages) => ({
   type: "UPDATE_MESSAGES_SUCCESS",
   payload: messages,
 });
+export const PatchMessagesSuccess = (messages) => ({
+  type: "PATCH_MESSAGES_SUCCESS",
+  payload: messages,
+});
 
 export const deleteMessagesSuccess = (id) => ({
   type: "DELETE_MESSAGES_SUCCESS",
@@ -296,6 +300,21 @@ export const updateMessages = (id, message) => {
 
       const messages = await response.json();
       dispatch(updateMessagesSuccess(messages));
+      await Change("change");
+    } catch (error) {
+      console.error(`Error updating message with ID ${id}:`, error);
+    }
+  };
+};
+
+export const patchMessages = (id, message) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:5221/api/Messages/api/messages/${id}`,
+        message
+      );
+      dispatch(PatchMessagesSuccess(response.data));
       await Change("change");
     } catch (error) {
       console.error(`Error updating message with ID ${id}:`, error);
