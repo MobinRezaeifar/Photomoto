@@ -24,7 +24,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
     <motion.div
       onMouseLeave={() => {
         setEditState(false);
-        setEditText(data.media)
+        setEditText(data.media);
       }}
       initial={{ opacity: state ? 1 : 0, x: 0 }}
       animate={{ opacity: state ? 0 : 1, x: 0 }}
@@ -79,7 +79,10 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
             Delivered
           </span>
           {EditState && (
-            <div className=" flex items-center justify-start gap-1 pl-2 pt-1" id="into">
+            <div
+              className=" flex items-center justify-start gap-1 pl-2 pt-1"
+              id="into"
+            >
               <RxCrossCircled
                 size={24}
                 color="#820014"
@@ -101,7 +104,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
         onMouseLeave={() => {
           setShowMessageMenu(false);
           setCopySuccess(false);
-          setEditText(data.media)
+          setEditText(data.media);
         }}
       >
         <button
