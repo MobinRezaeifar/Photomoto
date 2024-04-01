@@ -71,7 +71,7 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                     value={EditText}
                     autoFocus
                     type="text"
-                    className="bg-gray-400 outline-none shadow-2xl px-2 py-1 text-xl rounded-e-xl rounded-es-xl"
+                    className="bg-gray-400 outline-none shadow-2xl px-2 text-lg py-1 rounded-e-xl rounded-es-xl"
                   />
                 </div>
               ) : (

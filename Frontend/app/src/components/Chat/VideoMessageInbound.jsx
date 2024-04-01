@@ -1,18 +1,66 @@
 import React from "react";
 import { useState } from "react";
-import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { MdOutlineDownloading } from "react-icons/md";
-import { deleteMessages, DownloadMedia } from "../../Redux/action";
+import {
+  deleteMessages,
+  DownloadMedia,
+  patchMessages,
+} from "../../Redux/action";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Upload } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import {
+  DownloadOutlined,
+  RotateLeftOutlined,
+  RotateRightOutlined,
+  SwapOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+} from "@ant-design/icons";
+import { Image, Space } from "antd";
+import isEqual from "lodash/isEqual";
+import axios from "axios";
+import { RxCrossCircled } from "react-icons/rx";
+import { GoCheckCircle } from "react-icons/go";
+
 const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [state, setstate] = useState(false);
+  const [EditStatus, setEditStatus] = useState(false);
+  const [EditFile, setEditFile] = useState({});
+  const { Dragger } = Upload;
+
+  const props = {
+    name: "file",
+    accept: "image/*,video/*",
+    multiple: true,
+    async onChange(info) {
+      const { status } = info.file;
+      if (status !== "uploading") {
+        var form = new FormData();
+        form.append("file", info.file.originFileObj);
+        await axios.post(
+          "http://localhost:5221/api/FileManager/uploadfile",
+          form
+        );
+        setEditFile(info.file.originFileObj);
+      }
+      if (status === "done") {
+      } else if (status === "error") {
+      }
+    },
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
+  };
+  let parts = data.media.split(".");
+
   return (
     <motion.div
       initial={{ opacity: state ? 1 : 0, x: 0 }}
@@ -37,34 +85,146 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
           </span>
         </div>
         <div class="flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-500">
-          <p
+          <span
             title={data.media}
             class={`text-md font-normal text-gray-900 dark:text-white`}
           >
-            {(() => {
-              let parts = data.media.split(".");
-              return data.media.length > 20
+            {!EditStatus &&
+              (data.media.length > 20
                 ? data.media.substring(0, 10) + "..." + parts.pop()
-                : data.media;
-            })()}
-          </p>
-          <div class="group relative my-2.5">
-            <video
-              controls
-              autoPlay
-              muted
-              loop
-              src={
-                "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
-                data.media
+                : data.media)}
+          </span>
+          {(() => {
+            if (EditStatus) {
+              if (isEqual(EditFile, {})) {
+                return (
+                  <Dragger
+                    {...props}
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined />
+                    </p>
+                    <p className="ant-upload-text " style={{ color: "white" }}>
+                      Click or drag file to this area to upload
+                    </p>
+                  </Dragger>
+                );
+              } else {
+                if (EditFile.type.startsWith("video")) {
+                  return (
+                    <video
+                      controls
+                      autoPlay
+                      style={{ width: "100%" }}
+                      src={
+                        "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                        EditFile.name
+                      }
+                    ></video>
+                  );
+                }
+                return (
+                  <Image
+                    style={{ width: "100%" }}
+                    src={
+                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      EditFile.name
+                    }
+                    preview={{
+                      toolbarRender: (
+                        _,
+                        {
+                          transform: { scale },
+                          actions: {
+                            onFlipY,
+                            onFlipX,
+                            onRotateLeft,
+                            onRotateRight,
+                            onZoomOut,
+                            onZoomIn,
+                          },
+                        }
+                      ) => (
+                        <Space size={12} className="toolbar-wrapper">
+                          <DownloadOutlined />
+                          <SwapOutlined rotate={90} onClick={onFlipY} />
+                          <SwapOutlined onClick={onFlipX} />
+                          <RotateLeftOutlined onClick={onRotateLeft} />
+                          <RotateRightOutlined onClick={onRotateRight} />
+                          <ZoomOutOutlined
+                            disabled={scale === 1}
+                            onClick={onZoomOut}
+                          />
+                          <ZoomInOutlined
+                            disabled={scale === 50}
+                            onClick={onZoomIn}
+                          />
+                        </Space>
+                      ),
+                    }}
+                  />
+                );
               }
-              class="rounded-lg"
-            />
-          </div>
+            } else {
+              return (
+                <div class="group relative my-2.5">
+                  <video
+                    controls
+                    autoPlay
+                    muted
+                    loop
+                    src={
+                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      data.media
+                    }
+                    class="rounded-lg"
+                  />
+                </div>
+              );
+            }
+          })()}
         </div>
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-          Delivered
-        </span>
+        <div className="flex justify-between">
+          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+            Delivered
+          </span>
+          {EditStatus && (
+            <div className=" flex items-center justify-start gap-1 pl-2 pt-1">
+              <RxCrossCircled
+                onClick={() => {
+                  setEditStatus(false);
+                  setEditFile({});
+                }}
+                size={24}
+                color="#820014"
+                className="cursor-pointer"
+              />
+              {!isEqual(EditFile, {}) && (
+                <GoCheckCircle
+                  onClick={async () => {
+                    dispatch(
+                      patchMessages(data.id, {
+                        id: data.id,
+                        media: EditFile.name,
+                        size: EditFile.size ? EditFile.size / (1024 * 1024) : 0,
+                        type: EditFile.type,
+                      })
+                    );
+                    setEditFile({});
+                    setEditStatus(false);
+                    setShowMessageMenu(false);
+                  }}
+                  size={24}
+                  color="#135200"
+                  className="cursor-pointer"
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
       <div
         className={`flex items-center  justify-center self-center relative `}
@@ -120,6 +280,7 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <RiDeleteBin6Fill color="" size={22} />
               </motion.li>
               <motion.li
+                onClick={() => setEditStatus(true)}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}

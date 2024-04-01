@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable eqeqeq */
-import React, { Children } from "react";
+import React from "react";
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
@@ -28,6 +28,7 @@ import {
 } from "@ant-design/icons";
 import { Image, Space } from "antd";
 import axios from "axios";
+import { size } from "lodash";
 const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
@@ -39,6 +40,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
 
   const props = {
     name: "file",
+    accept: "image/*,video/*",
     multiple: true,
     async onChange(info) {
       const { status } = info.file;
@@ -52,9 +54,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
         setEditFile(info.file.originFileObj);
       }
       if (status === "done") {
-        // message.success(`${info.file.name} file uploaded successfully.`);
       } else if (status === "error") {
-        // message.error(`${info.file.name} file upload failed.`);
       }
     },
     onDrop(e) {
@@ -244,7 +244,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                       patchMessages(data.id, {
                         id: data.id,
                         media: EditFile.name,
-                        size: EditFile.size,
+                        size: EditFile.size ? EditFile.size / (1024 * 1024) : 0,
                         type: EditFile.type,
                       })
                     );
@@ -320,12 +320,9 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 transition={{ duration: 0.5 }}
                 whileHover={{ scale: 1.25 }}
                 className=" p-2 text-center  cursor-pointer"
+                onClick={() => setEditStatus(true)}
               >
-                <FiEdit
-                  size={22}
-                  color=""
-                  onClick={() => setEditStatus(true)}
-                />
+                <FiEdit size={22} color="" />
               </motion.li>
             </ul>
           </div>
