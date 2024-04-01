@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { deleteMessages } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
 import { LuCopy, LuCopyCheck } from "react-icons/lu";
+import { RxCrossCircled } from "react-icons/rx";
+import { GoCheckCircle } from "react-icons/go";
 
 const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
@@ -15,9 +17,15 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const navigate = useNavigate();
   const [state, setstate] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [EditState, setEditState] = useState(false);
+  const [EditText, setEditText] = useState(data.media);
 
   return (
     <motion.div
+      onMouseLeave={() => {
+        setEditState(false);
+        setEditText(data.media)
+      }}
       initial={{ opacity: state ? 1 : 0, x: 0 }}
       animate={{ opacity: state ? 0 : 1, x: 0 }}
       transition={{ duration: 0.5 }}
@@ -48,19 +56,52 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
             </textarea>
           ) : (
             <p class={`${MessageFontSize} font-normal text-white`}>
-              {data.media}
+              {EditState ? (
+                <div>
+                  <input
+                    onChange={(e) => {
+                      setEditText(e.target.value);
+                    }}
+                    value={EditText}
+                    autoFocus
+                    type="text"
+                    className="bg-gray-400 outline-none shadow-2xl px-2 py-1 text-xl rounded-e-xl rounded-es-xl"
+                  />
+                </div>
+              ) : (
+                data.media
+              )}
             </p>
           )}
         </div>
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-          Delivered
-        </span>
+        <div className="flex justify-between">
+          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+            Delivered
+          </span>
+          {EditState && (
+            <div className=" flex items-center justify-start gap-1 pl-2 pt-1" id="into">
+              <RxCrossCircled
+                size={24}
+                color="#820014"
+                className="cursor-pointer"
+              />
+              {EditText && (
+                <GoCheckCircle
+                  size={24}
+                  color="#135200"
+                  className="cursor-pointer"
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
       <div
         className={`flex items-center  justify-center self-center relative `}
         onMouseLeave={() => {
           setShowMessageMenu(false);
-          setCopySuccess(false)
+          setCopySuccess(false);
+          setEditText(data.media)
         }}
       >
         <button
@@ -121,6 +162,10 @@ const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <RiDeleteBin6Fill color="" size={22} />
               </motion.li>
               <motion.li
+                onClick={() => {
+                  setEditState(true);
+                  setShowMessageMenu(false);
+                }}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
