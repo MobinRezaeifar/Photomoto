@@ -2,10 +2,14 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable array-callback-return */
 import React, { useEffect, useRef, useState } from "react";
-import { CiMenuKebab } from "react-icons/ci";
+import { CiMenuKebab, CiUser } from "react-icons/ci";
 import { GoFileDirectoryFill } from "react-icons/go";
 import { BsFillSendFill } from "react-icons/bs";
-import { MdOutlineSettingsVoice } from "react-icons/md";
+import {
+  MdOutlineAlternateEmail,
+  MdOutlineEmail,
+  MdOutlineSettingsVoice,
+} from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Empty } from "antd";
 import { AddMessages, fetchMessages } from "../../Redux/action";
@@ -26,6 +30,7 @@ import VideoMessageInbound from "./VideoMessageInbound";
 import VideoMessageOutbound from "./VideoMessageOutbound";
 import VoiceMessageInbound from "./VoiceMessageInbound";
 import VoiceMessageOutbound from "./VoiceMessageOutbound";
+import { Dropdown } from "antd";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -47,6 +52,8 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [TargetProfileImg, setTargetProfileImg] = useState("");
   const [MainUserImg, setMainUserImg] = useState("");
   const navigate = useNavigate();
+  const [TargetEmail, setTargetEmail] = useState("");
+  const [TargetFullName, setTargetFullName] = useState("");
   const MessageFontSize = `text-md`;
 
   function decryptAES(message) {
@@ -70,7 +77,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     await Change("change");
     await dispatch(
       AddMessages({
-        type: "text",
+        type: "txt",
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         media: MessageText,
         sender: decryptAES(sessionStorage.getItem("u")),
@@ -200,6 +207,8 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     Registers.map((data) => {
       if (data.username == SelectUser) {
         setTargetProfileImg(data.profileImg);
+        setTargetEmail(data.email);
+        setTargetFullName(data.fullName);
       }
       if (data.username == mainUser) {
         setMainUserImg(data.profileImg);
@@ -219,6 +228,38 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     scrollToBottom();
   }, [SelectUser]);
   let messageRenderdiv = document.getElementById("messageRenderdiv");
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+          className="text-[1.2rem] w-full flex items-center justify-center gap-1"
+        >
+          <CiUser size={25} />
+          {TargetFullName}
+        </a>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.antgroup.com"
+          className="text-[1.2rem] w-full flex items-center justify-center gap-1"
+        >
+          <MdOutlineEmail size={25} />
+
+          {TargetEmail}
+        </a>
+      ),
+    },
+  ];
 
   return (
     <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
@@ -254,7 +295,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
             <span className="text-gray-400 font-bold">{SelectUser}</span>
           </span>
         </span>
-        <CiMenuKebab size={27} />
+        <Dropdown menu={{ items }} placement="bottom" arrow trigger={["click"]}>
+          <CiMenuKebab size={27} className="cursor-pointer" />
+        </Dropdown>
       </div>
 
       <div
@@ -283,7 +326,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         gap: "0.5rem",
                       }}
                     >
-                      {data.type.startsWith("text") && (
+                      {data.type.startsWith("txt") && (
                         <TextMessageInbound
                           data={data}
                           MainUserImg={MainUserImg}
@@ -311,13 +354,20 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                           MessageFontSize={MessageFontSize}
                         />
                       )}
-                      {data.type.startsWith("application") && (
-                        <FileMessageInbound
-                          data={data}
-                          MainUserImg={MainUserImg}
-                          MessageFontSize={MessageFontSize}
-                        />
-                      )}
+                      {(() => {
+                        if (
+                          data.type.startsWith("application") ||
+                          data.type.startsWith("text/plain")
+                        ) {
+                          return (
+                            <FileMessageInbound
+                              data={data}
+                              MainUserImg={MainUserImg}
+                              MessageFontSize={MessageFontSize}
+                            />
+                          );
+                        }
+                      })()}
                     </div>
                   </div>
                 );
@@ -333,7 +383,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                         gap: "0.5rem",
                       }}
                     >
-                      {data.type.startsWith("text") && (
+                      {data.type.startsWith("txt") && (
                         <TextMessageOutbound
                           data={data}
                           MainUserImg={TargetProfileImg}
@@ -347,13 +397,21 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
                           MessageFontSize={MessageFontSize}
                         />
                       )}
-                      {data.type.startsWith("application") && (
-                        <FileMessageOutbound
-                          data={data}
-                          MainUserImg={TargetProfileImg}
-                          MessageFontSize={MessageFontSize}
-                        />
-                      )}
+                      {(() => {
+                        if (
+                          data.type.startsWith("application") ||
+                          data.type.startsWith("text/plain")
+                        ) {
+                          return (
+                            <FileMessageOutbound
+                              data={data}
+                              MainUserImg={TargetProfileImg}
+                              MessageFontSize={MessageFontSize}
+                            />
+                          );
+                        }
+                      })()}
+
                       {data.type.startsWith("voice") && (
                         <VoiceMessageOutbound
                           data={data}

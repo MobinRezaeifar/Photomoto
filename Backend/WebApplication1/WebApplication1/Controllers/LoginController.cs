@@ -24,8 +24,6 @@ using WebApplication1.Services;
 [ApiController]
 public class LoginController : ControllerBase
 {
-    
-
     [HttpPost]
     public IActionResult Login([FromBody] Login login)
     {
@@ -40,7 +38,7 @@ public class LoginController : ControllerBase
             issuer: "admin@gmail.com",
             audience: "client@gmail.com",
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(60),
+            expires: DateTime.UtcNow.AddMinutes(120),
             signingCredentials: new SigningCredentials(
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(
