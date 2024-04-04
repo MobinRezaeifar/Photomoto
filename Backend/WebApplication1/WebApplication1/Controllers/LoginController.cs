@@ -38,7 +38,7 @@ public class LoginController : ControllerBase
             issuer: "admin@gmail.com",
             audience: "client@gmail.com",
             claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(120),
+            expires: DateTime.MaxValue, 
             signingCredentials: new SigningCredentials(
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(
