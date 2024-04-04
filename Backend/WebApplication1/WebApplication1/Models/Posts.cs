@@ -30,6 +30,9 @@ namespace WebApplication1.Models
         [BsonElement("comment")]
         public List<Comment> Comment { get; set; }
 
+        [BsonElement("tags")]
+        public List<string> Tags { get; set; }
+
         [BsonElement("profileImg")]
         public string? ProfileImg { get; set; }
 

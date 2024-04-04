@@ -10,8 +10,6 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
-
-
         private readonly IPostsService _postsService;
 
         public PostsController(IPostsService postsService)
@@ -24,7 +22,6 @@ namespace WebApplication1.Controllers
         {
             return _postsService.Get();
         }
-
 
         [HttpGet("{id}")]
         public ActionResult<Posts> Get(string id)
@@ -47,7 +44,6 @@ namespace WebApplication1.Controllers
             return CreatedAtAction(nameof(Get), new { id = posts.Id }, posts);
         }
 
-
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Posts posts)
         {
@@ -63,11 +59,6 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-
-
-
-
-
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
@@ -82,8 +73,5 @@ namespace WebApplication1.Controllers
 
             return Ok($"post with Id = {id} deleted");
         }
-
-
-
     }
 }
