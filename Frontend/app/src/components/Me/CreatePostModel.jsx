@@ -172,7 +172,7 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
     setInputVisible(true);
   };
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    setInputValue(e.target.value.toLowerCase());
   };
   const handleInputConfirm = () => {
     if (inputValue && !tags.includes(inputValue)) {

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../Redux/action";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
+import SearchResult from "./SearchResult";
 const Search = () => {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
   const [SelectePost, setSelectePost] = useState("");
+  const [SearchText, setSearchText] = useState("");
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
@@ -32,6 +34,22 @@ const Search = () => {
     };
   }, []);
 
+  const PostedFilter = [];
+
+  if (SearchText) {
+    Posts.map((data) => {
+      data.tags.map((tag) => {
+        if (tag.startsWith(SearchText)) {
+          if (!PostedFilter.includes(data)) {
+            PostedFilter.push(data);
+          }
+        }
+      });
+    });
+  }
+
+  const mappedData = SearchText ? PostedFilter : Posts;
+
   return (
     <div>
       <div
@@ -48,7 +66,6 @@ const Search = () => {
             boxShadow: "0px 19px 24px 9px rgba(255,255,255,0.01)",
           }}
         >
-          {" "}
           <lord-icon
             src="https://cdn.lordicon.com/anqzffqz.json"
             trigger="hover"
@@ -56,6 +73,9 @@ const Search = () => {
             style={{ marginLeft: "7px" }}
           ></lord-icon>
           <input
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
             type="text"
             placeholder="Search..."
             style={{
@@ -69,9 +89,10 @@ const Search = () => {
         </div>
       </div>
       <br />
+
       <div id="instagram" style={{ padding: "35px 20px" }}>
         <div className="grid  grid-cols-2 sm:grid-cols-4 2xl:grid-cols-6">
-          {Posts.map((post, index) => {
+          {mappedData.map((post, index) => {
             return (
               <div
                 onClick={() => {
@@ -120,7 +141,12 @@ const Search = () => {
           })}
         </div>
       </div>
-      <ShowPostModel dimensions={dimensions} Posts={Posts} SelectePost={SelectePost}/>
+
+      <ShowPostModel
+        dimensions={dimensions}
+        Posts={Posts}
+        SelectePost={SelectePost}
+      />
     </div>
   );
 };
