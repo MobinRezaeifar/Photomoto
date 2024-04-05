@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x4Uj3XEXBOSTtQ8GchdXn3wKRNbRvc1uc+rgzaeMEpZ6nCNrqHA+8mRMv3rxrQcMDIdHEIBP7nbFKaAWJHi1Zw==",
+  "dgSpecHash": "t7Xxc79JrvFsY2PtRBE5asRUY8ON2lshEZ6UNpJK+jjQ3MFuBhTXWiz5Vk99arlvIDE42Eet1ROBw/oSOAVgKw==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\React\\Photomoto\\backend\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "D:\\Programming\\React\\Photomoto\\backend\\webapplication1\\webapplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mobin\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\mobin\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
