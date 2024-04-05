@@ -29,6 +29,7 @@ import {
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import { Image, Space } from "antd";
+import isEqual from "lodash.isequal";
 
 const { Dragger } = Upload;
 
@@ -100,6 +101,7 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         comment: [],
         profileImg: ProfileImg,
+        tags,
       })
     );
     Registers.map(async (data) => {
@@ -138,12 +140,15 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
   };
 
   const { token } = theme.useToken();
-  const [tags, setTags] = useState([
-    FileMedia.originFileObj && FileMedia.originFileObj.type.startsWith("video")
-      ? "photo"
-      : "video",
-  ]);
-  console.log(FileMedia.originFileObj.type.startsWith("video")) 
+  const [tags, setTags] = useState([]);
+  if (FileMedia.originFileObj) {
+    if (FileMedia.originFileObj.type.startsWith("image")) {
+      tags[0] = "image";
+    }
+    if (FileMedia.originFileObj.type.startsWith("video")) {
+      tags[0] = "video";
+    }
+  }
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [editInputIndex, setEditInputIndex] = useState(-1);
@@ -191,7 +196,6 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
     background: token.colorBgContainer,
     borderStyle: "dashed",
   };
-  console.log(tags);
   return (
     <div
       className={`relative z-10 ${!show && "hidden"} `}
@@ -304,6 +308,8 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
                                       onClick={() => {
                                         setPostImg("");
                                         setPostVideo("");
+                                        setFileMedia({});
+                                        setTags([]);
                                       }}
                                       style={{ fontSize: "25px" }}
                                     />
@@ -356,6 +362,8 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
                                 onClick={() => {
                                   setPostImg("");
                                   setPostVideo("");
+                                  setFileMedia({});
+                                  setTags([]);
                                 }}
                                 style={{
                                   fontSize: "25px",
@@ -393,10 +401,12 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
                     }
                   })()}
                   <div className="mt-4">
-                    <h1 className="flex items-center text-[18px] font-medium gap-1 ">
-                      <AiTwotoneTags size={24} />
-                      Tag
-                    </h1>
+                    {!isEqual(FileMedia, {}) && (
+                      <h1 className="flex items-center text-[18px] font-medium gap-1 ">
+                        <AiTwotoneTags size={24} />
+                        Tag
+                      </h1>
+                    )}
                     <Flex gap="4px 0" className="mt-2" wrap="wrap">
                       {tags.map((tag, index) => {
                         if (editInputIndex === index) {
@@ -456,13 +466,15 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
                           onPressEnter={handleInputConfirm}
                         />
                       ) : (
-                        <Tag
-                          style={tagPlusStyle}
-                          icon={<PlusOutlined />}
-                          onClick={showInput}
-                        >
-                          New Tag
-                        </Tag>
+                        !isEqual(FileMedia, {}) && (
+                          <Tag
+                            style={tagPlusStyle}
+                            icon={<PlusOutlined />}
+                            onClick={showInput}
+                          >
+                            New Tag
+                          </Tag>
+                        )
                       )}
                     </Flex>
                   </div>
