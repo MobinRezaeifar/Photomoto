@@ -58,7 +58,7 @@ const Direct = ({ Change, change }) => {
         }
         ${SelectUserChat && dimensions.width < 900 && "hidden"}`}
       >
-        <div className="flex items-center w-full p-6 gap-1 h-[8%]">
+        <div className="flex items-center w-full p-6 gap-1 h-[10%]">
           <lord-icon
             src="https://cdn.lordicon.com/wwpzpqta.json"
             trigger="hover"
@@ -67,16 +67,14 @@ const Direct = ({ Change, change }) => {
           <h1 className="text-2xl font-bold">Direct</h1>
         </div>
         <div
-          className="h-[92%] overflow-y-auto flex flex-col"
+          className="overflow-y-auto flex flex-col h-[90%]"
           ref={constraintsRef}
         >
           {Registers.map(
             (data) =>
               data.username == decryptAES(sessionStorage.getItem("u")) &&
               data.connection.map((connect) => (
-                <motion.div
-                  drag
-                  dragConstraints={constraintsRef}
+                <div
                   initial={{ opacity: 0, x: !SelectUserChat && -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
@@ -141,7 +139,7 @@ const Direct = ({ Change, change }) => {
                       <span className="text-sm">Connect with you.</span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))
           )}
         </div>
