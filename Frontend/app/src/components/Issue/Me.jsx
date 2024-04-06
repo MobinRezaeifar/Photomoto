@@ -192,7 +192,9 @@ const Me = () => {
           count={
             <Upload onChange={(e) => handleChange(e)}>
               <Button
-                id="borderrnone"
+              
+              title="Add Profile Image"
+              id="borderrnone"
                 icon={
                   <IoIosAddCircle
                     color="#4096ff"

@@ -74,7 +74,7 @@ const Direct = ({ Change, change }) => {
             (data) =>
               data.username == decryptAES(sessionStorage.getItem("u")) &&
               data.connection.map((connect) => (
-                <div
+                <motion.div
                   initial={{ opacity: 0, x: !SelectUserChat && -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
@@ -139,7 +139,7 @@ const Direct = ({ Change, change }) => {
                       <span className="text-sm">Connect with you.</span>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))
           )}
         </div>
