@@ -1,3 +1,8 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable eqeqeq */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable array-callback-return */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { SiSendinblue } from "react-icons/si";
 import { FcEditImage, FcSettings } from "react-icons/fc";
@@ -8,8 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
 import CryptoJS from "crypto-js";
-import { includes } from "lodash";
-
+ 
 const Home = ({ change, Change }) => {
   const [mappedData, setmappedData] = useState([]);
   const [SelectePost, setSelectePost] = useState("");
