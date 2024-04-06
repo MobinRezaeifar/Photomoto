@@ -53,6 +53,7 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
   }
   const props = {
     name: "file",
+    accept: "image/*,video/*",
     multiple: true,
     action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
     async onChange(info) {

@@ -190,11 +190,10 @@ const Me = () => {
       <div className="px-8 pt-4 flex justify-between">
         <Badge
           count={
-            <Upload onChange={(e) => handleChange(e)}>
+            <Upload accept="image/*" onChange={(e) => handleChange(e)}>
               <Button
-              
-              title="Add Profile Image"
-              id="borderrnone"
+                title="Add Profile Image"
+                id="borderrnone"
                 icon={
                   <IoIosAddCircle
                     color="#4096ff"
