@@ -40,7 +40,6 @@ const Main = () => {
     navigate("/");
   }
 
-
   const Issue = useSelector((state) => state.Issue);
 
   const dispatch = useDispatch();
@@ -85,7 +84,7 @@ const Main = () => {
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
             {Issue == "direct" && <Direct Change={Change} change={change} />}
-            {Issue == "home" && <Home />}
+            {Issue == "home" && <Home change={change} Change={Change} />}
           </div>
         </React.Fragment>
       ) : (
@@ -98,7 +97,7 @@ const Main = () => {
             {Issue == "connection" && <Connection />}
             {Issue == "search" && <Search />}
             {Issue == "direct" && <Direct Change={Change} change={change} />}
-            {Issue == "home" && <Home />}
+            {Issue == "home" && <Home change={change} Change={Change} />}
           </div>
           <BottomNav />
         </React.Fragment>
