@@ -58,7 +58,13 @@ const Register = () => {
   }, [dispatch]);
 
   const submitRegister = async () => {
-    if (Username && Password && Email && Gender && FullName) {
+    if (
+      Username.length >= 5 &&
+      Password.length >= 8 &&
+      Email.includes("@") &&
+      FullName &&
+      Gender
+    ) {
       axios
         .post("http://localhost:5221/api/Registers", {
           username: Username,
@@ -135,7 +141,7 @@ const Register = () => {
       });
       Toast.fire({
         icon: "error",
-        title: "Complete The Information",
+        title: "Complete The InformationFill out the information correctly.",
       });
     }
   };
