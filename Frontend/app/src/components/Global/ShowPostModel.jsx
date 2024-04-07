@@ -103,6 +103,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                     })
                   );
                 }
+                await dispatch(fetchRegister());
               });
               await dispatch(fetchRegister());
             }}

@@ -92,6 +92,8 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
     setPostImg("");
     setPostVideo("");
     setDesc("");
+    setTags([]);
+    setFileMedia({});
     await dispatch(
       AddPost({
         postMedia: `http://localhost:5221/api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
