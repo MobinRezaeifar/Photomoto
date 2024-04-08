@@ -288,7 +288,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
             className="cursor-pointer flex items-center gap-2 text-white"
           >
             <img
-              class="w-11 h-11 p-1 rounded-md ring-2 ring-gray-300 dark:ring-gray-500"
+              class="w-11 h-11 p-1 rounded-xl ring-2 ring-gray-300 dark:ring-gray-500"
               src={TargetProfileImg}
               alt=""
             />

@@ -254,7 +254,6 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                 alt=""
               />
             )}
-
             <div
               className={`flex items-center justify-between ${
                 dimensions.width > 900 ? "px-4" : "px-2"
@@ -361,15 +360,17 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                 </Dropdown>
               </div>
             </div>
-
-            <div className="flex px-4  gap-2 mb-2">
+            <div className="flex px-4  gap-2 mb-1">
               <span className=" text-xl">{Post.owner}</span>
               <div
                 dangerouslySetInnerHTML={{ __html: Post.disc }}
                 style={{ color: "white", fontSize: "20px" }}
               />
             </div>
-            <div className="px-4">
+            <div className="px-4 flex flex-col">
+              <div className="flex gap-1 mb-1 text-blue-600">
+                {Post.tags && Post.tags.map((data) => <h1>#{data}</h1>)}
+              </div>
               {(() => {
                 if (!isEqual(Post.comment, [])) {
                   if (ShowComment) {
@@ -454,7 +455,6 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                 </div>
               </div>
             )}
-
             <span className="px-4 text-sm text-[#80808085]">°{Post.time}°</span>
           </div>
         </div>
