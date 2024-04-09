@@ -65,7 +65,6 @@ const ShowAccount = () => {
     });
     return bytes.toString(CryptoJS.enc.Utf8);
   }
-
   let mainUser = decryptAES(sessionStorage.getItem("u"));
 
   useEffect(() => {
