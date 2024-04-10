@@ -39,7 +39,7 @@ function CreateStoty() {
     StartCamera();
   }, []);
 
-  const startVideoRecording = () => {
+  const startVideoRecording = async () => {
     const stream = videoRef.current.captureStream();
     const recorder = new MediaRecorder(stream);
     setMediaRecorder(recorder);
@@ -60,14 +60,20 @@ function CreateStoty() {
 
     recorder.start();
     setIsRecording(true);
-
-    const interval = setInterval(() => {
-      setRecordingProgress(prevProgress => prevProgress + 1);
-    }, 1000);
-
-    // Stop interval when recording stops
-    return () => clearInterval(interval);
   };
+  useEffect(() => {
+    let interval;
+
+    if (isRecording) {
+      interval = setInterval(() => {
+        setRecordingProgress((prevProgress) => prevProgress + 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isRecording]);
+
+  console.log(recordingProgress);
 
   const stopVideoRecording = () => {
     if (mediaRecorder) {
