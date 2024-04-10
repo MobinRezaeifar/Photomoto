@@ -88,7 +88,7 @@ function CreateStoty() {
   const stopVideoRecording = () => {
     if (mediaRecorder) {
       mediaRecorder.stop();
-      setIsRecording(false);
+      setIsRecording(false);  
     }
   };
 
