@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
 import CryptoJS from "crypto-js";
- 
+
 const Home = ({ change, Change }) => {
   const [mappedData, setmappedData] = useState([]);
   const [SelectePost, setSelectePost] = useState("");
@@ -100,7 +100,7 @@ const Home = ({ change, Change }) => {
       />
       <div className="h-20  w-full overflow-x-auto flex items-center">
         <Badge
-          onClick={() => navigate("createStoty")}
+          onClick={() => navigate("createStory")}
           className="cursor-pointer"
           count={
             <Button

@@ -74,3 +74,9 @@
 .ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.css-dev-only-do-not-override-7l2uzt {
   text-align: center;
 }
+.ant-progress-text > span {
+  display: none;
+}
+.ant-progress-inner > .ant-progress-text {
+  display: none;
+}

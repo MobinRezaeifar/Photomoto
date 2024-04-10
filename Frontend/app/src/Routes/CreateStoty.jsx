@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { BsCursor, BsRecordCircle } from "react-icons/bs";
+import { Progress } from "antd";
+import { FaCircle } from "react-icons/fa";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -88,7 +90,7 @@ function CreateStoty() {
   const stopVideoRecording = () => {
     if (mediaRecorder) {
       mediaRecorder.stop();
-      setIsRecording(false);  
+      setIsRecording(false);
     }
   };
 
@@ -112,19 +114,51 @@ function CreateStoty() {
             autoPlay
           ></video>
         </div>
-        <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center">
-          <BsRecordCircle
-            size={40}
-            className="cursor-pointer"
-            onMouseDown={() => {
-              setIsMouseDown(true);
-            }}
-            onMouseUp={() => {
-              setIsMouseDown(false);
-              stopVideoRecording();
-            }}
-            onClick={() => !state && TakePhoto()}
-          />
+        <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
+          {isRecording ? (
+            <div
+              style={{
+                marginBottom: "-8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onMouseDown={() => {
+                setIsMouseDown(true);
+              }}
+              onMouseUp={() => {
+                setIsMouseDown(false);
+                stopVideoRecording();
+              }}
+              onClick={() => !state && TakePhoto()}
+            >
+              <FaCircle style={{ position: "absolute" }} size={16} />
+              <Progress
+                type="circle"
+                percent={10}
+                size={42}
+                className="cursor-pointer "
+              />
+            </div>
+          ) : (
+            <BsRecordCircle
+              style={{
+                position: "absolute",
+                cursor: "pointer",
+                marginBottom: !isRecording && "28px",
+                zIndex: "99999",
+              }}
+              size={40}
+              onMouseDown={() => {
+                setIsMouseDown(true);
+              }}
+              onMouseUp={() => {
+                setIsMouseDown(false);
+                stopVideoRecording();
+              }}
+              onClick={() => !state && TakePhoto()}
+            />
+          )}
         </div>
       </div>
     </div>
