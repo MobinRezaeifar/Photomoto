@@ -4,8 +4,24 @@ import { BsCursor, BsRecordCircle } from "react-icons/bs";
 
 function CreateStoty() {
   const videoRef = useRef(null);
-  const [imageUrl, setImageUrl] = useState(null);
-  const [CameraStatus, setCameraStatus] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [state, setstate] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isMouseDown) {
+        setstate(true);
+        startVideoRecording();
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeout);
+      setstate(false);
+    };
+  }, [isMouseDown]);
 
   useEffect(() => {
     const StartCamera = async () => {
@@ -21,6 +37,8 @@ function CreateStoty() {
     StartCamera();
   }, []);
 
+  // Handele Picture
+
   const TakePhoto = () => {
     const canvas = document.createElement("canvas");
     const video = videoRef.current;
@@ -30,11 +48,10 @@ function CreateStoty() {
     canvas.getContext("2d").drawImage(video, 0, 0);
 
     const imageUrl = canvas.toDataURL("image/png");
-    setImageUrl(imageUrl);
-    handleDownload(imageUrl);
+    handleDownloadPicture(imageUrl);
   };
 
-  const handleDownload = (imageUrl) => {
+  const handleDownloadPicture = (imageUrl) => {
     const a = document.createElement("a");
     a.href = imageUrl;
     a.download = Date.now() + ".png";
@@ -42,24 +59,48 @@ function CreateStoty() {
     a.click();
     document.body.removeChild(a);
   };
-  const [isMouseDown, setIsMouseDown] = useState(false);
-  const [state, setstate] = useState(false);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (isMouseDown) {
-        setstate(true);
-        console.log("نگه داشتن");
+  // \\
+
+  // Handele Video
+  const startVideoRecording = () => {
+    const stream = videoRef.current.captureStream();
+    const recorder = new MediaRecorder(stream);
+    setMediaRecorder(recorder); // تنظیم mediaRecorder
+
+    const chunks = [];
+    recorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        chunks.push(event.data);
       }
-    }, 1000);
-
-    return () => {
-      clearTimeout(timeout);
-      setstate(false);
     };
-  }, [isMouseDown]);
 
-  
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: "video/webm" });
+      const url = URL.createObjectURL(blob);
+      handleDownloadVideo(url);
+    };
+
+    recorder.start();
+    setIsRecording(true);
+  };
+
+  const stopVideoRecording = () => {
+    if (mediaRecorder) {
+      mediaRecorder.stop();
+      setIsRecording(false);
+    }
+  };
+
+  const handleDownloadVideo = (url) => {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${Date.now()}.webm`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+  // \\
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
@@ -80,6 +121,7 @@ function CreateStoty() {
             }}
             onMouseUp={() => {
               setIsMouseDown(false);
+              stopVideoRecording();
             }}
             onClick={() => !state && TakePhoto()}
           />
