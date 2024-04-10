@@ -17,7 +17,7 @@ function CreateStoty() {
         setstate(true);
         startVideoRecording();
       }
-    }, 1000);
+    }, 200);
 
     return () => {
       clearTimeout(timeout);
