@@ -73,7 +73,11 @@ function CreateStoty() {
     return () => clearInterval(interval);
   }, [isRecording]);
 
-  console.log(recordingProgress);
+  useEffect(() => {
+    if (recordingProgress >= 15) {
+      stopVideoRecording();
+    }
+  });
 
   const stopVideoRecording = () => {
     if (mediaRecorder) {
