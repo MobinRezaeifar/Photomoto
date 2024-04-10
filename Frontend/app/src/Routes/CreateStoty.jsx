@@ -21,7 +21,7 @@ function CreateStoty() {
     StartCamera();
   }, []);
 
-  const handleCapture = () => {
+  const TakePhoto = () => {
     const canvas = document.createElement("canvas");
     const video = videoRef.current;
 
@@ -31,12 +31,17 @@ function CreateStoty() {
 
     const imageUrl = canvas.toDataURL("image/png");
     setImageUrl(imageUrl);
+    handleDownload(imageUrl);
   };
 
-  const handleClick = () => {
-    console.log("کلیک ساده");
+  const handleDownload = (imageUrl) => {
+    const a = document.createElement("a");
+    a.href = imageUrl;
+    a.download = Date.now() + ".png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
-
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [state, setstate] = useState(false);
 
@@ -46,14 +51,15 @@ function CreateStoty() {
         setstate(true);
         console.log("نگه داشتن");
       }
-    }, 3000);
+    }, 1000);
 
     return () => {
       clearTimeout(timeout);
       setstate(false);
     };
   }, [isMouseDown]);
-  console.log(state);
+
+  
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
@@ -75,7 +81,7 @@ function CreateStoty() {
             onMouseUp={() => {
               setIsMouseDown(false);
             }}
-            onClick={() => !state && handleClick()}
+            onClick={() => !state && TakePhoto()}
           />
         </div>
       </div>
