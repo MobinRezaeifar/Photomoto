@@ -33,53 +33,49 @@ function CreateStoty() {
     setImageUrl(imageUrl);
   };
 
-  const buttonRef = useRef(null);
-  const [holdTimer, setHoldTimer] = useState(null);
-
   const handleClick = () => {
-    console.log("Button clicked!");
+    console.log("کلیک ساده");
   };
 
-  const handleHold = () => {
-    console.log("Button held!");
-    setHoldTimer(null); // Clear the timer if hold is detected
-  };
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [state, setstate] = useState(false);
 
   useEffect(() => {
-    const button = buttonRef.current;
-
-    const handleMouseDown = () => {
-      setHoldTimer(setTimeout(handleHold, 1000)); // Start timer after 1 second of press (adjust as needed)
-    };
-
-    const handleMouseUp = () => {
-      clearTimeout(holdTimer);
-    };
-    if (button) {
-      button.addEventListener("mousedown", handleMouseDown);
-      button.addEventListener("mouseup", handleMouseUp);
-    }
+    const timeout = setTimeout(() => {
+      if (isMouseDown) {
+        setstate(true);
+        console.log("نگه داشتن");
+      }
+    }, 3000);
 
     return () => {
-      if (button) {
-        button.removeEventListener("mousedown", handleMouseDown);
-        button.removeEventListener("mouseup", handleMouseUp);
-      }
+      clearTimeout(timeout);
+      setstate(false);
     };
-  }, []);
-
+  }, [isMouseDown]);
+  console.log(state);
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
         <div>
-          <video ref={videoRef} className="w-full h-screen" autoPlay></video>
+          <video
+            style={{ transform: "scaleX(-1)" }}
+            ref={videoRef}
+            className="w-full h-screen"
+            autoPlay
+          ></video>
         </div>
         <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center">
           <BsRecordCircle
             size={40}
             className="cursor-pointer"
-            ref={buttonRef}
-            onClick={handleClick}
+            onMouseDown={() => {
+              setIsMouseDown(true);
+            }}
+            onMouseUp={() => {
+              setIsMouseDown(false);
+            }}
+            onClick={() => !state && handleClick()}
           />
         </div>
       </div>
