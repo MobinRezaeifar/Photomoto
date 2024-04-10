@@ -1,8 +1,7 @@
-import React, { useRef, useState } from "react";
-import { useEffect } from "react";
-import { BsCursor, BsRecordCircle } from "react-icons/bs";
+import React, { useRef, useState, useEffect } from "react";
 import { Progress } from "antd";
 import { FaCircle } from "react-icons/fa";
+import { BsRecordCircle } from "react-icons/bs";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -10,6 +9,7 @@ function CreateStoty() {
   const [state, setstate] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
+  const [recordingProgress, setRecordingProgress] = useState(0);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -39,7 +39,51 @@ function CreateStoty() {
     StartCamera();
   }, []);
 
-  // Handele Picture
+  const startVideoRecording = () => {
+    const stream = videoRef.current.captureStream();
+    const recorder = new MediaRecorder(stream);
+    setMediaRecorder(recorder);
+
+    const chunks = [];
+    recorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        chunks.push(event.data);
+      }
+    };
+
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: "video/webm" });
+      const url = URL.createObjectURL(blob);
+      handleDownloadVideo(url);
+      setRecordingProgress(0); // تنظیم recordingProgress به صفر
+    };
+
+    recorder.start();
+    setIsRecording(true);
+
+    const interval = setInterval(() => {
+      setRecordingProgress(prevProgress => prevProgress + 1);
+    }, 1000);
+
+    // Stop interval when recording stops
+    return () => clearInterval(interval);
+  };
+
+  const stopVideoRecording = () => {
+    if (mediaRecorder) {
+      mediaRecorder.stop();
+      setIsRecording(false);
+    }
+  };
+
+  const handleDownloadVideo = (url) => {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${Date.now()}.webm`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
 
   const TakePhoto = () => {
     const canvas = document.createElement("canvas");
@@ -62,47 +106,6 @@ function CreateStoty() {
     document.body.removeChild(a);
   };
 
-  // \\
-
-  // Handele Video
-  const startVideoRecording = () => {
-    const stream = videoRef.current.captureStream();
-    const recorder = new MediaRecorder(stream);
-    setMediaRecorder(recorder); // تنظیم mediaRecorder
-
-    const chunks = [];
-    recorder.ondataavailable = (event) => {
-      if (event.data.size > 0) {
-        chunks.push(event.data);
-      }
-    };
-
-    recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: "video/webm" });
-      const url = URL.createObjectURL(blob);
-      handleDownloadVideo(url);
-    };
-
-    recorder.start();
-    setIsRecording(true);
-  };
-
-  const stopVideoRecording = () => {
-    if (mediaRecorder) {
-      mediaRecorder.stop();
-      setIsRecording(false);
-    }
-  };
-
-  const handleDownloadVideo = (url) => {
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${Date.now()}.webm`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-  // \\
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
@@ -135,7 +138,7 @@ function CreateStoty() {
               <FaCircle style={{ position: "absolute" }} size={16} />
               <Progress
                 type="circle"
-                percent={10}
+                percent={(recordingProgress / 15) * 100}
                 size={42}
                 className="cursor-pointer "
               />
