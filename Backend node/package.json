@@ -16,6 +16,7 @@
     "express": "^4.19.2",
     "mongoose": "^7.6.3",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "sanitize-filename": "^1.6.3"
   }
 }

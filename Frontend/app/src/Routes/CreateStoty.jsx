@@ -54,7 +54,6 @@ function CreateStoty() {
 
     recorder.onstop = async () => {
       const blob = new Blob(chunks, { type: "video/webm" });
-      console.log(blob);
       var form = new FormData();
       form.append("file", blob, Date.now() + ".mp4");
       try {
@@ -99,14 +98,14 @@ function CreateStoty() {
     }
   };
 
-  const handleDownloadVideo = (url) => {
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${Date.now()}.webm`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
+  // const handleDownloadVideo = (url) => {
+  //   const a = document.createElement("a");
+  //   a.href = url;
+  //   a.download = `${Date.now()}.webm`;
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  // };
 
   const TakePhoto = () => {
     const canvas = document.createElement("canvas");

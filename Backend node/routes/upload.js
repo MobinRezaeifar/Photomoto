@@ -8,16 +8,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
-    let format;
-    if (file.mimetype.startsWith("video")) {
-      format = ".mp4";
-    }
-    cb(
-      null,
-      file.mimetype.startsWith("video")
-        ? `${file.originalname}`
-        : `${file.originalname}`
-    );
+    cb(null, `${file.originalname}`);
   },
 });
 const upload = multer({ storage: storage });
