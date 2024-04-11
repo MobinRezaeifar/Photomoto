@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Progress } from "antd";
 import { FaCircle } from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
-
+import axios from "axios";
 function CreateStoty() {
   const videoRef = useRef(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
@@ -52,11 +52,23 @@ function CreateStoty() {
       }
     };
 
-    recorder.onstop = () => {
+    recorder.onstop = async () => {
       const blob = new Blob(chunks, { type: "video/webm" });
-      const url = URL.createObjectURL(blob);
-      handleDownloadVideo(url);
-      setRecordingProgress(0); // تنظیم recordingProgress به صفر
+      console.log(blob);
+      var form = new FormData();
+      form.append("file", blob, Date.now() + ".mp4");
+      try {
+        await axios.post("http://localhost:5000/api/upload", form, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        console.log("File uploaded successfully!");
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      }
+
+      setRecordingProgress(0);
     };
 
     recorder.start();
