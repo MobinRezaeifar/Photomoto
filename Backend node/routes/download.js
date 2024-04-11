@@ -5,7 +5,6 @@ const File = require("../models/File");
 const router = express.Router();
 
 router.get("/files/:name", async (req, res) => {
-  console.log(__dirname);
   try {
     const file = await File.findOne({ name: req.params.name });
     if (!file) {
