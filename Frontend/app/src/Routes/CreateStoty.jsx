@@ -30,6 +30,7 @@ function CreateStoty() {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
           video: true,
+          audio: true,
         });
         videoRef.current.srcObject = stream;
       } catch (error) {
@@ -125,6 +126,7 @@ function CreateStoty() {
             ref={videoRef}
             className="w-full h-screen"
             autoPlay
+            muted
           ></video>
         </div>
         <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
