@@ -5,7 +5,7 @@ const {
   postStory,
   updateStory,
   deleteStory,
-} = require("../controller/ToDoController");
+} = require("../controller/StoryController");
 
 const router = Router();
 

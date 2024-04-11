@@ -1,14 +1,14 @@
-const ToDoModel = require("../models/ToDoModel");
+const StoryModel = require("../models/StoryModel");
 
-module.exports.getToDos = async (req, res) => {
-  const toDos = await ToDoModel.find();
-  res.send(toDos);
+module.exports.getStorys = async (req, res) => {
+  const storys = await StoryModel.find();
+  res.send(storys);
 };
 
-module.exports.postToDo = (req, res) => {
-  const { toDo } = req.body;
+module.exports.postStory = (req, res) => {
+  const { owner, media, time } = req.body;
 
-  ToDoModel.create({ toDo })
+  StoryModel.create({  owner, media, time })
     .then((data) => {
       console.log("Post Successfully...");
       res.status(201).send(data);
@@ -19,11 +19,11 @@ module.exports.postToDo = (req, res) => {
     });
 };
 
-module.exports.updateToDo = (req, res) => {
+module.exports.updateStory = (req, res) => {
   const { id } = req.params;
-  const { toDo } = req.body;
+  const {  owner, media, time } = req.body;
 
-  ToDoModel.findByIdAndUpdate(id, { toDo })
+  StoryModel.findByIdAndUpdate(id, {  owner, media, time })
     .then(() => {
       res.send("Updated Successfully....");
     })
@@ -33,10 +33,10 @@ module.exports.updateToDo = (req, res) => {
     });
 };
 
-module.exports.deleteToDo = (req, res) => {
+module.exports.deleteStory = (req, res) => {
   const { id } = req.params;
 
-  ToDoModel.findByIdAndDelete(id)
+  StoryModel.findByIdAndDelete(id)
     .then(() => {
       res.send("Deleted Successfully....");
     })
