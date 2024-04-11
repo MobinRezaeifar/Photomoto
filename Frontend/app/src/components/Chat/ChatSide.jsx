@@ -96,21 +96,32 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     await Change("change");
     var form = new FormData();
     form.append("file", file);
-    await axios.post("http://localhost:5221/api/FileManager/uploadfile", form);
-    await dispatch(
-      AddMessages({
-        media: file.name,
-        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-        sender: decryptAES(sessionStorage.getItem("u")),
-        recipient: SelectUser,
-        relationship: `${decryptAES(
-          sessionStorage.getItem("u")
-        )},${SelectUser}`,
-        type: file.type,
-        size: file.size ? file.size / (1024 * 1024) : 0,
-      })
-    );
-    await Change("change");
+    // await axios.post("http://localhost:5000/api/upload", form);
+    try {
+      await axios.post("http://localhost:5000/api/upload", form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("File uploaded successfully!");
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+
+    // await dispatch(
+    //   AddMessages({
+    //     media: file.name,
+    //     time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+    //     sender: decryptAES(sessionStorage.getItem("u")),
+    //     recipient: SelectUser,
+    //     relationship: `${decryptAES(
+    //       sessionStorage.getItem("u")
+    //     )},${SelectUser}`,
+    //     type: file.type,
+    //     size: file.size ? file.size / (1024 * 1024) : 0,
+    //   })
+    // );
+    // await Change("change");
   };
 
   const updateSize = () => {
