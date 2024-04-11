@@ -5,6 +5,23 @@ module.exports.getStorys = async (req, res) => {
   res.send(storys);
 };
 
+
+module.exports.getStoryById = (req, res) => {
+  const { id } = req.params;
+
+  StoryModel.findById(id)
+    .then((story) => {
+      if (!story) {
+        return res.status(404).send({ msg: "Story not found" });
+      }
+      res.send(story);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ error: err, msg: "Something went wrong!" });
+    });
+};
+
 module.exports.postStory = (req, res) => {
   const { owner, media, time } = req.body;
 
