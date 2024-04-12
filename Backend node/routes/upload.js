@@ -14,7 +14,7 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
-router.post("/", upload.single("file"), async (req, res) => {
+router.post("/upload", upload.single("file"), async (req, res) => {
   try {
     const file = new File({
       name: req.file.originalname,
