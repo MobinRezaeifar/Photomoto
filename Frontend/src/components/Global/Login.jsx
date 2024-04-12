@@ -102,7 +102,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div
         style={{ backgroundColor: "#001925" }}
         id="drawer-swipe"
@@ -140,6 +140,8 @@ const Login = ({ ShowLogin, setShowLogin }) => {
             <div>
               {Password && Username && (
                 <lord-icon
+                tabIndex={!ShowLogin ? -1 : 3}
+
                   onClick={LoginUser}
                   src="https://cdn.lordicon.com/dangivhk.json"
                   trigger="hover"
@@ -169,6 +171,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
                 />
               </div>
               <input
+                tabIndex={!ShowLogin ? -1 : 1}
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
@@ -191,6 +194,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
                 <RiLockPasswordLine size={25} />
               </div>
               <input
+                tabIndex={!ShowLogin ? -1 : 2}
                 style={{ backgroundColor: "#002733" }}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -206,7 +210,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
           </form>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

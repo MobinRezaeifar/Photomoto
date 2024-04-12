@@ -191,6 +191,7 @@ const Register = () => {
                   style={{ marginTop: "30px" }}
                 >
                   <input
+                    tabIndex={1}
                     placeholder="Username..."
                     type="text"
                     className="input"
@@ -198,6 +199,7 @@ const Register = () => {
                     onChange={(e) => setUsername(e.target.value)}
                   />
                   <input
+                    tabIndex={!ShowLogin ? 2 : -1}
                     placeholder="Password..."
                     id="password"
                     type="password"
@@ -208,6 +210,7 @@ const Register = () => {
                 </div>
                 <div className={`${dimensions.width > 900 && "flex"} gap-2`}>
                   <input
+                    tabIndex={!ShowLogin ? 3 : -1}
                     placeholder="Fullname..."
                     id="fullname"
                     type="text"
@@ -216,6 +219,7 @@ const Register = () => {
                     onChange={(e) => setFullName(e.target.value)}
                   />
                   <input
+                    tabIndex={4}
                     placeholder="Email..."
                     id="mail"
                     type="email"
@@ -255,7 +259,7 @@ const Register = () => {
                     : "flex justify-around"
                 }`}
               >
-                <li onClick={() => setGender("male")}>
+                <li tabIndex={5} onClick={() => setGender("male")}>
                   <input
                     type="radio"
                     id="hosting-small"
@@ -286,7 +290,7 @@ const Register = () => {
                     ></lord-icon>
                   </label>
                 </li>
-                <li onClick={() => setGender("female")}>
+                <li tabIndex={6} onClick={() => setGender("female")}>
                   <input
                     type="radio"
                     id="hosting-smalll"
@@ -320,7 +324,7 @@ const Register = () => {
                     ></lord-icon>
                   </label>
                 </li>
-                <li onClick={() => setGender("other")}>
+                <li onClick={() => setGender("other")} tabIndex={7}>
                   <input
                     type="radio"
                     id="hosting-big"
@@ -354,6 +358,7 @@ const Register = () => {
 
               <div className="button-container cursor-pointer">
                 <div
+                  tabIndex={8}
                   className="reset-button-container"
                   onClick={submitRegister}
                 >
