@@ -148,7 +148,7 @@ function CreateStoty() {
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
         <FaArrowCircleLeft
           size={30}
-          className="absolute top-0 m-4 z-50"
+          className="absolute top-0 m-4 z-50 cursor-pointer"
           onClick={() => {
             SetshowFilterList(false);
             setmediaResult({});
