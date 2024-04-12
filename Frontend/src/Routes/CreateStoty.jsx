@@ -59,9 +59,10 @@ function CreateStoty() {
     };
 
     recorder.onstop = async () => {
+      let fileName = Date.now() + ".mp4";
       const blob = new Blob(chunks, { type: "video/webm" });
       var form = new FormData();
-      form.append("file", blob, Date.now() + ".mp4");
+      form.append("file", blob, fileName);
       try {
         await axios.post("http://localhost:5000/api/upload", form, {
           headers: {
@@ -72,7 +73,13 @@ function CreateStoty() {
       } catch (error) {
         console.error("Error uploading file:", error);
       }
-
+      setTimeout(() => {
+        setmediaResult({
+          fileName,
+          type: "video",
+        });
+      }, 1000);
+      SetshowFilterList(true);
       setRecordingProgress(0);
     };
 
@@ -143,6 +150,31 @@ function CreateStoty() {
         <div>
           {(() => {
             if (!isEqual(mediaResult, {})) {
+              if (mediaResult.type === "video") {
+                return (
+                  <div
+                    className="w-full h-screen flex text-center items-center justify-center "
+                    style={{
+                      borderRadius: "24px",
+                      padding: "40px 0",
+                      transform: "scaleX(-1)",
+                    }}
+                  >
+                    <video
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        filter: Fillter,
+                      }}
+                      autoPlay
+                      loop
+                      src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                      alt=""
+                    />
+                  </div>
+                );
+              }
               if (mediaResult.type === "photo") {
                 return (
                   <div
@@ -188,9 +220,13 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
-                    style={{ filter: "grayscale(100%)", cursor: "pointer" }}
+                    style={{
+                      filter: "grayscale(100%)",
+                      cursor: "pointer",
+                      transform: "scaleX(-1)",
+                    }}
                   />
                 }
               />
@@ -200,9 +236,13 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
-                    style={{ filter: "blur(1.5px)", cursor: "pointer" }}
+                    style={{
+                      filter: "blur(1.5px)",
+                      cursor: "pointer",
+                      transform: "scaleX(-1)",
+                    }}
                   />
                 }
               />
@@ -212,9 +252,13 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
-                    style={{ filter: "brightness(200%)", cursor: "pointer" }}
+                    style={{
+                      filter: "brightness(200%)",
+                      cursor: "pointer",
+                      transform: "scaleX(-1)",
+                    }}
                   />
                 }
               />
@@ -224,9 +268,9 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", transform: "scaleX(-1)" }}
                   />
                 }
               />
@@ -236,9 +280,13 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
-                    style={{ filter: "contrast(200%)", cursor: "pointer" }}
+                    style={{
+                      filter: "contrast(200%)",
+                      cursor: "pointer",
+                      transform: "scaleX(-1)",
+                    }}
                   />
                 }
               />
@@ -248,11 +296,12 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
                     style={{
                       filter: "hue-rotate(70deg)",
                       cursor: "pointer",
+                      transform: "scaleX(-1)",
                     }}
                   />
                 }
@@ -263,11 +312,12 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
                     style={{
                       filter: "invert(100%)",
                       cursor: "pointer",
+                      transform: "scaleX(-1)",
                     }}
                   />
                 }
@@ -278,11 +328,12 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
                     style={{
                       filter: "saturate(200%)",
                       cursor: "pointer",
+                      transform: "scaleX(-1)",
                     }}
                   />
                 }
@@ -293,11 +344,12 @@ function CreateStoty() {
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
                   <img
-                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
                     alt=""
                     style={{
                       filter: "sepia(100%)",
                       cursor: "pointer",
+                      transform: "scaleX(-1)",
                     }}
                   />
                 }
