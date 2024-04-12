@@ -44,7 +44,6 @@ function CreateStoty() {
     const stream = videoRef.current.captureStream();
     const recorder = new MediaRecorder(stream);
     setMediaRecorder(recorder);
-
     const chunks = [];
     recorder.ondataavailable = (event) => {
       if (event.data.size > 0) {

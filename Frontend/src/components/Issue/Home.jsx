@@ -26,6 +26,9 @@ const Home = ({ change, Change }) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+ 
+
   const updateSize = () => {
     setDimensions({
       width: window.innerWidth,
@@ -66,6 +69,7 @@ const Home = ({ change, Change }) => {
       }
     });
   }, [change]);
+
   useEffect(() => {
     Registers.map((data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
