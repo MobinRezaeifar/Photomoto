@@ -456,8 +456,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
               </div>
             )}
             <div className=" w-full text-right px-4 pb-2">
-
-            <span className=" text-sm text-[#80808085]">°{Post.time}°</span>
+              <span className=" text-sm text-[#80808085]">°{Post.time}°</span>
             </div>
           </div>
         </div>
