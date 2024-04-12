@@ -98,35 +98,34 @@ function CreateStoty() {
     }
   };
 
-  // const handleDownloadVideo = (url) => {
-  //   const a = document.createElement("a");
-  //   a.href = url;
-  //   a.download = `${Date.now()}.webm`;
-  //   document.body.appendChild(a);
-  //   a.click();
-  //   document.body.removeChild(a);
-  // };
+ 
 
-  const TakePhoto = () => {
-    const canvas = document.createElement("canvas");
-    const video = videoRef.current;
-
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext("2d").drawImage(video, 0, 0);
-
-    const imageUrl = canvas.toDataURL("image/png");
-    handleDownloadPicture(imageUrl);
+  const TakePhoto = async () => {
+    if (videoRef.current) {
+      const canvas = document.createElement('canvas');
+      canvas.width = videoRef.current.videoWidth;
+      canvas.height = videoRef.current.videoHeight;
+  
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+  
+      canvas.toBlob(async (blob) => {
+        var form = new FormData();
+        form.append("file", blob, Date.now() + ".png");
+        try {
+          await axios.post("http://localhost:5000/api/upload", form, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          console.log("Photo uploaded successfully!");
+        } catch (error) {
+          console.error("Error uploading photo:", error);
+        }
+      }, 'image/png');
+    }
   };
-
-  const handleDownloadPicture = (imageUrl) => {
-    const a = document.createElement("a");
-    a.href = imageUrl;
-    a.download = Date.now() + ".png";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
+  
 
   return (
     <div className="flex justify-center h-screen w-screen">
