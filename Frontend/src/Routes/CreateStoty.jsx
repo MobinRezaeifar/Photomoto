@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useState, useEffect } from "react";
-import { Progress } from "antd";
+import { Avatar, Progress } from "antd";
 import { FaCircle } from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
 import axios from "axios";
 import isEqual from "lodash.isequal";
+import { AntDesignOutlined } from "@ant-design/icons";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -13,6 +15,8 @@ function CreateStoty() {
   const [isRecording, setIsRecording] = useState(false);
   const [recordingProgress, setRecordingProgress] = useState(0);
   const [mediaResult, setmediaResult] = useState({});
+  const [showFilterList, SetshowFilterList] = useState(false);
+  const [Fillter, setFillter] = useState("");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -101,6 +105,7 @@ function CreateStoty() {
   };
 
   const TakePhoto = async () => {
+    SetshowFilterList(true);
     let fileName = Date.now() + ".png";
     if (videoRef.current) {
       const canvas = document.createElement("canvas");
@@ -148,22 +153,12 @@ function CreateStoty() {
                       transform: "scaleX(-1)",
                     }}
                   >
-                    {/* <div
-                      style={{
-                        transform: "scaleX(-1)",
-                        backgroundImage: `url(http://localhost:5000/api/files/${mediaResult.fileName})`,
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        height: "100%",
-                        width: "100%",
-                        borderRadius: "24px",
-                      }}
-                    /> */}
                     <img
                       style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "contain",
+                        filter: Fillter,
                       }}
                       src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
                       alt=""
@@ -184,52 +179,179 @@ function CreateStoty() {
             }
           })()}
         </div>
-        <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
-          {isRecording ? (
-            <div
-              style={{
-                marginBottom: "-8px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onMouseDown={() => {
-                setIsMouseDown(true);
-              }}
-              onMouseUp={() => {
-                setIsMouseDown(false);
-                stopVideoRecording();
-              }}
-              onClick={() => !state && TakePhoto()}
-            >
-              <FaCircle style={{ position: "absolute" }} size={16} />
-              <Progress
-                type="circle"
-                percent={(recordingProgress / 15) * 100}
-                size={42}
-                className="cursor-pointer "
+        {showFilterList ? (
+          <div className="absolute bottom-1  w-full pl-4  md:w-[50%] flex justify-center items-center overflow-x-auto pb-6">
+            <div className="flex flex-no-wrap gap-3">
+              <Avatar
+                onClick={() => setFillter("grayscale(100%)")}
+                title="grayscale"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{ filter: "grayscale(100%)", cursor: "pointer" }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("blur(1.5px)")}
+                title="blur"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{ filter: "blur(1.5px)", cursor: "pointer" }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("brightness(200%)")}
+                title="brightness"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{ filter: "brightness(200%)", cursor: "pointer" }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("")}
+                title="normal"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{ cursor: "pointer" }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("contrast(200%)")}
+                title="contrast"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{ filter: "contrast(200%)", cursor: "pointer" }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("hue-rotate(70deg)")}
+                title="hue"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{
+                      filter: "hue-rotate(70deg)",
+                      cursor: "pointer",
+                    }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("invert(100%)")}
+                title="invert"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{
+                      filter: "invert(100%)",
+                      cursor: "pointer",
+                    }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("saturate(200%)")}
+                title="saturate"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{
+                      filter: "saturate(200%)",
+                      cursor: "pointer",
+                    }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => setFillter("sepia(100%)")}
+                title="sepia"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                    alt=""
+                    style={{
+                      filter: "sepia(100%)",
+                      cursor: "pointer",
+                    }}
+                  />
+                }
               />
             </div>
-          ) : (
-            <BsRecordCircle
-              style={{
-                position: "absolute",
-                cursor: "pointer",
-                marginBottom: !isRecording && "28px",
-                zIndex: "99999",
-              }}
-              size={40}
-              onMouseDown={() => {
-                setIsMouseDown(true);
-              }}
-              onMouseUp={() => {
-                setIsMouseDown(false);
-                stopVideoRecording();
-              }}
-              onClick={() => !state && TakePhoto()}
-            />
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
+            {isRecording ? (
+              <div
+                style={{
+                  marginBottom: "-8px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onMouseDown={() => {
+                  setIsMouseDown(true);
+                }}
+                onMouseUp={() => {
+                  setIsMouseDown(false);
+                  stopVideoRecording();
+                }}
+                onClick={() => !state && TakePhoto()}
+              >
+                <FaCircle style={{ position: "absolute" }} size={16} />
+                <Progress
+                  type="circle"
+                  percent={(recordingProgress / 15) * 100}
+                  size={42}
+                  className="cursor-pointer "
+                />
+              </div>
+            ) : (
+              <BsRecordCircle
+                style={{
+                  position: "absolute",
+                  cursor: "pointer",
+                  marginBottom: !isRecording && "28px",
+                  zIndex: "99999",
+                }}
+                size={40}
+                onMouseDown={() => {
+                  setIsMouseDown(true);
+                }}
+                onMouseUp={() => {
+                  setIsMouseDown(false);
+                  stopVideoRecording();
+                }}
+                onClick={() => !state && TakePhoto()}
+              />
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
