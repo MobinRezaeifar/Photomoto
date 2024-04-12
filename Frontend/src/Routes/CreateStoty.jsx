@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState, useEffect } from "react";
 import { Avatar, Progress } from "antd";
-import { FaCircle } from "react-icons/fa";
+import { FaArrowCircleLeft, FaCircle } from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
 import axios from "axios";
 import isEqual from "lodash.isequal";
-import { AntDesignOutlined } from "@ant-design/icons";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -147,6 +146,14 @@ function CreateStoty() {
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
+        <FaArrowCircleLeft
+          size={30}
+          className="absolute top-0 m-4 z-50"
+          onClick={() => {
+            SetshowFilterList(false);
+            setmediaResult({});
+          }}
+        />
         <div>
           {(() => {
             if (!isEqual(mediaResult, {})) {
@@ -206,7 +213,7 @@ function CreateStoty() {
                   className="w-full h-screen"
                   autoPlay
                   muted
-                ></video>
+                />
               );
             }
           })()}
