@@ -3,6 +3,8 @@ import { Progress } from "antd";
 import { FaCircle } from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
 import axios from "axios";
+import isEqual from "lodash.isequal";
+
 function CreateStoty() {
   const videoRef = useRef(null);
   const [isMouseDown, setIsMouseDown] = useState(false);
@@ -10,6 +12,7 @@ function CreateStoty() {
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingProgress, setRecordingProgress] = useState(0);
+  const [mediaResult, setmediaResult] = useState({});
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -97,20 +100,18 @@ function CreateStoty() {
     }
   };
 
- 
-
   const TakePhoto = async () => {
+    let fileName = Date.now() + ".png";
     if (videoRef.current) {
-      const canvas = document.createElement('canvas');
+      const canvas = document.createElement("canvas");
       canvas.width = videoRef.current.videoWidth;
       canvas.height = videoRef.current.videoHeight;
-  
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-  
+
       canvas.toBlob(async (blob) => {
         var form = new FormData();
-        form.append("file", blob, Date.now() + ".png");
+        await form.append("file", blob, fileName);
         try {
           await axios.post("http://localhost:5000/api/upload", form, {
             headers: {
@@ -121,22 +122,67 @@ function CreateStoty() {
         } catch (error) {
           console.error("Error uploading photo:", error);
         }
-      }, 'image/png');
+      }, "image/png");
     }
+    setTimeout(() => {
+      setmediaResult({
+        fileName,
+        type: "photo",
+      });
+    }, 1000);
   };
-  
 
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
         <div>
-          <video
-            style={{ transform: "scaleX(-1)" }}
-            ref={videoRef}
-            className="w-full h-screen"
-            autoPlay
-            muted
-          ></video>
+          {(() => {
+            if (!isEqual(mediaResult, {})) {
+              if (mediaResult.type === "photo") {
+                return (
+                  <div
+                    className="w-full h-screen flex text-center items-center justify-center "
+                    style={{
+                      borderRadius: "24px",
+                      padding: "40px 0",
+                      transform: "scaleX(-1)",
+                    }}
+                  >
+                    {/* <div
+                      style={{
+                        transform: "scaleX(-1)",
+                        backgroundImage: `url(http://localhost:5000/api/files/${mediaResult.fileName})`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        height: "100%",
+                        width: "100%",
+                        borderRadius: "24px",
+                      }}
+                    /> */}
+                    <img
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                      src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                      alt=""
+                    />
+                  </div>
+                );
+              }
+            } else {
+              return (
+                <video
+                  style={{ transform: "scaleX(-1)" }}
+                  ref={videoRef}
+                  className="w-full h-screen"
+                  autoPlay
+                  muted
+                ></video>
+              );
+            }
+          })()}
         </div>
         <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
           {isRecording ? (

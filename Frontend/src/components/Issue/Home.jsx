@@ -27,8 +27,6 @@ const Home = ({ change, Change }) => {
     height: window.innerHeight,
   });
 
- 
-
   const updateSize = () => {
     setDimensions({
       width: window.innerWidth,
