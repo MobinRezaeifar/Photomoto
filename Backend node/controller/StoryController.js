@@ -5,7 +5,6 @@ module.exports.getStorys = async (req, res) => {
   res.send(storys);
 };
 
-
 module.exports.getStoryById = (req, res) => {
   const { id } = req.params;
 
@@ -23,9 +22,9 @@ module.exports.getStoryById = (req, res) => {
 };
 
 module.exports.postStory = (req, res) => {
-  const { owner, media, time } = req.body;
+  const { owner, media, time, filter,type } = req.body;
 
-  StoryModel.create({  owner, media, time })
+  StoryModel.create({ owner, media, time, filter,type })
     .then((data) => {
       console.log("Post Successfully...");
       res.status(201).send(data);
@@ -38,9 +37,9 @@ module.exports.postStory = (req, res) => {
 
 module.exports.updateStory = (req, res) => {
   const { id } = req.params;
-  const {  owner, media, time } = req.body;
+  const { owner, media, time, filter,type } = req.body;
 
-  StoryModel.findByIdAndUpdate(id, {  owner, media, time })
+  StoryModel.findByIdAndUpdate(id, { owner, media, time, filter,type })
     .then(() => {
       res.send("Updated Successfully....");
     })

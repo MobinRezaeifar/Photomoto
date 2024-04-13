@@ -13,6 +13,14 @@ const StorySchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  filter: {
+    type: String,
+    require: true,
+  },
+  type: {
+    type: String,
+    require: true,
+  },
 });
 
 module.exports = mongoose.model("Story", StorySchema);

@@ -5,6 +5,9 @@ import { FaArrowCircleLeft, FaCircle } from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
 import axios from "axios";
 import isEqual from "lodash.isequal";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "jalali-moment";
+import CryptoJS from "crypto-js";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -16,6 +19,17 @@ function CreateStoty() {
   const [mediaResult, setmediaResult] = useState({});
   const [showFilterList, SetshowFilterList] = useState(false);
   const [Fillter, setFillter] = useState("");
+
+  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
+  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
+  function decryptAES(message) {
+    const bytes = CryptoJS.AES.decrypt(message, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -45,7 +59,7 @@ function CreateStoty() {
     };
     StartCamera();
   }, []);
-  
+
   useEffect(() => {
     const StartCamera = async () => {
       try {
@@ -157,20 +171,40 @@ function CreateStoty() {
       });
     }, 1000);
   };
+  const now = Date.now();
 
-  console.log(mediaResult);
-
+  const ShareStory = () => {
+    if (!isEqual(mediaResult, {})) {
+      axios.post("http://localhost:5000/api/story/post", {
+        owner: decryptAES(sessionStorage.getItem("u")),
+        type: mediaResult.type,
+        media: "http://localhost:5000/api/files/" + mediaResult.fileName,
+        filter: Fillter,
+        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+      });
+    }
+  };
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
-        <FaArrowCircleLeft
-          size={30}
-          className="absolute top-0 m-4 z-50 cursor-pointer"
-          onClick={() => {
-            SetshowFilterList(false);
-            setmediaResult({});
-          }}
-        />
+        <div className="z-50 w-full  md:w-[50%] absolute flex justify-between p-4">
+          <FaArrowCircleLeft
+            size={30}
+            className=" cursor-pointer"
+            onClick={() => {
+              SetshowFilterList(false);
+              setmediaResult({});
+            }}
+          />
+          <button
+            className="btn glass bg-blue-700 text-white"
+            style={{ transform: "scale(0.9)" }}
+            onClick={ShareStory}
+          >
+            Share
+          </button>
+        </div>
+
         <div>
           {(() => {
             if (!isEqual(mediaResult, {})) {

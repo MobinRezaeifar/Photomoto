@@ -140,8 +140,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
             <div>
               {Password && Username && (
                 <lord-icon
-                tabIndex={!ShowLogin ? -1 : 3}
-
+                  tabIndex={!ShowLogin ? -1 : 3}
                   onClick={LoginUser}
                   src="https://cdn.lordicon.com/dangivhk.json"
                   trigger="hover"
