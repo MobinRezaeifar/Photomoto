@@ -645,3 +645,4 @@ D:\Programming\React\Photomoto\backend .net\obj\Debug\net8.0\refint\WebApplicati
 D:\Programming\React\Photomoto\backend .net\obj\Debug\net8.0\WebApplication1.pdb
 D:\Programming\React\Photomoto\backend .net\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 D:\Programming\React\Photomoto\backend .net\obj\Debug\net8.0\ref\WebApplication1.dll
+D:\Programming\React\Photomoto\backend .net\bin\Debug\net8.0\System.Security.Permissions.dll
