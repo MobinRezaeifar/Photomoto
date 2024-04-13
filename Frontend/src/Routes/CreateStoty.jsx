@@ -45,6 +45,21 @@ function CreateStoty() {
     };
     StartCamera();
   }, []);
+  
+  useEffect(() => {
+    const StartCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true,
+        });
+        videoRef.current.srcObject = stream;
+      } catch (error) {
+        console.error("Error accessing the camera:", error);
+      }
+    };
+    StartCamera();
+  }, [mediaResult]);
 
   const startVideoRecording = async () => {
     const stream = videoRef.current.captureStream();
@@ -142,6 +157,8 @@ function CreateStoty() {
       });
     }, 1000);
   };
+
+  console.log(mediaResult);
 
   return (
     <div className="flex justify-center h-screen w-screen">
