@@ -59,6 +59,7 @@ function CreateStoty() {
     };
     StartCamera();
   }, []);
+  
 
   useEffect(() => {
     const StartCamera = async () => {
