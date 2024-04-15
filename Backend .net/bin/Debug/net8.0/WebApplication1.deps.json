@@ -18,7 +18,7 @@
           "Microsoft.Extensions.Options": "8.0.2",
           "Microsoft.IdentityModel.Tokens": "7.5.0",
           "MongoDB.Driver": "2.23.1",
-          "StackExchange.Redis": "2.7.23",
+          "StackExchange.Redis": "2.7.33",
           "Swashbuckle.AspNetCore": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0",
@@ -892,7 +892,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.7.23": {
+      "StackExchange.Redis/2.7.33": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.1",
           "Pipelines.Sockets.Unofficial": "2.2.8"
@@ -900,7 +900,7 @@
         "runtime": {
           "lib/net6.0/StackExchange.Redis.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.7.23.42580"
+            "fileVersion": "2.7.33.41805"
           }
         }
       },
@@ -1752,12 +1752,12 @@
       "path": "snappier/1.0.0",
       "hashPath": "snappier.1.0.0.nupkg.sha512"
     },
-    "StackExchange.Redis/2.7.23": {
+    "StackExchange.Redis/2.7.33": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-w3ZHMjSasZf2KVBfWePZI93kE4uB6b2Rkm0HIDvsdpffeivXJNFRFEeb9Ewy20Ny+SsFCh7xq8g8Y+CRw7Am1w==",
-      "path": "stackexchange.redis/2.7.23",
-      "hashPath": "stackexchange.redis.2.7.23.nupkg.sha512"
+      "sha512": "sha512-2kCX5fvhEE824a4Ab5Imyi8DRuGuTxyklXV01kegkRpsWJcPmO6+GAQ+HegKxvXAxlXZ8yaRspvWJ8t3mMClfQ==",
+      "path": "stackexchange.redis/2.7.33",
+      "hashPath": "stackexchange.redis.2.7.33.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.5.0": {
       "type": "package",

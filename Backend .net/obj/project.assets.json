@@ -1589,7 +1589,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.7.23": {
+      "StackExchange.Redis/2.7.33": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
@@ -4463,10 +4463,10 @@
         "snappier.nuspec"
       ]
     },
-    "StackExchange.Redis/2.7.23": {
-      "sha512": "w3ZHMjSasZf2KVBfWePZI93kE4uB6b2Rkm0HIDvsdpffeivXJNFRFEeb9Ewy20Ny+SsFCh7xq8g8Y+CRw7Am1w==",
+    "StackExchange.Redis/2.7.33": {
+      "sha512": "2kCX5fvhEE824a4Ab5Imyi8DRuGuTxyklXV01kegkRpsWJcPmO6+GAQ+HegKxvXAxlXZ8yaRspvWJ8t3mMClfQ==",
       "type": "package",
-      "path": "stackexchange.redis/2.7.23",
+      "path": "stackexchange.redis/2.7.33",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4480,7 +4480,7 @@
         "lib/netcoreapp3.1/StackExchange.Redis.xml",
         "lib/netstandard2.0/StackExchange.Redis.dll",
         "lib/netstandard2.0/StackExchange.Redis.xml",
-        "stackexchange.redis.2.7.23.nupkg.sha512",
+        "stackexchange.redis.2.7.33.nupkg.sha512",
         "stackexchange.redis.nuspec"
       ]
     },
@@ -5980,7 +5980,7 @@
       "Microsoft.Extensions.Options >= 8.0.2",
       "Microsoft.IdentityModel.Tokens >= 7.5.0",
       "MongoDB.Driver >= 2.23.1",
-      "StackExchange.Redis >= 2.7.23",
+      "StackExchange.Redis >= 2.7.33",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "Swashbuckle.AspNetCore.SwaggerGen >= 6.5.0",
       "Swashbuckle.AspNetCore.SwaggerUI >= 6.5.0",
@@ -6073,7 +6073,7 @@
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.7.23, )"
+            "version": "[2.7.33, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "R3ECFBVKqYBh/wJ/bjfq31y7WwE5t57Tbyyy7A0qhE9x9UNtk7PPWsOGi0jLC9n9KufklGYDmAGi9GnWYa8VAA==",
+  "dgSpecHash": "wj1r0hYLCOwoaGmaJV9empPKyEiiR5HaIBlKulz4aTf5FR22uKiGT1acZJYmg55VBZBIDIknbH1zgcZcCeJ/Rg==",
   "success": true,
   "projectFilePath": "D:\\Programming\\React\\Photomoto\\backend .net\\WebApplication1.csproj",
   "expectedPackageFiles": [
@@ -88,7 +88,7 @@
     "C:\\Users\\mobin\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.8\\pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
     "C:\\Users\\mobin\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\mobin\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
-    "C:\\Users\\mobin\\.nuget\\packages\\stackexchange.redis\\2.7.23\\stackexchange.redis.2.7.23.nupkg.sha512",
+    "C:\\Users\\mobin\\.nuget\\packages\\stackexchange.redis\\2.7.33\\stackexchange.redis.2.7.33.nupkg.sha512",
     "C:\\Users\\mobin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\mobin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\mobin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

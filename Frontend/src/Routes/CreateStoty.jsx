@@ -8,6 +8,7 @@ import isEqual from "lodash.isequal";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "jalali-moment";
 import CryptoJS from "crypto-js";
+import { useNavigate } from "react-router-dom";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -19,6 +20,7 @@ function CreateStoty() {
   const [mediaResult, setmediaResult] = useState({});
   const [showFilterList, SetshowFilterList] = useState(false);
   const [Fillter, setFillter] = useState("");
+  let navigate = useNavigate()
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -59,7 +61,6 @@ function CreateStoty() {
     };
     StartCamera();
   }, []);
-  
 
   useEffect(() => {
     const StartCamera = async () => {
@@ -195,6 +196,7 @@ function CreateStoty() {
             onClick={() => {
               SetshowFilterList(false);
               setmediaResult({});
+              navigate("/photomoto")
             }}
           />
           <button

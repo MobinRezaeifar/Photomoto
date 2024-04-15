@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
+using StackExchange.Redis;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApplication1.Configuration;
 using WebApplication1.Hubs;
@@ -74,6 +75,14 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IOnlineUsersService, OnlineUsersService>();
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(opt =>
+{
+    var redisUrl = builder.Configuration.GetConnectionString("Redis");
+    return ConnectionMultiplexer.Connect(redisUrl);
+});
+
 builder
     .Services.AddAuthentication(options =>
     {
@@ -88,7 +97,9 @@ builder
             ValidIssuer = "admin@gmail.com",
             ValidAudience = "client@gmail.com",
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("abcdefghijklomnpqrstuvwxyz12345678900987654321abcdefghijklomnpqrstuvwxyz12345678900987654321")
+                Encoding.UTF8.GetBytes(
+                    "abcdefghijklomnpqrstuvwxyz12345678900987654321abcdefghijklomnpqrstuvwxyz12345678900987654321"
+                )
             ),
             ValidateIssuer = true,
             ValidateAudience = true,
