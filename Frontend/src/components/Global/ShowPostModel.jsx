@@ -22,6 +22,8 @@ import moment from "jalali-moment";
 import { BiCloset, BiWindowClose } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import axios from "axios";
+
 const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -182,6 +184,16 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
     });
   });
 
+  const handelConnection = () => {
+    axios.post("http://localhost:5221/api/ConnectionHandel", {
+      id: Date.now() + "",
+      sender: decryptAES(sessionStorage.getItem("u")),
+      receiver: Post.owner,
+      time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+      status: "send",
+    });
+  };
+
   return (
     <div
       className={`relative z-10 ${!showPostModel && "hidden"}`}
@@ -201,7 +213,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
               <div
                 className={`h-5 flex items-center justify-between px-4 py-8 `}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 ">
                   <Avatar src={Post.profileImg} size="large" />
                   <span
                     onClick={() => {
@@ -220,8 +232,16 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                   >
                     {Post.owner}
                   </span>
+                  {Post.owner != decryptAES(sessionStorage.getItem("u")) && (
+                    <h1
+                      onClick={handelConnection}
+                      className="font-bold text-xl text-blue-600 cursor-pointer"
+                    >
+                      {" "}
+                      + Connect
+                    </h1>
+                  )}
                 </div>
-
                 <div className="flex items-center">
                   <lord-icon
                     src="https://cdn.lordicon.com/snqonmhs.json"

@@ -75,7 +75,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddScoped<IOnlineUsersService, OnlineUsersService>();
+builder.Services.AddScoped<IConnectionHandelService, ConnectionHandelService>();
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(opt =>
 {
