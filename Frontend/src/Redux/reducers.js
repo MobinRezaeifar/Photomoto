@@ -2,6 +2,7 @@ const initialState = {
   Registers: [],
   Posts: [],
   Messages: [],
+  Connections: [],
   Issue: "me",
   ShowPostModel: false,
   ProfileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
@@ -98,6 +99,26 @@ const reducer = (state = initialState, action) => {
         ),
       };
 
+    case "ADD_CONNECTIONS_SUCCESS":
+      return {
+        ...state,
+        Connections: [...state.Connections, action.payload],
+      };
+
+    case "FETCH_CONNECTIONS_SUCCESS":
+      return {
+        ...state,
+        Connections: action.payload,
+      };
+
+    case "DELETE_CONNECTIONS_SUCCESS":
+      return {
+        ...state,
+        Connections: state.Connections.filter(
+          (Connection) => Connection.id !== action.payload
+        ),
+      };
+
     case "ISSUE":
       return { ...state, Issue: action.payload };
 
@@ -107,7 +128,6 @@ const reducer = (state = initialState, action) => {
       return { ...state, ProfileImg: action.payload };
     case "SELECTUSERCHAT":
       return { ...state, SelectUserChat: action.payload };
-
 
     default:
       return state;

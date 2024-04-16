@@ -10,6 +10,7 @@ import { FiMoreVertical } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import isEqual from "lodash/isEqual";
 import {
+  AddConnection,
   deletePost,
   fetchPosts,
   fetchRegister,
@@ -53,6 +54,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
     dispatch(fetchRegister());
     dispatch(fetchPosts());
   }, [dispatch]);
+  
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
       iv: iv,
@@ -185,13 +187,15 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
   });
 
   const handelConnection = () => {
-    axios.post("http://localhost:5221/api/ConnectionHandel", {
-      id: Date.now() + "",
-      sender: decryptAES(sessionStorage.getItem("u")),
-      receiver: Post.owner,
-      time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-      status: "send",
-    });
+    dispatch(
+      AddConnection({
+        id: Date.now() + "",
+        sender: decryptAES(sessionStorage.getItem("u")),
+        receiver: Post.owner,
+        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+        status: "send",
+      })
+    );
   };
 
   return (
@@ -202,7 +206,6 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
       aria-modal="true"
     >
       <div className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity"></div>
-
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div

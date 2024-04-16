@@ -4,6 +4,7 @@ import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 let RegisterApi = "http://localhost:5221/api/Registers";
 let PostApi = "http://localhost:5221/api/Posts";
 let MessagesApi = "http://localhost:5221/api/Messages";
+let ConnectionsApi = "http://localhost:5221/api/ConnectionHandel";
 
 const change = [];
 
@@ -86,6 +87,22 @@ export const PatchMessagesSuccess = (messages) => ({
 
 export const deleteMessagesSuccess = (id) => ({
   type: "DELETE_MESSAGES_SUCCESS",
+  payload: id,
+});
+
+export const addConnectionSuccess = (connect) => ({
+  type: "ADD_CONNECTIONS_SUCCESS",
+  payload: connect,
+});
+
+export const fetchConnectionSuccess = (connect) => ({
+  type: "FETCH_CONNECTIONS_SUCCESS",
+  payload: connect,
+});
+
+
+export const deleteConnectionSuccess = (id) => ({
+  type: "DELETE_CONNECTIONS_SUCCESS",
   payload: id,
 });
 
@@ -330,6 +347,52 @@ export const deleteMessages = (id) => {
       });
 
       dispatch(deleteMessagesSuccess(id));
+      await Change("change");
+    } catch (error) {
+      console.error(`Error deleting message with ID ${id}:`, error);
+    }
+  };
+};
+
+export const AddConnection = (connection) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(ConnectionsApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(connection),
+      });
+
+      const connections = await response.json();
+      dispatch(addConnectionSuccess(connections));
+    } catch (error) {
+      console.error("Error adding connection:", error);
+    }
+  };
+};
+
+export const fetchConnection = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(ConnectionsApi);
+      const connection = await response.json();
+      dispatch(fetchConnectionSuccess(connection));
+    } catch (error) {
+      console.error("Error fetching connection:", error);
+    }
+  };
+};
+
+export const deleteConnection = (id) => {
+  return async (dispatch) => {
+    try {
+      await fetch(`${ConnectionsApi}/${id}`, {
+        method: "DELETE",
+      });
+
+      dispatch(deleteConnectionSuccess(id));
       await Change("change");
     } catch (error) {
       console.error(`Error deleting message with ID ${id}:`, error);

@@ -14,6 +14,7 @@ module.exports = {
     "./src/components/Me/*.jsx",
     "./src/components/Nav/*.jsx",
     "./src/components/Search/*.jsx",
+    "./src/components/Connection/*.jsx",
   ],
   theme: {
     extend: {},
