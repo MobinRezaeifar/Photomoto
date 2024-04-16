@@ -20,12 +20,12 @@ const SendConnection = ({ status, sender, receiver }) => {
         <div className="avatar-group  -space-x-5 rtl:space-x-reverse">
           <div className="avatar">
             <div className="h-10">
-              <img src={PrifileImgReceiver} alt="" />
+              <img src={PrifileImgSender} alt="" />
             </div>
           </div>
           <div className="avatar">
             <div className="h-10">
-              <img src={PrifileImgSender} alt="" />
+              <img src={PrifileImgReceiver} alt="" />
             </div>
           </div>
         </div>
