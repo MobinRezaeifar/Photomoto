@@ -48,10 +48,16 @@ const Connection = () => {
       <div className="overflow-y-auto h-full">
         <div className="w-full flex h-full">
           <div
-            className={` ${dimensions.width > 900 ? "w-[50%]" : "w-[100%]"} px-4`}
+            className={` ${
+              dimensions.width > 900 ? "w-[50%]" : "w-[100%]"
+            } px-4`}
           >
             {(() => {
-              return Connections.map((data) => {
+              const sortedConnections = Connections.sort(
+                (a, b) => new Date(b.time) - new Date(a.time)
+              );
+
+              return sortedConnections.map((data) => {
                 if (
                   data.sender === decryptAES(sessionStorage.getItem("u")) ||
                   data.receiver === decryptAES(sessionStorage.getItem("u"))
@@ -59,6 +65,7 @@ const Connection = () => {
                   if (data.sender === decryptAES(sessionStorage.getItem("u"))) {
                     return (
                       <SendConnection
+                        key={data.time}
                         sender={data.sender}
                         receiver={data.receiver}
                         status={data.status}
@@ -70,6 +77,7 @@ const Connection = () => {
                   ) {
                     return (
                       <ReceiverConnection
+                        key={data.time}
                         sender={data.sender}
                         receiver={data.receiver}
                         status={data.status}
@@ -77,6 +85,7 @@ const Connection = () => {
                     );
                   }
                 }
+                return null;
               });
             })()}
           </div>

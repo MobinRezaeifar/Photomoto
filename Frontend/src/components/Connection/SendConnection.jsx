@@ -31,7 +31,6 @@ const SendConnection = ({ status, sender, receiver }) => {
         </div>
         <h1>{`You Send Request To ${receiver}`}</h1>
       </div>
-
       <div className="flex items-center  relative gap-2 cursor-pointer">
         <button
           type="button"
