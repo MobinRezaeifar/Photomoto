@@ -48,4 +48,15 @@ public class ConnectionHandelService : IConnectionHandelService
     {
         return await _redisDb.KeyDeleteAsync(connectionId);
     }
+
+    public void Update(string id, ConnectionHandel updatedConnection)
+    {
+        var existingConnection = _redisDb.StringGet(id);
+        if (existingConnection.IsNull)
+        {
+            return;
+        }
+
+        _redisDb.StringSet(id, JsonSerializer.Serialize(updatedConnection), TimeSpan.FromDays(30));
+    }
 }

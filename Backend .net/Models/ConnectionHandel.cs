@@ -10,4 +10,5 @@ public class ConnectionHandel
     public string Receiver { get; set; }
     public string Time { get; set; }
     public string Status { get; set; }
+    public string Relation { get; set; }
 }

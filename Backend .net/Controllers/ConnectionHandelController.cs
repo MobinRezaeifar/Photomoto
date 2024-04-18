@@ -55,5 +55,15 @@ namespace WebApplication2.Controllers
 
             return BadRequest("Failed To Delete user");
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateConnection(
+            string id,
+            ConnectionHandel updatedConnection
+        )
+        {
+            _ConnectionHandelService.Update(id, updatedConnection);
+            return NoContent();
+        }
     }
 }

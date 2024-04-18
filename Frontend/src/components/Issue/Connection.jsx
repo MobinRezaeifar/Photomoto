@@ -21,6 +21,9 @@ const Connection = () => {
   useEffect(() => {
     dispatch(fetchConnection());
   }, []);
+  useEffect(() => {
+    dispatch(fetchConnection());
+  }, [dispatch]);
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../Redux/action";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
-import SearchResult from "./SearchResult";
-const Search = () => {
+
+const Search = ({ change, Change }) => {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
   const [SelectePost, setSelectePost] = useState("");
@@ -143,6 +143,8 @@ const Search = () => {
       </div>
 
       <ShowPostModel
+        change={change}
+        Change={Change}
         dimensions={dimensions}
         Posts={Posts}
         SelectePost={SelectePost}

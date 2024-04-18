@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LeftNav from "../components/Nav/LeftNav";
 import BottomNav from "../components/Nav/BottomNav";
 import Connection from "../components/Issue/Connection";
-import Search from "../components/Search/Search";
+import Search from "../components/Issue/Search";
 import Direct from "../components/Issue/Direct";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../Redux/action";
@@ -82,7 +82,7 @@ const Main = () => {
           >
             {Issue == "me" && <Me />}
             {Issue == "connection" && <Connection />}
-            {Issue == "search" && <Search />}
+            {Issue == "search" && <Search Change={Change} change={change}/>}
             {Issue == "direct" && <Direct Change={Change} change={change} />}
             {Issue == "home" && <Home change={change} Change={Change} />}
           </div>
@@ -95,7 +95,7 @@ const Main = () => {
           >
             {Issue == "me" && <Me />}
             {Issue == "connection" && <Connection />}
-            {Issue == "search" && <Search />}
+            {Issue == "search" && <Search Change={Change} change={change}/>}
             {Issue == "direct" && <Direct Change={Change} change={change} />}
             {Issue == "home" && <Home change={change} Change={Change} />}
           </div>

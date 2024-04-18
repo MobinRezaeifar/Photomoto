@@ -158,8 +158,8 @@ const Login = ({ ShowLogin, setShowLogin }) => {
           </h5>
         </div>
 
-        <div className="flex justify-center p-6 gap-2">
-          <form class="flex items-center max-w-lg">
+        <form className="flex justify-center p-6 gap-2" onSubmit={LoginUser}>
+          <div class="flex items-center max-w-lg">
             <div class="relative w-full">
               <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <img
@@ -183,11 +183,8 @@ const Login = ({ ShowLogin, setShowLogin }) => {
                 style={{ backgroundColor: "#002733" }}
               />
             </div>
-          </form>
-          <form class="flex items-center max-w-lg">
-            <label for="voice-search" class="sr-only">
-              Search
-            </label>
+          </div>
+          <div class="flex items-center max-w-lg">
             <div class="relative w-full">
               <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <RiLockPasswordLine size={25} />
@@ -206,8 +203,8 @@ const Login = ({ ShowLogin, setShowLogin }) => {
                 required
               />
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </>
   );

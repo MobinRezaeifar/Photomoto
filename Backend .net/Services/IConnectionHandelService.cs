@@ -6,4 +6,5 @@ public interface IConnectionHandelService
     Task<ConnectionHandel> GetConnection(string connectionId);
     Task<ConnectionHandel> CteateConnection(ConnectionHandel connectionHandel);
     Task<bool> DeleteConnection(string connectionId);
+    void Update(string id, ConnectionHandel connectionHandels);
 }

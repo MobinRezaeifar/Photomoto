@@ -100,10 +100,13 @@ export const fetchConnectionSuccess = (connect) => ({
   payload: connect,
 });
 
-
 export const deleteConnectionSuccess = (id) => ({
   type: "DELETE_CONNECTIONS_SUCCESS",
   payload: id,
+});
+export const updateConnectionSuccess = (connect) => ({
+  type: "UPDATE_CONNECTIONS_SUCCESS",
+  payload: connect,
 });
 
 export const DownloadMedia = (src) => {
@@ -364,7 +367,7 @@ export const AddConnection = (connection) => {
         },
         body: JSON.stringify(connection),
       });
-
+      await Change("change");
       const connections = await response.json();
       dispatch(addConnectionSuccess(connections));
     } catch (error) {
@@ -396,6 +399,24 @@ export const deleteConnection = (id) => {
       await Change("change");
     } catch (error) {
       console.error(`Error deleting message with ID ${id}:`, error);
+    }
+  };
+};
+export const UpdateConnection = (id, update) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${ConnectionsApi}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(update),
+      });
+
+      const result = await response.json();
+      dispatch(updateConnectionSuccess(result));
+    } catch (error) {
+      console.error(`Error updating post with ID ${id}:`, error);
     }
   };
 };

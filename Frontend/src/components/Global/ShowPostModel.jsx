@@ -9,11 +9,17 @@ import { LuSendHorizonal, LuShare2 } from "react-icons/lu";
 import { FiMoreVertical } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import isEqual from "lodash/isEqual";
+import { MdAvTimer } from "react-icons/md";
+import { RiUserFollowFill } from "react-icons/ri";
+import { RiUserUnfollowFill } from "react-icons/ri";
+
 import {
   AddConnection,
   deletePost,
+  fetchConnection,
   fetchPosts,
   fetchRegister,
+  UpdateConnection,
   updatePost,
   updateRegister,
 } from "../../Redux/action";
@@ -24,12 +30,15 @@ import { BiCloset, BiWindowClose } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
+import Connection from "../Issue/Connection";
+import { SiTimescale } from "react-icons/si";
 
-const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
+const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
   const dispatch = useDispatch();
   const Registers = useSelector((state) => state.Registers);
+  const Connections = useSelector((state) => state.Connections);
   const [ShowComment, setShowComment] = useState(false);
   const [commentText, setcommentText] = useState("");
   const [Post, setPost] = useState({});
@@ -40,6 +49,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
   useEffect(() => {
     dispatch(fetchRegister());
     dispatch(fetchPosts());
+    dispatch(fetchConnection());
   }, []);
 
   useEffect(() => {
@@ -53,8 +63,13 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
   useEffect(() => {
     dispatch(fetchRegister());
     dispatch(fetchPosts());
+    dispatch(fetchConnection());
   }, [dispatch]);
-  
+
+  useEffect(() => {
+    dispatch(fetchConnection());
+  }, [change]);
+
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
       iv: iv,
@@ -186,18 +201,53 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
     });
   });
 
-  const handelConnection = () => {
-    dispatch(
-      AddConnection({
-        id: Date.now() + "",
-        sender: decryptAES(sessionStorage.getItem("u")),
-        receiver: Post.owner,
-        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-        status: "send",
-      })
+  const handelConnection = async () => {
+    let ConnectionStatus = Connections.some(
+      (x) =>
+        x.relation ==
+          decryptAES(sessionStorage.getItem("u")) + "," + Post.owner ||
+        x.relation == Post.owner + "," + decryptAES(sessionStorage.getItem("u"))
     );
+    if (!ConnectionStatus) {
+      await dispatch(
+        AddConnection({
+          id: Date.now() + "",
+          sender: decryptAES(sessionStorage.getItem("u")),
+          receiver: Post.owner,
+          time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+          status: "send",
+          relation: decryptAES(sessionStorage.getItem("u")) + "," + Post.owner,
+        })
+      );
+      await Change("change");
+    }
   };
-
+  const AcceptConnection = (id) => {
+    Connections.map(async (data) => {
+      if (data.id == id) {
+        await dispatch(
+          UpdateConnection(id, {
+            ...data,
+            status: "accept",
+          })
+        );
+        await Change("change");
+      }
+    });
+  };
+  const RejectConnection = (id) => {
+    Connections.map(async (data) => {
+      if (data.id == id) {
+        await dispatch(
+          UpdateConnection(id, {
+            ...data,
+            status: "reject",
+          })
+        );
+        await Change("change");
+      }
+    });
+  };
   return (
     <div
       className={`relative z-10 ${!showPostModel && "hidden"}`}
@@ -235,15 +285,80 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts }) => {
                   >
                     {Post.owner}
                   </span>
-                  {Post.owner != decryptAES(sessionStorage.getItem("u")) && (
-                    <h1
-                      onClick={handelConnection}
-                      className="font-bold text-xl text-blue-600 cursor-pointer"
-                    >
-                      {" "}
-                      + Connect
-                    </h1>
-                  )}
+                  {(() => {
+                    if (Post.owner != decryptAES(sessionStorage.getItem("u"))) {
+                      let ConnectionStatus = Connections.some(
+                        (x) =>
+                          x.relation ==
+                            decryptAES(sessionStorage.getItem("u")) +
+                              "," +
+                              Post.owner ||
+                          x.relation ==
+                            Post.owner +
+                              "," +
+                              decryptAES(sessionStorage.getItem("u"))
+                      );
+                      if (ConnectionStatus) {
+                        return Connections.map((data) => {
+                          if (data.status == "send") {
+                            if (
+                              data.sender ==
+                              decryptAES(sessionStorage.getItem("u"))
+                            ) {
+                              return (
+                                <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
+                                  <MdAvTimer size={20} />
+                                  Pending
+                                </h1>
+                              );
+                            }
+                            if (
+                              data.receiver ==
+                              decryptAES(sessionStorage.getItem("u"))
+                            ) {
+                              return (
+                                <>
+                                  <h1
+                                    className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
+                                    onClick={() => AcceptConnection(data.id)}
+                                  >
+                                    <RiUserFollowFill size={20} />
+                                    Accept
+                                  </h1>
+                                  <h1
+                                    className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
+                                    onClick={() => RejectConnection(data.id)}
+                                  >
+                                    <RiUserUnfollowFill size={20} />
+                                    Reject
+                                  </h1>
+                                </>
+                              );
+                            }
+                          }
+                          // if(data.status == "accept"){
+                          //   return  <h1
+                          //   onClick={handelConnection}
+                          //   className="font-bold text-lg
+                          //    text-blue-600 cursor-pointer  ml-2"
+                          // >
+                          //    Connect
+                          // </h1>
+                          // }
+                        });
+                      } else {
+                        return (
+                          <h1
+                            onClick={handelConnection}
+                            className="font-bold text-lg
+                             text-blue-600 cursor-pointer  ml-2"
+                          >
+                            + Connection
+                          </h1>
+                        );
+                      }
+                    }
+                  })()}
                 </div>
                 <div className="flex items-center">
                   <lord-icon
