@@ -34,7 +34,7 @@ const SendConnection = ({ status, sender, receiver }) => {
       <div className="flex items-center  relative gap-2 cursor-pointer">
         <button
           type="button"
-          class="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-gray-600 dark:text-gray-600 dark:hover:text-white dark:focus:ring-gray-700 dark:hover:bg-gray-600"
+          class=" border  hover:text-white focus:ring-4 focus:outline-none  font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-gray-600 dark:text-gray-600 dark:hover:text-white dark:focus:ring-gray-700 dark:hover:bg-gray-600"
         >
           <RiQuestionMark size={26} />
         </button>
