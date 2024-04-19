@@ -37,6 +37,12 @@ const Login = ({ ShowLogin, setShowLogin }) => {
     return bytes.toString(CryptoJS.enc.Utf8);
   }
 
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13 && Username && Password) {
+      LoginUser();
+    }
+  };
+
   const LoginUser = () => {
     for (let i = 0; i < Registers.length; i++) {
       const data = Registers[i];
@@ -181,6 +187,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
                 placeholder="username..."
                 required
                 style={{ backgroundColor: "#002733" }}
+                onKeyDown={handleKeyDown}
               />
             </div>
           </div>
@@ -201,6 +208,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="password..."
                 required
+                onKeyDown={handleKeyDown}
               />
             </div>
           </div>

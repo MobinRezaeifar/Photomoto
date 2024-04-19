@@ -81,8 +81,10 @@ const Main = () => {
             style={{ paddingRight: "4%" }}
           >
             {Issue == "me" && <Me />}
-            {Issue == "connection" && <Connection />}
-            {Issue == "search" && <Search Change={Change} change={change}/>}
+            {Issue == "connection" && (
+              <Connection Change={Change} change={change} />
+            )}
+            {Issue == "search" && <Search Change={Change} change={change} />}
             {Issue == "direct" && <Direct Change={Change} change={change} />}
             {Issue == "home" && <Home change={change} Change={Change} />}
           </div>
@@ -94,8 +96,10 @@ const Main = () => {
             style={{ paddingBottom: "7%" }}
           >
             {Issue == "me" && <Me />}
-            {Issue == "connection" && <Connection />}
-            {Issue == "search" && <Search Change={Change} change={change}/>}
+            {Issue == "connection" && (
+              <Connection Change={Change} change={change} />
+            )}
+            {Issue == "search" && <Search Change={Change} change={change} />}
             {Issue == "direct" && <Direct Change={Change} change={change} />}
             {Issue == "home" && <Home change={change} Change={Change} />}
           </div>

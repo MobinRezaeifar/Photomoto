@@ -5,7 +5,7 @@ import CryptoJS from "crypto-js";
 import SendConnection from "../Connection/SendConnection";
 import ReceiverConnection from "../Connection/ReceiverConnection";
 
-const Connection = () => {
+const Connection = ({ Change, change }) => {
   const dispatch = useDispatch();
   const Connections = useSelector((state) => state.Connections);
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -72,6 +72,7 @@ const Connection = () => {
                         sender={data.sender}
                         receiver={data.receiver}
                         status={data.status}
+                        Connections={Connections}
                       />
                     );
                   }
@@ -84,6 +85,10 @@ const Connection = () => {
                         sender={data.sender}
                         receiver={data.receiver}
                         status={data.status}
+                        Connections={Connections}
+                        Change={Change}
+                        change={change}
+                        dataId={data.id}
                       />
                     );
                   }

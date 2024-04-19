@@ -1,13 +1,25 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable array-callback-return */
+import { Dropdown } from "antd";
 import React, { useEffect, useState } from "react";
 import { RiQuestionMark } from "react-icons/ri";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { fetchConnection, UpdateConnection } from "../../Redux/action";
 
-const ReceiverConnection = ({ status, sender, receiver }) => {
+const ReceiverConnection = ({
+  status,
+  sender,
+  receiver,
+  Connections,
+  Change,
+  change,
+  dataId,
+}) => {
   const [PrifileImgSender, setPrifileImgSender] = useState("");
   const [PrifileImgReceiver, setPrifileImgReceiver] = useState("");
   const Registers = useSelector((state) => state.Registers);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     Registers.map((data) => {
@@ -15,7 +27,48 @@ const ReceiverConnection = ({ status, sender, receiver }) => {
       if (data.username == receiver) setPrifileImgReceiver(data.profileImg);
     });
   });
+  const items = [
+    {
+      key: "1",
+      label: (
+        <div className="text-[1.2rem] w-full">
+          <h1>
+            Send Request {sender} to {receiver}
+          </h1>
+          <h1>Staus : {status == "send" ? "Pending..." : status}</h1>
+        </div>
+      ),
+    },
+  ];
 
+  const AcceptConnection = () => {
+    Connections.map(async (data) => {
+      if (data.id == dataId) {
+        await dispatch(
+          UpdateConnection(dataId, {
+            ...data,
+            status: "accept",
+          })
+        );
+        await Change("change");
+        dispatch(fetchConnection());
+      }
+    });
+  };
+  const RejectConnection = () => {
+    Connections.map(async (data) => {
+      if (data.id == dataId) {
+        await dispatch(
+          UpdateConnection(dataId, {
+            ...data,
+            status: "reject",
+          })
+        );
+        await Change("change");
+        dispatch(fetchConnection());
+      }
+    });
+  };
   return (
     <div className="bg-slate-500  w-full px-2 py-1  my-4 rounded-lg flex items-center justify-between gap-2">
       <div className="flex items-center gap-3">
@@ -39,6 +92,7 @@ const ReceiverConnection = ({ status, sender, receiver }) => {
           return (
             <div className="flex items-center  relative gap-2">
               <button
+                onClick={AcceptConnection}
                 type="button"
                 class="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500"
               >
@@ -53,6 +107,7 @@ const ReceiverConnection = ({ status, sender, receiver }) => {
                 </svg>
               </button>
               <button
+                onClick={RejectConnection}
                 style={{ transform: "rotate(180deg) scaleX(-1)" }}
                 type="button"
                 class="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800 dark:hover:bg-red-500"
@@ -77,7 +132,14 @@ const ReceiverConnection = ({ status, sender, receiver }) => {
                 type="button"
                 class=" border  hover:text-white focus:ring-4 focus:outline-none  font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-gray-600 dark:text-gray-600 dark:hover:text-white dark:focus:ring-gray-700 dark:hover:bg-gray-600"
               >
-                <RiQuestionMark size={26} />
+                <Dropdown
+                  menu={{ items }}
+                  placement="bottom"
+                  arrow
+                  trigger={["click"]}
+                >
+                  <RiQuestionMark size={26} />
+                </Dropdown>
               </button>
             </div>
           );
@@ -89,7 +151,14 @@ const ReceiverConnection = ({ status, sender, receiver }) => {
                 type="button"
                 class=" border  hover:text-white focus:ring-4 focus:outline-none  font-medium rounded-full text-sm p-1 text-center inline-flex items-center dark:border-gray-600 dark:text-gray-600 dark:hover:text-white dark:focus:ring-gray-700 dark:hover:bg-gray-600"
               >
-                <RiQuestionMark size={26} />
+                <Dropdown
+                  menu={{ items }}
+                  placement="bottom"
+                  arrow
+                  trigger={["click"]}
+                >
+                  <RiQuestionMark size={26} />
+                </Dropdown>
               </button>
             </div>
           );
