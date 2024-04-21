@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Programming\\React\\Photomoto\\backend .net\\WebApplication1.csproj": {}
+    "D:\\Programming\\React\\Photomoto\\Backend .net\\WebApplication1.csproj": {}
   },
   "projects": {
-    "D:\\Programming\\React\\Photomoto\\backend .net\\WebApplication1.csproj": {
+    "D:\\Programming\\React\\Photomoto\\Backend .net\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Programming\\React\\Photomoto\\backend .net\\WebApplication1.csproj",
+        "projectUniqueName": "D:\\Programming\\React\\Photomoto\\Backend .net\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "D:\\Programming\\React\\Photomoto\\backend .net\\WebApplication1.csproj",
+        "projectPath": "D:\\Programming\\React\\Photomoto\\Backend .net\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\mobin\\.nuget\\packages\\",
-        "outputPath": "D:\\Programming\\React\\Photomoto\\backend .net\\obj\\",
+        "outputPath": "D:\\Programming\\React\\Photomoto\\Backend .net\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mobin\\AppData\\Roaming\\NuGet\\NuGet.Config"
