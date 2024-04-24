@@ -5,7 +5,12 @@ import React, { useEffect, useState } from "react";
 import { RiQuestionMark } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { fetchConnection, UpdateConnection } from "../../Redux/action";
+import {
+  fetchConnection,
+  fetchRegister,
+  UpdateConnection,
+  updateRegister,
+} from "../../Redux/action";
 
 const ReceiverConnection = ({
   status,
@@ -35,7 +40,7 @@ const ReceiverConnection = ({
           <h1>
             Send Request {sender} to {receiver}
           </h1>
-          <h1>Staus : {status == "send" ? "Pending..." : status}</h1>
+          <h1>Status : {status == "send" ? "Pending..." : status}</h1>
         </div>
       ),
     },
@@ -52,7 +57,39 @@ const ReceiverConnection = ({
         );
         await Change("change");
         dispatch(fetchConnection());
+        Registers.map(async (data) => {
+          if (data.username == sender) {
+            await dispatch(
+              updateRegister(data.id, {
+                ...data,
+                connection: [
+                  ...data.connection,
+                  {
+                    username: receiver,
+                    profileImg: "",
+                  },
+                ],
+              })
+            );
+          }
+          if (data.username == receiver) {
+            await dispatch(
+              updateRegister(data.id, {
+                ...data,
+                connection: [
+                  ...data.connection,
+                  {
+                    username: sender,
+                    profileImg: "",
+                  },
+                ],
+              })
+            );
+          }
+        });
       }
+      await dispatch(fetchRegister());
+
     });
   };
   const RejectConnection = () => {

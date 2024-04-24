@@ -24,7 +24,7 @@ const SendConnection = ({ status, sender, receiver }) => {
           <h1>
             Send Request {sender} to {receiver}
           </h1>
-          <h1>Staus : {status == "send" ? "Pending..." : status}</h1>
+          <h1>Stauts : {status == "send" ? "Pending..." : status}</h1>
         </div>
       ),
     },

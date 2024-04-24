@@ -234,6 +234,36 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
         await Change("change");
       }
     });
+    Registers.map(async (data) => {
+      if (data.username == Post.owner) {
+        await dispatch(
+          updateRegister(data.id, {
+            ...data,
+            connection: [
+              ...data.connection,
+              {
+                username: decryptAES(sessionStorage.getItem("u")),
+                profileImg: "",
+              },
+            ],
+          })
+        );
+      }
+      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+        await dispatch(
+          updateRegister(data.id, {
+            ...data,
+            connection: [
+              ...data.connection,
+              {
+                username: Post.owner,
+                profileImg: "",
+              },
+            ],
+          })
+        );
+      }
+    });
   };
   const RejectConnection = (id) => {
     Connections.map(async (data) => {
