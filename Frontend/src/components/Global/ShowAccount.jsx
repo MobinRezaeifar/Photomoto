@@ -81,16 +81,13 @@ const ShowAccount = () => {
   let mainUser = decryptAES(sessionStorage.getItem("u"));
 
   useEffect(() => {
+    let lenghtt = [];
     Connections.map((data) => {
-      if (
-        data.relation ==
-          decryptAES(sessionStorage.getItem("u")) + "," + username ||
-        data.relation ==
-          username + "," + decryptAES(sessionStorage.getItem("u"))
-      ) {
-      }
-      {
-        console.log(data);
+      if (data.sender == username || data.receiver == username) {
+        if (data.status == "accept") {
+          lenghtt.push(data);
+          return setConnection(lenghtt.length);
+        }
       }
     });
     Registers.map(async (data) => {
@@ -108,41 +105,6 @@ const ShowAccount = () => {
   });
 
   const navigate = useNavigate();
-
-  const ConnectionHandeling = async () => {
-    Registers.map(async (data) => {
-      if (data.username == username) {
-        await dispatch(
-          updateRegister(data.id, {
-            ...data,
-            connection: [
-              ...data.connection,
-              {
-                username: decryptAES(sessionStorage.getItem("u")),
-                profileImg: ProfileImggg,
-              },
-            ],
-          })
-        );
-      }
-      await dispatch(fetchRegister());
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        await dispatch(
-          updateRegister(data.id, {
-            ...data,
-            connection: [
-              ...data.connection,
-              {
-                username,
-                profileImg: ProfileImg,
-              },
-            ],
-          })
-        );
-      }
-    });
-    await dispatch(fetchRegister());
-  };
 
   const GoDirect = () => {
     Registers.map((data) => {
@@ -344,7 +306,7 @@ const ShowAccount = () => {
                 );
                 if (ConnectionStatus) {
                   return Connections.map((data) => {
-                    if (data.sender == username || data.receiver == username)
+                    if (data.sender == username || data.receiver == username) {
                       if (data.status == "send") {
                         if (
                           data.sender == decryptAES(sessionStorage.getItem("u"))
@@ -380,17 +342,18 @@ const ShowAccount = () => {
                           );
                         }
                       }
-                    if (data.status == "accept") {
-                      return (
-                        <h1
-                          onClick={() => DisConnect(data.id)}
-                          className="font-bold text-lg
+                      if (data.status == "accept") {
+                        return (
+                          <h1
+                            onClick={() => DisConnect(data.id)}
+                            className="font-bold text-lg
                              text-red-600 cursor-pointer  ml-2"
-                          style={{ marginTop: "6px" }}
-                        >
-                          -DisConnect
-                        </h1>
-                      );
+                            style={{ marginTop: "6px" }}
+                          >
+                            -DisConnect
+                          </h1>
+                        );
+                      }
                     }
                   });
                 } else {

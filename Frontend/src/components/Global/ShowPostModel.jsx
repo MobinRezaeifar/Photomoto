@@ -307,7 +307,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
                           if (
                             data.sender == Post.owner ||
                             data.receiver == Post.owner
-                          )
+                          ) {
                             if (data.status == "send") {
                               if (
                                 data.sender ==
@@ -344,17 +344,18 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
                                 );
                               }
                             }
-                          if (data.status == "accept") {
-                            return (
-                              <h1
-                                onClick={() => DisConnect(data.id)}
-                                className="font-bold text-lg
+                            if (data.status == "accept") {
+                              return (
+                                <h1
+                                  onClick={() => DisConnect(data.id)}
+                                  className="font-bold text-lg
                              text-red-600 cursor-pointer  ml-2"
-                                style={{ marginTop: "6px" }}
-                              >
-                                -DisConnect
-                              </h1>
-                            );
+                                  style={{ marginTop: "6px" }}
+                                >
+                                  -DisConnect
+                                </h1>
+                              );
+                            }
                           }
                         });
                       } else {

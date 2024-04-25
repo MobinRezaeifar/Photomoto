@@ -66,36 +66,6 @@ const ReceiverConnection = ({
         );
         await Change("change");
         dispatch(fetchConnection());
-        Registers.map(async (data) => {
-          if (data.username == sender) {
-            await dispatch(
-              updateRegister(data.id, {
-                ...data,
-                connection: [
-                  ...data.connection,
-                  {
-                    username: receiver,
-                    profileImg: "",
-                  },
-                ],
-              })
-            );
-          }
-          if (data.username == receiver) {
-            await dispatch(
-              updateRegister(data.id, {
-                ...data,
-                connection: [
-                  ...data.connection,
-                  {
-                    username: sender,
-                    profileImg: "",
-                  },
-                ],
-              })
-            );
-          }
-        });
       }
       await dispatch(fetchRegister());
     });

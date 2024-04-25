@@ -41,6 +41,7 @@ const Me = () => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  const Connections = useSelector((state) => state.Connections);
 
   useEffect(() => {
     dispatch(fetchRegister());
@@ -128,9 +129,21 @@ const Me = () => {
   };
 
   useEffect(() => {
+    let lenghtt = [];
+    Connections.map((data) => {
+      if (
+        data.sender == decryptAES(sessionStorage.getItem("u")) ||
+        data.receiver == decryptAES(sessionStorage.getItem("u"))
+      ) {
+        if (data.status == "accept") {
+          lenghtt.push(data);
+          return setConnection(lenghtt.length);
+        }
+      }
+    });
+
     Registers.map(async (data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        setConnection(data.connection.length);
         setPost(data.post);
         setBio(data.bio);
         if (data.profileImg) {
