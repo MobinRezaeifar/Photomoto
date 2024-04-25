@@ -391,7 +391,7 @@ export const fetchConnection = () => {
 export const deleteConnection = (id) => {
   return async (dispatch) => {
     try {
-      await fetch(`${ConnectionsApi}/${id}`, {
+      await fetch(`${ConnectionsApi}?connectionId=${id}`, {
         method: "DELETE",
       });
 

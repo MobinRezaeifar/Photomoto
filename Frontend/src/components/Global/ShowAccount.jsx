@@ -4,7 +4,15 @@ import React, { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
 import { Avatar, Badge } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts, fetchRegister, updateRegister } from "../../Redux/action";
+import {
+  AddConnection,
+  deleteConnection,
+  fetchConnection,
+  fetchPosts,
+  fetchRegister,
+  UpdateConnection,
+  updateRegister,
+} from "../../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { Empty } from "antd";
@@ -12,6 +20,10 @@ import { useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import Postss from "./Postss";
 import Swal from "sweetalert2";
+import moment from "jalali-moment";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { MdAvTimer } from "react-icons/md";
+import { RiUserFollowFill, RiUserUnfollowFill } from "react-icons/ri";
 
 const ShowAccount = () => {
   const { username } = useParams();
@@ -24,6 +36,7 @@ const ShowAccount = () => {
   const [Bio, setBio] = useState("");
   const [FullName, setFullName] = useState("");
   const ProfileImggg = useSelector((state) => state.ProfileImg);
+  const Connections = useSelector((state) => state.Connections);
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -68,9 +81,19 @@ const ShowAccount = () => {
   let mainUser = decryptAES(sessionStorage.getItem("u"));
 
   useEffect(() => {
+    Connections.map((data) => {
+      if (
+        data.relation ==
+          decryptAES(sessionStorage.getItem("u")) + "," + username ||
+        data.relation ==
+          username + "," + decryptAES(sessionStorage.getItem("u"))
+      ) {
+      }{
+        console.log(data)
+      }
+    });
     Registers.map(async (data) => {
       if (data.username == username) {
-        setConnection(data.connection.length);
         setPost(data.post);
         setBio(data.bio);
         setFullName(data.fullName);
@@ -157,6 +180,83 @@ const ShowAccount = () => {
       }
     });
   };
+
+  const now = Date.now();
+
+  const [change, setchange] = useState([]);
+
+  const Change = async (change) => {
+    try {
+      const connection = new HubConnectionBuilder()
+        .withUrl(`http://localhost:5221/change`)
+        .configureLogging(LogLevel.Information)
+        .build();
+      await connection.start();
+
+      connection.invoke("Connect", change).catch((err) => console.error(err));
+
+      connection.on("getChange", (chang) => {
+        setchange(chang);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handelConnection = async () => {
+    let ConnectionStatus = Connections.some(
+      (x) =>
+        x.relation ==
+          decryptAES(sessionStorage.getItem("u")) + "," + username ||
+        x.relation == username + "," + decryptAES(sessionStorage.getItem("u"))
+    );
+    if (!ConnectionStatus) {
+      await dispatch(
+        AddConnection({
+          id: Date.now() + "",
+          sender: decryptAES(sessionStorage.getItem("u")),
+          receiver: username,
+          time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+          status: "send",
+          relation: decryptAES(sessionStorage.getItem("u")) + "," + username,
+        })
+      );
+      await Change("change");
+    }
+  };
+  const AcceptConnection = (id) => {
+    Connections.map(async (data) => {
+      if (data.id == id) {
+        await dispatch(
+          UpdateConnection(id, {
+            ...data,
+            status: "accept",
+          })
+        );
+        await Change("change");
+      }
+    });
+  };
+  const RejectConnection = (id) => {
+    Connections.map(async (data) => {
+      if (data.id == id) {
+        await dispatch(
+          UpdateConnection(id, {
+            ...data,
+            status: "reject",
+          })
+        );
+        await Change("change");
+      }
+    });
+  };
+  const DisConnect = (connectionId) => {
+    dispatch(deleteConnection(connectionId));
+  };
+  useEffect(() => {
+    dispatch(fetchConnection());
+  }, [change]);
+
   return (
     <div className="h-full overflow-y-auto w-full">
       <div className="flex justify-between w-full items-center  p-8">
@@ -230,62 +330,80 @@ const ShowAccount = () => {
         </div>
         {username != mainUser && (
           <div className="flex gap-2">
-            {Registers.map((data) => {
-              if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-                let ConnectionStatus = data.connection.some(
-                  (x) => x.username == username
+            {(() => {
+              if (username != decryptAES(sessionStorage.getItem("u"))) {
+                let ConnectionStatus = Connections.some(
+                  (x) =>
+                    x.relation ==
+                      decryptAES(sessionStorage.getItem("u")) +
+                        "," +
+                        username ||
+                    x.relation ==
+                      username + "," + decryptAES(sessionStorage.getItem("u"))
                 );
                 if (ConnectionStatus) {
-                  return (
-                    <div
-                      style={{
-                        boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-                        borderRadius: "50%",
-                        width: "50px",
-                        height: "50px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                      className="bg-slate-600 cursor-pointer"
-                    >
-                      <lord-icon
-                        src="https://cdn.lordicon.com/cvmfhtvr.json"
-                        trigger="hover"
-                        colors="primary:lightgreen,secondary:lightgreen"
-                        style={{ transform: "scale(1.3)" }}
-                      ></lord-icon>
-                    </div>
-                  );
+                  return Connections.map((data) => {
+                    if (data.status == "send") {
+                      if (
+                        data.sender == decryptAES(sessionStorage.getItem("u"))
+                      ) {
+                        return (
+                          <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
+                            <MdAvTimer size={20} />
+                            Pending
+                          </h1>
+                        );
+                      }
+                      if (
+                        data.receiver == decryptAES(sessionStorage.getItem("u"))
+                      ) {
+                        return (
+                          <>
+                            <h1
+                              className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
+                              onClick={() => AcceptConnection(data.id)}
+                            >
+                              <RiUserFollowFill size={20} />
+                              Accept
+                            </h1>
+                            <h1
+                              className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
+                              onClick={() => RejectConnection(data.id)}
+                            >
+                              <RiUserUnfollowFill size={20} />
+                              Reject
+                            </h1>
+                          </>
+                        );
+                      }
+                    }
+                    if (data.status == "accept") {
+                      return (
+                        <h1
+                          onClick={() => DisConnect(data.id)}
+                          className="font-bold text-lg
+                             text-red-600 cursor-pointer  ml-2"
+                          style={{ marginTop: "6px" }}
+                        >
+                          -DisConnect
+                        </h1>
+                      );
+                    }
+                  });
                 } else {
                   return (
-                    <div
-                      style={{
-                        boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-                        borderRadius: "50%",
-                        width: "50px",
-                        height: "50px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                      className="bg-slate-600 cursor-pointer"
-                      onClick={async () => {
-                        await ConnectionHandeling();
-                        await dispatch(fetchRegister());
-                      }}
+                    <h1
+                      onClick={handelConnection}
+                      style={{ marginTop: "6px" }}
+                      className="font-bold text-lg
+                             text-blue-600 cursor-pointer  ml-2"
                     >
-                      <lord-icon
-                        src="https://cdn.lordicon.com/cvmfhtvr.json"
-                        trigger="hover"
-                        colors="primary:#e4e4e4,secondary:#e4e4e4"
-                        style={{ transform: "scale(1.3)" }}
-                      ></lord-icon>
-                    </div>
+                      + Connection
+                    </h1>
                   );
                 }
               }
-            })}
+            })()}
 
             <div
               style={{

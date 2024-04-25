@@ -15,6 +15,7 @@ import { RiUserUnfollowFill } from "react-icons/ri";
 
 import {
   AddConnection,
+  deleteConnection,
   deletePost,
   fetchConnection,
   fetchPosts,
@@ -234,36 +235,6 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
         await Change("change");
       }
     });
-    Registers.map(async (data) => {
-      if (data.username == Post.owner) {
-        await dispatch(
-          updateRegister(data.id, {
-            ...data,
-            connection: [
-              ...data.connection,
-              {
-                username: decryptAES(sessionStorage.getItem("u")),
-                profileImg: "",
-              },
-            ],
-          })
-        );
-      }
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        await dispatch(
-          updateRegister(data.id, {
-            ...data,
-            connection: [
-              ...data.connection,
-              {
-                username: Post.owner,
-                profileImg: "",
-              },
-            ],
-          })
-        );
-      }
-    });
   };
   const RejectConnection = (id) => {
     Connections.map(async (data) => {
@@ -277,6 +248,9 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
         await Change("change");
       }
     });
+  };
+  const DisConnect = (connectionId) => {
+    dispatch(deleteConnection(connectionId));
   };
   return (
     <div
@@ -296,7 +270,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
               <div
                 className={`h-5 flex items-center justify-between px-4 py-8 `}
               >
-                <div className="flex items-center gap-1 ">
+                <div className="flex items-center gap-1">
                   <Avatar src={Post.profileImg} size="large" />
                   <span
                     onClick={() => {
@@ -330,56 +304,64 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
                       );
                       if (ConnectionStatus) {
                         return Connections.map((data) => {
-                          if (data.status == "send") {
-                            if (
-                              data.sender ==
-                              decryptAES(sessionStorage.getItem("u"))
-                            ) {
-                              return (
-                                <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
-                                  <MdAvTimer size={20} />
-                                  Pending
-                                </h1>
-                              );
-                            }
-                            if (
-                              data.receiver ==
-                              decryptAES(sessionStorage.getItem("u"))
-                            ) {
-                              return (
-                                <>
-                                  <h1
-                                    className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
-                                    onClick={() => AcceptConnection(data.id)}
-                                  >
-                                    <RiUserFollowFill size={20} />
-                                    Accept
+                          if (
+                            data.sender == Post.owner ||
+                            data.receiver == Post.owner
+                          )
+                            if (data.status == "send") {
+                              if (
+                                data.sender ==
+                                decryptAES(sessionStorage.getItem("u"))
+                              ) {
+                                return (
+                                  <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
+                                    <MdAvTimer size={20} />
+                                    Pending
                                   </h1>
-                                  <h1
-                                    className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
-                                    onClick={() => RejectConnection(data.id)}
-                                  >
-                                    <RiUserUnfollowFill size={20} />
-                                    Reject
-                                  </h1>
-                                </>
-                              );
+                                );
+                              }
+                              if (
+                                data.receiver ==
+                                decryptAES(sessionStorage.getItem("u"))
+                              ) {
+                                return (
+                                  <>
+                                    <h1
+                                      className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
+                                      onClick={() => AcceptConnection(data.id)}
+                                    >
+                                      <RiUserFollowFill size={20} />
+                                      Accept
+                                    </h1>
+                                    <h1
+                                      className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
+                                      onClick={() => RejectConnection(data.id)}
+                                    >
+                                      <RiUserUnfollowFill size={20} />
+                                      Reject
+                                    </h1>
+                                  </>
+                                );
+                              }
                             }
+                          if (data.status == "accept") {
+                            return (
+                              <h1
+                                onClick={() => DisConnect(data.id)}
+                                className="font-bold text-lg
+                             text-red-600 cursor-pointer  ml-2"
+                                style={{ marginTop: "6px" }}
+                              >
+                                -DisConnect
+                              </h1>
+                            );
                           }
-                          // if(data.status == "accept"){
-                          //   return  <h1
-                          //   onClick={handelConnection}
-                          //   className="font-bold text-lg
-                          //    text-blue-600 cursor-pointer  ml-2"
-                          // >
-                          //    Connect
-                          // </h1>
-                          // }
                         });
                       } else {
                         return (
                           <h1
                             onClick={handelConnection}
+                            style={{ marginTop: "6px" }}
                             className="font-bold text-lg
                              text-blue-600 cursor-pointer  ml-2"
                           >

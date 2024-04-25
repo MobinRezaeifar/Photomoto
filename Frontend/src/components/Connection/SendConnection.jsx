@@ -3,6 +3,9 @@ import { useSelector } from "react-redux";
 import { SlQuestion } from "react-icons/sl";
 import { RiQuestionMark } from "react-icons/ri";
 import { Dropdown } from "antd";
+import { MdOutlineTimelapse } from "react-icons/md";
+import { FaCircle } from "react-icons/fa";
+import { FcTimeline } from "react-icons/fc";
 
 const SendConnection = ({ status, sender, receiver }) => {
   const [PrifileImgSender, setPrifileImgSender] = useState("");
@@ -20,11 +23,17 @@ const SendConnection = ({ status, sender, receiver }) => {
     {
       key: "1",
       label: (
-        <div className="text-[1.2rem] w-full">
-          <h1>
+        <div className="text-[1.2rem] w-full flex flex-col items-center">
+          <h1 className="flex items-center gap-2">
+            <FcTimeline size={22} />
             Send Request {sender} to {receiver}
           </h1>
-          <h1>Stauts : {status == "send" ? "Pending..." : status}</h1>
+          <h1 className="flex items-center gap-2">
+            {status == "send" && <MdOutlineTimelapse />}
+            {status == "accept" && <FaCircle color="green" />}
+            {status == "reject" && <FaCircle color="red" />}
+            Stauts : {status == "send" ? "Pending..." : status}
+          </h1>
         </div>
       ),
     },
