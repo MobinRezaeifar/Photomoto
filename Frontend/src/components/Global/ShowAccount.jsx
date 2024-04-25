@@ -88,8 +88,9 @@ const ShowAccount = () => {
         data.relation ==
           username + "," + decryptAES(sessionStorage.getItem("u"))
       ) {
-      }{
-        console.log(data)
+      }
+      {
+        console.log(data);
       }
     });
     Registers.map(async (data) => {
@@ -343,40 +344,42 @@ const ShowAccount = () => {
                 );
                 if (ConnectionStatus) {
                   return Connections.map((data) => {
-                    if (data.status == "send") {
-                      if (
-                        data.sender == decryptAES(sessionStorage.getItem("u"))
-                      ) {
-                        return (
-                          <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
-                            <MdAvTimer size={20} />
-                            Pending
-                          </h1>
-                        );
-                      }
-                      if (
-                        data.receiver == decryptAES(sessionStorage.getItem("u"))
-                      ) {
-                        return (
-                          <>
-                            <h1
-                              className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
-                              onClick={() => AcceptConnection(data.id)}
-                            >
-                              <RiUserFollowFill size={20} />
-                              Accept
+                    if (data.sender == username || data.receiver == username)
+                      if (data.status == "send") {
+                        if (
+                          data.sender == decryptAES(sessionStorage.getItem("u"))
+                        ) {
+                          return (
+                            <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
+                              <MdAvTimer size={20} />
+                              Pending
                             </h1>
-                            <h1
-                              className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
-                              onClick={() => RejectConnection(data.id)}
-                            >
-                              <RiUserUnfollowFill size={20} />
-                              Reject
-                            </h1>
-                          </>
-                        );
+                          );
+                        }
+                        if (
+                          data.receiver ==
+                          decryptAES(sessionStorage.getItem("u"))
+                        ) {
+                          return (
+                            <>
+                              <h1
+                                className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
+                                onClick={() => AcceptConnection(data.id)}
+                              >
+                                <RiUserFollowFill size={20} />
+                                Accept
+                              </h1>
+                              <h1
+                                className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
+                                onClick={() => RejectConnection(data.id)}
+                              >
+                                <RiUserUnfollowFill size={20} />
+                                Reject
+                              </h1>
+                            </>
+                          );
+                        }
                       }
-                    }
                     if (data.status == "accept") {
                       return (
                         <h1
