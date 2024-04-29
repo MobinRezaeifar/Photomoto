@@ -5988,19 +5988,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mobin\\.nuget\\packages\\": {}
+    "/home/mbnrz/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\React\\Photomoto\\backend .net\\WebApplication1.csproj",
+      "projectUniqueName": "/home/mbnrz/programming/Photomoto/Backend .net/WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "D:\\Programming\\React\\Photomoto\\backend .net\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\mobin\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\React\\Photomoto\\backend .net\\obj\\",
+      "projectPath": "/home/mbnrz/programming/Photomoto/Backend .net/WebApplication1.csproj",
+      "packagesPath": "/home/mbnrz/.nuget/packages/",
+      "outputPath": "/home/mbnrz/programming/Photomoto/Backend .net/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mobin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/mbnrz/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -6018,11 +6018,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -6111,7 +6106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
