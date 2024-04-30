@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
 import CryptoJS from "crypto-js";
+import ShowStoriesModel from "../Home/ShowStoriesModel";
 
 const Home = ({ change, Change }) => {
   const [mappedData, setmappedData] = useState([]);
@@ -22,6 +23,8 @@ const Home = ({ change, Change }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const ProfileImg = useSelector((state) => state.ProfileImg);
+  const [StoryOwner, setStoryOwner] = useState("");
+  const [ShowStoryModel, setShowStoryModel] = useState(false);
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -102,7 +105,6 @@ const Home = ({ change, Change }) => {
       />
       <div className="h-20  w-full overflow-x-auto flex items-center">
         <Badge
-          onClick={() => navigate("createStory")}
           className="cursor-pointer"
           count={
             <Button
@@ -110,6 +112,7 @@ const Home = ({ change, Change }) => {
               id="borderrnone"
               icon={
                 <IoIosAddCircle
+                  onClick={() => navigate("createStory")}
                   color="lightgreen"
                   style={{
                     position: "absolute",
@@ -122,7 +125,15 @@ const Home = ({ change, Change }) => {
             ></Button>
           }
         >
-          <Avatar size={70} src={ProfileImg} shape="circle" />
+          <Avatar
+            size={70}
+            src={ProfileImg}
+            shape="circle"
+            onClick={() => {
+              setShowStoryModel(true);
+              setStoryOwner(decryptAES(sessionStorage.getItem("u")));
+            }}
+          />
         </Badge>
       </div>
 
@@ -182,6 +193,12 @@ const Home = ({ change, Change }) => {
         dimensions={dimensions}
         Posts={Posts}
         SelectePost={SelectePost}
+      />
+      <ShowStoriesModel
+        setShow={setShowStoryModel}
+        show={ShowStoryModel}
+        dimensions={dimensions}
+        owner={StoryOwner}
       />
     </div>
   );
