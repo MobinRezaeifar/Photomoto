@@ -11,7 +11,7 @@ router.get("/files/:name", async (req, res) => {
       return res.status(404).send("File not found!");
     }
     const filePath = path.join(
-      "D:\\Programming\\React\\Photomoto\\backend node\\",
+      "H:\\Programming\\React\\Photomoto\\backend node\\",
       file.path
     );
     res.sendFile(filePath);

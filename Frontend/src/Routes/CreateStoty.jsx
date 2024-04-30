@@ -20,7 +20,7 @@ function CreateStoty() {
   const [mediaResult, setmediaResult] = useState({});
   const [showFilterList, SetshowFilterList] = useState(false);
   const [Fillter, setFillter] = useState("");
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -39,7 +39,7 @@ function CreateStoty() {
         setstate(true);
         startVideoRecording();
       }
-    }, 200);
+    }, 400);
 
     return () => {
       clearTimeout(timeout);
@@ -94,7 +94,7 @@ function CreateStoty() {
       var form = new FormData();
       form.append("file", blob, fileName);
       try {
-        await axios.post("http://localhost:5000/api/upload", form, {
+        await axios.post("http://localhost:5001/api/upload", form, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -118,7 +118,6 @@ function CreateStoty() {
   };
   useEffect(() => {
     let interval;
-
     if (isRecording) {
       interval = setInterval(() => {
         setRecordingProgress((prevProgress) => prevProgress + 1);
@@ -155,7 +154,7 @@ function CreateStoty() {
         var form = new FormData();
         await form.append("file", blob, fileName);
         try {
-          await axios.post("http://localhost:5000/api/upload", form, {
+          await axios.post("http://localhost:5001/api/upload", form, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -177,13 +176,17 @@ function CreateStoty() {
 
   const ShareStory = () => {
     if (!isEqual(mediaResult, {})) {
-      axios.post("http://localhost:5000/api/story/post", {
+      axios.post("http://localhost:5001/api/story/post", {
         owner: decryptAES(sessionStorage.getItem("u")),
         type: mediaResult.type,
-        media: "http://localhost:5000/api/files/" + mediaResult.fileName,
+        media: "http://localhost:5001/api/files/" + mediaResult.fileName,
         filter: Fillter,
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
       });
+      SetshowFilterList(false);
+      setmediaResult({});
+      navigate("/photomoto");
+      setFillter("");
     }
   };
   return (
@@ -196,7 +199,8 @@ function CreateStoty() {
             onClick={() => {
               SetshowFilterList(false);
               setmediaResult({});
-              navigate("/photomoto")
+              navigate("/photomoto");
+              setFillter("");
             }}
           />
           <button
@@ -230,7 +234,7 @@ function CreateStoty() {
                       }}
                       autoPlay
                       loop
-                      src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                      src={`http://localhost:5001/api/files/${mediaResult.fileName}`}
                       alt=""
                     />
                   </div>
@@ -253,7 +257,7 @@ function CreateStoty() {
                         objectFit: "contain",
                         filter: Fillter,
                       }}
-                      src={`http://localhost:5000/api/files/${mediaResult.fileName}`}
+                      src={`http://localhost:5001/api/files/${mediaResult.fileName}`}
                       alt=""
                     />
                   </div>
