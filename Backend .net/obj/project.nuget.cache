@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UmDXxEmjks/y3rHvKlRvqvsYF1cCKLslGpYZYxZ1j7IFdlbhV3I5WQRWz4Nu02Tz/I6j+Nr/nsUlkqystLarIA==",
+  "dgSpecHash": "lYXmxC0uFxYFhBTSAip+9YVmfyj4Ckcz69ZCeucun+xsStJ/viELbVeooxqrMs1YM7UG6o3uXYHH9Fy638LDEQ==",
   "success": true,
-  "projectFilePath": "H:\\programming\\react\\photomoto\\Backend .net\\WebApplication1.csproj",
+  "projectFilePath": "H:\\programming\\react\\photomoto\\backend .net\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
@@ -129,12 +129,5 @@
     "C:\\Users\\I-Tech\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file H:\\programming\\react\\photomoto\\Backend .net\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

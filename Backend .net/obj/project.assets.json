@@ -5993,11 +5993,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\WebApplication1.csproj",
+      "projectUniqueName": "H:\\programming\\react\\photomoto\\backend .net\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\WebApplication1.csproj",
+      "projectPath": "H:\\programming\\react\\photomoto\\backend .net\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\obj\\",
+      "outputPath": "H:\\programming\\react\\photomoto\\backend .net\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6116,13 +6116,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file H:\\programming\\react\\photomoto\\Backend .net\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
