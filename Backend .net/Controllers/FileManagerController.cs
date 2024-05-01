@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Services;
-
+using WebApplication1.Services.ManageFile;
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class FileManagerController : ControllerBase
     {
-        private readonly IManageImage _iManageImage;
-        public FileManagerController(IManageImage iManageImage)
+        private readonly IManageFile _iManageImage;
+        public FileManagerController(IManageFile iManageImage)
         {
             _iManageImage = iManageImage;
         }

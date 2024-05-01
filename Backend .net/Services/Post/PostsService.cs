@@ -2,7 +2,7 @@
 using WebApplication1.Configuration;
 using WebApplication1.Models;
 
-namespace WebApplication1.Services
+namespace WebApplication1.Services.Post
 {
     public class PostsService : IPostsService
     {

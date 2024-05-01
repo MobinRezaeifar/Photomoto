@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using WebApplication1.Configuration;
 using WebApplication1.Models;
 
-namespace WebApplication1.Services
+namespace WebApplication1.Services.Register
 {
     public class RegistersService : IRegistersService
     {

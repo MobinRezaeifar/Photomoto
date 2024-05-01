@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.StaticFiles;
 using WebApplication1.Hepler;
-using WebApplication1.Services;
-namespace WebApplication1.Services
+namespace WebApplication1.Services.ManageFile
 {
-    public class ManageImage : IManageImage
+    public class ManageFile : IManageFile
     {
         public async Task<string> UploadFile(IFormFile _IFormFile)
         {

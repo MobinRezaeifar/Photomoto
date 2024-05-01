@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
-using WebApplication1.Services;
+using WebApplication1.Services.Post;
 
 namespace WebApplication1.Controllers
 {

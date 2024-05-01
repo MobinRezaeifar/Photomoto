@@ -7,8 +7,8 @@ namespace WebApplication1.Models
     {
 
         [BsonElement("text")]
-        public string? Text { get; set; }
-
+        public string? Text { get; set; } 
+ 
         [BsonElement("owner")]
         public string? Owner { get; set; }
         [BsonElement("profileImg")]

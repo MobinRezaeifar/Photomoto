@@ -3,6 +3,7 @@ const initialState = {
   Posts: [],
   Messages: [],
   Connections: [],
+  Stories: [],
   Issue: "me",
   ShowPostModel: false,
   ProfileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
@@ -117,6 +118,12 @@ const reducer = (state = initialState, action) => {
         Connections: state.Connections.filter(
           (Connection) => Connection.id !== action.payload
         ),
+      };
+
+    case "FETCH_STORIES_SUCCESS":
+      return {
+        ...state,
+        Stories: action.payload,
       };
 
     case "ISSUE":

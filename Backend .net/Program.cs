@@ -12,7 +12,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApplication1.Configuration;
 using WebApplication1.Hubs;
 using WebApplication1.Modals;
-using WebApplication1.Services;
+using WebApplication1.Services.ManageFile;
+using WebApplication1.Services.Post;
+using WebApplication1.Services.Register;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
         "v1",
-        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Your API Name", Version = "v1" }
+        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Photomoto", Version = "v85" }
     );
     var securityScheme = new OpenApiSecurityScheme
     {
@@ -31,7 +33,7 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.Http,
         Scheme = "bearer",
         BearerFormat = "JWT",
-        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } 
     };
     c.AddSecurityDefinition("Bearer", securityScheme);
     c.AddSecurityRequirement(
@@ -42,7 +44,7 @@ builder.Services.AddSwaggerGen(c =>
 // Add other services
 builder.Services.AddSignalR();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddTransient<IManageImage, ManageImage>();
+builder.Services.AddTransient<IManageFile, ManageFile>();
 
 builder.Services.Configure<StoreDatabaseSettings>(
     builder.Configuration.GetSection("DatabaseSettings")

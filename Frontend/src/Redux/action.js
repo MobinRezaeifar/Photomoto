@@ -5,6 +5,8 @@ let RegisterApi = "http://localhost:5221/api/Registers";
 let PostApi = "http://localhost:5221/api/Posts";
 let MessagesApi = "http://localhost:5221/api/Messages";
 let ConnectionsApi = "http://localhost:5221/api/ConnectionHandel";
+let StoryApi = "http://localhost:5001/api/story";
+
 
 const change = [];
 
@@ -107,6 +109,12 @@ export const deleteConnectionSuccess = (id) => ({
 export const updateConnectionSuccess = (connect) => ({
   type: "UPDATE_CONNECTIONS_SUCCESS",
   payload: connect,
+});
+
+
+export const fetchStorySuccess = (story) => ({
+  type: "FETCH_STORIES_SUCCESS",
+  payload: story,
 });
 
 export const DownloadMedia = (src) => {
@@ -417,6 +425,21 @@ export const UpdateConnection = (id, update) => {
       dispatch(updateConnectionSuccess(result));
     } catch (error) {
       console.error(`Error updating post with ID ${id}:`, error);
+    }
+  };
+};
+
+
+
+
+export const fetchStory = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(StoryApi+"/get");
+      const story = await response.json();
+      dispatch(fetchStorySuccess(story));
+    } catch (error) {
+      console.error("Error fetching post:", error);
     }
   };
 };
