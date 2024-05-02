@@ -3,11 +3,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "antd";
 import { fetchStory } from "../../Redux/action";
+import VideoSrory from "./VideoSrory";
 
 function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   const Registers = useSelector((state) => state.Registers);
   const Stories = useSelector((state) => state.Stories);
   const carouselRef = useRef(null);
+  const [currentSlide, setcurrentSlide] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchStory());
@@ -21,16 +23,8 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
     });
   });
 
-  const contentStyle = {
-    height: "160px",
-    color: "#fff",
-    lineHeight: "160px",
-    textAlign: "center",
-    background: "#364d79",
-  };
-  console.log(Stories);
   const onChange = (currentSlide) => {
-    console.log(currentSlide);
+    setcurrentSlide(currentSlide);
   };
 
   return (
@@ -88,17 +82,11 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                             padding: "40px 0",
                           }}
                         >
-                          <video
-                            src={data.media}
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "contain",
-                              filter: data.filter,
-                              transform: "scaleX(-1)",
-                            }}
-                            autoPlay
-                            loop
+                          <VideoSrory
+                          carouselRef={carouselRef}
+                            show={show}
+                            data={data}
+                            currentSlide={currentSlide}
                           />
                         </div>
                       );
