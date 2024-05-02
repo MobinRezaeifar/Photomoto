@@ -96,26 +96,33 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                 });
               })()}
             </Carousel>
-            <div className="absolute w-full h-full top-0 flex items-center">
-              <div className="w-full flex justify-between px-6">
-                <MdArrowForwardIos
-                  onClick={() => carouselRef.current.prev()}
-                  style={{
-                    transform: "rotate(180deg)",
-                    cursor: "pointer",
-                    color: "#393939",
-                  }}
-                  size={25}
-                />
-                <MdArrowForwardIos
-                  onClick={() => carouselRef.current.next()}
-                  style={{ cursor: "pointer", color: "#393939" }}
-                  size={25}
-                />
-              </div>
-            </div>
+
+            <MdArrowForwardIos
+              onClick={() => carouselRef.current.prev()}
+              style={{
+                transform: "rotate(180deg)",
+                cursor: "pointer",
+                color: "#393939",
+                position: "absolute",
+                top: "50%",
+                left: "10",
+              }}
+              size={25}
+            />
+
+            <MdArrowForwardIos
+              onClick={() => carouselRef.current.next()}
+              style={{
+                cursor: "pointer",
+                color: "#393939",
+                position: "absolute",
+                top: "50%",
+                right: "10",
+              }}
+              size={25}
+            />
             <div
-              className="flex items-center justify-between w-full absolute  top-0"
+              className="flex items-center justify-between w-full absolute top-0 "
               style={{
                 paddingRight: "10px",
                 marginTop: "8px",

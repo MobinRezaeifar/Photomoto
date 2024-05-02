@@ -19,6 +19,7 @@ const Direct = ({ Change, change }) => {
   const dispatch = useDispatch();
   const Registers = useSelector((state) => state.Registers);
   const SelectUserChat = useSelector((state) => state.SelectUserChat);
+  const Connections = useSelector((state) => state.Connections);
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -70,78 +71,88 @@ const Direct = ({ Change, change }) => {
           className="overflow-y-auto flex flex-col h-[90%]"
           ref={constraintsRef}
         >
-          {Registers.map(
-            (data) =>
-              data.username == decryptAES(sessionStorage.getItem("u")) &&
-              data.connection.map((connect) => (
-                <motion.div
-                  initial={{ opacity: 0, x: !SelectUserChat && -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className={`w-full my-[0.3rem] px-3 ${
-                    SelectUserChat == connect.username &&
-                    "bg-base-100 rounded-s-[60px]"
-                  }`}
-                  onClick={() => {
-                    dispatch({
-                      type: "SELECTUSERCHAT",
-                      payload: connect.username,
-                    });
-                  }}
-                >
-                  <div
-                    className={`w-full  flex items-center gap-2 ${
-                      SelectUserChat != connect.username && "hover:bg-base-100"
-                    }`}
-                    id="directItem"
-                    style={{
-                      borderRadius: "8px",
-                      fontSize: "20px",
-                      padding: "7px 10px",
-                      // border: "1px solid gray",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <Badge
-                      count={
-                        <Button
-                          id="borderrnone"
-                          icon={
-                            <FaCircle
-                              color="green"
-                              style={{
-                                position: "absolute",
-                                top: "0",
-                                right: "2px",
-                              }}
-                              size={dimensions.width > 900 ? 12 : 11}
-                            />
-                          }
-                        ></Button>
-                      }
-                    >
-                      {(() => {
-                        return Registers.map((dataa) => {
-                          if (dataa.username == connect.username) {
-                            return (
-                              <Avatar
-                                size={dimensions.width > 900 ? 40 : 40}
-                                src={dataa.profileImg}
-                                shape="circle"
-                              />
-                            );
-                          }
+          {(() => {
+            return Connections.map((data) => {
+              if (
+                data.sender == decryptAES(sessionStorage.getItem("u")) ||
+                data.receiver == decryptAES(sessionStorage.getItem("u"))
+              ) {
+                let targetUser =
+                  data.sender == decryptAES(sessionStorage.getItem("u"))
+                    ? data.receiver
+                    : data.sender;
+                if (data.status == "accept") {
+                  return (
+                    <motion.div
+                      initial={{ opacity: 0, x: !SelectUserChat && -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className={`w-full my-[0.3rem] px-3 ${
+                        SelectUserChat == targetUser &&
+                        "bg-base-100 rounded-s-[60px]"
+                      }`}
+                      onClick={() => {
+                        dispatch({
+                          type: "SELECTUSERCHAT",
+                          payload: targetUser,
                         });
-                      })()}
-                    </Badge>
-                    <div className="flex flex-col items-start ">
-                      <span className="text-white"> {connect.username}</span>
-                      <span className="text-sm">Connect with you.</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))
-          )}
+                      }}
+                    >
+                      <div
+                        className={`w-full  flex items-center gap-2 ${
+                          SelectUserChat != targetUser && "hover:bg-base-100"
+                        }`}
+                        id="directItem"
+                        style={{
+                          borderRadius: "8px",
+                          fontSize: "20px",
+                          padding: "7px 10px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <Badge
+                          count={
+                            <Button
+                              id="borderrnone"
+                              icon={
+                                <FaCircle
+                                  color="green"
+                                  style={{
+                                    position: "absolute",
+                                    top: "0",
+                                    right: "2px",
+                                  }}
+                                  size={dimensions.width > 900 ? 12 : 11}
+                                />
+                              }
+                            ></Button>
+                          }
+                        >
+                          {(() => {
+                            return Registers.map((dataa) => {
+                              if (dataa.username == targetUser) {
+                                return (
+                                  <Avatar
+                                    size={dimensions.width > 900 ? 40 : 40}
+                                    src={dataa.profileImg}
+                                    shape="circle"
+                                  />
+                                );
+                              }
+                            });
+                          })()}
+                        </Badge>
+                        <div className="flex flex-col items-start ">
+                          <span className="text-white"> {targetUser}</span>
+                          <span className="text-sm">Connect with you.</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                }
+              }
+            });
+          })()}
         </div>
       </div>
       <div
