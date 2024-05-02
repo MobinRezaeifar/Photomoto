@@ -26,6 +26,7 @@ const Home = ({ change, Change }) => {
   const [StoryOwner, setStoryOwner] = useState("");
   const [ShowStoryModel, setShowStoryModel] = useState(false);
   const Stories = useSelector((state) => state.Stories);
+  const Connections = useSelector((state) => state.Connections);
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -59,33 +60,28 @@ const Home = ({ change, Change }) => {
     };
   }, []);
 
-  useEffect(() => {
-    Registers.map((data) => {
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        data.connection.map((connect) => {
-          Posts.map((post) => {
-            if (post.owner == connect.username) {
-              if (!mappedData.includes(post)) mappedData.push(post);
-            }
-          });
-        });
-      }
-    });
-  }, [change]);
+
 
   useEffect(() => {
-    Registers.map((data) => {
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        data.connection.map((connect) => {
+    Connections.map((data) => {
+      if (
+        data.sender == decryptAES(sessionStorage.getItem("u")) ||
+        data.receiver == decryptAES(sessionStorage.getItem("u"))
+      ) {
+        if (data.status == "accept") {
           Posts.map((post) => {
-            if (post.owner == connect.username) {
-              console.log(!mappedData.includes(post));
+            if (post.owner == data.sender || post.owner == data.receiver) {
+              if (!mappedData.includes(post)) {
+                if (post.owner != decryptAES(sessionStorage.getItem("u"))) {
+                  return mappedData.push(post);
+                }
+              }
             }
           });
-        });
+        }
       }
     });
-  }, [change]);
+  }, []);
 
   return (
     <div className="h-full pb-10 md:pb-0 overflow-y-auto w-full  px-6 py-4">
@@ -126,7 +122,7 @@ const Home = ({ change, Change }) => {
               }
             ></Button>
           }
-        > 
+        >
           <Avatar
             size={70}
             src={ProfileImg}

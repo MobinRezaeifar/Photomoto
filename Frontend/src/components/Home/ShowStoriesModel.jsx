@@ -101,7 +101,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                 paddingRight: "10px",
                 marginTop: "8px",
                 paddingLeft: "5px",
-              }}
+              }} 
             >
               <div className="flex items-center gap-2">
                 <Avatar src={MainProfileImg} size={"large"} />
