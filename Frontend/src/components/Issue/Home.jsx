@@ -25,6 +25,8 @@ const Home = ({ change, Change }) => {
   const ProfileImg = useSelector((state) => state.ProfileImg);
   const [StoryOwner, setStoryOwner] = useState("");
   const [ShowStoryModel, setShowStoryModel] = useState(false);
+  const Stories = useSelector((state) => state.Stories);
+
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -124,14 +126,19 @@ const Home = ({ change, Change }) => {
               }
             ></Button>
           }
-        >
+        > 
           <Avatar
             size={70}
             src={ProfileImg}
             shape="circle"
             onClick={() => {
-              setShowStoryModel(true);
-              setStoryOwner(decryptAES(sessionStorage.getItem("u")));
+              let status = Stories.some(
+                (x) => x.owner == decryptAES(sessionStorage.getItem("u"))
+              );
+              if (status) {
+                setShowStoryModel(true);
+                setStoryOwner(decryptAES(sessionStorage.getItem("u")));
+              }
             }}
           />
         </Badge>

@@ -83,7 +83,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                           }}
                         >
                           <VideoSrory
-                          carouselRef={carouselRef}
+                            carouselRef={carouselRef}
                             show={show}
                             data={data}
                             currentSlide={currentSlide}
@@ -109,6 +109,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                   className="text-xl
                  shadow-2xl
                   text-white"
+                  style={{ textShadow: "4px 6px 20px rgba(0,0,0,0.7)" ,fontWeight:"550"}}
                 >
                   {owner}
                 </span>

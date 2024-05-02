@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { HiMiniSpeakerWave, HiMiniSpeakerXMark } from "react-icons/hi2";
 
 const VideoSrory = ({ data, show, currentSlide, carouselRef }) => {
   const [SoundVideo, setSoundVideo] = useState(false);
+  const [showSoundIcon, setshowSoundIcon] = useState("hidden");
   useEffect(() => {
     if (!show) {
       setSoundVideo(false);
@@ -13,19 +15,26 @@ const VideoSrory = ({ data, show, currentSlide, carouselRef }) => {
   useEffect(() => {
     setSoundVideo(false);
   }, [currentSlide]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setshowSoundIcon("hidden");
+    }, 2000);
+  }, [SoundVideo]);
+
   return (
-    <div>
-      <div className="absolute bottom-0 right-0 p-2" style={{ zIndex: "9990" }}>
-        {SoundVideo ? (
+    <div className="flex items-center justify-center">
+      <div className={`${showSoundIcon} p-2`} style={{ zIndex: "9990" }}>
+        {!SoundVideo ? (
           <div
-            className="bg-gray-400 rounded-full h-10 w-10 flex items-center justify-center cursor-pointer"
+            className=" rounded-full h-10 w-10 flex items-center justify-center cursor-pointer"
             onClick={() => setSoundVideo(false)}
           >
             <HiMiniSpeakerXMark size={30} />
           </div>
         ) : (
           <div
-            className="bg-gray-400 rounded-full h-10 w-10 flex items-center justify-center cursor-pointer"
+            className=" rounded-full h-10 w-10 flex items-center justify-center cursor-pointer"
             onClick={() => setSoundVideo(true)}
           >
             <HiMiniSpeakerWave size={30} color="" />
@@ -33,6 +42,10 @@ const VideoSrory = ({ data, show, currentSlide, carouselRef }) => {
         )}
       </div>
       <video
+        onClick={() => {
+          setshowSoundIcon("absolute");
+          setSoundVideo(!SoundVideo);
+        }}
         src={data.media}
         style={{
           width: "100%",
