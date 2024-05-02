@@ -60,9 +60,7 @@ const Home = ({ change, Change }) => {
     };
   }, []);
 
-
-
-  useEffect(() => {
+  const FetchData = () => {
     Connections.map((data) => {
       if (
         data.sender == decryptAES(sessionStorage.getItem("u")) ||
@@ -81,7 +79,14 @@ const Home = ({ change, Change }) => {
         }
       }
     });
+  };
+
+  useEffect(() => {
+    FetchData();
   }, []);
+  useEffect(() => {
+    FetchData();
+  }, [change]);
 
   return (
     <div className="h-full pb-10 md:pb-0 overflow-y-auto w-full  px-6 py-4">
