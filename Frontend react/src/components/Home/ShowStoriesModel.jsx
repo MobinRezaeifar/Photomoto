@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "antd";
 import { fetchStory } from "../../Redux/action";
 import VideoSrory from "./VideoSrory";
+import { MdArrowForwardIos } from "react-icons/md";
 
 function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   const Registers = useSelector((state) => state.Registers);
@@ -95,13 +96,31 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                 });
               })()}
             </Carousel>
+            <div className="absolute w-full h-full top-0 flex items-center">
+              <div className="w-full flex justify-between px-6">
+                <MdArrowForwardIos
+                  onClick={() => carouselRef.current.prev()}
+                  style={{
+                    transform: "rotate(180deg)",
+                    cursor: "pointer",
+                    color: "#393939",
+                  }}
+                  size={25}
+                />
+                <MdArrowForwardIos
+                  onClick={() => carouselRef.current.next()}
+                  style={{ cursor: "pointer", color: "#393939" }}
+                  size={25}
+                />
+              </div>
+            </div>
             <div
-              className="flex items-center justify-between w-full absolute  top-0 "
+              className="flex items-center justify-between w-full absolute  top-0"
               style={{
                 paddingRight: "10px",
                 marginTop: "8px",
                 paddingLeft: "5px",
-              }} 
+              }}
             >
               <div className="flex items-center gap-2">
                 <Avatar src={MainProfileImg} size={"large"} />
@@ -109,7 +128,10 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                   className="text-xl
                  shadow-2xl
                   text-white"
-                  style={{ textShadow: "4px 6px 20px rgba(0,0,0,0.7)" ,fontWeight:"550"}}
+                  style={{
+                    textShadow: "4px 6px 20px rgba(0,0,0,0.7)",
+                    fontWeight: "550",
+                  }}
                 >
                   {owner}
                 </span>
