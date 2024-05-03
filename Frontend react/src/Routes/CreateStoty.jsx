@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState, useEffect } from "react";
-import { Avatar, Progress } from "antd";
+import { Avatar, Carousel, Progress } from "antd";
 import { FaArrowCircleLeft, FaCircle } from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
 import axios from "axios";
@@ -189,6 +189,13 @@ function CreateStoty() {
       setFillter("");
     }
   };
+
+  const carouselRef = useRef(null);
+
+  const onChange = (currentSlide) => {
+    console.log(currentSlide);
+  };
+
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
@@ -290,8 +297,8 @@ function CreateStoty() {
           })()}
         </div>
         {showFilterList ? (
-          <div className="absolute bottom-1  w-full pl-4  md:w-[50%] flex justify-center items-center overflow-x-auto pb-6">
-            <div className="flex flex-no-wrap gap-3">
+          <div className="absolute bottom-6  w-full pl-4  md:w-[50%] overflow-x-auto flex items-center" >
+            <div className="flex flex-no-wrap gap-3 pl-2 pr-4 mx-auto">
               <Avatar
                 onClick={() => setFillter("grayscale(100%)")}
                 title="grayscale"
@@ -435,6 +442,7 @@ function CreateStoty() {
             </div>
           </div>
         ) : (
+          // </div>
           <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
             {isRecording ? (
               <div
