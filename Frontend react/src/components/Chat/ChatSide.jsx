@@ -233,12 +233,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     {
       key: "1",
       label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-          className="text-[1.2rem] w-full flex items-center justify-center gap-1"
-        >
+        <a className="text-[1.2rem] w-full flex items-center justify-center gap-1">
           <CiUser size={25} />
           {TargetFullName}
         </a>

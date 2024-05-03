@@ -82,3 +82,11 @@
 }
 
 
+.ant-dropdown-menu-item.ant-dropdown-menu-item-only-child:hover {
+  background-color: transparent !important; /* تنظیم رنگ پس زمینه به شفاف */
+}
+
+/* یا می‌توانید کلاس فعال کننده را غیرفعال کنید */
+.ant-dropdown-menu-item.ant-dropdown-menu-item-active {
+  pointer-events: none !important; /* غیرفعال کردن رویدادهای ماوس */
+}

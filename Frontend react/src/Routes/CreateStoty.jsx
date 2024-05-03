@@ -1,6 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState, useEffect } from "react";
-import { Avatar, Carousel, Progress } from "antd";
+import {
+  Avatar,
+  Carousel,
+  Col,
+  Dropdown,
+  InputNumber,
+  Progress,
+  Row,
+  Slider,
+} from "antd";
 import { FaArrowCircleLeft, FaCircle } from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
 import axios from "axios";
@@ -9,6 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "jalali-moment";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
+import { MdEditRoad } from "react-icons/md";
+import { IoCloseCircle } from "react-icons/io5";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -21,6 +32,7 @@ function CreateStoty() {
   const [showFilterList, SetshowFilterList] = useState(false);
   const [Fillter, setFillter] = useState("");
   let navigate = useNavigate();
+  const [DropDownShow, setDropDownShow] = useState(false);
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -189,13 +201,295 @@ function CreateStoty() {
       setFillter("");
     }
   };
+  const [grayscale, setgrayscale] = useState("");
+  const [hue, sethue] = useState("");
+  const [blur, setblur] = useState("");
+  const [sepia, setsepia] = useState("");
+  const [contrast, setcontrast] = useState("");
+  const [saturate, setsaturate] = useState("");
+  const [brightness, setbrightness] = useState("");
+  let MaualFillter =
+    grayscale +
+    " " +
+    hue +
+    " " +
+    blur +
+    " " +
+    sepia +
+    " " +
+    contrast +
+    " " +
+    saturate +
+    " " +
+    brightness +
+    " ";
+  console.log(MaualFillter);
+  const items = [
+    {
+      key: "1",
+      label: (
+        <div className=" w-full md:w-[200px]">
+          <div className="flex items-center gap-2 w-full">
+            <div className="w-[150px] flex justify-start items-center gap-1">
+              {" "}
+              <IoCloseCircle
+                size={20}
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  sethue("");
+                }}
+              />
+              <span
+                style={{
+                  border: "1px solid gray",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontWeight: "bold",
+                }}
+              >
+                hue
+              </span>
+            </div>
+            {(() => {
+              let test;
+              return (
+                <input
+                  onChange={(e) => {
+                    sethue("hue-rotate(" + e.target.value + "deg)");
+                    test = e.target.value;
+                  }}
+                  type="range"
+                  min={0}
+                  max="100"
+                  className="range"
+                  defaultValue={0}
+                  value={hue == "" ? 0 : test}
+                />
+              );
+            })()}
+          </div>
 
-  const carouselRef = useRef(null);
+          <div className="flex items-center gap-2 w-full mt-4">
+            <div className="w-[150px] flex justify-start items-center gap-1">
+              <IoCloseCircle
+                size={20}
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setblur("");
+                }}
+              />
+              <span
+                className=""
+                style={{
+                  border: "1px solid gray",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontWeight: "bold",
+                }}
+              >
+                blur
+              </span>
+            </div>
+            {(() => {
+              let test;
+              return (
+                <input
+                  onChange={(e) => {
+                    setblur("blur(" + e.target.value + "px)");
+                    test = e.target.value;
+                  }}
+                  type="range"
+                  min={0}
+                  max="10"
+                  className="range"
+                  defaultValue={0}
+                  value={blur == "" ? 0 : test}
+                />
+              );
+            })()}
+          </div>
+          <div className="flex items-center gap-2 w-full mt-4">
+            <div className="w-[150px] flex justify-start items-center gap-1">
+              <IoCloseCircle
+                size={20}
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setsepia("");
+                }}
+              />
+              <span
+                className=""
+                style={{
+                  border: "1px solid gray",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontWeight: "bold",
+                }}
+              >
+                sepia
+              </span>
+            </div>
+            <input
+              onChange={(e) => setsepia("sepia(" + e.target.value + "%)")}
+              type="range"
+              min={0}
+              max="100"
+              className="range"
+              defaultValue={0}
+            />
+          </div>
 
-  const onChange = (currentSlide) => {
-    console.log(currentSlide);
-  };
-
+          <div className="flex items-center gap-2 w-full mt-4">
+            <div className="w-[150px] flex justify-start items-center gap-1">
+              <IoCloseCircle
+                size={20}
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setcontrast("");
+                }}
+              />
+              <span
+                className=""
+                style={{
+                  border: "1px solid gray",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontWeight: "bold",
+                }}
+              >
+                contrast
+              </span>
+            </div>
+            <input
+              onChange={(e) => setcontrast("contrast(" + e.target.value + "%)")}
+              type="range"
+              min={0}
+              max="200"
+              className="range"
+              defaultValue={100}
+            />
+          </div>
+          <div className="flex items-center gap-2 w-full mt-4">
+            <div className="w-[150px] flex justify-start items-center gap-1">
+              <IoCloseCircle
+                size={20}
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setsaturate("");
+                }}
+              />
+              <span
+                className=""
+                style={{
+                  border: "1px solid gray",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontWeight: "bold",
+                }}
+              >
+                saturate
+              </span>
+            </div>
+            <input
+              onChange={(e) => setsaturate("saturate(" + e.target.value + ")")}
+              type="range"
+              min={1}
+              max="10"
+              className="range"
+              defaultValue={1}
+            />
+          </div>
+          <div className="flex items-center gap-2 w-full mt-4">
+            <div className="w-[150px] flex justify-start items-center gap-1">
+              <IoCloseCircle
+                size={20}
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setgrayscale("");
+                }}
+              />
+              <span
+                className=""
+                style={{
+                  border: "1px solid gray",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontWeight: "bold",
+                }}
+              >
+                grayscale
+              </span>
+            </div>
+            <input
+              onChange={(e) =>
+                setgrayscale("grayscale(" + e.target.value + "%)")
+              }
+              type="range"
+              min={0}
+              max="100"
+              className="range"
+              defaultValue={0}
+            />
+          </div>
+          <div className="flex items-center gap-2 w-full mt-4">
+            <div className="w-[150px] flex justify-start items-center gap-1">
+              <IoCloseCircle
+                size={20}
+                style={{
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setbrightness("");
+                }}
+              />
+              <span
+                className=""
+                style={{
+                  border: "1px solid gray",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  fontWeight: "bold",
+                }}
+              >
+                brightness
+              </span>
+            </div>
+            <input
+              onChange={(e) =>
+                setbrightness("brightness(" + e.target.value + ")")
+              }
+              type="range"
+              min={0.1}
+              max="3"
+              className="range"
+              defaultValue={1}
+              step="0.1"
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
+  console.log(MaualFillter);
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
@@ -218,6 +512,14 @@ function CreateStoty() {
                 SetshowFilterList(false);
                 setmediaResult({});
                 setFillter("");
+                setgrayscale("");
+                sethue("");
+                setblur("");
+                setsepia("");
+                setcontrast("");
+                setsaturate("");
+                setbrightness("");
+                setDropDownShow(false);
               }}
             >
               Discard
@@ -250,7 +552,7 @@ function CreateStoty() {
                         width: "100%",
                         height: "100%",
                         objectFit: "contain",
-                        filter: Fillter,
+                        filter: DropDownShow ? MaualFillter : Fillter,
                       }}
                       autoPlay
                       loop
@@ -275,7 +577,7 @@ function CreateStoty() {
                         width: "100%",
                         height: "100%",
                         objectFit: "contain",
-                        filter: Fillter,
+                        filter: DropDownShow ? MaualFillter : Fillter,
                       }}
                       src={`http://localhost:5001/api/files/${mediaResult.fileName}`}
                       alt=""
@@ -297,10 +599,28 @@ function CreateStoty() {
           })()}
         </div>
         {showFilterList ? (
-          <div className="absolute bottom-6  w-full pl-4  md:w-[50%] overflow-x-auto flex items-center" >
-            <div className="flex flex-no-wrap gap-3 pl-2 pr-4 mx-auto">
+          <div className="absolute bottom-1  w-full pl-4  md:w-[50%] overflow-x-auto flex items-center">
+            <div className="flex flex-no-wrap gap-3 pl-2 pr-4 mx-auto pb-6">
               <Avatar
-                onClick={() => setFillter("grayscale(100%)")}
+                onClick={() => {
+                  setFillter("");
+                  setDropDownShow(false);
+                }}
+                title="normal"
+                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                src={
+                  <img
+                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
+                    alt=""
+                    style={{ cursor: "pointer", transform: "scaleX(-1)" }}
+                  />
+                }
+              />
+              <Avatar
+                onClick={() => {
+                  setFillter("grayscale(100%)");
+                  setDropDownShow(false);
+                }}
                 title="grayscale"
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
@@ -316,7 +636,10 @@ function CreateStoty() {
                 }
               />
               <Avatar
-                onClick={() => setFillter("blur(1.5px)")}
+                onClick={() => {
+                  setFillter("blur(1.5px)");
+                  setDropDownShow(false);
+                }}
                 title="blur"
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
@@ -332,7 +655,10 @@ function CreateStoty() {
                 }
               />
               <Avatar
-                onClick={() => setFillter("brightness(200%)")}
+                onClick={() => {
+                  setFillter("brightness(200%)");
+                  setDropDownShow(false);
+                }}
                 title="brightness"
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
@@ -347,20 +673,32 @@ function CreateStoty() {
                   />
                 }
               />
+
+              <Dropdown
+                visible={DropDownShow}
+                arrow
+                trigger={["click"]}
+                menu={{
+                  items,
+                }}
+                placement="top"
+              >
+                <Avatar
+                  onClick={() => {
+                    setDropDownShow(!DropDownShow);
+                    setFillter("");
+                  }}
+                  size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
+                >
+                  <MdEditRoad />
+                </Avatar>
+              </Dropdown>
+
               <Avatar
-                onClick={() => setFillter("")}
-                title="normal"
-                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
-                src={
-                  <img
-                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
-                    alt=""
-                    style={{ cursor: "pointer", transform: "scaleX(-1)" }}
-                  />
-                }
-              />
-              <Avatar
-                onClick={() => setFillter("contrast(200%)")}
+                onClick={() => {
+                  setFillter("contrast(200%)");
+                  setDropDownShow(false);
+                }}
                 title="contrast"
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
@@ -376,7 +714,10 @@ function CreateStoty() {
                 }
               />
               <Avatar
-                onClick={() => setFillter("hue-rotate(70deg)")}
+                onClick={() => {
+                  setFillter("hue-rotate(70deg)");
+                  setDropDownShow(false);
+                }}
                 title="hue"
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
@@ -391,24 +732,12 @@ function CreateStoty() {
                   />
                 }
               />
+
               <Avatar
-                onClick={() => setFillter("invert(100%)")}
-                title="invert"
-                size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
-                src={
-                  <img
-                    src={`https://wallpapercave.com/uwp/uwp4324894.png`}
-                    alt=""
-                    style={{
-                      filter: "invert(100%)",
-                      cursor: "pointer",
-                      transform: "scaleX(-1)",
-                    }}
-                  />
-                }
-              />
-              <Avatar
-                onClick={() => setFillter("saturate(200%)")}
+                onClick={() => {
+                  setFillter("saturate(200%)");
+                  setDropDownShow(false);
+                }}
                 title="saturate"
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
@@ -424,7 +753,10 @@ function CreateStoty() {
                 }
               />
               <Avatar
-                onClick={() => setFillter("sepia(100%)")}
+                onClick={() => {
+                  setFillter("sepia(100%)");
+                  setDropDownShow(false);
+                }}
                 title="sepia"
                 size={{ xs: 40, sm: 40, md: 40, lg: 54, xl: 60, xxl: 60 }}
                 src={
