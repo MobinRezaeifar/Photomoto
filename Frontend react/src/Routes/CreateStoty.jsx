@@ -223,12 +223,11 @@ function CreateStoty() {
     " " +
     brightness +
     " ";
-  console.log(MaualFillter);
   const items = [
     {
       key: "1",
       label: (
-        <div className=" w-full md:w-[200px]">
+        <div className=" w-full md:w-[250px]">
           <div className="flex items-center gap-2 w-full">
             <div className="w-[150px] flex justify-start items-center gap-1">
               {" "}
@@ -257,6 +256,7 @@ function CreateStoty() {
               let test;
               return (
                 <input
+                  style={{ width: "150px" }}
                   onChange={(e) => {
                     sethue("hue-rotate(" + e.target.value + "deg)");
                     test = e.target.value;
@@ -300,6 +300,7 @@ function CreateStoty() {
               let test;
               return (
                 <input
+                  style={{ width: "150px" }}
                   onChange={(e) => {
                     setblur("blur(" + e.target.value + "px)");
                     test = e.target.value;
@@ -338,14 +339,24 @@ function CreateStoty() {
                 sepia
               </span>
             </div>
-            <input
-              onChange={(e) => setsepia("sepia(" + e.target.value + "%)")}
-              type="range"
-              min={0}
-              max="100"
-              className="range"
-              defaultValue={0}
-            />
+            {(() => {
+              let test;
+              return (
+                <input
+                  style={{ width: "150px" }}
+                  onChange={(e) => {
+                    setsepia("sepia(" + e.target.value + "%)");
+                    test = e.target.value;
+                  }}
+                  type="range"
+                  min={0}
+                  max="100"
+                  className="range"
+                  defaultValue={0}
+                  value={sepia == "" ? 0 : test}
+                />
+              );
+            })()}
           </div>
 
           <div className="flex items-center gap-2 w-full mt-4">
@@ -372,14 +383,24 @@ function CreateStoty() {
                 contrast
               </span>
             </div>
-            <input
-              onChange={(e) => setcontrast("contrast(" + e.target.value + "%)")}
-              type="range"
-              min={0}
-              max="200"
-              className="range"
-              defaultValue={100}
-            />
+            {(() => {
+              let test;
+              return (
+                <input
+                  style={{ width: "150px" }}
+                  onChange={(e) => {
+                    setcontrast("contrast(" + e.target.value + "%)");
+                    test = e.target.value;
+                  }}
+                  type="range"
+                  min={0}
+                  max="200"
+                  className="range"
+                  defaultValue={100}
+                  value={contrast == "" ? 100 : test}
+                />
+              );
+            })()}
           </div>
           <div className="flex items-center gap-2 w-full mt-4">
             <div className="w-[150px] flex justify-start items-center gap-1">
@@ -405,14 +426,24 @@ function CreateStoty() {
                 saturate
               </span>
             </div>
-            <input
-              onChange={(e) => setsaturate("saturate(" + e.target.value + ")")}
-              type="range"
-              min={1}
-              max="10"
-              className="range"
-              defaultValue={1}
-            />
+            {(() => {
+              let test;
+              return (
+                <input
+                  style={{ width: "150px" }}
+                  onChange={(e) => {
+                    setsaturate("saturate(" + e.target.value + ")");
+                    test = e.target.value;
+                  }}
+                  type="range"
+                  min={1}
+                  max="10"
+                  className="range"
+                  defaultValue={1}
+                  value={saturate == "" ? 1 : test}
+                />
+              );
+            })()}
           </div>
           <div className="flex items-center gap-2 w-full mt-4">
             <div className="w-[150px] flex justify-start items-center gap-1">
@@ -438,16 +469,24 @@ function CreateStoty() {
                 grayscale
               </span>
             </div>
-            <input
-              onChange={(e) =>
-                setgrayscale("grayscale(" + e.target.value + "%)")
-              }
-              type="range"
-              min={0}
-              max="100"
-              className="range"
-              defaultValue={0}
-            />
+            {(() => {
+              let test;
+              return (
+                <input
+                  style={{ width: "150px" }}
+                  onChange={(e) => {
+                    setgrayscale("grayscale(" + e.target.value + "%)");
+                    test = e.target.value;
+                  }}
+                  type="range"
+                  min={0}
+                  max="100"
+                  className="range"
+                  defaultValue={0}
+                  value={grayscale == "" ? 0 : test}
+                />
+              );
+            })()}
           </div>
           <div className="flex items-center gap-2 w-full mt-4">
             <div className="w-[150px] flex justify-start items-center gap-1">
@@ -473,17 +512,25 @@ function CreateStoty() {
                 brightness
               </span>
             </div>
-            <input
-              onChange={(e) =>
-                setbrightness("brightness(" + e.target.value + ")")
-              }
-              type="range"
-              min={0.1}
-              max="3"
-              className="range"
-              defaultValue={1}
-              step="0.1"
-            />
+            {(() => {
+              let test;
+              return (
+                <input
+                  style={{ width: "150px" }}
+                  onChange={(e) => {
+                    setbrightness("brightness(" + e.target.value + ")");
+                    test = e.target.value;
+                  }}
+                  type="range"
+                  min={0.1}
+                  max="3"
+                  className="range"
+                  defaultValue={1}
+                  step="0.1"
+                  value={brightness == "" ? 1 : test}
+                />
+              );
+            })()}
           </div>
         </div>
       ),
@@ -807,7 +854,7 @@ function CreateStoty() {
                   position: "absolute",
                   cursor: "pointer",
                   marginBottom: !isRecording && "28px",
-                  zIndex: "99999",
+                  zIndex: "99999", 
                 }}
                 size={40}
                 onMouseDown={() => {
