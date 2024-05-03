@@ -203,13 +203,26 @@ function CreateStoty() {
               setFillter("");
             }}
           />
-          <button
-            className="btn glass bg-blue-700 text-white"
-            style={{ transform: "scale(0.9)" }}
-            onClick={ShareStory}
-          >
-            Share
-          </button>
+          <div className="flex items-center justify-center gap-2">
+            <button
+              className="btn glass bg-red-700 text-white"
+              style={{ transform: "scale(0.9)" }}
+              onClick={() => {
+                SetshowFilterList(false);
+                setmediaResult({});
+                setFillter("");
+              }}
+            >
+              Discard
+            </button>
+            <button
+              className="btn glass bg-blue-700 text-white"
+              style={{ transform: "scale(0.9)" }}
+              onClick={ShareStory}
+            >
+              Share
+            </button>
+          </div>
         </div>
 
         <div>
