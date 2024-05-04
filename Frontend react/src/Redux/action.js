@@ -7,7 +7,6 @@ let MessagesApi = "http://localhost:5221/api/Messages";
 let ConnectionsApi = "http://localhost:5221/api/ConnectionHandel";
 let StoryApi = "http://localhost:5001/api/story";
 
-
 const change = [];
 
 const Change = async (change) => {
@@ -111,10 +110,17 @@ export const updateConnectionSuccess = (connect) => ({
   payload: connect,
 });
 
-
 export const fetchStorySuccess = (story) => ({
   type: "FETCH_STORIES_SUCCESS",
   payload: story,
+});
+export const addStorySuccess = (story) => ({
+  type: "ADD_STORY_SUCCESS",
+  payload: story,
+});
+export const deleteStorySuccess = (id) => ({
+  type: "DELETE_STORY_SUCCESS",
+  payload: id,
 });
 
 export const DownloadMedia = (src) => {
@@ -429,17 +435,47 @@ export const UpdateConnection = (id, update) => {
   };
 };
 
-
-
-
 export const fetchStory = () => {
   return async (dispatch) => {
     try {
-      const response = await fetch(StoryApi+"/get");
+      const response = await fetch(StoryApi + "/get");
       const story = await response.json();
       dispatch(fetchStorySuccess(story));
     } catch (error) {
       console.error("Error fetching post:", error);
+    }
+  };
+};
+
+export const deleteStory = (id) => {
+  return async (dispatch) => {
+    try {
+      await fetch(`${StoryApi}/delete"/${id}`, {
+        method: "DELETE",
+      });
+
+      dispatch(deleteStorySuccess(id));
+    } catch (error) {
+      console.error(`Error deleting register with ID ${id}:`, error);
+    }
+  };
+};
+
+export const AddStory = (newStory) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(StoryApi + "/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newStory),
+      });
+
+      const story = await response.json();
+      dispatch(addStorySuccess(story));
+    } catch (error) {
+      console.error("Error adding story:", error);
     }
   };
 };

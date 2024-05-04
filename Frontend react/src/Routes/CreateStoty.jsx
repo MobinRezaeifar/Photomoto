@@ -20,6 +20,7 @@ import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import { MdEditRoad } from "react-icons/md";
 import { IoCloseCircle } from "react-icons/io5";
+import { AddStory } from "../Redux/action";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -208,16 +209,19 @@ function CreateStoty() {
     " " +
     brightness +
     " ";
+  const dispatch = useDispatch();
 
   const ShareStory = () => {
     if (!isEqual(mediaResult, {})) {
-      axios.post("http://localhost:5001/api/story/post", {
-        owner: decryptAES(sessionStorage.getItem("u")),
-        type: mediaResult.type,
-        media: "http://localhost:5001/api/files/" + mediaResult.fileName,
-        filter: Fillter ? Fillter : MaualFillter,
-        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-      });
+      dispatch(
+        AddStory({
+          owner: decryptAES(sessionStorage.getItem("u")),
+          type: mediaResult.type,
+          media: "http://localhost:5001/api/files/" + mediaResult.fileName,
+          filter: Fillter ? Fillter : MaualFillter,
+          time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+        })
+      );
       SetshowFilterList(false);
       setmediaResult({});
       navigate("/photomoto");
