@@ -15,7 +15,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   const Registers = useSelector((state) => state.Registers);
   const Stories = useSelector((state) => state.Stories);
   const carouselRef = useRef(null);
-  const [currentSlide, setcurrentSlide] = useState("");
+  const [currentSlide, setcurrentSlide] = useState(0);
   const dispatch = useDispatch();
   const [DropDownShow, setDropDownShow] = useState(false);
   const [selectedStoryId, setselectedStoryId] = useState("");
@@ -35,12 +35,23 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   const onChange = (currentSlide) => {
     setcurrentSlide(currentSlide);
     setDropDownShow(false);
+  };
+
+  useEffect(() => {
+    let test = [];
     Stories.map((data) => {
       if (data.owner == owner) {
-        
+        test.push(data);
       }
     });
-  };
+
+    test.map((data, i) => {
+      if (currentSlide == i) {
+        setselectedStoryId(data._id);
+      }
+    });
+  });
+
   const items = [
     {
       key: "1",
