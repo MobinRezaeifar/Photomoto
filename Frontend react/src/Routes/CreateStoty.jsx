@@ -186,21 +186,6 @@ function CreateStoty() {
   };
   const now = Date.now();
 
-  const ShareStory = () => {
-    if (!isEqual(mediaResult, {})) {
-      axios.post("http://localhost:5001/api/story/post", {
-        owner: decryptAES(sessionStorage.getItem("u")),
-        type: mediaResult.type,
-        media: "http://localhost:5001/api/files/" + mediaResult.fileName,
-        filter: Fillter,
-        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-      });
-      SetshowFilterList(false);
-      setmediaResult({});
-      navigate("/photomoto");
-      setFillter("");
-    }
-  };
   const [grayscale, setgrayscale] = useState("");
   const [hue, sethue] = useState("");
   const [blur, setblur] = useState("");
@@ -223,6 +208,23 @@ function CreateStoty() {
     " " +
     brightness +
     " ";
+
+  const ShareStory = () => {
+    if (!isEqual(mediaResult, {})) {
+      axios.post("http://localhost:5001/api/story/post", {
+        owner: decryptAES(sessionStorage.getItem("u")),
+        type: mediaResult.type,
+        media: "http://localhost:5001/api/files/" + mediaResult.fileName,
+        filter: Fillter ? Fillter : MaualFillter,
+        time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+      });
+      SetshowFilterList(false);
+      setmediaResult({});
+      navigate("/photomoto");
+      setFillter("");
+    }
+  };
+
   const items = [
     {
       key: "1",
@@ -536,7 +538,6 @@ function CreateStoty() {
       ),
     },
   ];
-  console.log(MaualFillter);
   return (
     <div className="flex justify-center h-screen w-screen">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
@@ -599,7 +600,7 @@ function CreateStoty() {
                         width: "100%",
                         height: "100%",
                         objectFit: "contain",
-                        filter: DropDownShow ? MaualFillter : Fillter,
+                        filter: Fillter ? Fillter : MaualFillter,
                       }}
                       autoPlay
                       loop
@@ -624,7 +625,7 @@ function CreateStoty() {
                         width: "100%",
                         height: "100%",
                         objectFit: "contain",
-                        filter: DropDownShow ? MaualFillter : Fillter,
+                        filter: Fillter ? Fillter : MaualFillter,
                       }}
                       src={`http://localhost:5001/api/files/${mediaResult.fileName}`}
                       alt=""
@@ -854,7 +855,7 @@ function CreateStoty() {
                   position: "absolute",
                   cursor: "pointer",
                   marginBottom: !isRecording && "28px",
-                  zIndex: "99999", 
+                  zIndex: "99999",
                 }}
                 size={40}
                 onMouseDown={() => {

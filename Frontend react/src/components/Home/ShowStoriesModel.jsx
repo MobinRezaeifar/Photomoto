@@ -1,10 +1,11 @@
-import { Avatar } from "antd";
+import { Avatar, Dropdown } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "antd";
 import { fetchStory } from "../../Redux/action";
 import VideoSrory from "./VideoSrory";
 import { MdArrowForwardIos } from "react-icons/md";
+import { ImMenu3 } from "react-icons/im";
 
 function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   const Registers = useSelector((state) => state.Registers);
@@ -124,7 +125,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
             <div
               className="flex items-center justify-between w-full absolute top-0 "
               style={{
-                paddingRight: "10px",
+                // paddingRight: "10px",
                 marginTop: "8px",
                 paddingLeft: "5px",
               }}
@@ -143,15 +144,28 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                   {owner}
                 </span>
               </div>
-              <lord-icon
-                src="https://cdn.lordicon.com/snqonmhs.json"
-                trigger="in"
-                colors="primary:#ffffff,secondary:#e83a30"
-                style={{ transform: "scale(1.3)", cursor: "pointer" }}
-                onClick={() => {
-                  setShow(false);
-                }}
-              ></lord-icon>
+              <div className="flex items-center gap-2">
+                <lord-icon
+                  src="https://cdn.lordicon.com/snqonmhs.json"
+                  trigger="in"
+                  colors="primary:#ffffff,secondary:#e83a30"
+                  style={{ transform: "scale(1.3)", cursor: "pointer" }}
+                  onClick={() => {
+                    setShow(false);
+                  }}
+                />
+                <Dropdown
+                  visible={DropDownShow}
+                  arrow
+                  trigger={["click"]}
+                  menu={{
+                    items,
+                  }}
+                  placement="top"
+                >
+                  <ImMenu3 size={35} />
+                </Dropdown>
+              </div>
             </div>
           </div>
         </div>
