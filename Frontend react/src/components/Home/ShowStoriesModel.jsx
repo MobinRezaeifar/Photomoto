@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable eqeqeq */
 import { Avatar, Dropdown } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,7 +7,9 @@ import { Carousel } from "antd";
 import { fetchStory } from "../../Redux/action";
 import VideoSrory from "./VideoSrory";
 import { MdArrowForwardIos } from "react-icons/md";
-import { ImMenu3 } from "react-icons/im";
+import { GrAdd } from "react-icons/gr";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   const Registers = useSelector((state) => state.Registers);
@@ -13,6 +17,9 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   const carouselRef = useRef(null);
   const [currentSlide, setcurrentSlide] = useState("");
   const dispatch = useDispatch();
+  const [DropDownShow, setDropDownShow] = useState(false);
+  const [selectedStoryId, setselectedStoryId] = useState("");
+
   useEffect(() => {
     dispatch(fetchStory());
   }, []);
@@ -27,8 +34,33 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
 
   const onChange = (currentSlide) => {
     setcurrentSlide(currentSlide);
+    setDropDownShow(false);
+    Stories.map((data) => {
+      if (data.owner == owner) {
+        
+      }
+    });
   };
-
+  const items = [
+    {
+      key: "1",
+      label: (
+        <div className=" w-[150px]">
+          <ul>
+            <li
+              className="text-lg flex items-center gap-2 justify-center"
+              id="showSoryDropdown"
+              style={{ backgroundColor: "" }}
+            >
+              <RiDeleteBin2Fill size={22} color="red" />
+              Delete Story
+            </li>
+          </ul>
+        </div>
+      ),
+    },
+  ];
+  console.log(selectedStoryId);
   return (
     <div
       className={`relative z-10 ${!show && "hidden"} `}
@@ -125,7 +157,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
             <div
               className="flex items-center justify-between w-full absolute top-0 "
               style={{
-                // paddingRight: "10px",
+                paddingRight: "10px",
                 marginTop: "8px",
                 paddingLeft: "5px",
               }}
@@ -144,7 +176,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                   {owner}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 ">
                 <lord-icon
                   src="https://cdn.lordicon.com/snqonmhs.json"
                   trigger="in"
@@ -152,6 +184,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                   style={{ transform: "scale(1.3)", cursor: "pointer" }}
                   onClick={() => {
                     setShow(false);
+                    setDropDownShow(false);
                   }}
                 />
                 <Dropdown
@@ -161,9 +194,37 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                   menu={{
                     items,
                   }}
-                  placement="top"
+                  placement="bottom"
                 >
-                  <ImMenu3 size={35} />
+                  {/* {DropDownShow ? (
+                    <ImMenu4
+                      size={35}
+                      onClick={() => {
+                        setDropDownShow(false);
+                      }}
+                    />
+                  ) : (
+                    <ImMenu3
+                      size={35}
+                      onClick={() => {
+                        setDropDownShow(true);
+                      }}
+                    />
+                  )} */}
+                  <div
+                    className="flex items-end justify-start"
+                    onClick={() => {
+                      setDropDownShow(!DropDownShow);
+                    }}
+                  >
+                    <HiMenuAlt3 size={35} />
+
+                    <GrAdd
+                      className="transition-all absolute"
+                      size={15}
+                      style={{ transform: DropDownShow && "rotate(45deg)" }}
+                    />
+                  </div>
                 </Dropdown>
               </div>
             </div>
