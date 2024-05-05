@@ -85,7 +85,6 @@ const Home = ({ change, Change }) => {
   useEffect(() => {
     FetchData();
     dispatch(fetchStory());
-    console.log(Stories);
   }, []);
   useEffect(() => {
     FetchData();

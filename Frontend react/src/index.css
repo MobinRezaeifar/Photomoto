@@ -73,7 +73,15 @@
 
 .ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.css-dev-only-do-not-override-7l2uzt {
   text-align: center;
+  background-color: transparent;
 }
+.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.css-dev-only-do-not-override-7l2uzt
+  li:hover {
+  text-align: center;
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .ant-progress-text > span {
   display: none;
 }
@@ -81,4 +89,12 @@
   display: none;
 }
 
-
+:where(.css-dev-only-do-not-override-7l2uzt).ant-dropdown .ant-dropdown-menu,
+:where(.css-dev-only-do-not-override-7l2uzt).ant-dropdown-menu-submenu
+  .ant-dropdown-menu {
+  box-shadow: none;
+}
+:where(.css-dev-only-do-not-override-7l2uzt).ant-dropdown
+  .ant-dropdown-arrow:before {
+  background: black;
+}

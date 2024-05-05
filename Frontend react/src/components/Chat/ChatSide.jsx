@@ -31,6 +31,7 @@ import VideoMessageOutbound from "./VideoMessageOutbound";
 import VoiceMessageInbound from "./VoiceMessageInbound";
 import VoiceMessageOutbound from "./VoiceMessageOutbound";
 import { Dropdown } from "antd";
+import { IoCamera } from "react-icons/io5";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -256,6 +257,12 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     },
   ];
 
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 13 && MessageText) {
+      SendTextMessage();
+    }
+  };
+
   return (
     <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
       <div
@@ -437,6 +444,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
             type="text"
             value={MessageText}
             onChange={(e) => setMessageText(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <div className="absolute flex gap-2 items-center mr-3">
             {MessageText ? (
@@ -447,6 +455,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
               />
             ) : (
               <React.Fragment>
+                <IoCamera size={24} onClick={() => navigate("createMessage")} />
                 <label class="block" for="file_input">
                   <GoFileDirectoryFill size={21} className="cursor-pointer" />
                 </label>
