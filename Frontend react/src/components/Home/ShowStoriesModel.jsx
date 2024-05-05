@@ -66,6 +66,8 @@ function ShowStoriesModel({
   const DeleteStory = () => {
     dispatch(deleteStory(selectedStoryId));
     Change("change")
+    setShow(false);
+
   };
 
   const items = [
