@@ -207,6 +207,8 @@ const Home = ({ change, Change }) => {
         SelectePost={SelectePost}
       />
       <ShowStoriesModel
+        change={change}
+        Change={Change}
         setShow={setShowStoryModel}
         show={ShowStoryModel}
         dimensions={dimensions}

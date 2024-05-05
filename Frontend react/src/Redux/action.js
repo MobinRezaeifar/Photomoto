@@ -450,11 +450,12 @@ export const fetchStory = () => {
 export const deleteStory = (id) => {
   return async (dispatch) => {
     try {
-      await fetch(`${StoryApi}/delete"/${id}`, {
+      await fetch(`${StoryApi}/delete/${id}`, {
         method: "DELETE",
       });
 
       dispatch(deleteStorySuccess(id));
+      await Change("change");
     } catch (error) {
       console.error(`Error deleting register with ID ${id}:`, error);
     }

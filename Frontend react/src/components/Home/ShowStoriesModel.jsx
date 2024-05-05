@@ -4,14 +4,21 @@ import { Avatar, Dropdown } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "antd";
-import { fetchStory } from "../../Redux/action";
+import { deleteStory, fetchStory } from "../../Redux/action";
 import VideoSrory from "./VideoSrory";
 import { MdArrowForwardIos } from "react-icons/md";
 import { GrAdd } from "react-icons/gr";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 
-function ShowStoriesModel({ dimensions, show, setShow, owner }) {
+function ShowStoriesModel({
+  dimensions,
+  show,
+  setShow,
+  owner,
+  change,
+  Change,
+}) {
   const Registers = useSelector((state) => state.Registers);
   const Stories = useSelector((state) => state.Stories);
   const carouselRef = useRef(null);
@@ -38,6 +45,10 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
   };
 
   useEffect(() => {
+   dispatch(fetchStory())
+  }, [change])
+
+  useEffect(() => {
     let test = [];
     Stories.map((data) => {
       if (data.owner == owner) {
@@ -52,6 +63,11 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
     });
   });
 
+  const DeleteStory = () => {
+    dispatch(deleteStory(selectedStoryId));
+    Change("change")
+  };
+
   const items = [
     {
       key: "1",
@@ -59,6 +75,7 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
         <div className=" w-[150px]">
           <ul>
             <li
+              onClick={() => DeleteStory()}
               className="text-lg flex items-center gap-2 justify-center"
               id="showSoryDropdown"
               style={{ backgroundColor: "" }}
@@ -71,7 +88,6 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
       ),
     },
   ];
-  console.log(selectedStoryId);
   return (
     <div
       className={`relative z-10 ${!show && "hidden"} `}
@@ -196,6 +212,8 @@ function ShowStoriesModel({ dimensions, show, setShow, owner }) {
                   onClick={() => {
                     setShow(false);
                     setDropDownShow(false);
+                    carouselRef.current.goTo(0);
+
                   }}
                 />
                 <Dropdown
