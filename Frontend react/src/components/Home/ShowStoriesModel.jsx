@@ -45,8 +45,8 @@ function ShowStoriesModel({
   };
 
   useEffect(() => {
-   dispatch(fetchStory())
-  }, [change])
+    dispatch(fetchStory());
+  }, [change]);
 
   useEffect(() => {
     let test = [];
@@ -65,7 +65,7 @@ function ShowStoriesModel({
 
   const DeleteStory = () => {
     dispatch(deleteStory(selectedStoryId));
-    Change("change")
+    Change("change");
     setShow(false);
   };
 
@@ -73,7 +73,7 @@ function ShowStoriesModel({
     {
       key: "1",
       label: (
-        <div className=" w-[150px]">
+        <div className=" w-[150px] px-2 py-3 rounded-lg" style={{ backgroundColor: "black" }}>
           <ul>
             <li
               onClick={() => DeleteStory()}
@@ -214,12 +214,10 @@ function ShowStoriesModel({
                     setShow(false);
                     setDropDownShow(false);
                     carouselRef.current.goTo(0);
-
                   }}
                 />
                 <Dropdown
                   visible={DropDownShow}
-                  arrow
                   trigger={["click"]}
                   menu={{
                     items,

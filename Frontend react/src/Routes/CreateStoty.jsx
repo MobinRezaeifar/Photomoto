@@ -10,7 +10,12 @@ import {
   Row,
   Slider,
 } from "antd";
-import { FaArrowCircleLeft, FaCircle } from "react-icons/fa";
+import {
+  FaArrowCircleLeft,
+  FaCircle,
+  FaLock,
+  FaLockOpen,
+} from "react-icons/fa";
 import { BsRecordCircle } from "react-icons/bs";
 import axios from "axios";
 import isEqual from "lodash.isequal";
@@ -21,6 +26,8 @@ import { useNavigate } from "react-router-dom";
 import { MdEditRoad } from "react-icons/md";
 import { IoCloseCircle } from "react-icons/io5";
 import { AddStory } from "../Redux/action";
+import { motion } from "framer-motion";
+import { FcLock, FcUnlock } from "react-icons/fc";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -34,6 +41,7 @@ function CreateStoty() {
   const [Fillter, setFillter] = useState("");
   let navigate = useNavigate();
   const [DropDownShow, setDropDownShow] = useState(false);
+  const [LockDropdown, setLockDropdown] = useState(true);
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -228,12 +236,31 @@ function CreateStoty() {
       setFillter("");
     }
   };
+  const constraintsRef = useRef(null);
 
   const items = [
     {
       key: "1",
       label: (
-        <div className=" w-full md:w-[250px]">
+        <motion.div
+          ref={constraintsRef}
+          dragConstraints={LockDropdown && constraintsRef}
+          drag={LockDropdown ? false : true}
+          className=" w-full md:w-[250px] bg-[#282828] p-4 rounded-lg"
+        >
+          <div className="w-full flex justify-center mb-2">
+            {(() => {
+              if (LockDropdown) {
+                return (
+                  <FaLock size={21} onClick={() => setLockDropdown(false)} />
+                );
+              } else {
+                return (
+                  <FaLockOpen size={21} onClick={() => setLockDropdown(true)} />
+                );
+              }
+            })()}
+          </div>
           <div className="flex items-center gap-2 w-full">
             <div className="w-[150px] flex justify-start items-center gap-1">
               {" "}
@@ -538,7 +565,7 @@ function CreateStoty() {
               );
             })()}
           </div>
-        </div>
+        </motion.div>
       ),
     },
   ];
@@ -728,7 +755,6 @@ function CreateStoty() {
 
               <Dropdown
                 visible={DropDownShow}
-                arrow
                 trigger={["click"]}
                 menu={{
                   items,

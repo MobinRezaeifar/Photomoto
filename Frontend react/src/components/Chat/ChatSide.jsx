@@ -234,25 +234,19 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     {
       key: "1",
       label: (
-        <a className="text-[1.2rem] w-full flex items-center justify-center gap-1">
-          <CiUser size={25} />
-          {TargetFullName}
-        </a>
-      ),
-    },
-    {
-      key: "2",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-          className="text-[1.2rem] w-full flex items-center justify-center gap-1"
+        <div
+          className="text-[1.2rem] w-full flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg"
+          style={{ backgroundColor: "black" }}
         >
-          <MdOutlineEmail size={25} />
-
-          {TargetEmail}
-        </a>
+          <div className="flex items-center gap-2">
+            <CiUser size={25} />
+            {TargetFullName}
+          </div>
+          <div className="flex items-center gap-2">
+            <MdOutlineEmail size={25} />
+            {TargetEmail}
+          </div>
+        </div>
       ),
     },
   ];
@@ -297,7 +291,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
             <span className="text-gray-400 font-bold">{SelectUser}</span>
           </span>
         </span>
-        <Dropdown menu={{ items }} placement="bottom" arrow trigger={["click"]}>
+        <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
           <CiMenuKebab size={27} className="cursor-pointer" />
         </Dropdown>
       </div>
