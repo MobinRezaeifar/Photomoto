@@ -236,7 +236,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
       label: (
         <div
           className="text-[1.2rem] w-full flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg"
-          style={{ backgroundColor: "black" }}
+          style={{
+            backgroundColor: "#282828",
+            padding: "6px 10px",
+            borderRadius: "6px",
+          }}
         >
           <div className="flex items-center gap-2">
             <CiUser size={25} />
@@ -449,7 +453,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
               />
             ) : (
               <React.Fragment>
-                <IoCamera size={24} onClick={() => navigate("createMessage")} />
+                <IoCamera
+                  size={24}
+                  onClick={() => navigate("createMessage")}
+                  className="cursor-pointer"
+                />
                 <label class="block" for="file_input">
                   <GoFileDirectoryFill size={21} className="cursor-pointer" />
                 </label>

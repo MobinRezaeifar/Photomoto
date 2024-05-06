@@ -164,32 +164,7 @@ const Me = () => {
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
 
-  const items = [
-    {
-      key: "1",
-      label: (
-        <a
-          
-          className="text-[1.2rem] w-full flex items-center justify-center gap-1"
-        >
-          <CiUser size={25} />
-        </a>
-      ),
-    },
-    {
-      key: "2",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.antgroup.com"
-          className="text-[1.2rem] w-full flex items-center justify-center gap-1"
-        >
-          <MdOutlineEmail size={25} />
-        </a>
-      ),
-    },
-  ];
+  
 
   return (
     <div className="h-full overflow-y-auto w-full ">

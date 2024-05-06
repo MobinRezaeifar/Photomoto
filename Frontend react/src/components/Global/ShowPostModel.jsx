@@ -102,10 +102,32 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
 
   const items = [];
   if (decryptAES(sessionStorage.getItem("u")) == Post.owner) {
-    items.push(
-      {
-        key: "1",
-        label: (
+    items.push({
+      key: "1",
+      label: (
+        <div
+          style={{
+            backgroundColor: "#282828",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.5rem",
+            padding: "7px 10px",
+            borderRadius: "6px",
+            alignItems: "center",
+          }}
+        >
+          <span
+            className="flex items-center text-lg text-red-500"
+            onClick={async () => {
+              setShowComment(false);
+              dispatch({
+                type: "SHOWPOSTMODEL",
+                payload: false,
+              });
+            }}
+          >
+            <IoClose size={24} /> Close
+          </span>
           <span
             className="flex items-center text-lg text-red-500"
             onClick={async () => {
@@ -130,31 +152,21 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
           >
             <RiDeleteBin6Line size={24} /> Delete Post
           </span>
-        ),
-      },
-      {
-        key: "2",
-        label: (
-          <span
-            className="flex items-center text-lg text-red-500"
-            onClick={async () => {
-              setShowComment(false);
-              dispatch({
-                type: "SHOWPOSTMODEL",
-                payload: false,
-              });
-            }}
-          >
-            <IoClose size={24} /> Close
-          </span>
-        ),
-      }
-    );
+        </div>
+      ),
+    });
   } else {
     items.push({
       key: "2",
       label: (
         <span
+          style={{
+            backgroundColor: "#282828",
+            display: "flex",
+            padding: "7px 10px",
+            borderRadius: "6px",
+            alignItems: "center",
+          }}
           className="flex items-center text-lg text-red-500"
           onClick={async () => {
             setShowComment(false);
@@ -505,7 +517,6 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
                     items,
                   }}
                   placement="bottomRight"
-                  arrow
                 >
                   <FiMoreVertical className="cursor-pointer" size={iconSize} />
                 </Dropdown>

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import moment from "jalali-moment";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
-import { AddMessages } from "../../Redux/action";
+import { AddMessages, fetchConnection } from "../../Redux/action";
 
 function CreateMessage() {
   const videoRef = useRef(null);
@@ -202,7 +202,16 @@ function CreateMessage() {
       navigate("/photomoto");
     }
   };
-  console.log(mediaResult);
+  useEffect(() => {
+    if (!SelectUserChat) {
+      navigate("/photomoto");
+    }
+    dispatch({
+      type: "ISSUE",
+      payload: "direct",
+    });
+    dispatch(fetchConnection())
+  });
   return (
     <div className="flex justify-center h-screen w-screen flex items">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">

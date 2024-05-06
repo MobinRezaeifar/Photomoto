@@ -25,7 +25,7 @@ import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import { MdEditRoad } from "react-icons/md";
 import { IoCloseCircle } from "react-icons/io5";
-import { AddStory } from "../Redux/action";
+import { AddStory, fetchConnection, fetchPosts, fetchRegister, fetchStory } from "../Redux/action";
 import { motion } from "framer-motion";
 import { FcLock, FcUnlock } from "react-icons/fc";
 
@@ -582,6 +582,15 @@ function CreateStoty() {
               setmediaResult({});
               navigate("/photomoto");
               setFillter("");
+              dispatch({
+                type: "ISSUE",
+                payload: "home",
+              });
+              dispatch(fetchStory());
+              dispatch(fetchPosts());
+              dispatch(fetchConnection());
+              dispatch(fetchRegister());
+
             }}
           />
           <div className="flex items-center justify-center gap-2">

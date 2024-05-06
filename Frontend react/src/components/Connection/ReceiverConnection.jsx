@@ -39,7 +39,10 @@ const ReceiverConnection = ({
     {
       key: "1",
       label: (
-        <div className="text-[1.2rem] w-full flex flex-col items-center">
+        <div
+          className="text-[1.2rem] w-full flex flex-col items-center"
+          style={{ backgroundColor: "#282828",padding:"6px 10px",borderRadius:"6px" }}
+        >
           <h1 className="flex items-center gap-2">
             <FcTimeline size={22} />
             Send Request {sender} to {receiver}
@@ -150,7 +153,6 @@ const ReceiverConnection = ({
                 <Dropdown
                   menu={{ items }}
                   placement="bottom"
-                  arrow
                   trigger={["click"]}
                 >
                   <RiQuestionMark size={26} />

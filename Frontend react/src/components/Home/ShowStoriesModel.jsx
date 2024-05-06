@@ -73,7 +73,10 @@ function ShowStoriesModel({
     {
       key: "1",
       label: (
-        <div className=" w-[150px] px-2 py-3 rounded-lg" style={{ backgroundColor: "black" }}>
+        <div
+          className=" w-[150px] px-2 py-3 rounded-lg"
+          style={{ backgroundColor: "#282828" }}
+        >
           <ul>
             <li
               onClick={() => DeleteStory()}
