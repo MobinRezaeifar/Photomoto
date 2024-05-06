@@ -237,6 +237,7 @@ function CreateStoty() {
     }
   };
   const constraintsRef = useRef(null);
+  const constraints2Ref = useRef(null);
 
   const items = [
     {
@@ -244,7 +245,7 @@ function CreateStoty() {
       label: (
         <motion.div
           ref={constraintsRef}
-          dragConstraints={LockDropdown && constraintsRef}
+          dragConstraints={LockDropdown ? constraintsRef : constraints2Ref}
           drag={LockDropdown ? false : true}
           className=" w-full md:w-[250px] bg-[#282828] p-4 rounded-lg"
         >
@@ -613,7 +614,7 @@ function CreateStoty() {
           </div>
         </div>
 
-        <div>
+        <div ref={constraints2Ref}>
           {(() => {
             if (!isEqual(mediaResult, {})) {
               if (mediaResult.type === "video") {

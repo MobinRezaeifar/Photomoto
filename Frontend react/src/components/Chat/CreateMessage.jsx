@@ -204,7 +204,7 @@ function CreateMessage() {
   };
   console.log(mediaResult);
   return (
-    <div className="flex justify-center h-screen w-screen">
+    <div className="flex justify-center h-screen w-screen flex items">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
         <div className="z-50 w-full  md:w-[50%] absolute flex justify-between p-4">
           <FaArrowCircleLeft
