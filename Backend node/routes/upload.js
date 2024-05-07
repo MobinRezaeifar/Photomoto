@@ -2,9 +2,11 @@ const express = require("express");
 const multer = require("multer");
 const File = require("../models/File");
 const path = require("path");
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    const uploadPath = path.join(__dirname, "../uploads/");
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     cb(null, `${file.originalname}`);
