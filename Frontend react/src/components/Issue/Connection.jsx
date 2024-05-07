@@ -1,11 +1,14 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
-import { fetchConnection } from "../../Redux/action";
+import { AddConnection, fetchConnection } from "../../Redux/action";
 import { connect, useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 import SendConnection from "../Connection/SendConnection";
 import ReceiverConnection from "../Connection/ReceiverConnection";
+import { Avatar } from "antd";
+import { m } from "framer-motion";
+import moment from "jalali-moment";
 
 const Connection = ({ Change, change }) => {
   const dispatch = useDispatch();
@@ -49,7 +52,8 @@ const Connection = ({ Change, change }) => {
       }
     };
   }, []);
-  useEffect(() => {
+
+  const FetchRecommendationConnection = () => {
     let test = [];
     Connections.map((Connection) => {
       Registers.map((Register) => {
@@ -72,10 +76,14 @@ const Connection = ({ Change, change }) => {
         }
       }
     });
+  };
+
+  useEffect(() => {
+    FetchRecommendationConnection();
+  }, [dispatch]);
+  useEffect(() => {
+    FetchRecommendationConnection();
   }, []);
-
-  console.log(RecommendationConnection);
-
   return (
     <div className="h-full w-full ">
       <div className="overflow-y-auto h-full">
@@ -129,9 +137,47 @@ const Connection = ({ Change, change }) => {
           </div>
           {dimensions.width > 900 && (
             <div className="w-[50%] h-full flex items-center px-10">
-              <div className="bg-base-200 w-full h-[50%] overflow-y-auto rounded-3xl p-8">
+              <div className="bg-base-200 w-full h-[50%] overflow-y-auto rounded-3xl p-8 flex flex-col gap-2">
                 {RecommendationConnection.map((data) => {
-                  return <h1>{data.username}</h1>;
+                  const now = Date.now();
+
+                  return (
+                    <div className="w-full bg-slate-600 px-4 py-2 rounded-lg flex justify-between">
+                      <div className="flex items-center gap-2">
+                        <Avatar src={data.profileImg} />
+                        <span>{data.username}</span>
+                      </div>{" "}
+                      <button
+                        onClick={async () => {
+                          await dispatch(
+                            AddConnection({
+                              id: now + "",
+                              status: "send",
+                              sender: decryptAES(sessionStorage.getItem("u")),
+                              receiver: data.username,
+                              relation:
+                                decryptAES(sessionStorage.getItem("u")) +
+                                "," +
+                                data.username,
+                              time: moment(now).format(
+                                "jYYYY-jMM-jDD HH:mm:ss"
+                              ),
+                            })
+                          );
+                          await dispatch(fetchConnection());
+                          const updatedObjects =
+                            RecommendationConnection.filter(
+                              (obj) => obj.id !== data.id
+                            );
+                          setRecommendationConnection(updatedObjects);
+                        }}
+                        className="btn glass bg-blue-700 text-white"
+                        style={{ transform: "scale(0.9)" }}
+                      >
+                        Connection
+                      </button>
+                    </div>
+                  );
                 })}
               </div>
             </div>
