@@ -10,7 +10,8 @@ router.get("/files/:name", async (req, res) => {
     if (!file) {
       return res.status(404).send("File not found!");
     }
-    const filePath = path.join(__dirname, "..", file.path);
+    const filePath = path.join(file.path);
+    console.log(filePath);
     res.sendFile(filePath);
   } catch (err) {
     console.error(err);
