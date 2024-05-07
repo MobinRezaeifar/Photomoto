@@ -5,13 +5,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { CiMenuKebab, CiUser } from "react-icons/ci";
 import { GoFileDirectoryFill } from "react-icons/go";
 import { BsFillSendFill } from "react-icons/bs";
-import {
-  MdOutlineAlternateEmail,
-  MdOutlineEmail,
-  MdOutlineSettingsVoice,
-} from "react-icons/md";
+import { MdOutlineEmail, MdOutlineSettingsVoice } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { Avatar, Empty } from "antd";
+import { Empty } from "antd";
 import { AddMessages, fetchMessages } from "../../Redux/action";
 import CryptoJS from "crypto-js";
 import isEqual from "lodash.isequal";
@@ -226,8 +222,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
     scrollToBottom();
   }, [change]);
   useEffect(() => {
-    scrollToBottom();
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
   }, [SelectUser]);
+
   let messageRenderdiv = document.getElementById("messageRenderdiv");
 
   const items = [

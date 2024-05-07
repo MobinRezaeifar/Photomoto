@@ -210,7 +210,7 @@ function CreateMessage() {
       type: "ISSUE",
       payload: "direct",
     });
-    dispatch(fetchConnection())
+    dispatch(fetchConnection());
   });
   return (
     <div className="flex justify-center h-screen w-screen flex items">
@@ -306,53 +306,54 @@ function CreateMessage() {
             }
           })()}
         </div>
-
-        <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
-          {isRecording ? (
-            <div
-              style={{
-                marginBottom: "-8px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onMouseDown={() => {
-                setIsMouseDown(true);
-              }}
-              onMouseUp={() => {
-                setIsMouseDown(false);
-                stopVideoRecording();
-              }}
-              onClick={() => !state && TakePhoto()}
-            >
-              <FaCircle style={{ position: "absolute" }} size={16} />
-              <Progress
-                type="circle"
-                percent={(recordingProgress / 15) * 100}
-                size={42}
-                className="cursor-pointer "
+        {isEqual(mediaResult, {}) && (
+          <div className="absolute bottom-6 w-full   md:w-[50%]  flex justify-center  items-center">
+            {isRecording ? (
+              <div
+                style={{
+                  marginBottom: "-8px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                onMouseDown={() => {
+                  setIsMouseDown(true);
+                }}
+                onMouseUp={() => {
+                  setIsMouseDown(false);
+                  stopVideoRecording();
+                }}
+                onClick={() => !state && TakePhoto()}
+              >
+                <FaCircle style={{ position: "absolute" }} size={16} />
+                <Progress
+                  type="circle"
+                  percent={(recordingProgress / 15) * 100}
+                  size={42}
+                  className="cursor-pointer "
+                />
+              </div>
+            ) : (
+              <BsRecordCircle
+                style={{
+                  position: "absolute",
+                  cursor: "pointer",
+                  marginBottom: !isRecording && "28px",
+                  zIndex: "99999",
+                }}
+                size={40}
+                onMouseDown={() => {
+                  setIsMouseDown(true);
+                }}
+                onMouseUp={() => {
+                  setIsMouseDown(false);
+                  stopVideoRecording();
+                }}
+                onClick={() => !state && TakePhoto()}
               />
-            </div>
-          ) : (
-            <BsRecordCircle
-              style={{
-                position: "absolute",
-                cursor: "pointer",
-                marginBottom: !isRecording && "28px",
-                zIndex: "99999",
-              }}
-              size={40}
-              onMouseDown={() => {
-                setIsMouseDown(true);
-              }}
-              onMouseUp={() => {
-                setIsMouseDown(false);
-                stopVideoRecording();
-              }}
-              onClick={() => !state && TakePhoto()}
-            />
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
