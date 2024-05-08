@@ -164,8 +164,6 @@ const Me = () => {
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
 
-  
-
   return (
     <div className="h-full overflow-y-auto w-full ">
       <div className="flex justify-between w-full items-center  p-8">
@@ -185,22 +183,8 @@ const Me = () => {
             title="Create Post"
             className="animated2 cursor-pointer"
             size={dimensions.width > 900 ? 38 : 32}
-            // style={{ marginTop: "1.9rem" }}
           />
-          {/* <Dropdown
-            menu={{ items }}
-            placement="bottom"
-            arrow
-            trigger={["click"]}
-          >
-            <div>
-              <IoSettingsOutline
-                title="Setting"
-                className="animated cursor-pointer"
-                size={dimensions.width > 900 ? 38 : 32}
-              />
-            </div>
-          </Dropdown> */}
+
           <IoSettingsOutline
             onClick={() => setShowSettingSidebar(true)}
             title="Setting"
@@ -378,7 +362,11 @@ const Me = () => {
           }
         })()}
       </div>
-      <SettingSideBar ShowSettingSidebar={ShowSettingSidebar} />
+      <SettingSideBar
+        ShowSettingSidebar={ShowSettingSidebar}
+        setShowSettingSidebar={setShowSettingSidebar}
+        dimensions={dimensions}
+      />
     </div>
   );
 };

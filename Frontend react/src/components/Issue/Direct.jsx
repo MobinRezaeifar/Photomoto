@@ -53,7 +53,10 @@ const Direct = ({ Change, change }) => {
 
   return (
     <div className="flex items-center justify-center h-full w-full">
-      <div
+      <motion.div
+        // initial={{ opacity: 0, x: dimensions.width > 900 && -70 }}
+        // animate={{ opacity: 1, x: dimensions.width > 900 && 0 }}
+        // transition={{ duration: 0.8 }}
         className={`w-[20%] h-full bg-[#37415171] ${
           !SelectUserChat && dimensions.width < 900 && "w-full"
         }
@@ -154,7 +157,7 @@ const Direct = ({ Change, change }) => {
             });
           })()}
         </div>
-      </div>
+      </motion.div>
       <div
         className={`w-[80%] h-full bg-base-100 ${
           !SelectUserChat && dimensions.width < 900 && "hidden"

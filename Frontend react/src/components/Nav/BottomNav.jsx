@@ -23,6 +23,10 @@ const BottomNav = () => {
             type: "ISSUE",
             payload: "me",
           });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
+          });
         }}
       />
       <MdConnectWithoutContact
@@ -36,6 +40,10 @@ const BottomNav = () => {
             type: "ISSUE",
             payload: "connection",
           });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
+          });
         }}
       />
       <GoSearch
@@ -46,6 +54,10 @@ const BottomNav = () => {
           dispatch({
             type: "ISSUE",
             payload: "search",
+          });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
           });
         }}
       />
@@ -58,6 +70,10 @@ const BottomNav = () => {
             type: "ISSUE",
             payload: "direct",
           });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
+          });
         }}
       />
       <IoHome
@@ -68,6 +84,10 @@ const BottomNav = () => {
           dispatch({
             type: "ISSUE",
             payload: "home",
+          });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
           });
         }}
       />

@@ -23,16 +23,26 @@ const LeftNav = () => {
             type: "ISSUE",
             payload: "me",
           });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
+          });
         }}
       />
       <MdConnectWithoutContact
-       className={`hover:bg-gray-700 ${Issue == "connection" && "bg-gray-700"}`}
-       size={32}
-       style={{ cursor: "pointer", borderRadius: "50%", padding: "3px" }}
+        className={`hover:bg-gray-700 ${
+          Issue == "connection" && "bg-gray-700"
+        }`}
+        size={32}
+        style={{ cursor: "pointer", borderRadius: "50%", padding: "3px" }}
         onClick={() => {
           dispatch({
             type: "ISSUE",
             payload: "connection",
+          });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
           });
         }}
       />
@@ -45,6 +55,10 @@ const LeftNav = () => {
             type: "ISSUE",
             payload: "search",
           });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
+          });
         }}
       />
       <IoChatbubbleEllipsesOutline
@@ -56,6 +70,10 @@ const LeftNav = () => {
             type: "ISSUE",
             payload: "direct",
           });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
+          });
         }}
       />
       <IoHome
@@ -66,6 +84,10 @@ const LeftNav = () => {
           dispatch({
             type: "ISSUE",
             payload: "home",
+          });
+          dispatch({
+            type: "SELECTUSERCHAT",
+            payload: "",
           });
         }}
       />

@@ -7,8 +7,8 @@ import CryptoJS from "crypto-js";
 import SendConnection from "../Connection/SendConnection";
 import ReceiverConnection from "../Connection/ReceiverConnection";
 import { Avatar } from "antd";
-import { m } from "framer-motion";
 import moment from "jalali-moment";
+import { motion } from "framer-motion";
 
 const Connection = ({ Change, change }) => {
   const dispatch = useDispatch();
@@ -136,16 +136,27 @@ const Connection = ({ Change, change }) => {
             })()}
           </div>
           {dimensions.width > 900 && (
-            <div className="w-[50%] h-full flex items-center px-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-[50%] h-full flex items-center px-10"
+            >
               <div className="bg-base-200 w-full h-[50%] overflow-y-auto rounded-3xl p-8 flex flex-col gap-2">
                 {RecommendationConnection.map((data) => {
                   const now = Date.now();
-
                   return (
-                    <div className="w-full bg-slate-600 px-4 py-2 rounded-lg flex justify-between">
-                      <div className="flex items-center gap-2">
-                        <Avatar src={data.profileImg} />
-                        <span>{data.username}</span>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5 }}
+                      className="w-full bg-slate-600 px-4 py-2 rounded-lg flex justify-between"
+                    >
+                      <div className="flex items-center gap-1">
+                        <Avatar size={36} src={data.profileImg} />
+                        <span className="font-bold text-xl">
+                          {data.username}
+                        </span>
                       </div>{" "}
                       <button
                         onClick={async () => {
@@ -176,11 +187,11 @@ const Connection = ({ Change, change }) => {
                       >
                         Connection
                       </button>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

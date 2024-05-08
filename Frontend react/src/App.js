@@ -6,6 +6,7 @@ import ShowAccount from "./components/Global/ShowAccount";
 import "./App.css";
 import CreateStoty from "./Routes/CreateStoty";
 import CreateMessage from "./components/Chat/CreateMessage";
+import VideoCall from "./components/Chat/VideoCall";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/photomoto/:username" element={<ShowAccount />} />
           <Route path="/photomoto/createStory" element={<CreateStoty />} />
           <Route path="/photomoto/createMessage" element={<CreateMessage />} />
+          <Route path="/photomoto/videoCall" element={<VideoCall />} />
         </Routes>
       </BrowserRouter>
     </main>
