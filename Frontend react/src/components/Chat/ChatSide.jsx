@@ -27,7 +27,7 @@ import VideoMessageOutbound from "./VideoMessageOutbound";
 import VoiceMessageInbound from "./VoiceMessageInbound";
 import VoiceMessageOutbound from "./VoiceMessageOutbound";
 import { Dropdown } from "antd";
-import { IoCamera } from "react-icons/io5";
+import { IoCamera, IoVideocam } from "react-icons/io5";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
   const [MessageText, setMessageText] = useState("");
@@ -294,9 +294,16 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
             <span className="text-gray-400 font-bold">{SelectUser}</span>
           </span>
         </span>
-        <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
-          <CiMenuKebab size={27} className="cursor-pointer" />
-        </Dropdown>
+        <div className="flex items-center gap-2">
+          <IoVideocam
+            size={27}
+            className="cursor-pointer"
+            onClick={() => navigate("videoCall")}
+          />
+          <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
+            <CiMenuKebab size={27} className="cursor-pointer" />
+          </Dropdown>
+        </div>
       </div>
 
       <div
