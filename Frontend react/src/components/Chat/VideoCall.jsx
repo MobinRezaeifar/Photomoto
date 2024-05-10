@@ -25,7 +25,9 @@ function VideoCall() {
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
         setStream(stream);
-        myVideo.current.srcObject = stream;
+        if (myVideo.current) {
+          myVideo.current.srcObject = stream;
+        }
       });
 
     socket.on("me", (id) => {
@@ -55,7 +57,9 @@ function VideoCall() {
       });
     });
     peer.on("stream", (stream) => {
-      userVideo.current.srcObject = stream;
+      if (userVideo.current) {
+        userVideo.current.srcObject = stream;
+      }
     });
     socket.on("callAccepted", (signal) => {
       setCallAccepted(true);
@@ -76,7 +80,9 @@ function VideoCall() {
       socket.emit("answerCall", { signal: data, to: caller });
     });
     peer.on("stream", (stream) => {
-      userVideo.current.srcObject = stream;
+      if (userVideo.current) {
+        userVideo.current.srcObject = stream;
+      }
     });
 
     peer.signal(callerSignal);

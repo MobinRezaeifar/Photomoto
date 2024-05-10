@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "photomoto",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^41.2.0",
