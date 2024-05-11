@@ -10,6 +10,7 @@ import { FaCircle } from "react-icons/fa";
 import { AiFillBulb } from "react-icons/ai";
 import ChatSide from "../Chat/ChatSide";
 import { motion } from "framer-motion";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const Direct = ({ Change, change }) => {
   const [dimensions, setDimensions] = useState({
@@ -51,6 +52,42 @@ const Direct = ({ Change, change }) => {
   }, []);
   const constraintsRef = useRef(null);
 
+  useEffect(() => {
+    window.addEventListener("blur", () => {
+      console.log("end");
+    });
+    window.addEventListener("focus", () => {
+      console.log("start");
+    });
+  });
+
+  const [Users, setOUsers] = useState([]);
+
+  useEffect(() => {
+    Connections.map((data) => {
+      if (
+        data.sender == decryptAES(sessionStorage.getItem("u")) ||
+        data.receiver == decryptAES(sessionStorage.getItem("u"))
+      ) {
+        let targetUser =
+          data.sender == decryptAES(sessionStorage.getItem("u"))
+            ? data.receiver
+            : data.sender;
+        if (data.status == "accept") {
+          const existingUser = Users.find(
+            (user) => user.username == targetUser
+          );
+          if (!existingUser) {
+            Users.push({
+              username: targetUser,
+              status: "offline",
+            });
+          }
+        }
+      }
+    });
+  }, []);
+
   return (
     <div className="flex items-center justify-center h-full w-full">
       <motion.div
@@ -75,85 +112,74 @@ const Direct = ({ Change, change }) => {
           ref={constraintsRef}
         >
           {(() => {
-            return Connections.map((data) => {
-              if (
-                data.sender == decryptAES(sessionStorage.getItem("u")) ||
-                data.receiver == decryptAES(sessionStorage.getItem("u"))
-              ) {
-                let targetUser =
-                  data.sender == decryptAES(sessionStorage.getItem("u"))
-                    ? data.receiver
-                    : data.sender;
-                if (data.status == "accept") {
-                  return (
-                    <motion.div
-                      initial={{ opacity: 0, x: !SelectUserChat && -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className={`w-full my-[0.3rem] px-3 ${
-                        SelectUserChat == targetUser &&
-                        "bg-base-100 rounded-s-[60px]"
-                      }`}
-                      onClick={() => {
-                        dispatch({
-                          type: "SELECTUSERCHAT",
-                          payload: targetUser,
-                        });
-                      }}
-                    >
-                      <div
-                        className={`w-full  flex items-center gap-2 ${
-                          SelectUserChat != targetUser && "hover:bg-base-100"
-                        }`}
-                        id="directItem"
-                        style={{
-                          borderRadius: "8px",
-                          fontSize: "20px",
-                          padding: "7px 10px",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <Badge
-                          count={
-                            <Button
-                              id="borderrnone"
-                              icon={
-                                <FaCircle
-                                  color="green"
-                                  style={{
-                                    position: "absolute",
-                                    top: "0",
-                                    right: "2px",
-                                  }}
-                                  size={dimensions.width > 900 ? 12 : 11}
-                                />
-                              }
-                            ></Button>
+            return Users.map((data) => {
+              return (
+                <motion.div
+                  initial={{ opacity: 0, x: !SelectUserChat && -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className={`w-full my-[0.3rem] px-3 ${
+                    SelectUserChat == data.username &&
+                    "bg-base-100 rounded-s-[60px]"
+                  }`}
+                  onClick={() => {
+                    dispatch({
+                      type: "SELECTUSERCHAT",
+                      payload: data.username,
+                    });
+                  }}
+                >
+                  <div
+                    className={`w-full  flex items-center gap-2 ${
+                      SelectUserChat != data.username && "hover:bg-base-100"
+                    }`}
+                    id="directItem"
+                    style={{
+                      borderRadius: "8px",
+                      fontSize: "20px",
+                      padding: "7px 10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Badge
+                      count={
+                        <Button
+                          id="borderrnone"
+                          icon={
+                            <FaCircle
+                              color="green"
+                              style={{
+                                position: "absolute",
+                                top: "0",
+                                right: "2px",
+                              }}
+                              size={dimensions.width > 900 ? 12 : 11}
+                            />
                           }
-                        >
-                          {(() => {
-                            return Registers.map((dataa) => {
-                              if (dataa.username == targetUser) {
-                                return (
-                                  <Avatar
-                                    size={dimensions.width > 900 ? 40 : 40}
-                                    src={dataa.profileImg}
-                                    shape="circle"
-                                  />
-                                );
-                              }
-                            });
-                          })()}
-                        </Badge>
-                        <div className="flex flex-col items-start ">
-                          <span className="text-white"> {targetUser}</span>
-                          <span className="text-sm">Connect with you.</span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                }
-              }
+                        ></Button>
+                      }
+                    >
+                      {(() => {
+                        return Registers.map((dataa) => {
+                          if (dataa.username == data.username) {
+                            return (
+                              <Avatar
+                                size={dimensions.width > 900 ? 40 : 40}
+                                src={dataa.profileImg}
+                                shape="circle"
+                              />
+                            );
+                          }
+                        });
+                      })()}
+                    </Badge>
+                    <div className="flex flex-col items-start ">
+                      <span className="text-white"> {data.username}</span>
+                      <span className="text-sm">Connect with you.</span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
             });
           })()}
         </div>

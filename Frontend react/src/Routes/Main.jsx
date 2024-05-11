@@ -67,6 +67,35 @@ const Main = () => {
       console.log(e);
     }
   };
+
+  const [OnlineUsers, setOnlineUsers] = useState([]);
+
+  const onlineUsers = async (onlineUser) => {
+    try {
+      const connection = new HubConnectionBuilder()
+        .withUrl(`http://localhost:5221/onlineUsers`)
+        .configureLogging(LogLevel.Information)
+        .build();
+      await connection.start();
+
+      connection
+        .invoke("Connect", onlineUser)
+        .catch((err) => console.error(err));
+
+      connection.on("getOnlineUsers", (onlineuser) => {
+        setOnlineUsers(onlineuser);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    onlineUsers(sessionStorage.getItem("u"));
+  }, []);
+  
+  console.log(OnlineUsers);
+
   return (
     <div
       className={`h-screen w-screen flex ${

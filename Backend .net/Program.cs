@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.Http,
         Scheme = "bearer",
         BearerFormat = "JWT",
-        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } 
+        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
     };
     c.AddSecurityDefinition("Bearer", securityScheme);
     c.AddSecurityRequirement(
@@ -134,6 +134,7 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapHub<ChangeHub>("/change");
+    endpoints.MapHub<OnlineUserChatHub>("/onlineUsers");
     endpoints.MapControllers();
 });
 

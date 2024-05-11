@@ -10,6 +10,7 @@ import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../components/Global/Login";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -145,6 +146,8 @@ const Register = () => {
       });
     }
   };
+
+
 
   return (
     <div className="h-screen w-screen px-20 flex justify-center items-center">
