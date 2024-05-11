@@ -3,6 +3,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import Peer from "simple-peer";
 import io from "socket.io-client";
 import "./VideoCall.css";
+import { useSelector } from "react-redux";
 
 const socket = io.connect("http://localhost:5001");
 
@@ -19,7 +20,8 @@ function VideoCall() {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
-
+  const idVideoCall = useSelector((state) => state.idVideoCall);
+  console.log("idVideoCall" + idVideoCall);
   useEffect(() => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
