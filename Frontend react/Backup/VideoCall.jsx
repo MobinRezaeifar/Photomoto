@@ -30,9 +30,7 @@ function VideoCall() {
         }
       });
 
-    socket.on("me", (id) => {
-      setMe(id);
-    });
+    socket.emit("joinRoom", me);
 
     socket.on("callUser", (data) => {
       setReceivingCall(true);
@@ -40,7 +38,7 @@ function VideoCall() {
       setName(data.name);
       setCallerSignal(data.signal);
     });
-  }, []);
+  }, [me]);
 
   const callUser = (id) => {
     const peer = new Peer({

@@ -136,6 +136,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapHub<ChangeHub>("/change");
     endpoints.MapHub<OnlineUserChatHub>("/onlineUsers");
     endpoints.MapControllers();
+
 });
 
 app.Run();

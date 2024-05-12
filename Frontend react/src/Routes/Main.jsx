@@ -11,6 +11,7 @@ import { fetchRegister } from "../Redux/action";
 import Home from "../components/Issue/Home";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Me from "../components/Issue/Me";
+import CryptoJS from "crypto-js";
 
 const Main = () => {
   let navigate = useNavigate();
@@ -39,7 +40,16 @@ const Main = () => {
   if (sessionStorage.getItem("u") == null) {
     navigate("/");
   }
-
+  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
+  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
+  function decryptAES(message) {
+    const bytes = CryptoJS.AES.decrypt(message, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+    return bytes.toString(CryptoJS.enc.Utf8);
+  }
   const Issue = useSelector((state) => state.Issue);
 
   const dispatch = useDispatch();
@@ -89,11 +99,11 @@ const Main = () => {
       console.log(e);
     }
   };
-
+  let mainUser = decryptAES(sessionStorage.getItem("u"));
   useEffect(() => {
-    onlineUsers(sessionStorage.getItem("u"));
+    onlineUsers(mainUser);
   }, []);
-  
+
   console.log(OnlineUsers);
 
   return (
@@ -114,7 +124,13 @@ const Main = () => {
               <Connection Change={Change} change={change} />
             )}
             {Issue == "search" && <Search Change={Change} change={change} />}
-            {Issue == "direct" && <Direct Change={Change} change={change} />}
+            {Issue == "direct" && (
+              <Direct
+                OnlineUsers={OnlineUsers}
+                Change={Change}
+                change={change}
+              />
+            )}
             {Issue == "home" && <Home change={change} Change={Change} />}
           </div>
         </React.Fragment>
@@ -129,7 +145,13 @@ const Main = () => {
               <Connection Change={Change} change={change} />
             )}
             {Issue == "search" && <Search Change={Change} change={change} />}
-            {Issue == "direct" && <Direct Change={Change} change={change} />}
+            {Issue == "direct" && (
+              <Direct
+                OnlineUsers={OnlineUsers}
+                Change={Change}
+                change={change}
+              />
+            )}
             {Issue == "home" && <Home change={change} Change={Change} />}
           </div>
           <BottomNav />

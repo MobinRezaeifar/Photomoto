@@ -12,7 +12,7 @@ import ChatSide from "../Chat/ChatSide";
 import { motion } from "framer-motion";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
-const Direct = ({ Change, change }) => {
+const Direct = ({ Change, change, OnlineUsers }) => {
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -141,38 +141,46 @@ const Direct = ({ Change, change }) => {
                       cursor: "pointer",
                     }}
                   >
-                    <Badge
-                      count={
-                        <Button
-                          id="borderrnone"
-                          icon={
-                            <FaCircle
-                              color="green"
-                              style={{
-                                position: "absolute",
-                                top: "0",
-                                right: "2px",
-                              }}
-                              size={dimensions.width > 900 ? 12 : 11}
-                            />
+                    {(() => {
+                      let status = OnlineUsers.some(
+                        (x) => x.username == data.username
+                      );
+                      return (
+                        <Badge
+                          count={
+                            <Button
+                              id="borderrnone"
+                              icon={
+                                <FaCircle
+                                  color={status ? "green" : "red"}
+                                  style={{
+                                    position: "absolute",
+                                    top: "0",
+                                    right: "2px",
+                                  }}
+                                  size={dimensions.width > 900 ? 12 : 11}
+                                />
+                              }
+                            ></Button>
                           }
-                        ></Button>
-                      }
-                    >
-                      {(() => {
-                        return Registers.map((dataa) => {
-                          if (dataa.username == data.username) {
-                            return (
-                              <Avatar
-                                size={dimensions.width > 900 ? 40 : 40}
-                                src={dataa.profileImg}
-                                shape="circle"
-                              />
-                            );
-                          }
-                        });
-                      })()}
-                    </Badge>
+                        >
+                          {(() => {
+                            return Registers.map((dataa) => {
+                              if (dataa.username == data.username) {
+                                return (
+                                  <Avatar
+                                    size={dimensions.width > 900 ? 40 : 40}
+                                    src={dataa.profileImg}
+                                    shape="circle"
+                                  />
+                                );
+                              }
+                            });
+                          })()}
+                        </Badge>
+                      );
+                    })()}
+
                     <div className="flex flex-col items-start ">
                       <span className="text-white"> {data.username}</span>
                       <span className="text-sm">Connect with you.</span>
