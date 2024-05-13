@@ -374,7 +374,6 @@ const ShowAccount = () => {
             <div
               style={{
                 boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-                // backgroundColor: "red",
                 borderRadius: "50%",
                 width: "50px",
                 height: "50px",

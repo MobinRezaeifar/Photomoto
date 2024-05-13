@@ -366,6 +366,10 @@ const Me = () => {
         ShowSettingSidebar={ShowSettingSidebar}
         setShowSettingSidebar={setShowSettingSidebar}
         dimensions={dimensions}
+        bio={Bio}
+        username={mainUser}
+        fullName={decryptAES(sessionStorage.getItem("f"))}
+        email={decryptAES(sessionStorage.getItem("e"))}
       />
     </div>
   );

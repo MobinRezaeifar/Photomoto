@@ -316,13 +316,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
           <IoVideocam
             size={27}
             className="cursor-pointer"
-            // onClick={() =>
-            //   navigate(
-            //     `videoCall/${
-            //       SelectUser + "," + decryptAES(sessionStorage.getItem("u"))
-            //     }`
-            //   )
-            // }
+            onClick={() => navigate(`videoCall/`)}
           />
           <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
             <CiMenuKebab size={27} className="cursor-pointer" />
