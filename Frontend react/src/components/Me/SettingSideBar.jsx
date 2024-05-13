@@ -4,6 +4,8 @@ import { Collapse } from "antd";
 import { MdOutlineDescription } from "react-icons/md";
 import { RxFontFamily } from "react-icons/rx";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateRegister } from "../../Redux/action";
 
 const SettingSideBar = ({
   ShowSettingSidebar,
@@ -13,7 +15,10 @@ const SettingSideBar = ({
   username,
   fullName,
   email,
+  id,
 }) => {
+  const dispatch = useDispatch();
+
   const [Username, setUsername] = useState(username);
   const [FullName, setFullName] = useState(fullName);
   const [Email, setEmail] = useState(email);
@@ -127,10 +132,27 @@ const SettingSideBar = ({
               placeholder="elonmusk"
             />
           </div>
+          <div className="w-full text-right">
+            <button
+              className="btn glass bg-green-700 text-white"
+              style={{ transform: "scale(0.9)" }}
+              onClick={() => {
+                SaveEditProfileDetail();
+              }}
+            >
+              Save
+            </button>
+          </div>
         </>
       ),
     },
   ];
+
+  const SaveEditProfileDetail = () => {
+    dispatch(updateRegister(id, {}));
+  };
+
+
 
   return (
     <div

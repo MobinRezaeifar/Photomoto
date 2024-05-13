@@ -36,6 +36,7 @@ const Me = () => {
   const [Post, setPost] = useState(0);
   const [Connection, setConnection] = useState(0);
   const [Bio, setBio] = useState("");
+  const [UserId, setUserId] = useState("");
   const [ShowSettingSidebar, setShowSettingSidebar] = useState(false);
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -146,6 +147,7 @@ const Me = () => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
         setPost(data.post);
         setBio(data.bio);
+        setUserId(data.id)
         if (data.profileImg) {
           dispatch({
             type: "PROFILEIMG",
@@ -367,6 +369,7 @@ const Me = () => {
         setShowSettingSidebar={setShowSettingSidebar}
         dimensions={dimensions}
         bio={Bio}
+        id={UserId}
         username={mainUser}
         fullName={decryptAES(sessionStorage.getItem("f"))}
         email={decryptAES(sessionStorage.getItem("e"))}
