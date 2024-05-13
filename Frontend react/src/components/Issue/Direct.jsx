@@ -180,7 +180,6 @@ const Direct = ({ Change, change, OnlineUsers }) => {
                         </Badge>
                       );
                     })()}
-
                     <div className="flex flex-col items-start ">
                       <span className="text-white"> {data.username}</span>
                       <span className="text-sm">Connect with you.</span>
@@ -200,6 +199,7 @@ const Direct = ({ Change, change, OnlineUsers }) => {
         {SelectUserChat ? (
           <div className="h-full w-full">
             <ChatSide
+              OnlineUsers={OnlineUsers}
               dimensions={dimensions}
               SelectUser={SelectUserChat}
               Change={Change}

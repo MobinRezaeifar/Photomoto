@@ -29,7 +29,7 @@ import VoiceMessageOutbound from "./VoiceMessageOutbound";
 import { Dropdown } from "antd";
 import { IoCamera, IoVideocam } from "react-icons/io5";
 
-const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
+const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
   const [MessageText, setMessageText] = useState("");
   const dispatch = useDispatch();
   const Messages = useSelector((state) => state.Messages);
@@ -286,11 +286,29 @@ const ChatSide = ({ SelectUser, Change, change, mainUser }) => {
             onClick={() => navigate(`${SelectUser}`)}
             className="cursor-pointer flex items-center gap-2 text-white"
           >
-            <img
-              class="w-11 h-11 p-1 rounded-xl ring-2 ring-gray-300 dark:ring-gray-500"
-              src={TargetProfileImg}
-              alt=""
-            />
+            <div className="flex items-start justify-end">
+              <img
+                class="w-11 h-11 p-1 rounded-xl ring-2 ring-gray-300 dark:ring-gray-500"
+                src={TargetProfileImg}
+                alt=""
+              />
+              {(() => {
+                let status = OnlineUsers.some((x) => x.username == SelectUser);
+                return (
+                  <div
+                    style={{
+                      width: "14px",
+                      height: "14px",
+                      backgroundColor: status ? "green" : "red",
+                      borderRadius: "50%",
+                      position: "absolute",
+                      marginTop: "-6px",
+                      marginRight: "-6px",
+                    }}
+                  />
+                );
+              })()}
+            </div>
             <span className="text-gray-400 font-bold">{SelectUser}</span>
           </span>
         </span>
