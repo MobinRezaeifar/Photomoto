@@ -4,25 +4,26 @@ import { Collapse } from "antd";
 import { MdOutlineDescription } from "react-icons/md";
 import { RxFontFamily } from "react-icons/rx";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateRegister } from "../../Redux/action";
 
 const SettingSideBar = ({
   ShowSettingSidebar,
   setShowSettingSidebar,
   dimensions,
-  bio,
   username,
   fullName,
   email,
   id,
 }) => {
   const dispatch = useDispatch();
-
   const [Username, setUsername] = useState(username);
   const [FullName, setFullName] = useState(fullName);
   const [Email, setEmail] = useState(email);
-  const [Bio1, setBio1] = useState(bio);
+
+  const Bio = useSelector((state) => state.MeBio);
+  const [Bioo, setBioo] = useState(Bio);
+
 
   const items = [
     {
@@ -122,9 +123,9 @@ const SettingSideBar = ({
               <MdOutlineDescription size={20} />
             </span>
             <input
-              value={Bio1}
+              value={Bioo}
               onChange={(e) => {
-                setBio1(e.target.value);
+                setBioo(e.target.value);
               }}
               type="text"
               id="website-admin"
@@ -149,16 +150,17 @@ const SettingSideBar = ({
   ];
 
   const SaveEditProfileDetail = () => {
-    dispatch(updateRegister(id, {}));
+    dispatch(updateRegister(id, {
+
+    }))
   };
 
 
 
   return (
     <div
-      className={`${
-        ShowSettingSidebar ? "fixed" : "hidden "
-      } top-0   right-0 bg-base-300 rounded-s-3xl p-4 overflow-y-auto`}
+      className={`${ShowSettingSidebar ? "fixed" : "hidden "
+        } top-0   right-0 bg-base-300 rounded-s-3xl p-4 overflow-y-auto`}
       style={{
         height: dimensions.width > 900 ? "100%" : "93%",
         width: dimensions.width > 900 ? "50%" : "100%",

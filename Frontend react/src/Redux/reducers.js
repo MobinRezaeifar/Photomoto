@@ -8,6 +8,7 @@ const initialState = {
   ShowPostModel: false,
   ProfileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
   SelectUserChat: "",
+  MeBio: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -135,6 +136,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, ProfileImg: action.payload };
     case "SELECTUSERCHAT":
       return { ...state, SelectUserChat: action.payload };
+    case "MEBIO":
+      return { ...state, MeBio: action.payload };
 
     default:
       return state;

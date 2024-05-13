@@ -69,6 +69,7 @@ const Me = () => {
     };
   }, []);
 
+
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
 
@@ -148,6 +149,10 @@ const Me = () => {
         setPost(data.post);
         setBio(data.bio);
         setUserId(data.id)
+        dispatch({
+          type: "MEBIO",
+          payload: data.bio,
+        });
         if (data.profileImg) {
           dispatch({
             type: "PROFILEIMG",
@@ -170,9 +175,8 @@ const Me = () => {
     <div className="h-full overflow-y-auto w-full ">
       <div className="flex justify-between w-full items-center  p-8">
         <span
-          className={`${
-            dimensions.width > 900 ? "text-4xl" : "text-2xl"
-          } font-[600]`}
+          className={`${dimensions.width > 900 ? "text-4xl" : "text-2xl"
+            } font-[600]`}
         >
           {decryptAES(sessionStorage.getItem("u"))}
         </span>
@@ -237,9 +241,8 @@ const Me = () => {
         </Badge>
 
         <div
-          className={`flex justify-between gap-4  items-center ${
-            dimensions.width > 900 ? "text-2xl" : "text-xl"
-          }`}
+          className={`flex justify-between gap-4  items-center ${dimensions.width > 900 ? "text-2xl" : "text-xl"
+            }`}
           style={{ marginTop: dimensions.width > 900 ? "-40px" : "-20px" }}
         >
           <div className="flex flex-col justify-center items-center">
@@ -368,7 +371,6 @@ const Me = () => {
         ShowSettingSidebar={ShowSettingSidebar}
         setShowSettingSidebar={setShowSettingSidebar}
         dimensions={dimensions}
-        bio={Bio}
         id={UserId}
         username={mainUser}
         fullName={decryptAES(sessionStorage.getItem("f"))}
