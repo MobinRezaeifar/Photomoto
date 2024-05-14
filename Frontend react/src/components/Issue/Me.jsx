@@ -20,14 +20,10 @@ import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "../Me/CreatePostModel";
 import { Empty } from "antd";
-import Posts from "../Global/Postss";
 import Postss from "../Global/Postss";
-import { CiUser } from "react-icons/ci";
-import { MdOutlineEmail } from "react-icons/md";
-import { Dropdown } from "antd";
 import SettingSideBar from "../Me/SettingSideBar";
 
-const Me = () => {
+const Me = ({ Change, change }) => {
   const Registers = useSelector((state) => state.Registers);
   const Posts = useSelector((state) => state.Posts);
   const [SelecteTab, setSelecteTab] = useState("posts");
@@ -68,7 +64,6 @@ const Me = () => {
       }
     };
   }, []);
-
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -148,7 +143,7 @@ const Me = () => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
         setPost(data.post);
         setBio(data.bio);
-        setUserId(data.id)
+        setUserId(data.id);
         dispatch({
           type: "MEBIO",
           payload: data.bio,
@@ -175,8 +170,9 @@ const Me = () => {
     <div className="h-full overflow-y-auto w-full ">
       <div className="flex justify-between w-full items-center  p-8">
         <span
-          className={`${dimensions.width > 900 ? "text-4xl" : "text-2xl"
-            } font-[600]`}
+          className={`${
+            dimensions.width > 900 ? "text-4xl" : "text-2xl"
+          } font-[600]`}
         >
           {decryptAES(sessionStorage.getItem("u"))}
         </span>
@@ -241,8 +237,9 @@ const Me = () => {
         </Badge>
 
         <div
-          className={`flex justify-between gap-4  items-center ${dimensions.width > 900 ? "text-2xl" : "text-xl"
-            }`}
+          className={`flex justify-between gap-4  items-center ${
+            dimensions.width > 900 ? "text-2xl" : "text-xl"
+          }`}
           style={{ marginTop: dimensions.width > 900 ? "-40px" : "-20px" }}
         >
           <div className="flex flex-col justify-center items-center">
@@ -301,9 +298,6 @@ const Me = () => {
           </div>
         )}
       </div>
-
-      {/*  */}
-
       <div className="flex justify-center text-center px-8 mb-2">
         <div
           className="w-1/2 cursor-pointer"
@@ -375,6 +369,8 @@ const Me = () => {
         username={mainUser}
         fullName={decryptAES(sessionStorage.getItem("f"))}
         email={decryptAES(sessionStorage.getItem("e"))}
+        Change={Change}
+        change={change}
       />
     </div>
   );

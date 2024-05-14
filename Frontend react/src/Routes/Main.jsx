@@ -121,7 +121,7 @@ const Main = () => {
             className="w-[100%] h-full  overflow-y-auto "
             style={{ paddingRight: "4%" }}
           >
-            {Issue == "me" && <Me />}
+            {Issue == "me" && <Me Change={Change} change={change} />}
             {Issue == "connection" && (
               <Connection Change={Change} change={change} />
             )}
@@ -142,7 +142,7 @@ const Main = () => {
             className="w-full overflow-y-auto h-full "
             style={{ paddingBottom: "7%" }}
           >
-            {Issue == "me" && <Me />}
+            {Issue == "me" && <Me Change={Change} change={change} />}
             {Issue == "connection" && (
               <Connection Change={Change} change={change} />
             )}

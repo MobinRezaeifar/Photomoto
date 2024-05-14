@@ -6,6 +6,7 @@ import { RxFontFamily } from "react-icons/rx";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { fetchRegister } from "../../Redux/action";
 
 const SettingSideBar = ({
   ShowSettingSidebar,
@@ -15,13 +16,15 @@ const SettingSideBar = ({
   fullName,
   email,
   id,
+  Change,
+  change,
 }) => {
   const [Username, setUsername] = useState(username);
   const [FullName, setFullName] = useState(fullName);
   const [Email, setEmail] = useState(email);
   const Bio = useSelector((state) => state.MeBio);
   const [Bioo, setBioo] = useState(Bio);
-
+  let dispatch = useDispatch();
   console.log(Bioo);
   const items = [
     {
@@ -155,6 +158,8 @@ const SettingSideBar = ({
       bio: Bioo,
       fullName: FullName,
     });
+    Change("change");
+    dispatch(fetchRegister());
   };
 
   return (
