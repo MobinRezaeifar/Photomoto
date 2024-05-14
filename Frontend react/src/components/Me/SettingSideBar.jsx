@@ -5,7 +5,7 @@ import { MdOutlineDescription } from "react-icons/md";
 import { RxFontFamily } from "react-icons/rx";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateRegister } from "../../Redux/action";
+import axios from "axios";
 
 const SettingSideBar = ({
   ShowSettingSidebar,
@@ -16,15 +16,13 @@ const SettingSideBar = ({
   email,
   id,
 }) => {
-  const dispatch = useDispatch();
   const [Username, setUsername] = useState(username);
   const [FullName, setFullName] = useState(fullName);
   const [Email, setEmail] = useState(email);
-
   const Bio = useSelector((state) => state.MeBio);
   const [Bioo, setBioo] = useState(Bio);
 
-
+  console.log(Bioo);
   const items = [
     {
       key: "1",
@@ -150,17 +148,20 @@ const SettingSideBar = ({
   ];
 
   const SaveEditProfileDetail = () => {
-    dispatch(updateRegister(id, {
-
-    }))
+    axios.patch(`http://localhost:5221/api/Registers/api/registers/${id}`, {
+      id: id,
+      username: Username,
+      email: Email,
+      bio: Bioo,
+      fullName: FullName,
+    });
   };
-
-
 
   return (
     <div
-      className={`${ShowSettingSidebar ? "fixed" : "hidden "
-        } top-0   right-0 bg-base-300 rounded-s-3xl p-4 overflow-y-auto`}
+      className={`${
+        ShowSettingSidebar ? "fixed" : "hidden "
+      } top-0   right-0 bg-base-300 rounded-s-3xl p-4 overflow-y-auto`}
       style={{
         height: dimensions.width > 900 ? "100%" : "93%",
         width: dimensions.width > 900 ? "50%" : "100%",

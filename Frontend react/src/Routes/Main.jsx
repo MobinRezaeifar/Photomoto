@@ -104,7 +104,9 @@ const Main = () => {
     onlineUsers(mainUser);
   }, []);
 
-  console.log(OnlineUsers);
+  useEffect(() => {
+    dispatch(fetchRegister());
+  }, []);
 
   return (
     <div
