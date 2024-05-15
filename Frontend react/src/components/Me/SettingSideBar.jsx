@@ -30,7 +30,7 @@ const SettingSideBar = ({
   const items = [
     {
       key: "1",
-      label: "Edit Profile Detail",
+      label: "Profile Detail",
       children: (
         <>
           <label
@@ -147,6 +147,18 @@ const SettingSideBar = ({
             </button>
           </div>
         </>
+      ),
+    },
+    {
+      key: "2",
+      label: "Preferences",
+      children: (
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id aliquam
+          libero doloribus perferendis odio, ducimus necessitatibus aut
+          molestiae ipsa repudiandae accusantium iure vel excepturi sint
+          mollitia dolores quas velit quidem!
+        </div>
       ),
     },
   ];

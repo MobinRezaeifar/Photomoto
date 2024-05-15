@@ -18,6 +18,7 @@ function ShowStoriesModel({
   owner,
   change,
   Change,
+  mainUser,
 }) {
   const Registers = useSelector((state) => state.Registers);
   const Stories = useSelector((state) => state.Stories);
@@ -219,44 +220,31 @@ function ShowStoriesModel({
                     carouselRef.current.goTo(0);
                   }}
                 />
-                <Dropdown
-                  visible={DropDownShow}
-                  trigger={["click"]}
-                  menu={{
-                    items,
-                  }}
-                  placement="bottom"
-                >
-                  {/* {DropDownShow ? (
-                    <ImMenu4
-                      size={35}
-                      onClick={() => {
-                        setDropDownShow(false);
-                      }}
-                    />
-                  ) : (
-                    <ImMenu3
-                      size={35}
-                      onClick={() => {
-                        setDropDownShow(true);
-                      }}
-                    />
-                  )} */}
-                  <div
-                    className="flex items-end justify-start"
-                    onClick={() => {
-                      setDropDownShow(!DropDownShow);
+                {owner == mainUser && (
+                  <Dropdown
+                    visible={DropDownShow}
+                    trigger={["click"]}
+                    menu={{
+                      items,
                     }}
+                    placement="bottom"
                   >
-                    <HiMenuAlt3 size={35} />
+                    <div
+                      className="flex items-end justify-start"
+                      onClick={() => {
+                        setDropDownShow(!DropDownShow);
+                      }}
+                    >
+                      <HiMenuAlt3 size={35} />
 
-                    <GrAdd
-                      className="transition-all absolute"
-                      size={15}
-                      style={{ transform: DropDownShow && "rotate(45deg)" }}
-                    />
-                  </div>
-                </Dropdown>
+                      <GrAdd
+                        className="transition-all absolute"
+                        size={15}
+                        style={{ transform: DropDownShow && "rotate(45deg)" }}
+                      />
+                    </div>
+                  </Dropdown>
+                )}
               </div>
             </div>
           </div>

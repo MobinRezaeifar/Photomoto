@@ -117,7 +117,7 @@ const Home = ({ change, Change }) => {
           margin: "15px 0.5rem",
         }}
       />
-      <div className="h-20  w-full overflow-x-auto flex items-center">
+      <div className="h-20  w-full overflow-x-auto flex gap-2 items-center">
         <Badge
           className="cursor-pointer"
           count={
@@ -136,7 +136,7 @@ const Home = ({ change, Change }) => {
                   size={20}
                 />
               }
-            ></Button>
+            />
           }
         >
           <Avatar
@@ -154,6 +154,44 @@ const Home = ({ change, Change }) => {
             }}
           />
         </Badge>
+        {(() => {
+          return Connections.map((data) => {
+            let mainUser;
+            if (data.sender == decryptAES(sessionStorage.getItem("u"))) {
+              mainUser = data.receiver;
+            }
+            if (data.receiver == decryptAES(sessionStorage.getItem("u"))) {
+              mainUser = data.sender;
+            }
+
+            let ThereIsAStory = Stories.some((x) => x.owner == mainUser);
+            if (ThereIsAStory) {
+              let ProfileImage;
+              Registers.map((z) => {
+                if (z.username == mainUser) {
+                  ProfileImage = z.profileImg;
+                }
+              });
+              return Stories.map((y) => {
+                if (y.owner == mainUser) {
+                  return (
+                    <Badge className="cursor-pointer">
+                      <Avatar
+                        size={70}
+                        src={ProfileImage}
+                        shape="circle"
+                        onClick={() => {
+                          setShowStoryModel(true);
+                          setStoryOwner(y.owner);
+                        }}
+                      />
+                    </Badge>
+                  );
+                }
+              });
+            }
+          });
+        })()}
       </div>
 
       <div id="instagram" style={{ padding: "20px 0" }}>
@@ -214,6 +252,7 @@ const Home = ({ change, Change }) => {
         SelectePost={SelectePost}
       />
       <ShowStoriesModel
+        mainUser={decryptAES(sessionStorage.getItem("u"))}
         change={change}
         Change={Change}
         setShow={setShowStoryModel}
