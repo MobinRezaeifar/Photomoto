@@ -3,14 +3,13 @@ import React, { useEffect, useState } from "react";
 import photo1 from "../Assets/Photo1.png";
 import "./Register.css";
 import { MdCamera } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { AddRegister, fetchRegister } from "../Redux/action";
+import { useDispatch } from "react-redux";
+import { fetchRegister } from "../Redux/action";
 import Swal from "sweetalert2";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../components/Global/Login";
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -146,8 +145,6 @@ const Register = () => {
       });
     }
   };
-
-
 
   return (
     <div className="h-screen w-screen px-20 flex justify-center items-center">

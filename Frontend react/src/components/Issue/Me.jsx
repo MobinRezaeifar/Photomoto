@@ -48,6 +48,10 @@ const Me = ({ Change, change }) => {
     dispatch(fetchRegister());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchRegister());
+  }, [change]);
+
   const updateSize = () => {
     setDimensions({
       width: window.innerWidth,
@@ -162,6 +166,30 @@ const Me = ({ Change, change }) => {
       }
     });
   });
+  useEffect(() => {
+    Registers.map(async (data) => {
+      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
+        setPost(data.post);
+        setBio(data.bio);
+        setUserId(data.id);
+        dispatch({
+          type: "MEBIO",
+          payload: data.bio,
+        });
+        if (data.profileImg) {
+          dispatch({
+            type: "PROFILEIMG",
+            payload: data.profileImg,
+          });
+        } else {
+          dispatch({
+            type: "PROFILEIMG",
+            payload: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
+          });
+        }
+      }
+    });
+  }, []);
 
   const navigate = useNavigate();
   const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);

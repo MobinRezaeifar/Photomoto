@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { fetchRegister } from "../../Redux/action";
+import CryptoJS from "crypto-js";
 
 const SettingSideBar = ({
   ShowSettingSidebar,
@@ -25,7 +26,7 @@ const SettingSideBar = ({
   const Bio = useSelector((state) => state.MeBio);
   const [Bioo, setBioo] = useState(Bio);
   let dispatch = useDispatch();
-  console.log(Bioo);
+
   const items = [
     {
       key: "1",
@@ -150,6 +151,16 @@ const SettingSideBar = ({
     },
   ];
 
+  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
+  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
+  function encryptAES(message) {
+    return CryptoJS.AES.encrypt(message, key, {
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    }).toString();
+  }
+
   const SaveEditProfileDetail = () => {
     axios.patch(`http://localhost:5221/api/Registers/api/registers/${id}`, {
       id: id,
@@ -160,6 +171,10 @@ const SettingSideBar = ({
     });
     Change("change");
     dispatch(fetchRegister());
+    sessionStorage.setItem("u", encryptAES(Username));
+    sessionStorage.setItem("e", encryptAES(Email));
+    sessionStorage.setItem("f", encryptAES(FullName));
+    setShowSettingSidebar(false);
   };
 
   return (

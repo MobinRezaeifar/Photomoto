@@ -14,7 +14,12 @@ import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
 import CryptoJS from "crypto-js";
 import ShowStoriesModel from "../Home/ShowStoriesModel";
-import { fetchStory } from "../../Redux/action";
+import {
+  fetchConnection,
+  fetchPosts,
+  fetchRegister,
+  fetchStory,
+} from "../../Redux/action";
 
 const Home = ({ change, Change }) => {
   const [mappedData, setmappedData] = useState([]);
@@ -85,6 +90,9 @@ const Home = ({ change, Change }) => {
   useEffect(() => {
     FetchData();
     dispatch(fetchStory());
+    dispatch(fetchRegister());
+    dispatch(fetchPosts());
+    dispatch(fetchConnection());
   }, []);
   useEffect(() => {
     FetchData();

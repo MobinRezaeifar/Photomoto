@@ -7,7 +7,12 @@ import Connection from "../components/Issue/Connection";
 import Search from "../components/Issue/Search";
 import Direct from "../components/Issue/Direct";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRegister } from "../Redux/action";
+import {
+  fetchConnection,
+  fetchPosts,
+  fetchRegister,
+  fetchStory,
+} from "../Redux/action";
 import Home from "../components/Issue/Home";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Me from "../components/Issue/Me";
@@ -57,6 +62,8 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchRegister());
   }, [dispatch]);
+
+
 
   const [change, setchange] = useState([]);
 
