@@ -16,14 +16,13 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
-router.post("/upload", upload.single("file"), async (req, res) => {
+router.post("/upload", upload.single('file'), async (req, res) => {  
   try {
     const file = new File({
       name: req.file.originalname,
       path: req.file.path,
     });
     await file.save();
-    res.sendFile(file.path);
     res.send("File uploaded successfully!");
   } catch (err) {
     console.error(err);

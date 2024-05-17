@@ -52,14 +52,7 @@ const Direct = ({ Change, change, OnlineUsers }) => {
   }, []);
   const constraintsRef = useRef(null);
 
-  useEffect(() => {
-    window.addEventListener("blur", () => {
-      console.log("end");
-    });
-    window.addEventListener("focus", () => {
-      console.log("start");
-    });
-  });
+
 
   const [Users, setOUsers] = useState([]);
 
