@@ -95,7 +95,6 @@ const Home = ({ change, Change }) => {
     dispatch(fetchConnection());
   }, []);
   useEffect(() => {
-    FetchData();
     dispatch(fetchStory());
   }, [change]);
 
