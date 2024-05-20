@@ -206,9 +206,17 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
         setTargetProfileImg(data.profileImg);
         setTargetEmail(data.email);
         setTargetFullName(data.fullName);
+        dispatch({
+          type: "TargetUserIdVideoCall",
+          payload: data.id,
+        });
       }
       if (data.username == mainUser) {
         setMainUserImg(data.profileImg);
+        dispatch({
+          type: "MainUserIdVideoCall",
+          payload: data.id,
+        });
       }
     });
   });
@@ -316,7 +324,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
           <IoVideocam
             size={27}
             className="cursor-pointer"
-            onClick={() => navigate(`videoCall/`)}
+            onClick={() => {
+              navigate(`videoCall/`);
+            }}
           />
           <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
             <CiMenuKebab size={27} className="cursor-pointer" />

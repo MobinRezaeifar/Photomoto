@@ -6,15 +6,12 @@ import ShowAccount from "./components/Global/ShowAccount";
 import "./App.css";
 import CreateStoty from "./Routes/CreateStoty";
 import CreateMessage from "./components/Chat/CreateMessage";
-import { SocketProvider } from "./components/Chat/VideoCall/context/SocketProvider";
-import RoomPage from "./components/Chat/VideoCall/screens/RoomPage";
-import LobbyScreen from "./components/Chat/VideoCall/screens/LobbyScreen";
+import VideoCall from "./components/Chat/VideoCall";
 
 function App() {
   return (
     <main>
       <BrowserRouter>
-        <SocketProvider>
           <Routes>
             <Route path="/" element={<Register />} />
             <Route path="/photomoto" element={<Main />} />
@@ -24,10 +21,8 @@ function App() {
               path="/photomoto/createMessage"
               element={<CreateMessage />}
             />
-            <Route path="/photomoto/VideoCall" element={<LobbyScreen />} />
-            <Route path="/photomoto/VideoCall/:roomId" element={<RoomPage />} />
+            <Route path="/photomoto/VideoCall" element={<VideoCall />} />
           </Routes>
-        </SocketProvider>
       </BrowserRouter>
     </main>
   );
