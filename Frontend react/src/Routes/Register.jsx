@@ -232,7 +232,7 @@ const Register = () => {
               <div
                 className={`flex  px-2 text-gray-500 ${
                   dimensions.width > 900
-                    ? "mb-4 justify-between"
+                    ? "mb-7 justify-between"
                     : "mb-2 mt-1 justify-around"
                 } `}
               >
@@ -253,10 +253,10 @@ const Register = () => {
               </div>
 
               <ul
-                class={` w-full gap-6  mb-4 grid-cols-3 ${
+                class={` w-full gap-6   grid-cols-3 ${
                   dimensions.width > 900
                     ? "grid grid-cols-2"
-                    : "flex justify-around"
+                    : "mt-6 flex justify-around"
                 }`}
               >
                 <li tabIndex={5} onClick={() => setGender("male")}>
