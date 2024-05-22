@@ -1,0 +1,10 @@
+#Wed May 22 04:30:05 UTC 2024
+base.2=/home/user/photomoto-mobile-app/build/app/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
+path.2=1/classes.dex
+base.1=/home/user/photomoto-mobile-app/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+path.1=0/classes.dex
+base.0=/home/user/photomoto-mobile-app/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex

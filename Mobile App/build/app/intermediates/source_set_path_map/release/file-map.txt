@@ -1,0 +1,12 @@
+com.example.myapp-core-1.6.0-0 /home/user/.gradle/caches/transforms-3/284a410c767ad6c7a2b0ffc8d8d85981/transformed/core-1.6.0/res
+com.example.myapp-jetified-window-java-1.0.0-beta04-1 /home/user/.gradle/caches/transforms-3/2a215381204751055df81b6269e717b7/transformed/jetified-window-java-1.0.0-beta04/res
+com.example.myapp-jetified-annotation-experimental-1.1.0-2 /home/user/.gradle/caches/transforms-3/3d2f03fc996c2e0aa3dee5cfa3002cd1/transformed/jetified-annotation-experimental-1.1.0/res
+com.example.myapp-jetified-window-1.0.0-beta04-3 /home/user/.gradle/caches/transforms-3/f302e75fb7efd781bcf1a29281c188da/transformed/jetified-window-1.0.0-beta04/res
+com.example.myapp-main-4 /home/user/photomoto-mobile-app/android/app/src/main/res
+com.example.myapp-release-5 /home/user/photomoto-mobile-app/android/app/src/release/res
+com.example.myapp-pngs-6 /home/user/photomoto-mobile-app/build/app/generated/res/pngs/release
+com.example.myapp-resValues-7 /home/user/photomoto-mobile-app/build/app/generated/res/resValues/release
+com.example.myapp-rs-8 /home/user/photomoto-mobile-app/build/app/generated/res/rs/release
+com.example.myapp-mergeReleaseResources-9 /home/user/photomoto-mobile-app/build/app/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.example.myapp-mergeReleaseResources-10 /home/user/photomoto-mobile-app/build/app/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.example.myapp-merged_res-11 /home/user/photomoto-mobile-app/build/app/intermediates/merged_res/release
