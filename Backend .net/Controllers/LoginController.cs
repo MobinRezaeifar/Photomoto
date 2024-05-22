@@ -29,7 +29,7 @@ public class LoginController : ControllerBase
     {
         var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, login.Id),
+            new Claim(JwtRegisteredClaimNames.Sub,  login.Username),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(ClaimTypes.Name, login.Username)
         };
@@ -38,7 +38,7 @@ public class LoginController : ControllerBase
             issuer: "admin@gmail.com",
             audience: "client@gmail.com",
             claims: claims,
-            expires: DateTime.MaxValue, 
+            expires: DateTime.MaxValue,
             signingCredentials: new SigningCredentials(
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(

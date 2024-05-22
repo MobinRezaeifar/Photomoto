@@ -57,5 +57,9 @@ namespace WebApplication1.Services.Register
             );
             _register.UpdateOne(filter, update);
         }
+        public Registers GetUserByUsernameAndPassword(string username, string password)
+        {
+            return _register.Find(user => user.Username == username && user.Password == password).FirstOrDefault();
+        }
     }
 }

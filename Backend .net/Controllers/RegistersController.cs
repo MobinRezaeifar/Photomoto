@@ -59,7 +59,7 @@ namespace WebApplication1.Controllers
 
             if (isUsernameExists)
             {
-                return BadRequest("این username قبلا با یک نفر دیگر ثبت نام کرده است.");
+                return BadRequest("This username is already registered with another person.");
             }
 
             _registersService.Create(register);
@@ -142,42 +142,44 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // [HttpPatch("api/registers/{id}")]
-        // public IActionResult Patch(string id, [FromBody] JsonPatchDocument<Registers> patchDoc)
-        // {
-        //     var existingRegister = _registersService.Get(id);
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] Login loginRequest)
+        {
+            var user = _registersService.GetUserByUsernameAndPassword(loginRequest.Username, loginRequest.Password);
 
-        //     if (existingRegister == null)
-        //     {
-        //         return NotFound($"Register with ID {id} not found.");
-        //     }
+            if (user == null)
+            {
+                return Unauthorized("The username or password is incorrect.");
+            }
 
-        //     var updatedRegister = new Registers()
-        //     {
-        //         Id = existingRegister.Id,
-        //         Username = existingRegister.Username,
-        //         Bio = existingRegister.Bio,
-        //         Connection = existingRegister.Connection,
-        //         FullName = existingRegister.FullName,
-        //         Password = existingRegister.Password,
-        //         ProfileImg = existingRegister.ProfileImg,
-        //         Hash = existingRegister.Hash,
-        //         Gender = existingRegister.Gender,
-        //         Post = existingRegister.Post,
-        //         Email = existingRegister.Email
-        //     };
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, loginRequest.Username),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Name, loginRequest.Username)
+            };
 
-        //     patchDoc.ApplyTo(updatedRegister);
+            var token = new JwtSecurityToken(
+                issuer: "admin@gmail.com",
+                audience: "client@gmail.com",
+                claims: claims,
+                expires: DateTime.MaxValue,
+                signingCredentials: new SigningCredentials(
+                    new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(
+                            "abcdefghijklomnpqrstuvwxyz12345678900987654321abcdefghijklomnpqrstuvwxyz12345678900987654321"
+                        )
+                    ),
+                    SecurityAlgorithms.HmacSha256
+                )
+            );
 
-        //     if (!TryValidateModel(updatedRegister))
-        //     {
-        //         return BadRequest(ModelState);
-        //     }
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var writtenToken = tokenHandler.WriteToken(token);
 
-        //     _registersService.Update(id, updatedRegister);
+            return Ok(new { token = writtenToken });
+        }
 
-        //     return NoContent();
-        // }
 
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
@@ -192,6 +194,13 @@ namespace WebApplication1.Controllers
             _registersService.Remove(register.Id);
 
             return Ok($"register with Id = {id} deleted");
+
+
+
         }
+
+
     }
+
+
 }

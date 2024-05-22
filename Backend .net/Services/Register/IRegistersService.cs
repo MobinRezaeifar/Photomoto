@@ -14,5 +14,7 @@ namespace WebApplication1.Services.Register
         void Remove(string id);
         bool IsUsernameExists(string username);
         void Patch(string id, JObject changes);
+
+        Registers GetUserByUsernameAndPassword(string username, string password);
     }
 }
