@@ -26,7 +26,7 @@ const SettingSideBar = ({
   const Bio = useSelector((state) => state.MeBio);
   const [Bioo, setBioo] = useState(Bio);
   let dispatch = useDispatch();
-
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const items = [
     {
       key: "1",
@@ -174,7 +174,7 @@ const SettingSideBar = ({
   }
 
   const SaveEditProfileDetail = () => {
-    axios.patch(`http://localhost:5221/api/Registers/api/registers/${id}`, {
+    axios.patch(`${baseUrlDotenet}api/Registers/api/registers/${id}`, {
       id: id,
       username: Username,
       email: Email,

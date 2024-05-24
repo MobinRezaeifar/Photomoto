@@ -1,15 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState, useEffect } from "react";
-import {
-  Avatar,
-  Carousel,
-  Col,
-  Dropdown,
-  InputNumber,
-  Progress,
-  Row,
-  Slider,
-} from "antd";
+import { Avatar, Dropdown, Progress } from "antd";
 import {
   FaArrowCircleLeft,
   FaCircle,
@@ -25,9 +16,14 @@ import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import { MdEditRoad } from "react-icons/md";
 import { IoCloseCircle } from "react-icons/io5";
-import { AddStory, fetchConnection, fetchPosts, fetchRegister, fetchStory } from "../Redux/action";
+import {
+  AddStory,
+  fetchConnection,
+  fetchPosts,
+  fetchRegister,
+  fetchStory,
+} from "../Redux/action";
 import { motion } from "framer-motion";
-import { FcLock, FcUnlock } from "react-icons/fc";
 
 function CreateStoty() {
   const videoRef = useRef(null);
@@ -42,6 +38,7 @@ function CreateStoty() {
   let navigate = useNavigate();
   const [DropDownShow, setDropDownShow] = useState(false);
   const [LockDropdown, setLockDropdown] = useState(true);
+  const baseUrlNode = useSelector((state) => state.baseUrlNode);
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -115,7 +112,7 @@ function CreateStoty() {
       var form = new FormData();
       form.append("file", blob, fileName);
       try {
-        await axios.post("http://localhost:5001/api/upload", form, {
+        await axios.post(`${baseUrlNode}api/upload`, form, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -175,7 +172,7 @@ function CreateStoty() {
         var form = new FormData();
         await form.append("file", blob, fileName);
         try {
-          await axios.post("http://localhost:5001/api/upload", form, {
+          await axios.post(`${baseUrlNode}api/upload`, form, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -225,7 +222,7 @@ function CreateStoty() {
         AddStory({
           owner: decryptAES(sessionStorage.getItem("u")),
           type: mediaResult.type,
-          media: "http://localhost:5001/api/files/" + mediaResult.fileName,
+          media: `${baseUrlNode}api/files/` + mediaResult.fileName,
           filter: Fillter ? Fillter : MaualFillter,
           time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         })
@@ -590,7 +587,6 @@ function CreateStoty() {
               dispatch(fetchPosts());
               dispatch(fetchConnection());
               dispatch(fetchRegister());
-
             }}
           />
           <div className="flex items-center justify-center gap-2">
@@ -645,7 +641,7 @@ function CreateStoty() {
                       }}
                       autoPlay
                       loop
-                      src={`http://localhost:5001/api/files/${mediaResult.fileName}`}
+                      src={`${baseUrlNode}api/files/${mediaResult.fileName}`}
                       alt=""
                     />
                   </div>
@@ -668,7 +664,7 @@ function CreateStoty() {
                         objectFit: "contain",
                         filter: Fillter ? Fillter : MaualFillter,
                       }}
-                      src={`http://localhost:5001/api/files/${mediaResult.fileName}`}
+                      src={`${baseUrlNode}api/files/${mediaResult.fileName}`}
                       alt=""
                     />
                   </div>

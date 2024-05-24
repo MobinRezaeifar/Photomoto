@@ -2,7 +2,7 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { AddConnection, fetchConnection } from "../../Redux/action";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
 import SendConnection from "../Connection/SendConnection";
 import ReceiverConnection from "../Connection/ReceiverConnection";

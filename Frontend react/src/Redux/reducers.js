@@ -11,6 +11,9 @@ const initialState = {
   MeBio: "",
   MainUserIdVideoCall: "",
   TargetUserIdVideoCall: "",
+  baseUrlDotenet: "http://localhost:5221/",
+  baseUrlNode: "http://localhost:5001/",
+  baseUrlReact: "http://localhost:3000/",
 };
 
 const reducer = (state = initialState, action) => {
@@ -144,6 +147,12 @@ const reducer = (state = initialState, action) => {
       return { ...state, MainUserIdVideoCall: action.payload };
     case "TargetUserIdVideoCall":
       return { ...state, TargetUserIdVideoCall: action.payload };
+    case "BASEURLDOTNET":
+      return { ...state, baseUrlDotenet: action.payload };
+    case "BASEURLNODE":
+      return { ...state, baseUrlNode: action.payload };
+    case "BASEURLREACT":
+      return { ...state, baseUrlReact: action.payload };
 
     default:
       return state;

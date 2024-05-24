@@ -46,7 +46,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
   const showPostModel = useSelector((state) => state.ShowPostModel);
   const [ProfileImg, setProfileImg] = useState("");
   let navigate = useNavigate();
-
+  const baseUrlReact = useSelector((state) => state.baseUrlReact);
   useEffect(() => {
     dispatch(fetchRegister());
     dispatch(fetchPosts());
@@ -117,7 +117,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
           }}
         >
           <span
-            className="flex items-center text-lg text-red-500"
+            className="flex items-center text-lg "
             onClick={async () => {
               setShowComment(false);
               dispatch({
@@ -129,23 +129,12 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
             <IoClose size={24} /> Close
           </span>
           <span
-            className="flex items-center text-lg text-red-500"
+            className="flex items-center text-lg "
             onClick={async () => {
               await dispatch(deletePost(Post.id));
               dispatch({
                 type: "SHOWPOSTMODEL",
                 payload: false,
-              });
-              Registers.map(async (data) => {
-                if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-                  await dispatch(
-                    updateRegister(data.id, {
-                      ...data,
-                      post: data.post - 1,
-                    })
-                  );
-                }
-                await dispatch(fetchRegister());
               });
               await dispatch(fetchRegister());
             }}
@@ -288,7 +277,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
                     onClick={() => {
                       if (
                         window.location.href !==
-                        `http://localhost:3000/photomoto/${Post.owner}`
+                        `${baseUrlReact}photomoto/${Post.owner}`
                       ) {
                         navigate(`${Post.owner}`);
                         dispatch({

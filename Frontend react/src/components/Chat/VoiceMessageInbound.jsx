@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { FaPause, FaPlay } from "react-icons/fa";
-import { Avatar } from "antd";
 import { MdOutlineDownloading } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteMessages, DownloadMedia } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const [selectVoice, setselectVoice] = useState("");
@@ -14,7 +14,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [PlayIcon, setPlayIcon] = useState(<FaPlay />);
   const [progress, setProgress] = useState(0);
   const dispatch = useDispatch();
-
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const navigate = useNavigate();
   const PlayVoice = (path) => {
     if (path == selectVoice) {
@@ -78,7 +78,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
         </div>
         <audio
           src={
-            "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+            `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
             data.media
           }
           ref={audio}

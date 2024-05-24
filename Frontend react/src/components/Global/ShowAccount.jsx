@@ -8,10 +8,8 @@ import {
   AddConnection,
   deleteConnection,
   fetchConnection,
-  fetchPosts,
   fetchRegister,
   UpdateConnection,
-  updateRegister,
 } from "../../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -35,9 +33,8 @@ const ShowAccount = () => {
   const [Connection, setConnection] = useState(0);
   const [Bio, setBio] = useState("");
   const [FullName, setFullName] = useState("");
-  const ProfileImggg = useSelector((state) => state.ProfileImg);
   const Connections = useSelector((state) => state.Connections);
-
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -107,14 +104,10 @@ const ShowAccount = () => {
   const navigate = useNavigate();
 
   const GoDirect = () => {
-    Registers.map((data) => {
-      if (data.username == username) {
-        let status = data.connection.some(
-          (x) => x.username == decryptAES(sessionStorage.getItem("u"))
-        );
-        if (status) {
+    Connections.map((data) => {
+      if (data.sender == username || data.receiver == username) {
+        if (data.status == "accept") {
           navigate("/photomoto");
-          console.log(status);
           dispatch({
             type: "ISSUE",
             payload: "direct",
@@ -151,7 +144,7 @@ const ShowAccount = () => {
   const Change = async (change) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl(`http://localhost:5221/change`)
+        .withUrl(`${baseUrlDotenet}change`)
         .configureLogging(LogLevel.Information)
         .build();
       await connection.start();

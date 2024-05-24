@@ -29,6 +29,7 @@ import {
 import { Image, Space } from "antd";
 import axios from "axios";
 import { size } from "lodash";
+import { useSelector } from "react-redux";
 const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
@@ -37,7 +38,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [EditStatus, setEditStatus] = useState(false);
   const [EditFile, setEditFile] = useState({});
   const { Dragger } = Upload;
-
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const props = {
     name: "file",
     accept: "image/*,video/*",
@@ -47,10 +48,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
       if (status !== "uploading") {
         var form = new FormData();
         form.append("file", info.file.originFileObj);
-        await axios.post(
-          "http://localhost:5221/api/FileManager/uploadfile",
-          form
-        );
+        await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form);
         setEditFile(info.file.originFileObj);
       }
       if (status === "done") {
@@ -122,7 +120,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                       autoPlay
                       style={{ width: "100%" }}
                       src={
-                        "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                        `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                         EditFile.name
                       }
                     ></video>
@@ -132,7 +130,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                   <Image
                     style={{ width: "100%" }}
                     src={
-                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                       EditFile.name
                     }
                     preview={{
@@ -211,7 +209,7 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                   </div>
                   <img
                     src={
-                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                       data.media
                     }
                     alt=""

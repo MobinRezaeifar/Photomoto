@@ -7,18 +7,14 @@ import Connection from "../components/Issue/Connection";
 import Search from "../components/Issue/Search";
 import Direct from "../components/Issue/Direct";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchConnection,
-  fetchPosts,
-  fetchRegister,
-  fetchStory,
-} from "../Redux/action";
+import { fetchRegister } from "../Redux/action";
 import Home from "../components/Issue/Home";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Me from "../components/Issue/Me";
 import CryptoJS from "crypto-js";
 
 const Main = () => {
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   let navigate = useNavigate();
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -63,14 +59,12 @@ const Main = () => {
     dispatch(fetchRegister());
   }, [dispatch]);
 
-
-
   const [change, setchange] = useState([]);
 
   const Change = async (change) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl(`http://localhost:5221/change`)
+        .withUrl(`${baseUrlDotenet}change`)
         .configureLogging(LogLevel.Information)
         .build();
       await connection.start();
@@ -90,7 +84,7 @@ const Main = () => {
   const onlineUsers = async (onlineUser) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl(`http://localhost:5221/onlineUsers`)
+        .withUrl(`${baseUrlDotenet}onlineUsers`)
         .configureLogging(LogLevel.Information)
         .build();
       await connection.start();

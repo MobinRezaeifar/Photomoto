@@ -235,7 +235,7 @@ function ShowStoriesModel({
                         setDropDownShow(!DropDownShow);
                       }}
                     >
-                      <HiMenuAlt3 size={35} />
+                      <HiMenuAlt3 size={35} style={{ cursor: "pointer" }} />
 
                       <GrAdd
                         className="transition-all absolute"

@@ -5,12 +5,11 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CryptoJS from "crypto-js";
-import { Button, Upload, Avatar, Badge } from "antd";
+import { Button, Avatar, Badge } from "antd";
 import { FaCircle } from "react-icons/fa";
 import { AiFillBulb } from "react-icons/ai";
 import ChatSide from "../Chat/ChatSide";
 import { motion } from "framer-motion";
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const Direct = ({ Change, change, OnlineUsers }) => {
   const [dimensions, setDimensions] = useState({
@@ -51,8 +50,6 @@ const Direct = ({ Change, change, OnlineUsers }) => {
     };
   }, []);
   const constraintsRef = useRef(null);
-
-
 
   const [Users, setOUsers] = useState([]);
 

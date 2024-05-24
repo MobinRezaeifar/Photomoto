@@ -52,7 +52,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
   const [TargetEmail, setTargetEmail] = useState("");
   const [TargetFullName, setTargetFullName] = useState("");
   const MessageFontSize = `text-md`;
-
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
       iv: iv,
@@ -93,7 +93,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
     await Change("change");
     var form = new FormData();
     form.append("file", file);
-    await axios.post("http://localhost:5221/api/FileManager/uploadfile", form);
+    await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form);
     await dispatch(
       AddMessages({
         media: file.name,
@@ -185,7 +185,7 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
   };
 
   const UploadVoice = (formData) => {
-    let url = `http://localhost:5221/api/FileManager/uploadfile`;
+    let url = `${baseUrlDotenet}api/FileManager/uploadfile`;
     axios
       .request({
         method: "POST",

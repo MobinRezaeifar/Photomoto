@@ -5,8 +5,6 @@ import io from "socket.io-client";
 import "./VideoCall.css";
 import { useSelector } from "react-redux";
 
-const socket = io.connect("http://localhost:5001");
-
 function VideoCall() {
   const [me, setMe] = useState("");
   const [stream, setStream] = useState();
@@ -19,7 +17,8 @@ function VideoCall() {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
-
+  const baseUrlNode = useSelector((state) => state.baseUrlNode);
+  const socket = io.connect(baseUrlNode);
   // Redux selectors
   const TargetUserIdVideoCall = useSelector(
     (state) => state.MainUserIdVideoCall

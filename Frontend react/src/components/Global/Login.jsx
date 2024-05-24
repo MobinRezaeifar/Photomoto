@@ -7,9 +7,9 @@ import CryptoJS from "crypto-js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 const Login = ({ ShowLogin, setShowLogin }) => {
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -29,14 +29,6 @@ const Login = ({ ShowLogin, setShowLogin }) => {
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
-  function decryptAES(message) {
-    const bytes = CryptoJS.AES.decrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    });
-    return bytes.toString(CryptoJS.enc.Utf8);
-  }
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 13 && Username && Password) {
@@ -44,70 +36,63 @@ const Login = ({ ShowLogin, setShowLogin }) => {
     }
   };
 
-
-
-
   const LoginUser = () => {
-    for (let i = 0; i < Registers.length; i++) {
-      const data = Registers[i];
-      if (
-        data.username === Username &&
-        decryptAES(data.password) === Password
-      ) {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          },
-        });
-        Toast.fire({
-          icon: "success",
-          title: "Successful Login",
-        });
-        setPassword("");
-        setUsername("");
-        navigate("/photomoto");
-        sessionStorage.setItem("u", encryptAES(data.username));
-        sessionStorage.setItem("g", encryptAES(data.gender));
-        sessionStorage.setItem("p", encryptAES(data.password));
-        sessionStorage.setItem("e", encryptAES(data.email));
-        sessionStorage.setItem("f", encryptAES(data.fullName));
-
-        axios
-          .post("http://localhost:5221/api/Login", {
-            username: Username,
-            password: Password,
-          })
-          .then((x) => {
+    if (Username && Password) {
+      axios
+        .post(`${baseUrlDotenet}api/Registers/login`, {
+          username: Username,
+          password: encryptAES(Password),
+        })
+        .then(
+          (x) => {
             var responseObject = JSON.parse(x.request.response);
             sessionStorage.setItem("token", responseObject.token);
-          });
-
-        return;
-      } else {
-        setPassword("");
-        setUsername("");
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Successful Login",
+            });
+            setPassword("");
+            setUsername("");
+            navigate("/photomoto");
+            Registers.map((data) => {
+              if (data.username == Username) {
+                sessionStorage.setItem("u", encryptAES(data.Username));
+                sessionStorage.setItem("g", encryptAES(data.Gender));
+                sessionStorage.setItem("p", encryptAES(data.Password));
+                sessionStorage.setItem("e", encryptAES(data.Email));
+                sessionStorage.setItem("f", encryptAES(data.FullName));
+              }
+            });
           },
-        });
-        Toast.fire({
-          icon: "error",
-          title: "Login faild",
-        });
-      }
+          (error) => {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "error",
+              title: "The username or password is incorrect.",
+            });
+          }
+        );
     }
   };
 

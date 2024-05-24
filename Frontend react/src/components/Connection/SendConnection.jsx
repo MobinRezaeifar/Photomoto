@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { SlQuestion } from "react-icons/sl";
 import { RiQuestionMark } from "react-icons/ri";
 import { Dropdown } from "antd";
 import { MdOutlineTimelapse } from "react-icons/md";

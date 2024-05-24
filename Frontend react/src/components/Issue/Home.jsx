@@ -8,7 +8,7 @@ import { SiSendinblue } from "react-icons/si";
 import { FcEditImage, FcSettings } from "react-icons/fc";
 import { Avatar, Badge, Button } from "antd";
 import { IoIosAddCircle } from "react-icons/io";
-import { connect, useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import photo1 from "../Assets/Photo1.png";
 import "./Register.css";
 import { MdCamera } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../Redux/action";
 import Swal from "sweetalert2";
 import CryptoJS from "crypto-js";
@@ -12,6 +12,7 @@ import axios from "axios";
 import Login from "../components/Global/Login";
 
 const Register = () => {
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const dispatch = useDispatch();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -66,7 +67,7 @@ const Register = () => {
       Gender
     ) {
       axios
-        .post("http://localhost:5221/api/Registers", {
+        .post(`${baseUrlDotenet}api/Registers`, {
           username: Username,
           password: encryptAES(Password),
           fullName: FullName,

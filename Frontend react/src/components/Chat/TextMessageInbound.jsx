@@ -1,21 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { IoCopy } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import {
   deleteMessages,
-  fetchMessages,
   patchMessages,
-  updateMessages,
 } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
 import { LuCopy, LuCopyCheck } from "react-icons/lu";
 import { RxCrossCircled } from "react-icons/rx";
 import { GoCheckCircle } from "react-icons/go";
-import axios from "axios";
 
 const TextMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const dispatch = useDispatch();

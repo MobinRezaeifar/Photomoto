@@ -6,16 +6,10 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { Avatar, Badge } from "antd";
 import { BiSolidAddToQueue } from "react-icons/bi";
 import { IoIosAddCircle } from "react-icons/io";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Upload } from "antd";
+import { Button, Upload } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import {
-  fetchPosts,
-  fetchRegister,
-  updatePost,
-  updateRegister,
-} from "../../Redux/action";
+import { fetchRegister, updatePost, updateRegister } from "../../Redux/action";
 import { BsChatText } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import CreatePostModel from "../Me/CreatePostModel";
@@ -24,12 +18,13 @@ import Postss from "../Global/Postss";
 import SettingSideBar from "../Me/SettingSideBar";
 
 const Me = ({ Change, change }) => {
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const Registers = useSelector((state) => state.Registers);
   const Posts = useSelector((state) => state.Posts);
   const [SelecteTab, setSelecteTab] = useState("posts");
   const dispatch = useDispatch();
   const ProfileImg = useSelector((state) => state.ProfileImg);
-  const [Post, setPost] = useState(0);
+  const [Post, setPost] = useState();
   const [Connection, setConnection] = useState(0);
   const [Bio, setBio] = useState("");
   const [UserId, setUserId] = useState("");
@@ -92,7 +87,7 @@ const Me = ({ Change, change }) => {
               updatePost(data.id, {
                 ...data,
                 profileImg:
-                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                  `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                   info.file.originFileObj.name,
               })
             );
@@ -104,7 +99,7 @@ const Me = ({ Change, change }) => {
               updateRegister(data.id, {
                 ...data,
                 profileImg:
-                  "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                  `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                   info.file.originFileObj.name,
               })
             );
@@ -119,10 +114,7 @@ const Me = ({ Change, change }) => {
         });
         var form = new FormData();
         form.append("file", info.file.originFileObj);
-        await axios.post(
-          "http://localhost:5221/api/FileManager/uploadfile",
-          form
-        );
+        await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form);
       } catch (err) {
         console.log(err);
       }
@@ -145,7 +137,13 @@ const Me = ({ Change, change }) => {
 
     Registers.map(async (data) => {
       if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        setPost(data.post);
+        let PostCount = [];
+        Posts.map((data) => {
+          if (data.owner == decryptAES(sessionStorage.getItem("u"))) {
+            PostCount.push(data);
+          }
+        });
+        setPost(PostCount.length);
         setBio(data.bio);
         setUserId(data.id);
         dispatch({

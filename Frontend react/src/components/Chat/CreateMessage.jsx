@@ -20,6 +20,7 @@ function CreateMessage() {
   const [mediaResult, setmediaResult] = useState({});
   let navigate = useNavigate();
   const SelectUserChat = useSelector((state) => state.SelectUserChat);
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -93,15 +94,11 @@ function CreateMessage() {
       var form = new FormData();
       form.append("file", blob, fileName);
       try {
-        await axios.post(
-          "http://localhost:5221/api/FileManager/uploadfile",
-          form,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         console.log("File uploaded successfully!");
       } catch (error) {
         console.error("Error uploading file:", error);
@@ -164,7 +161,7 @@ function CreateMessage() {
         }, 1000);
         try {
           await axios.post(
-            "http://localhost:5221/api/FileManager/uploadfile",
+            `${baseUrlDotenet}api/FileManager/uploadfile`,
             form,
             {
               headers: {
@@ -213,7 +210,7 @@ function CreateMessage() {
     dispatch(fetchConnection());
   });
   return (
-    <div className="flex justify-center h-screen w-screen flex items">
+    <div className="justify-center h-screen w-screen flex items">
       <div className="w-full  md:w-[50%] bg-base-300 rounded-2xl">
         <div className="z-50 w-full  md:w-[50%] absolute flex justify-between p-4">
           <FaArrowCircleLeft
@@ -265,7 +262,7 @@ function CreateMessage() {
                       }}
                       autoPlay
                       loop
-                      src={`http://localhost:5221/api/FileManager/downloadfile?FileName=${mediaResult.fileName}`}
+                      src={`${baseUrlDotenet}api/FileManager/downloadfile?FileName=${mediaResult.fileName}`}
                       alt=""
                     />
                   </div>
@@ -287,7 +284,7 @@ function CreateMessage() {
                         height: "100%",
                         objectFit: "contain",
                       }}
-                      src={`http://localhost:5221/api/FileManager/downloadfile?FileName=${mediaResult.fileName}`}
+                      src={`${baseUrlDotenet}api/FileManager/downloadfile?FileName=${mediaResult.fileName}`}
                       alt=""
                     />
                   </div>

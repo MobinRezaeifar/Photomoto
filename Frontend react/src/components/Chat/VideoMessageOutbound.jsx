@@ -8,10 +8,12 @@ import { useDispatch } from "react-redux";
 import { MdOutlineDownloading } from "react-icons/md";
 import { DownloadMedia } from "../../Redux/action";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const VideoMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   return (
     <motion.div
       initial={{ opacity: 0, x: 0 }}
@@ -53,7 +55,7 @@ const VideoMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
               muted
               loop
               src={
-                "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                 data.media
               }
               class="rounded-lg"

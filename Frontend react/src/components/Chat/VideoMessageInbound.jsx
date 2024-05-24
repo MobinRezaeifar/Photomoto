@@ -26,6 +26,7 @@ import isEqual from "lodash/isEqual";
 import axios from "axios";
 import { RxCrossCircled } from "react-icons/rx";
 import { GoCheckCircle } from "react-icons/go";
+import { useSelector } from "react-redux";
 
 const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
@@ -35,7 +36,7 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
   const [EditStatus, setEditStatus] = useState(false);
   const [EditFile, setEditFile] = useState({});
   const { Dragger } = Upload;
-
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const props = {
     name: "file",
     accept: "image/*,video/*",
@@ -45,10 +46,7 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
       if (status !== "uploading") {
         var form = new FormData();
         form.append("file", info.file.originFileObj);
-        await axios.post(
-          "http://localhost:5221/api/FileManager/uploadfile",
-          form
-        );
+        await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form);
         setEditFile(info.file.originFileObj);
       }
       if (status === "done") {
@@ -120,7 +118,7 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                       autoPlay
                       style={{ width: "100%" }}
                       src={
-                        "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                        `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                         EditFile.name
                       }
                     ></video>
@@ -130,7 +128,7 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                   <Image
                     style={{ width: "100%" }}
                     src={
-                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                       EditFile.name
                     }
                     preview={{
@@ -177,7 +175,7 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                     muted
                     loop
                     src={
-                      "http://localhost:5221/api/FileManager/downloadfile?FileName=" +
+                      `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
                       data.media
                     }
                     class="rounded-lg"

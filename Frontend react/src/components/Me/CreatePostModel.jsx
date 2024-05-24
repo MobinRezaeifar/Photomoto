@@ -5,16 +5,11 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { BsBodyText } from "react-icons/bs";
 import { InboxOutlined } from "@ant-design/icons";
-import { message, Upload } from "antd";
+import { Upload } from "antd";
 import { SiApostrophe } from "react-icons/si";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AddPost,
-  fetchPosts,
-  fetchRegister,
-  updateRegister,
-} from "../../Redux/action";
+import { AddPost } from "../../Redux/action";
 import CryptoJS from "crypto-js";
 import moment from "jalali-moment";
 import { AiTwotoneTags } from "react-icons/ai";
@@ -38,7 +33,7 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
   const [PostImg, setPostImg] = useState("");
   const [PostVideo, setPostVideo] = useState("");
   const [FileMedia, setFileMedia] = useState({});
-  const Registers = useSelector((state) => state.Registers);
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   const dispatch = useDispatch();
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -61,18 +56,15 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
       if (status !== "uploading") {
         var form = new FormData();
         form.append("file", info.file.originFileObj);
-        await axios.post(
-          "http://localhost:5221/api/FileManager/uploadfile",
-          form
-        );
+        await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form);
         setFileMedia(info.file);
         if (info.file.originFileObj.type.startsWith("video")) {
           setPostVideo(
-            `http://localhost:5221/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
+            `${baseUrlDotenet}api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
           );
         } else {
           setPostImg(
-            `http://localhost:5221/api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
+            `${baseUrlDotenet}api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
           );
         }
       }
@@ -96,7 +88,7 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
     setFileMedia({});
     await dispatch(
       AddPost({
-        postMedia: `http://localhost:5221/api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
+        postMedia: `${baseUrlDotenet}api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
         disc: Desc,
         owner: decryptAES(sessionStorage.getItem("u")),
         likes: [],
@@ -107,17 +99,6 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
         tags,
       })
     );
-    Registers.map(async (data) => {
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        await dispatch(
-          updateRegister(data.id, {
-            ...data,
-            post: data.post + 1,
-          })
-        );
-        await dispatch(fetchRegister());
-      }
-    });
   };
 
   const onDownload = (src) => {
