@@ -18,7 +18,6 @@ using WebApplication1.Services.Register;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure Swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
@@ -41,7 +40,7 @@ builder.Services.AddSwaggerGen(c =>
     );
 });
 
-// Add other services
+
 builder.Services.AddSignalR();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddTransient<IManageFile, ManageFile>();
@@ -70,10 +69,10 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builder =>
     {
         builder
-            .WithOrigins("http://localhost:3000")
+            .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowCredentials();
+            .DisallowCredentials();
     });
 });
 
