@@ -74,7 +74,7 @@ String encryptAES(String message) {
 class _RegisterState extends State<Register> {
   final _user = User();
 
-  void _submitRegister() async {
+  void _submitRegister(BuildContext context, WidgetRef ref) async {
     if (_user.password.isNotEmpty &&
         _user.username.isNotEmpty &&
         _user.email.isNotEmpty &&
@@ -92,6 +92,10 @@ class _RegisterState extends State<Register> {
           body: jsonData,
         );
         if (response.statusCode == 200) {
+          final responseData = json.decode(response.body);
+          final token = responseData['token'];
+          ref.read(authProvider.notifier).setToken(token);
+          Navigator.pushReplacementNamed(context, '/photomoto');
           print('Data submitted successfully');
         } else {
           print('Failed to submit data: ${response.statusCode}');
@@ -120,7 +124,7 @@ class _RegisterState extends State<Register> {
           final responseData = json.decode(response.body);
           final token = responseData['token'];
           ref.read(authProvider.notifier).setToken(token);
-           Navigator.pushReplacementNamed(context, '/photomoto');
+          Navigator.pushReplacementNamed(context, '/photomoto');
           print('Data submitted successfully');
         } else {
           print('Failed to submit data: ${response.statusCode}');
@@ -597,7 +601,7 @@ class _RegisterState extends State<Register> {
                     height: 50.0,
                     child: ElevatedButton(
                       onPressed: () {
-                        _submitRegister();
+                        _submitRegister(context, ref);
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.orange,
