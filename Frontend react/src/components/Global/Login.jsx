@@ -62,18 +62,19 @@ const Login = ({ ShowLogin, setShowLogin }) => {
               icon: "success",
               title: "Successful Login",
             });
+            Registers.map((data) => {
+              if (data.username == Username) {
+                console.log(data);
+                sessionStorage.setItem("u", encryptAES(data.username));
+                sessionStorage.setItem("g", encryptAES(data.gender));
+                sessionStorage.setItem("p", encryptAES(data.password));
+                sessionStorage.setItem("e", encryptAES(data.email));
+                sessionStorage.setItem("f", encryptAES(data.fullName));
+              }
+            });
             setPassword("");
             setUsername("");
             navigate("/photomoto");
-            Registers.map((data) => {
-              if (data.username == Username) {
-                sessionStorage.setItem("u", encryptAES(data.Username));
-                sessionStorage.setItem("g", encryptAES(data.Gender));
-                sessionStorage.setItem("p", encryptAES(data.Password));
-                sessionStorage.setItem("e", encryptAES(data.Email));
-                sessionStorage.setItem("f", encryptAES(data.FullName));
-              }
-            });
           },
           (error) => {
             const Toast = Swal.mixin({

@@ -18,9 +18,11 @@
     "mongoose": "^7.6.3",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0",
+    "peer": "^1.0.2",
     "redis": "^4.6.13",
     "sanitize-filename": "^1.6.3",
     "socket.io": "^4.7.5",
-    "twilio": "^5.1.0"
+    "twilio": "^5.1.0",
+    "uuid": "^9.0.1"
   }
 }
