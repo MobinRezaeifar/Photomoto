@@ -69,13 +69,13 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builder =>
     {
         builder
-            .WithOrigins("http://localhost:3000")
+            .WithOrigins("http://localhost:3000","http://localhost:58734")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
 });
-
+ 
 builder.Services.AddScoped<IConnectionHandelService, ConnectionHandelService>();
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(opt =>
