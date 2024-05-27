@@ -9,6 +9,7 @@ import moment from "jalali-moment";
 import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import { AddMessages, fetchConnection } from "../../Redux/action";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 function CreateMessage() {
   const videoRef = useRef(null);
@@ -46,6 +47,26 @@ function CreateMessage() {
       setstate(false);
     };
   }, [isMouseDown]);
+
+  const [change, setchange] = useState([]);
+
+  const Change = async (change) => {
+    try {
+      const connection = new HubConnectionBuilder()
+        .withUrl(`${baseUrlDotenet}change`)
+        .configureLogging(LogLevel.Information)
+        .build();
+      await connection.start();
+
+      connection.invoke("Connect", change).catch((err) => console.error(err));
+
+      connection.on("getChange", (chang) => {
+        setchange(chang);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   useEffect(() => {
     const StartCamera = async () => {
@@ -180,7 +201,7 @@ function CreateMessage() {
 
   const dispatch = useDispatch();
 
-  const ShareStory = () => {
+  const ShareStory = async () => {
     if (!isEqual(mediaResult, {})) {
       dispatch(
         AddMessages({
@@ -198,6 +219,7 @@ function CreateMessage() {
       setmediaResult({});
       navigate("/photomoto");
     }
+    await Change("change");
   };
   useEffect(() => {
     if (!SelectUserChat) {

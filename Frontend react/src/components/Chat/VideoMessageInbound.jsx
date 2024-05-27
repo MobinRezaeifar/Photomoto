@@ -115,7 +115,8 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                   return (
                     <video
                       controls
-                      autoPlay
+                      muted
+                      loop
                       style={{ width: "100%" }}
                       src={
                         `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
@@ -171,7 +172,6 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
                 <div class="group relative my-2.5">
                   <video
                     controls
-                    autoPlay
                     muted
                     loop
                     src={

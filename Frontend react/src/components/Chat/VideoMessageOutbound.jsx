@@ -51,7 +51,6 @@ const VideoMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
           <div class="group relative my-2.5">
             <video
               controls
-              autoPlay
               muted
               loop
               src={
