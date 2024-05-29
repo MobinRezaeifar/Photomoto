@@ -381,13 +381,20 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
                           MessageFontSize={MessageFontSize}
                         />
                       )}
-                      {data.type.startsWith("voice") && (
-                        <VoiceMessageInbound
-                          data={data}
-                          MainUserImg={MainUserImg}
-                          MessageFontSize={MessageFontSize}
-                        />
-                      )}
+                      {(() => {
+                        if (
+                          data.type.startsWith("voice") ||
+                          data.type.startsWith("audio")
+                        ) {
+                          return (
+                            <VoiceMessageInbound
+                              data={data}
+                              MainUserImg={MainUserImg}
+                              MessageFontSize={MessageFontSize}
+                            />
+                          );
+                        }
+                      })()}
                       {(() => {
                         if (
                           data.type.startsWith("application") ||
@@ -446,13 +453,21 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
                         }
                       })()}
 
-                      {data.type.startsWith("voice") && (
-                        <VoiceMessageOutbound
-                          data={data}
-                          MainUserImg={TargetProfileImg}
-                          MessageFontSize={MessageFontSize}
-                        />
-                      )}
+                      {(() => {
+                        if (
+                          data.type.startsWith("voice") ||
+                          data.type.startsWith("audio")
+                        ) {
+                          return (
+                            <VoiceMessageOutbound
+                              data={data}
+                              MainUserImg={TargetProfileImg}
+                              MessageFontSize={MessageFontSize}
+                            />
+                          );
+                        }
+                      })()}
+
                       {data.type.startsWith("video") && (
                         <VideoMessageOutbound
                           data={data}

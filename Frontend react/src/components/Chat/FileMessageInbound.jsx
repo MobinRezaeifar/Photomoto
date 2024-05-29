@@ -144,9 +144,9 @@ function FileMessageInbound({ data, MainUserImg, MessageFontSize }) {
             </div>
           </div>
         </div>
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+        {/* <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
           Delivered
-        </span>
+        </span> */}
       </div>
 
       <div

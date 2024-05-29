@@ -187,7 +187,7 @@ const VideoMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
         </div>
         <div className="flex justify-between">
           <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-            Delivered
+            {data.size && data.size.toFixed(2) + "MB"}
           </span>
           {EditStatus && (
             <div className=" flex items-center justify-start gap-1 pl-2 pt-1">

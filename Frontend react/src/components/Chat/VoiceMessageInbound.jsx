@@ -143,7 +143,7 @@ const VoiceMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
           </div>
         </div>
         <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-          Delivered
+          {data.size && data.size.toFixed(2) + "MB"}
         </span>
       </div>
       <div

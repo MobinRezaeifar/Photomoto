@@ -92,9 +92,9 @@ const ImageMessageOutbound = ({ data, MainUserImg, MessageFontSize }) => {
             />
           </div>
         </div>
-        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+        {/* <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
           Delivered
-        </span>
+        </span> */}
       </div>
       <div
         className={`flex items-center  justify-center self-center relative `}

@@ -221,9 +221,9 @@ const ImageMessageInbound = ({ data, MainUserImg, MessageFontSize }) => {
           })()}
         </div>
         <div className="flex justify-between">
-          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+          {/* <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
             Delivered
-          </span>
+          </span> */}
           {EditStatus && (
             <div className=" flex items-center justify-start gap-1 pl-2 pt-1">
               <RxCrossCircled
