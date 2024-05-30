@@ -73,5 +73,18 @@ namespace WebApplication1.Controllers
 
             return Ok($"post with Id = {id} deleted");
         }
+
+        [HttpGet("search")]
+        public ActionResult<List<Posts>> SearchByTag([FromQuery] string tag)
+        {
+            var posts = _postsService.SearchByTag(tag);
+
+            if (posts == null || posts.Count == 0)
+            {
+                return NotFound(new { Message = "No posts found with the given tag." });
+            }
+
+            return Ok(posts);
+        }
     }
 }

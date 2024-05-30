@@ -9,5 +9,6 @@ namespace WebApplication1.Services.Post
         Posts Create(Posts posts);
         void Update(string id, Posts posts);
         void Remove(string id);
+        List<Posts> SearchByTag(string tag); 
     }
 }

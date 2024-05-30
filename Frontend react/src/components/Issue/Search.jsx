@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../Redux/action";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
+import axios from "axios";
 
 const Search = ({ change, Change }) => {
+  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
+
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
   const [SelectePost, setSelectePost] = useState("");
@@ -37,15 +40,9 @@ const Search = ({ change, Change }) => {
   const PostedFilter = [];
 
   if (SearchText) {
-    Posts.map((data) => {
-      data.tags.map((tag) => {
-        if (tag.startsWith(SearchText)) {
-          if (!PostedFilter.includes(data)) {
-            PostedFilter.push(data);
-          }
-        }
-      });
-    });
+    axios
+      .get(`${baseUrlDotenet}api/Posts/search?tag=${SearchText}`)
+      .then((x) => console.log(x.data));
   }
 
   const mappedData = SearchText ? PostedFilter : Posts;

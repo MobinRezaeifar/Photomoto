@@ -11,7 +11,7 @@ namespace WebApplication1.Services.Post
         public PostsService(IStoreDatabaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _posts = database.GetCollection<Posts>(settings.PostsCollection); 
+            _posts = database.GetCollection<Posts>(settings.PostsCollection);
         }
 
         public Posts Create(Posts posts)
@@ -39,6 +39,11 @@ namespace WebApplication1.Services.Post
         public void Update(string id, Posts posts)
         {
             _posts.ReplaceOne(posts => posts.Id == id, posts);
+        }
+        public List<Posts> SearchByTag(string tag)
+        {
+            var filter = Builders<Posts>.Filter.Regex("Tags", new MongoDB.Bson.BsonRegularExpression($"^{tag}"));
+            return _posts.Find(filter).ToList();
         }
     }
 }
