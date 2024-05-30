@@ -39,17 +39,24 @@ const Search = ({ change, Change }) => {
   }, []);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     if (SearchText) {
-      try {
-        axios.get(`${baseUrlDotenet}api/Posts/search?tag=${SearchText}`)
-          .then((x) => setPostedFilter(x.data));
-      } catch (error) {
-        console.error(error);
-      }
-      
+      axios.get(`${baseUrlDotenet}api/Posts/search?tag=${SearchText}`)
+        .then((response) => {
+          if (response.status !== 404) {
+            setPostedFilter(response.data);
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 404) {
+            console.warn('No posts found for this tag.');
+            setPostedFilter([])
+          } else {
+            console.error(error);
+          }
+        });
     }
-  },[SearchText])
+  }, [SearchText]);
 
   const mappedData = SearchText ? PostedFilter : Posts;
 
