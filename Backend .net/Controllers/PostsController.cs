@@ -75,7 +75,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult<List<Posts>> SearchByTag([FromQuery] string tag)
+        public ActionResult<List<Posts>> SearchByTag([FromQuery] string? tag)
         {
             var posts = _postsService.SearchByTag(tag);
 

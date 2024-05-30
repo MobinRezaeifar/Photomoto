@@ -40,10 +40,15 @@ namespace WebApplication1.Services.Post
         {
             _posts.ReplaceOne(posts => posts.Id == id, posts);
         }
-        public List<Posts> SearchByTag(string tag)
+        public List<Posts> SearchByTag(string? tag)
         {
             var filter = Builders<Posts>.Filter.Regex("Tags", new MongoDB.Bson.BsonRegularExpression($"^{tag}"));
-            return _posts.Find(filter).ToList();
+            if (filter != null)
+            {
+                return _posts.Find(filter).ToList();
+            }
+            return new List<Posts>();
         }
+
     }
 }

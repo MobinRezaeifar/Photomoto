@@ -12,6 +12,7 @@ const Search = ({ change, Change }) => {
   const Posts = useSelector((state) => state.Posts);
   const [SelectePost, setSelectePost] = useState("");
   const [SearchText, setSearchText] = useState("");
+  const [PostedFilter, setPostedFilter] = useState();
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
@@ -37,13 +38,25 @@ const Search = ({ change, Change }) => {
     };
   }, []);
 
-  const PostedFilter = [];
 
-  if (SearchText) {
-    axios
-      .get(`${baseUrlDotenet}api/Posts/search?tag=${SearchText}`)
-      .then((x) => console.log(x.data));
-  }
+  useEffect(() => {
+    if (SearchText) {
+      axios.get(`${baseUrlDotenet}api/Posts/search?tag=${SearchText}`)
+        .then((response) => {
+          if (response.status !== 404) {
+            setPostedFilter(response.data);
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 404) {
+            console.warn('No posts found for this tag.');
+            setPostedFilter([])
+          } else {
+            console.error(error);
+          }
+        });
+    }
+  }, [SearchText]);
 
   const mappedData = SearchText ? PostedFilter : Posts;
 
@@ -89,7 +102,7 @@ const Search = ({ change, Change }) => {
 
       <div id="instagram" style={{ padding: "35px 20px" }}>
         <div className="grid  grid-cols-2 sm:grid-cols-4 2xl:grid-cols-6">
-          {mappedData.map((post, index) => {
+          {mappedData && mappedData.map((post, index) => {
             return (
               <div
                 onClick={() => {
