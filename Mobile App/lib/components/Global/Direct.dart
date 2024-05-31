@@ -27,7 +27,7 @@ class _DirectState extends State<Direct> {
 
     if (response.statusCode == 200) {
       final List<dynamic> connections = json.decode(response.body);
-      final List<String> users = []; // Change the type of users to List<String>
+      final List<String> users = [];
 
       connections.forEach((data) {
         if (data['sender'] == widget.username ||
