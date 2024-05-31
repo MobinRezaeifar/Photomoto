@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/mbnrz/programming/Photomoto/Backend .net/WebApplication1.csproj": {}
+    "H:\\programming\\react\\photomoto\\Backend .net\\WebApplication1.csproj": {}
   },
   "projects": {
-    "/home/mbnrz/programming/Photomoto/Backend .net/WebApplication1.csproj": {
+    "H:\\programming\\react\\photomoto\\Backend .net\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/mbnrz/programming/Photomoto/Backend .net/WebApplication1.csproj",
+        "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "/home/mbnrz/programming/Photomoto/Backend .net/WebApplication1.csproj",
-        "packagesPath": "/home/mbnrz/.nuget/packages/",
-        "outputPath": "/home/mbnrz/programming/Photomoto/Backend .net/obj/",
+        "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\WebApplication1.csproj",
+        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+        "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/mbnrz/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -120,7 +127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.103/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
