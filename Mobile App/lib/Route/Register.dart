@@ -94,7 +94,7 @@ class _RegisterState extends State<Register> {
         if (response.statusCode == 200) {
           final responseData = json.decode(response.body);
           final token = responseData['token'];
-          ref.read(authProvider.notifier).setToken(token);
+          ref.read(authProvider.notifier).setToken(token, _user.username);
           Navigator.pushReplacementNamed(context, '/photomoto');
           print('Data submitted successfully');
         } else {
@@ -123,7 +123,7 @@ class _RegisterState extends State<Register> {
         if (response.statusCode == 200) {
           final responseData = json.decode(response.body);
           final token = responseData['token'];
-          ref.read(authProvider.notifier).setToken(token);
+          ref.read(authProvider.notifier).setToken(token, _user.username);
           Navigator.pushReplacementNamed(context, '/photomoto');
           print('Data submitted successfully');
         } else {

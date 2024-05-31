@@ -12,15 +12,16 @@ class Main extends StatelessWidget {
         child: Consumer(
           builder: (context, ref, _) {
             final clickedIcon = ref.watch(clickedIconProvider);
+            final username = ref.watch(authProvider).username;
             return Container(
               child: Column(
                 children: [
                   Expanded(
                       child: SingleChildScrollView(
                     child: ref.read(clickedIconProvider.notifier).state == 'me'
-                        ? Direct()
+                        ? Direct(username: username)
                         : Text(
-                            "Empty",
+                            "Issue",
                             style: TextStyle(color: Colors.white),
                           ),
                   )),
