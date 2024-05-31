@@ -62,24 +62,30 @@ class _DirectState extends State<Direct> {
     print(widget.username);
     print(_data);
     return Column(
-  children: [
-    Padding(
-      padding: const EdgeInsets.only(top: 16.0), // Adjust the value as needed
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.chat, color: Colors.white,size: 20.0,),
-          SizedBox(width: 8),
-          Text("Direct", style: TextStyle(color: Colors.white,fontSize: 20.0)),
-        ],
-      ),
-    ),
-    ..._data.map((user) => ListTile(
-          title: Text(user, style: TextStyle(color: Colors.white)),
-        )).toList(),
-  ],
-);
-
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.chat,
+                color: Colors.white,
+                size: 20.0,
+              ),
+              SizedBox(width: 8),
+              Text("Direct",
+                  style: TextStyle(color: Colors.white, fontSize: 20.0)),
+            ],
+          ),
+        ),
+        ..._data
+            .map((user) => ListTile(
+                  title: Text(user, style: TextStyle(color: Colors.white)),
+                ))
+            .toList(),
+      ],
+    );
   }
 }
