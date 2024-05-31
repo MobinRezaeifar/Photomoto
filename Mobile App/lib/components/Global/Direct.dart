@@ -14,6 +14,7 @@ class Direct extends StatefulWidget {
 
 class _DirectState extends State<Direct> {
   List<String> _data = [];
+  String? _selectedUser = "";
 
   @override
   void initState() {
@@ -61,31 +62,44 @@ class _DirectState extends State<Direct> {
   Widget build(BuildContext context) {
     print(widget.username);
     print(_data);
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+    print(_selectedUser);
+    return _selectedUser == ""
+        ? Column(
             children: [
-              Icon(
-                Icons.chat,
-                color: Colors.white,
-                size: 20.0,
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.chat,
+                      color: Colors.white,
+                      size: 20.0,
+                    ),
+                    SizedBox(width: 8),
+                    Text("Direct",
+                        style: TextStyle(color: Colors.white, fontSize: 20.0)),
+                  ],
+                ),
               ),
-              SizedBox(width: 8),
-              Text("Direct",
-                  style: TextStyle(color: Colors.white, fontSize: 20.0)),
+              ..._data
+                  .map((user) => ListTile(
+                        onTap: () {
+                          setState(() {
+                            _selectedUser = user;
+                          });
+                        },
+                        leading: CircleAvatar(
+                          backgroundImage: AssetImage('lib/Assets/profile.jpg'),
+                        ),
+                        title: Text(user,
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 16.0)),
+                      ))
+                  .toList(),
             ],
-          ),
-        ),
-        ..._data
-            .map((user) => ListTile(
-                  title: Text(user, style: TextStyle(color: Colors.white)),
-                ))
-            .toList(),
-      ],
-    );
+          )
+        : Column(children: [Text(_selectedUser!)]);
   }
 }
