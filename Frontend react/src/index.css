@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  height: 100vh;
+  margin: 0;
+
+}
+.haircheck.jsx-793565102.banner.jsx-793565102{
+  display: none;
+}
 #borderrnone {
   border: none;
   width: 0;

@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcTemolate"; // Define the namespace for C#
+import "google/api/annotations.proto";
+
+package Todoit; // Package name for the service
+
+service Todoit {
+    // Define RPC methods for the service
+    rpc CreateToDo (CreateToDoRequest) returns (CreateToDoResponse) {
+        option (google.api.http) = {
+            post: "/v1/todo",
+            body: "*"
+        };
+    }
+    rpc ReadToDo (ReadToDoRequest) returns (ReadToDoResponse) {
+        option (google.api.http) = {
+            get: "/v1/todo/{id}"
+        };
+    }
+    rpc UpdateToDo (UpdateToDoRequest) returns (UpdateToDoResponse) {
+        option (google.api.http) = {
+            put : "/v1/todo",
+            body: "*"
+        };
+    }
+    rpc DeleteToDo (DeleteToDoRequest) returns (DeleteToDoResponse) {
+        option (google.api.http) = {
+            delete: "/v1/todo/{id}"
+        };
+    
+    }
+    rpc GetAllToDos (GetAllToDosRequest) returns (GetAllToDosResponse) {
+        option (google.api.http) = {
+            get: "/v1/todo"
+        
+    };
+}
+}
+
+// Messages for request and response for each method
+
+message CreateToDoRequest {
+    string todo = 1; // Description of the task to be created
+}
+
+message CreateToDoResponse {
+    int32 id = 1; // ID of the created task
+}
+
+message ReadToDoRequest {
+    int32 id = 1; // ID of the task to read
+}
+
+message ReadToDoResponse {
+    int32 id = 1; // ID of the task
+    string todo = 2; // Description of the task
+}
+
+message UpdateToDoRequest {
+    int32 id = 1; // ID of the task to update
+    string todo = 2; // New description for the task
+}
+
+message UpdateToDoResponse {
+    int32 id = 1; // ID of the updated task
+}
+
+message DeleteToDoRequest {
+    int32 id = 1; // ID of the task to delete
+}
+
+message DeleteToDoResponse {
+    int32 id = 1; // ID of the deleted task
+}
+
+message GetAllToDosRequest {}
+
+message GetAllToDosResponse {
+    repeated ToDoItem todos = 1;
+}
+
+message ToDoItem {
+    int32 id = 1; // ID of the task
+    string todo = 2; // Description of the task
+}
