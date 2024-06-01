@@ -3,6 +3,7 @@
     public class StoreDatabaseSettings : IStoreDatabaseSettings
     {
         public string RegistersCollection { get; set; } = string.Empty;
+        public string VideoCallDetailCollection { get; set; } = string.Empty;
         public string MessagesCollection { get; set; } = string.Empty;
         public string LoginCollection { get; set; } = string.Empty;
         public string PostsCollection { get; set; } = string.Empty;

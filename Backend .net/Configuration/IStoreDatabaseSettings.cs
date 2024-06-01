@@ -3,6 +3,7 @@
     public interface IStoreDatabaseSettings
     {
         string RegistersCollection { get; set; }
+        string VideoCallDetailCollection { get; set; }
         string PostsCollection { get; set; }
         string LoginCollection { get; set; }
         string MessagesCollection { get; set; }

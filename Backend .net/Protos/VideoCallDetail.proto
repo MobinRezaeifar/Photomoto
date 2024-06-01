@@ -1,86 +1,97 @@
 syntax = "proto3";
 
-option csharp_namespace = "GrpcTemolate"; // Define the namespace for C#
+option csharp_namespace = "WebApplication1";
 import "google/api/annotations.proto";
 
-package Todoit; // Package name for the service
+package VideoCallDetail; 
 
-service Todoit {
-    // Define RPC methods for the service
-    rpc CreateToDo (CreateToDoRequest) returns (CreateToDoResponse) {
+service VideoCallDetail {
+    rpc CreateVideoCallDetail (CreateVideoCallDetailRequest) returns (CreateVideoCallDetailResponse) {
         option (google.api.http) = {
-            post: "/v1/todo",
+            post: "/v1/videoCallDetail",
             body: "*"
         };
     }
-    rpc ReadToDo (ReadToDoRequest) returns (ReadToDoResponse) {
+    rpc ReadVideoCallDetail (ReadVideoCallDetailRequest) returns (ReadVideoCallDetailResponse) {
         option (google.api.http) = {
-            get: "/v1/todo/{id}"
+            get: "/v1/videoCallDetail/{id}"
         };
     }
-    rpc UpdateToDo (UpdateToDoRequest) returns (UpdateToDoResponse) {
+    rpc UpdateVideoCallDetail (UpdateVideoCallDetailRequest) returns (UpdateVideoCallDetailResponse) {
         option (google.api.http) = {
-            put : "/v1/todo",
+            put : "/v1/videoCallDetail",
             body: "*"
         };
     }
-    rpc DeleteToDo (DeleteToDoRequest) returns (DeleteToDoResponse) {
+    rpc DeleteVideoCallDetail (DeleteVideoCallDetailRequest) returns (DeleteVideoCallDetailResponse) {
         option (google.api.http) = {
-            delete: "/v1/todo/{id}"
+            delete: "/v1/videoCallDetail/{id}"
         };
     
     }
-    rpc GetAllToDos (GetAllToDosRequest) returns (GetAllToDosResponse) {
+    rpc GetAllVideoCallDetails (GetAllVideoCallDetailsRequest) returns (GetAllVideoCallDetailsResponse) {
         option (google.api.http) = {
-            get: "/v1/todo"
+            get: "/v1/videoCallDetails"
         
     };
 }
 }
 
-// Messages for request and response for each method
 
-message CreateToDoRequest {
-    string todo = 1; // Description of the task to be created
+message CreateVideoCallDetailRequest {
+    string id = 1; 
+    string applicant = 2;
+    string recipient = 3;
+    string status = 4;
+    string room = 5; 
 }
 
-message CreateToDoResponse {
-    int32 id = 1; // ID of the created task
+message CreateVideoCallDetailResponse {
+    string id = 1; 
 }
 
-message ReadToDoRequest {
-    int32 id = 1; // ID of the task to read
+message ReadVideoCallDetailRequest {
+    string id = 1;
 }
 
-message ReadToDoResponse {
-    int32 id = 1; // ID of the task
-    string todo = 2; // Description of the task
+message ReadVideoCallDetailResponse {
+    string id = 1; 
+    string applicant = 2;
+    string recipient = 3;
+    string status = 4;
+    string room = 5; 
 }
 
-message UpdateToDoRequest {
-    int32 id = 1; // ID of the task to update
-    string todo = 2; // New description for the task
+message UpdateVideoCallDetailRequest {
+    string id = 1; 
+    string applicant = 2;
+    string recipient = 3;
+    string status = 4;
+    string room = 5; 
 }
 
-message UpdateToDoResponse {
-    int32 id = 1; // ID of the updated task
+message UpdateVideoCallDetailResponse {
+    string id = 1; 
 }
 
-message DeleteToDoRequest {
-    int32 id = 1; // ID of the task to delete
+message DeleteVideoCallDetailRequest {
+    string id = 1; 
 }
 
-message DeleteToDoResponse {
-    int32 id = 1; // ID of the deleted task
+message DeleteVideoCallDetailResponse {
+    string id = 1; 
 }
 
-message GetAllToDosRequest {}
+message GetAllVideoCallDetailsRequest {}
 
-message GetAllToDosResponse {
-    repeated ToDoItem todos = 1;
+message GetAllVideoCallDetailsResponse {
+    repeated VideoCallDetailItem videoCallDetails = 1;
 }
 
-message ToDoItem {
-    int32 id = 1; // ID of the task
-    string todo = 2; // Description of the task
+message VideoCallDetailItem {
+    string id = 1; 
+    string applicant = 2;
+    string recipient = 3;
+    string status = 4;
+    string room = 5; 
 }

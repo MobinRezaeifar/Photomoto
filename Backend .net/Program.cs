@@ -12,6 +12,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApplication1.Configuration;
 using WebApplication1.Hubs;
 using WebApplication1.Modals;
+using WebApplication1.Services;
 using WebApplication1.Services.ManageFile;
 using WebApplication1.Services.Post;
 using WebApplication1.Services.Register;
@@ -56,6 +57,7 @@ builder.Services.AddSingleton<IStoreDatabaseSettings>(sp =>
 builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(
     builder.Configuration.GetValue<string>("DatabaseSettings:ConnectionString")
 ));
+builder.Services.AddGrpc().AddJsonTranscoding();
 
 builder.Services.AddScoped<IRegistersService, RegistersService>();
 builder.Services.AddScoped<IPostsService, PostsService>();
@@ -69,13 +71,13 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builder =>
     {
         builder
-            .WithOrigins("http://localhost:3000","http://localhost:58734")
+            .WithOrigins("http://localhost:3000", "http://localhost:58734")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials();
     });
 });
- 
+
 builder.Services.AddScoped<IConnectionHandelService, ConnectionHandelService>();
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(opt =>
@@ -129,6 +131,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapGrpcService<VideoCallDetailService>();
+app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.UseEndpoints(endpoints =>
 {

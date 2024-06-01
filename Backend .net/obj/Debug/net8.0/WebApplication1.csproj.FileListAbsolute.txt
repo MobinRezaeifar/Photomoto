@@ -918,3 +918,12 @@ H:\Programming\React\photomoto\backend .net\obj\Debug\net8.0\refint\WebApplicati
 H:\Programming\React\photomoto\backend .net\obj\Debug\net8.0\WebApplication1.pdb
 H:\Programming\React\photomoto\backend .net\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 H:\Programming\React\photomoto\backend .net\obj\Debug\net8.0\ref\WebApplication1.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Google.Api.CommonProtos.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Google.Protobuf.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Grpc.AspNetCore.Server.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Grpc.AspNetCore.Server.ClientFactory.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Grpc.Core.Api.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Grpc.Net.Client.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Grpc.Net.ClientFactory.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Grpc.Net.Common.dll
+H:\programming\react\photomoto\Backend .net\bin\Debug\net8.0\Microsoft.AspNetCore.Grpc.JsonTranscoding.dll
