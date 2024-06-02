@@ -268,6 +268,14 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
     }
   };
 
+  let VedeoCallsItems;
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrlDotenet}v1/videoCallDetails`)
+      .then((x) => (VedeoCallsItems = x.data.videoCallDetails));
+  }, []);
+
   return (
     <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
       <div
@@ -321,13 +329,23 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
           </span>
         </span>
         <div className="flex items-center gap-2">
-          <IoVideocam
-            size={27}
-            className="cursor-pointer"
-            onClick={() => {
-              navigate(`videoCall/`);
-            }}
-          />
+          <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
+            <IoVideocam
+              size={27}
+              className="cursor-pointer"
+              // onClick={() => {
+              //   let roomName = Date.now().toString();
+              //   navigate(`videoCall/${roomName}`);
+              //   axios.post(`${baseUrlDotenet}v1/videoCallDetail`, {
+              //     applicant: decryptAES(sessionStorage.getItem("u")),
+              //     recipient: SelectUser,
+              //     status: "pending",
+              //     room: roomName,
+              //   });
+              // }}
+            />
+          </Dropdown>
+
           <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
             <CiMenuKebab size={27} className="cursor-pointer" />
           </Dropdown>

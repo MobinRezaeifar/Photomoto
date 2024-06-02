@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-
 export default function Video({ match }) {
-  
   const { id } = useParams();
-  console.log(id)
+  console.log(id);  
   useEffect(() => {
     const domain = "https://mbnrz.daily.co/";
 
@@ -35,9 +33,5 @@ export default function Video({ match }) {
       .catch((err) => console.log(err));
   }, [id]);
 
-  
   return <div></div>;
-  
 }
-
-

@@ -64,7 +64,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
             });
             Registers.map((data) => {
               if (data.username == Username) {
-                console.log(data);
+                // console.log(data);
                 sessionStorage.setItem("u", encryptAES(data.username));
                 sessionStorage.setItem("g", encryptAES(data.gender));
                 sessionStorage.setItem("p", encryptAES(data.password));

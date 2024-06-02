@@ -19,7 +19,6 @@ function App() {
           <Route path="/photomoto/:username" element={<ShowAccount />} />
           <Route path="/photomoto/createStory" element={<CreateStoty />} />
           <Route path="/photomoto/createMessage" element={<CreateMessage />} />
-          {/* <Route path="/photomoto/VideoCall" element={<VideoCall />} /> */}
           <Route path="/photomoto/videoCall" element={<JoinMeeting />} />
           <Route path="/photomoto/videoCall/:id" element={<Video />} />
         </Routes>

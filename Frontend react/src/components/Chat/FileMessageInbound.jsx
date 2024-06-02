@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 function FileMessageInbound({ data, MainUserImg, MessageFontSize }) {
   const [ShowMessageMenu, setShowMessageMenu] = useState(false);
   const navigate = useNavigate();
-  console.log(data);
+  // console.log(data);
   const dispatch = useDispatch();
   const [state, setstate] = useState(false);
   return (

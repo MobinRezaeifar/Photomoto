@@ -108,7 +108,7 @@ const Me = ({ Change, change }) => {
           }
           data.connection.map((dataa) => {
             if (dataa.username == mainUser) {
-              console.log(dataa);
+              // console.log(dataa);
             }
           });
         });
