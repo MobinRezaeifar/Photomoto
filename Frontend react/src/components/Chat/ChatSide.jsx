@@ -28,6 +28,7 @@ import VoiceMessageInbound from "./VoiceMessageInbound";
 import VoiceMessageOutbound from "./VoiceMessageOutbound";
 import { Dropdown } from "antd";
 import { IoCamera, IoVideocam } from "react-icons/io5";
+import { FcVideoCall } from "react-icons/fc";
 
 const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
   const [MessageText, setMessageText] = useState("");
@@ -51,6 +52,9 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
   const navigate = useNavigate();
   const [TargetEmail, setTargetEmail] = useState("");
   const [TargetFullName, setTargetFullName] = useState("");
+  const [SwitchDropDown, setSwitchDropDown] = useState("");
+  const baseUrlReact = useSelector((state) => state.baseUrlReact);
+
   const MessageFontSize = `text-md`;
   const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   function decryptAES(message) {
@@ -237,44 +241,92 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
 
   let messageRenderdiv = document.getElementById("messageRenderdiv");
 
-  const items = [
-    {
-      key: "1",
-      label: (
-        <div
-          className="text-[1.2rem] w-full flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg"
-          style={{
-            backgroundColor: "#282828",
-            padding: "6px 10px",
-            borderRadius: "6px",
-          }}
-        >
-          <div className="flex items-center gap-2">
-            <CiUser size={25} />
-            {TargetFullName}
-          </div>
-          <div className="flex items-center gap-2">
-            <MdOutlineEmail size={25} />
-            {TargetEmail}
-          </div>
-        </div>
-      ),
-    },
-  ];
+  let [VedeoCallsItems, setVedeoCallsItems] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${baseUrlDotenet}v1/videoCallDetails`).then((x) =>
+      x.data.videoCallDetails.map((data) => {
+        if (data.recipient == decryptAES(sessionStorage.getItem("u"))) {
+          let status = VedeoCallsItems.some((x) => x.id == data.id);
+          if (!status) {
+            VedeoCallsItems.push(data);
+          }
+        }
+      })
+    );
+  }, []);
+
+  const items =
+    SwitchDropDown == "CiMenuKebab"
+      ? [
+          {
+            key: "1",
+            label: (
+              <div
+                className="text-[1.2rem] w-full flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg"
+                style={{
+                  backgroundColor: "#282828",
+                  padding: "6px 10px",
+                  borderRadius: "6px",
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <CiUser size={25} />
+                  {TargetFullName}
+                </div>
+                <div className="flex items-center gap-2">
+                  <MdOutlineEmail size={25} />
+                  {TargetEmail}
+                </div>
+              </div>
+            ),
+          },
+        ]
+      : [
+          {
+            key: "1",
+            label: (
+              <div
+                className="text-[1.2rem] w-full flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg"
+                style={{
+                  backgroundColor: "#282828",
+                  padding: "6px 10px",
+                  borderRadius: "6px",
+                }}
+              >
+                {(() => {
+                  if (VedeoCallsItems) {
+                    return VedeoCallsItems.map((data) => {
+                      return (
+                        <div className="flex justify-center items-center gap-3 p-2">
+                          <h1 className="font-bold">
+                            {data.applicant} Call You
+                          </h1>
+
+                          <button
+                            onClick={() => {
+                              navigate(`/photomoto/videoCall/${data.room}`);
+                            }}
+                            type="button"
+                            class="text-green-700 border border-green-700 hover:bg-green-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-1.5 text-center inline-flex items-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:focus:ring-green-800 dark:hover:bg-white"
+                          >
+                            <FcVideoCall size={22} />
+                          </button>
+                        </div>
+                      );
+                    });
+                  }
+                })()}
+              </div>
+            ),
+          },
+        ];
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 13 && MessageText) {
       SendTextMessage();
     }
   };
-
-  let VedeoCallsItems;
-
-  useEffect(() => {
-    axios
-      .get(`${baseUrlDotenet}v1/videoCallDetails`)
-      .then((x) => (VedeoCallsItems = x.data.videoCallDetails));
-  }, []);
 
   return (
     <div className={`h-screen ${dimensions.width < 900 && "pb-16"}`}>
@@ -329,24 +381,53 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
           </span>
         </span>
         <div className="flex items-center gap-2">
-          <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
+          {!isEqual(VedeoCallsItems, []) ? (
+            <Dropdown
+              menu={{ items }}
+              placement="bottom"
+              trigger={["click"]}
+              onClick={() => setSwitchDropDown("IoVideocam")}
+            >
+              <IoVideocam
+                size={27}
+                className="cursor-pointer"
+                onClick={() => {
+                  console.log("IoVideocam");
+                  // let roomName = Date.now().toString();
+                  // navigate(`videoCall/${roomName}`);
+                  // axios.post(`${baseUrlDotenet}v1/videoCallDetail`, {
+                  //   applicant: decryptAES(sessionStorage.getItem("u")),
+                  //   recipient: SelectUser,
+                  //   status: "pending",
+                  //   room: roomName,
+                  // });
+                }}
+              />
+            </Dropdown>
+          ) : (
             <IoVideocam
               size={27}
               className="cursor-pointer"
-              // onClick={() => {
-              //   let roomName = Date.now().toString();
-              //   navigate(`videoCall/${roomName}`);
-              //   axios.post(`${baseUrlDotenet}v1/videoCallDetail`, {
-              //     applicant: decryptAES(sessionStorage.getItem("u")),
-              //     recipient: SelectUser,
-              //     status: "pending",
-              //     room: roomName,
-              //   });
-              // }}
+              onClick={() => {
+                console.log("IoVideocam");
+                let roomName = Date.now().toString();
+                navigate(`videoCall/${roomName}`);
+                axios.post(`${baseUrlDotenet}v1/videoCallDetail`, {
+                  applicant: decryptAES(sessionStorage.getItem("u")),
+                  recipient: SelectUser,
+                  status: "pending",
+                  room: roomName,
+                });
+              }}
             />
-          </Dropdown>
+          )}
 
-          <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
+          <Dropdown
+            menu={{ items }}
+            placement="bottom"
+            trigger={["click"]}
+            onClick={() => setSwitchDropDown("CiMenuKebab")}
+          >
             <CiMenuKebab size={27} className="cursor-pointer" />
           </Dropdown>
         </div>

@@ -6,6 +6,7 @@ let PostApi = "http://localhost:5221/api/Posts";
 let MessagesApi = "http://localhost:5221/api/Messages";
 let ConnectionsApi = "http://localhost:5221/api/ConnectionHandel";
 let StoryApi = "http://localhost:5001/api/story";
+let baseUrlDotenet = "http://localhost:5221/";
 
 const change = [];
 
@@ -26,6 +27,11 @@ const Change = async (change) => {
     console.log(e);
   }
 };
+
+export const fetchvideoCallDetailsSuccess = (videoCallDetails) => ({
+  type: "FETCH_VIDEOCALLDETAILS_SUCCESS",
+  payload: videoCallDetails,
+});
 
 export const addRegiaterSuccess = (user) => ({
   type: "ADD_REGISTER_SUCCESS",
@@ -122,6 +128,18 @@ export const deleteStorySuccess = (id) => ({
   type: "DELETE_STORY_SUCCESS",
   payload: id,
 });
+
+export const fetchVideoCallDetails = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${baseUrlDotenet}v1/videoCallDetails`);
+      const videoCallDetail = await response.json();
+      dispatch(fetchvideoCallDetailsSuccess(videoCallDetail));
+    } catch (error) {
+      console.error("Error fetching videoCallDetail:", error);
+    }
+  };
+};
 
 export const DownloadMedia = (src) => {
   return async (dispatch) => {

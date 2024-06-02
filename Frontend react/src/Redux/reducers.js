@@ -4,6 +4,7 @@ const initialState = {
   Messages: [],
   Connections: [],
   Stories: [],
+  VideoCallDetails: [],
   Issue: "me",
   ShowPostModel: false,
   ProfileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
@@ -18,6 +19,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case "FETCH_VIDEOCALLDETAILS_SUCCESS":
+      return {
+        ...state,
+        VideoCallDetails: [...state.VideoCallDetails, action.payload],
+      };
     case "ADD_REGISTER_SUCCESS":
       return {
         ...state,
