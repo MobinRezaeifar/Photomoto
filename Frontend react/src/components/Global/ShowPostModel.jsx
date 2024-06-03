@@ -22,7 +22,6 @@ import {
   fetchRegister,
   UpdateConnection,
   updatePost,
-  updateRegister,
 } from "../../Redux/action";
 import { Button, Dropdown } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
