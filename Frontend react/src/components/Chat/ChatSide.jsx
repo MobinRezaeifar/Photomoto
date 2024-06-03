@@ -53,7 +53,6 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
   const [TargetEmail, setTargetEmail] = useState("");
   const [TargetFullName, setTargetFullName] = useState("");
   const [SwitchDropDown, setSwitchDropDown] = useState("");
-  const baseUrlReact = useSelector((state) => state.baseUrlReact);
 
   const MessageFontSize = `text-md`;
   const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
@@ -67,11 +66,11 @@ const ChatSide = ({ SelectUser, Change, change, mainUser, OnlineUsers }) => {
   }
 
   useEffect(() => {
-    dispatch(fetchMessages(sessionStorage.getItem("token")));
+    dispatch(fetchMessages());
   }, []);
 
   useEffect(() => {
-    dispatch(fetchMessages(sessionStorage.getItem("token")));
+    dispatch(fetchMessages());
   }, [change]);
 
   const SendTextMessage = async () => {

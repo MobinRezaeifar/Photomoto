@@ -187,10 +187,12 @@ export const AddRegister = (newUser) => {
 
 export const fetchRegister = () => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    };
     try {
-      const response = await fetch(RegisterApi);
-      const register = await response.json();
-      dispatch(fetchRegistersSuccess(register));
+      const response = await axios.get(RegisterApi, { headers });
+      dispatch(fetchRegistersSuccess(response.data));
     } catch (error) {
       console.error("Error fetching register:", error);
     }
@@ -251,10 +253,15 @@ export const AddPost = (newPost) => {
 
 export const fetchPosts = () => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    };
     try {
-      const response = await fetch(PostApi);
-      const post = await response.json();
-      dispatch(fetchPostsSuccess(post));
+      const response = await axios.get(
+        PostApi + "?pageNumber=1&pageSize=1000",
+        { headers }
+      );
+      dispatch(fetchPostsSuccess(response.data));
     } catch (error) {
       console.error("Error fetching post:", error);
     }
@@ -325,13 +332,16 @@ export const AddMessages = (message) => {
 //   };
 // };
 
-export const fetchMessages = (token) => {
+export const fetchMessages = () => {
   return async (dispatch) => {
     const headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     };
     try {
-      const response = await axios.get(MessagesApi, { headers });
+      const response = await axios.get(
+        MessagesApi + "?pageNumber=1&pageSize=1000",
+        { headers }
+      );
       dispatch(fetchMessagesSuccess(response.data));
     } catch (error) {
       console.error("Error:", error);
@@ -410,10 +420,12 @@ export const AddConnection = (connection) => {
 
 export const fetchConnection = () => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    };
     try {
-      const response = await fetch(ConnectionsApi);
-      const connection = await response.json();
-      dispatch(fetchConnectionSuccess(connection));
+      const response = await axios.get(ConnectionsApi, { headers });
+      dispatch(fetchConnectionSuccess(response.data));
     } catch (error) {
       console.error("Error fetching connection:", error);
     }

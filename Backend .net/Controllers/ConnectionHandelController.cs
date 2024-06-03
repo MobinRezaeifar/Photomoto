@@ -17,6 +17,7 @@ namespace WebApplication2.Controllers
             _ConnectionHandelService = ConnectionHandelService;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<ConnectionHandel>>> GetConnections()
         {
@@ -25,6 +26,7 @@ namespace WebApplication2.Controllers
             return connections;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<ConnectionHandel>> GetConnection(string id)
         {

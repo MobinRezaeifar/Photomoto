@@ -20,12 +20,14 @@ namespace WebApplication1.Controllers
             _registersService = registersService;
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult<List<Registers>> Get()
         {
             return _registersService.Get();
         }
-
+        
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Registers> Get(string id)
         {

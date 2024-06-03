@@ -15,13 +15,15 @@ namespace WebApplication1.Controllers
         {
             _postsService = postsService;
         }
-        
+
+        [Authorize]
         [HttpGet]
         public ActionResult<List<Posts>> Get([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             return _postsService.Get(pageNumber, pageSize);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Posts> Get(string id)
         {
