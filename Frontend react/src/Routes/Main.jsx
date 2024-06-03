@@ -14,6 +14,8 @@ import Me from "../components/Issue/Me";
 import CryptoJS from "crypto-js";
 
 const Main = () => {
+  const baseUrlReact = useSelector((state) => state.baseUrlReact);
+
   const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
   let navigate = useNavigate();
   const [dimensions, setDimensions] = useState({
@@ -37,10 +39,12 @@ const Main = () => {
       }
     };
   }, []);
+      if (sessionStorage.getItem("u") == null) {
+        console.log("navigate()");
+        window.location.assign("/");
+      }
+    
 
-  if (sessionStorage.getItem("u") == null) {
-    navigate("/");
-  }
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
   function decryptAES(message) {
