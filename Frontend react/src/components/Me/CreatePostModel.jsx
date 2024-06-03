@@ -28,7 +28,14 @@ import isEqual from "lodash.isequal";
 
 const { Dragger } = Upload;
 
-function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
+function CreatePostModel({
+  show,
+  dimensions,
+  setShow,
+  ProfileImg,
+  Change,
+  change,
+}) {
   const [Desc, setDesc] = useState("");
   const [PostImg, setPostImg] = useState("");
   const [PostVideo, setPostVideo] = useState("");
@@ -99,6 +106,7 @@ function CreatePostModel({ show, dimensions, setShow, ProfileImg }) {
         tags,
       })
     );
+    await Change("change");
   };
 
   const onDownload = (src) => {

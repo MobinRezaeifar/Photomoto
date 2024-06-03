@@ -87,5 +87,17 @@ namespace WebApplication1.Controllers
 
             return Ok(posts);
         }
+        [HttpGet("searchByOwner")]
+        public ActionResult<List<Posts>> SearchByOwner([FromQuery] string? owner) 
+        {
+            var posts = _postsService.SearchByOwner(owner);
+
+            if (posts == null || posts.Count == 0)
+            {
+                return NotFound(new { Message = "No posts found with the given owner." });
+            }
+
+            return Ok(posts);
+        }
     }
 }

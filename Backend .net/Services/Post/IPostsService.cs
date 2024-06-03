@@ -10,5 +10,6 @@ namespace WebApplication1.Services.Post
         void Update(string id, Posts posts);
         void Remove(string id);
         List<Posts> SearchByTag(string tag);
+        List<Posts> SearchByOwner(string owner);
     }
 }

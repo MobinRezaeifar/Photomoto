@@ -53,6 +53,10 @@ namespace WebApplication1.Services.Post
             }
             return new List<Posts>();
         }
-
+        public List<Posts> SearchByOwner(string owner)
+        {
+            var filter = Builders<Posts>.Filter.Eq("Owner", owner);
+            return _posts.Find(filter).ToList();
+        }
     }
 }

@@ -23,15 +23,11 @@ import {
   UpdateConnection,
   updatePost,
 } from "../../Redux/action";
-import { Button, Dropdown } from "antd";
+import { Dropdown } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "jalali-moment";
-import { BiCloset, BiWindowClose } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
-import axios from "axios";
-import Connection from "../Issue/Connection";
-import { SiTimescale } from "react-icons/si";
 
 const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
@@ -136,6 +132,7 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
                 payload: false,
               });
               await dispatch(fetchRegister());
+              await Change("change");
             }}
           >
             <RiDeleteBin6Line size={24} /> Delete Post
