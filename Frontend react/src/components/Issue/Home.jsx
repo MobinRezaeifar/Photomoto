@@ -8,7 +8,7 @@ import { SiSendinblue } from "react-icons/si";
 import { FcEditImage, FcSettings } from "react-icons/fc";
 import { Avatar, Badge, Button } from "antd";
 import { IoIosAddCircle } from "react-icons/io";
-import {useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ShowPostModel from "../Global/ShowPostModel";
@@ -171,10 +171,15 @@ const Home = ({ change, Change }) => {
                   ProfileImage = z.profileImg;
                 }
               });
-              return Stories.map((y) => {
+              const uniqueStories = Stories.filter(
+                (story, index, self) =>
+                  self.findIndex((s) => s.owner === story.owner) === index
+              );
+
+              return uniqueStories.map((y) => {
                 if (y.owner == mainUser) {
                   return (
-                    <Badge className="cursor-pointer">
+                    <Badge key={y.owner} className="cursor-pointer">
                       <Avatar
                         size={70}
                         src={ProfileImage}

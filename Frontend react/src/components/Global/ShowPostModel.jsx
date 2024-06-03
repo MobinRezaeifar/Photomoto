@@ -305,8 +305,14 @@ const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
                       if (ConnectionStatus) {
                         return Connections.map((data) => {
                           if (
-                            data.sender == Post.owner ||
-                            data.receiver == Post.owner
+                            data.relation ==
+                              Post.owner +
+                                "," +
+                                decryptAES(sessionStorage.getItem("u")) ||
+                            data.relation ==
+                              decryptAES(sessionStorage.getItem("u")) +
+                                "," +
+                                Post.owner
                           ) {
                             if (data.status == "send") {
                               if (

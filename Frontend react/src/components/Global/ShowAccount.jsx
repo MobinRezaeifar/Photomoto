@@ -227,30 +227,6 @@ const ShowAccount = () => {
           />{" "}
           {username}
         </span>
-        {/* <span className="flex items-center gap-2">
-          <BiSolidAddToQueue
-            onClick={() => {
-              // navigate("/photomoto/edit");
-              setShowCreatePostModel(true);
-            }}
-            title="Create Post"
-            className="animated2 cursor-pointer"
-            size={dimensions.width > 900 ? 38 : 32}
-            // style={{ marginTop: "1.9rem" }}
-          />
-          <IoSettingsOutline
-            title="Setting"
-            className="animated cursor-pointer"
-            size={dimensions.width > 900 ? 38 : 32}
-            // style={{ marginTop: "1.9rem" }}
-          />
-          <CreatePostModel
-            show={ShowCreatePostModel}
-            setShow={setShowCreatePostModel}
-            dimensions={dimensions}
-            ProfileImg={ProfileImg}
-          />
-        </span> */}
       </div>
       <div
         style={{
@@ -299,7 +275,14 @@ const ShowAccount = () => {
                 );
                 if (ConnectionStatus) {
                   return Connections.map((data) => {
-                    if (data.sender == username || data.receiver == username) {
+                    if (
+                      data.relation ==
+                        username +
+                          "," +
+                          decryptAES(sessionStorage.getItem("u")) ||
+                      data.relation ==
+                        decryptAES(sessionStorage.getItem("u")) + "," + username
+                    ) {
                       if (data.status == "send") {
                         if (
                           data.sender == decryptAES(sessionStorage.getItem("u"))
@@ -340,10 +323,10 @@ const ShowAccount = () => {
                           <h1
                             onClick={() => DisConnect(data.id)}
                             className="font-bold text-lg
-                             text-red-600 cursor-pointer  ml-2"
+                             text-red-600 cursor-pointer  ml-2 flex items-center"
                             style={{ marginTop: "6px" }}
                           >
-                            -DisConnect
+                            <span>-</span> <span>DisConnect</span>
                           </h1>
                         );
                       }
