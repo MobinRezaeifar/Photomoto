@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Services.Post;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
@@ -16,7 +15,7 @@ namespace WebApplication1.Controllers
         {
             _postsService = postsService;
         }
-
+        
         [HttpGet]
         public ActionResult<List<Posts>> Get([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {

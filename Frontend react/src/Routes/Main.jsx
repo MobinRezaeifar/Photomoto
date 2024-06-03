@@ -39,11 +39,9 @@ const Main = () => {
       }
     };
   }, []);
-      if (sessionStorage.getItem("u") == null) {
-        console.log("navigate()");
-        window.location.assign("/");
-      }
-    
+  // if (sessionStorage.getItem("u") == null) {
+  //   window.location.assign("/");
+  // }
 
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");

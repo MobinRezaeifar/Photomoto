@@ -79,14 +79,14 @@ const ShowAccount = () => {
 
   useEffect(() => {
     let lenghtt = [];
-    Connections.map((data) => {
-      if (data.sender == username || data.receiver == username) {
-        if (data.status == "accept") {
-          lenghtt.push(data);
-          return setConnection(lenghtt.length);
+      Connections.map((data) => {
+        if (data.sender == username || data.receiver == username) {
+          if (data.status == "accept") {
+            lenghtt.push(data);
+            return setConnection(lenghtt.length);
+          }
         }
-      }
-    });
+      });
     Registers.map(async (data) => {
       if (data.username == username) {
         setPost(data.post);
@@ -160,24 +160,24 @@ const ShowAccount = () => {
   };
 
   const handelConnection = async () => {
-    let ConnectionStatus = Connections.some(
-      (x) =>
-        x.relation ==
-          decryptAES(sessionStorage.getItem("u")) + "," + username ||
-        x.relation == username + "," + decryptAES(sessionStorage.getItem("u"))
-    );
-    if (!ConnectionStatus) {
-      await dispatch(
-        AddConnection({
-          id: Date.now() + "",
-          sender: decryptAES(sessionStorage.getItem("u")),
-          receiver: username,
-          time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-          status: "send",
-          relation: decryptAES(sessionStorage.getItem("u")) + "," + username,
-        })
+      let ConnectionStatus = Connections.some(
+        (x) =>
+          x.relation ==
+            decryptAES(sessionStorage.getItem("u")) + "," + username ||
+          x.relation == username + "," + decryptAES(sessionStorage.getItem("u"))
       );
-      await Change("change");
+      if (!ConnectionStatus) {
+        await dispatch(
+          AddConnection({
+            id: Date.now() + "",
+            sender: decryptAES(sessionStorage.getItem("u")),
+            receiver: username,
+            time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+            status: "send",
+            relation: decryptAES(sessionStorage.getItem("u")) + "," + username,
+          })
+        );
+        await Change("change"); 
     }
   };
   const AcceptConnection = (id) => {
@@ -264,85 +264,88 @@ const ShowAccount = () => {
           <div className="flex gap-2">
             {(() => {
               if (username != decryptAES(sessionStorage.getItem("u"))) {
-                let ConnectionStatus = Connections.some(
-                  (x) =>
-                    x.relation ==
-                      decryptAES(sessionStorage.getItem("u")) +
-                        "," +
-                        username ||
-                    x.relation ==
-                      username + "," + decryptAES(sessionStorage.getItem("u"))
-                );
-                if (ConnectionStatus) {
-                  return Connections.map((data) => {
-                    if (
-                      data.relation ==
-                        username +
+                  let ConnectionStatus = Connections.some(
+                    (x) =>
+                      x.relation ==
+                        decryptAES(sessionStorage.getItem("u")) +
                           "," +
-                          decryptAES(sessionStorage.getItem("u")) ||
-                      data.relation ==
-                        decryptAES(sessionStorage.getItem("u")) + "," + username
-                    ) {
-                      if (data.status == "send") {
-                        if (
-                          data.sender == decryptAES(sessionStorage.getItem("u"))
-                        ) {
+                          username ||
+                      x.relation ==
+                        username + "," + decryptAES(sessionStorage.getItem("u"))
+                  );
+                  if (ConnectionStatus) {
+                    return Connections.map((data) => {
+                      if (
+                        data.relation ==
+                          username +
+                            "," +
+                            decryptAES(sessionStorage.getItem("u")) ||
+                        data.relation ==
+                          decryptAES(sessionStorage.getItem("u")) +
+                            "," +
+                            username
+                      ) {
+                        if (data.status == "send") {
+                          if (
+                            data.sender ==
+                            decryptAES(sessionStorage.getItem("u"))
+                          ) {
+                            return (
+                              <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
+                                <MdAvTimer size={20} />
+                                Pending
+                              </h1>
+                            );
+                          }
+                          if (
+                            data.receiver ==
+                            decryptAES(sessionStorage.getItem("u"))
+                          ) {
+                            return (
+                              <>
+                                <h1
+                                  className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
+                                  onClick={() => AcceptConnection(data.id)}
+                                >
+                                  <RiUserFollowFill size={20} />
+                                  Accept
+                                </h1>
+                                <h1
+                                  className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
+                                  onClick={() => RejectConnection(data.id)}
+                                >
+                                  <RiUserUnfollowFill size={20} />
+                                  Reject
+                                </h1>
+                              </>
+                            );
+                          }
+                        }
+                        if (data.status == "accept") {
                           return (
-                            <h1 className="font-bold text-lg text-gray-400 cursor-pointer flex items-center gap-1 ml-2">
-                              <MdAvTimer size={20} />
-                              Pending
+                            <h1
+                              onClick={() => DisConnect(data.id)}
+                              className="font-bold text-lg
+                               text-red-600 cursor-pointer  ml-2 flex items-center"
+                              style={{ marginTop: "6px" }}
+                            >
+                              <span>-</span> <span>DisConnect</span>
                             </h1>
                           );
                         }
-                        if (
-                          data.receiver ==
-                          decryptAES(sessionStorage.getItem("u"))
-                        ) {
-                          return (
-                            <>
-                              <h1
-                                className="font-bold text-lg text-green-400 cursor-pointer flex items-center gap-1 ml-2"
-                                onClick={() => AcceptConnection(data.id)}
-                              >
-                                <RiUserFollowFill size={20} />
-                                Accept
-                              </h1>
-                              <h1
-                                className="font-bold text-lg text-red-400 cursor-pointer flex items-center gap-1 ml-2"
-                                onClick={() => RejectConnection(data.id)}
-                              >
-                                <RiUserUnfollowFill size={20} />
-                                Reject
-                              </h1>
-                            </>
-                          );
-                        }
                       }
-                      if (data.status == "accept") {
-                        return (
-                          <h1
-                            onClick={() => DisConnect(data.id)}
-                            className="font-bold text-lg
-                             text-red-600 cursor-pointer  ml-2 flex items-center"
-                            style={{ marginTop: "6px" }}
-                          >
-                            <span>-</span> <span>DisConnect</span>
-                          </h1>
-                        );
-                      }
-                    }
-                  });
-                } else {
-                  return (
-                    <h1
-                      onClick={handelConnection}
-                      style={{ marginTop: "6px" }}
-                      className="font-bold text-lg
-                             text-blue-600 cursor-pointer  ml-2"
-                    >
-                      + Connection
-                    </h1>
-                  );
+                    });
+                  } else {
+                    return (
+                      <h1
+                        onClick={handelConnection}
+                        style={{ marginTop: "6px" }}
+                        className="font-bold text-lg
+                               text-blue-600 cursor-pointer  ml-2"
+                      >
+                        + Connection
+                      </h1>
+                    );
                 }
               }
             })()}

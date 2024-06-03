@@ -18,9 +18,12 @@ public class MessagesService : IMessagesService
         return messages;
     }
 
-    public List<Messages> Get()
+    public List<Messages> Get(int pageNumber = 1, int pageSize = 10)
     {
-        return _messages.Find(messages => true).ToList();
+        return _messages.Find(messages => true)
+                         .Skip((pageNumber - 1) * pageSize)
+                         .Limit(pageSize)
+                         .ToList();
     }
 
     public Messages Get(string id)

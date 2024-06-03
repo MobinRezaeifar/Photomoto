@@ -1,18 +1,5 @@
-using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Win32;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using WebApplication1.Models;
-using WebApplication1.Services;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -27,9 +14,9 @@ public class MessagesController : ControllerBase
 
     [Authorize]
     [HttpGet]
-    public ActionResult<List<Messages>> Get()
+    public ActionResult<List<Messages>> Get([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
     {
-        return _messageService.Get();
+        return _messageService.Get(pageNumber, pageSize);
     }
 
     [HttpGet("{id}")]
@@ -67,6 +54,7 @@ public class MessagesController : ControllerBase
 
         return NoContent();
     }
+
 
     [HttpPatch("api/messages/{id}")]
     public IActionResult Patch(string id, [FromBody] Messages message)
