@@ -10,6 +10,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { GrAdd } from "react-icons/gr";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 function ShowStoriesModel({
   dimensions,
@@ -27,6 +28,8 @@ function ShowStoriesModel({
   const dispatch = useDispatch();
   const [DropDownShow, setDropDownShow] = useState(false);
   const [selectedStoryId, setselectedStoryId] = useState("");
+  const baseUrlReact = useSelector((state) => state.baseUrlReact);
+  let navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchStory());
@@ -194,7 +197,17 @@ function ShowStoriesModel({
                 paddingLeft: "5px",
               }}
             >
-              <div className="flex items-center gap-2">
+              <div
+                className="flex items-center gap-2"
+                onClick={() => {
+                  if (
+                    window.location.href !== `${baseUrlReact}photomoto/${owner}`
+                  ) {
+                    navigate(`${owner}`);
+                    setShow(false);
+                  }
+                }}
+              >
                 <Avatar src={MainProfileImg} size={"large"} />
                 <span
                   className="text-xl
