@@ -18,9 +18,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Posts>> Get()
+        public ActionResult<List<Posts>> Get([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return _postsService.Get();
+            return _postsService.Get(pageNumber, pageSize);
         }
 
         [HttpGet("{id}")]

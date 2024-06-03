@@ -20,10 +20,14 @@ namespace WebApplication1.Services.Post
             return posts;
         }
 
-        public List<Posts> Get()
+        public List<Posts> Get(int pageNumber = 1, int pageSize = 10)
         {
-            return _posts.Find(posts => true).ToList();
+            return _posts.Find(posts => true)
+                         .Skip((pageNumber - 1) * pageSize)
+                         .Limit(pageSize)
+                         .ToList();
         }
+
 
 
         public Posts Get(string id)
