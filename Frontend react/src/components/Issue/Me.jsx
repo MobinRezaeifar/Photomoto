@@ -220,7 +220,7 @@ const Me = ({ Change, change }) => {
             size={dimensions.width > 900 ? 38 : 32}
           />
           <CreatePostModel
-           Change={Change}
+            Change={Change}
             change={change}
             show={ShowCreatePostModel}
             setShow={setShowCreatePostModel}
