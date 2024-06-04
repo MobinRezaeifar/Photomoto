@@ -18,10 +18,10 @@ namespace WebApplication1.Services.Register
 
         public Registers Create(Registers register)
         {
+            register.Password = AesEncryption.Encrypt(register.Password);
             _register.InsertOne(register);
             return register;
         }
-
         public List<Registers> Get()
         {
             return _register.Find(register => true).ToList();
@@ -59,7 +59,8 @@ namespace WebApplication1.Services.Register
         }
         public Registers GetUserByUsernameAndPassword(string username, string password)
         {
-            return _register.Find(user => user.Username == username && user.Password == password).FirstOrDefault();
+            var encryptedPassword = AesEncryption.Encrypt(password);
+            return _register.Find(user => user.Username == username && user.Password == encryptedPassword).FirstOrDefault();
         }
     }
 }

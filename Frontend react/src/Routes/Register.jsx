@@ -10,6 +10,8 @@ import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../components/Global/Login";
+import { browserName } from "react-device-detect";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 const Register = () => {
   const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
@@ -19,6 +21,7 @@ const Register = () => {
   const [Email, setEmail] = useState("");
   const [Gender, setGender] = useState("");
   const [FullName, setFullName] = useState("");
+  const [ShowPassword, setShowPassword] = useState("");
   let navigate = useNavigate();
   const [ShowLogin, setShowLogin] = useState(false);
 
@@ -69,7 +72,7 @@ const Register = () => {
       axios
         .post(`${baseUrlDotenet}api/Registers`, {
           username: Username,
-          password: encryptAES(Password),
+          password: Password,
           fullName: FullName,
           profileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
           email: Email,
@@ -199,15 +202,69 @@ const Register = () => {
                     value={Username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
-                  <input
-                    tabIndex={!ShowLogin ? 2 : -1}
-                    placeholder="Password..."
-                    id="password"
-                    type="password"
-                    className="input"
-                    value={Password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  {(() => {
+                    if (browserName == "Edge") {
+                      return (
+                        <input
+                          tabIndex={!ShowLogin ? 2 : -1}
+                          placeholder="Password..."
+                          id="password"
+                          type="password"
+                          className="input"
+                          value={Password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                      );
+                    } else {
+                      return (
+                        <span className="flex items-center justify-end w-[100%]">
+                          {ShowPassword ? (
+                            <input
+                              tabIndex={!ShowLogin ? 2 : -1}
+                              placeholder="Password..."
+                              id="password"
+                              type="text"
+                              className="input"
+                              value={Password}
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                          ) : (
+                            <input
+                              tabIndex={!ShowLogin ? 2 : -1}
+                              placeholder="Password..."
+                              id="password"
+                              type="password"
+                              className="input"
+                              value={Password}
+                              onChange={(e) => setPassword(e.target.value)}
+                            />
+                          )}
+
+                          {ShowPassword ? (
+                            <HiEye
+                              style={{
+                                position: "absolute",
+                                marginBottom: "20px",
+                                marginRight: "10px",
+                              }}
+                              size={25}
+                              onClick={() => setShowPassword(false)}
+                            />
+                          ) : (
+                            <HiEyeOff
+                              style={{
+                                position: "absolute",
+                                marginBottom: "20px",
+                                marginRight: "10px",
+                              }}
+                              size={25}
+                              onClick={() => setShowPassword(true)}
+                            />
+                          )}
+                        </span>
+                      );
+                    }
+                  })()}
                 </div>
                 <div className={`${dimensions.width > 900 && "flex"} gap-2`}>
                   <input

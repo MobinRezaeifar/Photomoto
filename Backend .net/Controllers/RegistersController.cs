@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
         {
             return _registersService.Get();
         }
-        
+
         [Authorize]
         [HttpGet("{id}")]
         public ActionResult<Registers> Get(string id)

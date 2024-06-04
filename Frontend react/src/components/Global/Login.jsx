@@ -41,7 +41,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
       axios
         .post(`${baseUrlDotenet}api/Registers/login`, {
           username: Username,
-          password: encryptAES(Password),
+          password: Password,
         })
         .then(
           (x) => {
@@ -64,7 +64,6 @@ const Login = ({ ShowLogin, setShowLogin }) => {
             });
             Registers.map((data) => {
               if (data.username == Username) {
-                // console.log(data);
                 sessionStorage.setItem("u", encryptAES(data.username));
                 sessionStorage.setItem("g", encryptAES(data.gender));
                 sessionStorage.setItem("p", encryptAES(data.password));
