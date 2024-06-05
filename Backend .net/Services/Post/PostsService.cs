@@ -57,6 +57,7 @@ namespace WebApplication1.Services.Post
         {
             var filter = Builders<Posts>.Filter.Eq("Owner", owner);
             return _posts.Find(filter).ToList();
+
         }
     }
 }
