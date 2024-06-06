@@ -117,7 +117,7 @@ class _DirectState extends ConsumerState<Direct> {
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xFF002733),
+                color: Color.fromRGBO(0, 39, 51, 1),
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(8.0),
                   bottomRight: Radius.circular(8.0),

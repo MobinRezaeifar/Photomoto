@@ -120,15 +120,24 @@ class _RegisterState extends State<Register> {
           final token = responseData['token'];
           ref.read(authProvider.notifier).setToken(token, _user.username);
           Navigator.pushReplacementNamed(context, '/photomoto');
-          print('Data submitted successfully');
-          onComplete();
-        } else {
+          // print('Data submitted successfully');
           Fluttertoast.showToast(
-            msg: 'Failed to submit data: ${response.statusCode}',
+            msg: 'Login successfully',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.TOP,
             timeInSecForIosWeb: 3,
-            backgroundColor: Color(0xFF000000),
+            webBgColor: 'linear-gradient(to right, #002733, #002733)',
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          onComplete();
+        } else {
+          Fluttertoast.showToast(
+            msg: '${response.body}',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 3,
+            webBgColor: 'linear-gradient(to right, #002733, #002733)',
             textColor: Colors.white,
             fontSize: 16.0,
           );
