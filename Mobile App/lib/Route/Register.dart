@@ -38,7 +38,7 @@ class User {
 
   Map<String, dynamic> toJson() => {
         'username': username,
-        'password': encryptAES(password),
+        'password': password,
         'fullName': fullName,
         'email': email,
         'gender': gender,
@@ -58,18 +58,6 @@ class Register extends StatefulWidget {
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-String encryptAES(String message) {
-  final key = encrypt.Key.fromUtf8('1234567890123456');
-  final iv = encrypt.IV.fromUtf8('1234567890123456');
-
-  final encrypter = encrypt.Encrypter(
-      encrypt.AES(key, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-  final encrypted = encrypter.encrypt(message, iv: iv);
-
-  return encrypted.base64;
-}
 
 class _RegisterState extends State<Register> {
   final _user = User();
@@ -117,7 +105,7 @@ class _RegisterState extends State<Register> {
           },
           body: jsonEncode(<String, String>{
             'username': _user.username,
-            'password': encryptAES(_user.password),
+            'password': _user.password,
           }),
         );
         if (response.statusCode == 200) {

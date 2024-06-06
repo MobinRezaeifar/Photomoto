@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/components/Global/Direct.dart';
-import '../Utils/token_provider.dart'; // اطمینان حاصل کنید که این فایل پرووایدر شما است
+import '../Utils/token_provider.dart';
 
 class Main extends StatelessWidget {
   const Main({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class Main extends StatelessWidget {
                   )),
                   Container(
                     color: Color(0xFF002733),
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.all(6),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
