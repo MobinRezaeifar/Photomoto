@@ -114,7 +114,7 @@ class _DirectState extends ConsumerState<Direct> {
             ],
           )
         : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22.0),
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Color(0xFF002733),
@@ -124,7 +124,7 @@ class _DirectState extends ConsumerState<Direct> {
                 ), //
               ),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(13.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

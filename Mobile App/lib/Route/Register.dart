@@ -7,6 +7,7 @@ import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:convert/convert.dart';
 import '../Utils/token_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class User {
   String username;
@@ -58,6 +59,7 @@ class Register extends StatefulWidget {
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+bool _isLoading = false;
 
 class _RegisterState extends State<Register> {
   final _user = User();
@@ -94,8 +96,13 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  void _submitLogin(BuildContext context, WidgetRef ref) async {
+  void _submitLogin(
+      BuildContext context, WidgetRef ref, VoidCallback onComplete) async {
     if (_user.password.isNotEmpty && _user.username.isNotEmpty) {
+      setState(() {
+        _isLoading = true;
+      });
+
       final apiUrl = APIUrls.baseUrlDotenet + "api/Registers/login";
       try {
         final response = await http.post(
@@ -114,11 +121,30 @@ class _RegisterState extends State<Register> {
           ref.read(authProvider.notifier).setToken(token, _user.username);
           Navigator.pushReplacementNamed(context, '/photomoto');
           print('Data submitted successfully');
+          onComplete();
         } else {
-          print('Failed to submit data: ${response.statusCode}');
+          Fluttertoast.showToast(
+            msg: 'Failed to submit data: ${response.statusCode}',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Color(0xFF000000),
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+
+          setState(() {
+            _isLoading = false;
+          });
+          onComplete();
         }
       } catch (error) {
         print('Error submitting data: $error');
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+        onComplete();
       }
     }
   }
@@ -438,132 +464,155 @@ class _RegisterState extends State<Register> {
                       showModalBottomSheet(
                         context: context,
                         builder: (BuildContext context) {
-                          return Container(
-                            padding: const EdgeInsets.all(16.0),
-                            color: const Color(0xFF001925),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                          return StatefulBuilder(
+                            builder: (BuildContext context,
+                                StateSetter setModalState) {
+                              return Container(
+                                padding: const EdgeInsets.all(16.0),
+                                color: const Color(0xFF001925),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Icon(
-                                          Icons.login,
-                                          color: Colors.white,
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.login,
+                                              color: Colors.white,
+                                            ),
+                                            const SizedBox(width: 8.0),
+                                            const Text(
+                                              'Login',
+                                              style: TextStyle(
+                                                fontSize: 24.0,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        const SizedBox(width: 8.0),
-                                        const Text(
-                                          'Login',
-                                          style: TextStyle(
-                                            fontSize: 24.0,
-                                            color: Colors.white,
-                                          ),
-                                        ),
+                                        _isLoading
+                                            ? CircularProgressIndicator(
+                                                color: Colors.green,
+                                              )
+                                            : GestureDetector(
+                                                onTap: () {
+                                                  setModalState(() {
+                                                    _isLoading = true;
+                                                  });
+                                                  _submitLogin(context, ref,
+                                                      () {
+                                                    setModalState(() {
+                                                      _isLoading = false;
+                                                    });
+                                                  });
+                                                },
+                                                child: Icon(
+                                                  Icons.check,
+                                                  size: 30.0,
+                                                  color: Colors.green,
+                                                ),
+                                              ),
                                       ],
                                     ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        _submitLogin(context, ref);
+                                    const SizedBox(height: 16.0),
+                                    TextField(
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _user.username = value;
+                                        });
                                       },
-                                      child: Icon(
-                                        Icons.check,
-                                        size: 30.0,
-                                        color: Colors.green,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                      ),
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Color(0xFF002733),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF4A5568),
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF4A5568),
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF3B82F6),
+                                            width: 2.0,
+                                          ),
+                                        ),
+                                        hintText: 'Username...',
+                                        hintStyle: TextStyle(
+                                          color: Color(0xFF9CA3AF),
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 14.0, horizontal: 10.0),
+                                        prefixIcon: Icon(Icons.alternate_email,
+                                            color: Color(0xFF9CA3AF)),
+                                      ),
+                                    ),
+                                    SizedBox(height: 16.0),
+                                    TextField(
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _user.password = value;
+                                        });
+                                      },
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                      ),
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Color(0xFF002733),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF4A5568),
+                                          ),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF4A5568),
+                                          ),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          borderSide: BorderSide(
+                                            color: Color(0xFF3B82F6),
+                                            width: 2.0,
+                                          ),
+                                        ),
+                                        hintText: 'Password...',
+                                        hintStyle: TextStyle(
+                                          color: Color(0xFF9CA3AF),
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 14.0, horizontal: 10.0),
+                                        prefixIcon: Icon(Icons.password,
+                                            color: Color(0xFF9CA3AF)),
                                       ),
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 16.0),
-                                TextField(
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _user.username = value;
-                                    });
-                                  },
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
-                                  ),
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Color(0xFF002733),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF4A5568),
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF4A5568),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF3B82F6),
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    hintText: 'Username...',
-                                    hintStyle: TextStyle(
-                                      color: Color(0xFF9CA3AF),
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 14.0, horizontal: 10.0),
-                                    prefixIcon: Icon(Icons.alternate_email,
-                                        color: Color(0xFF9CA3AF)),
-                                  ),
-                                ),
-                                SizedBox(height: 16.0),
-                                TextField(
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _user.password = value;
-                                    });
-                                  },
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
-                                  ),
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Color(0xFF002733),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF4A5568),
-                                      ),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF4A5568),
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: Color(0xFF3B82F6),
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    hintText: 'Password...',
-                                    hintStyle: TextStyle(
-                                      color: Color(0xFF9CA3AF),
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 14.0, horizontal: 10.0),
-                                    prefixIcon: Icon(Icons.password,
-                                        color: Color(0xFF9CA3AF)),
-                                  ),
-                                ),
-                              ],
-                            ),
+                              );
+                            },
                           );
                         },
                       );
