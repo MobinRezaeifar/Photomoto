@@ -122,7 +122,7 @@ class _RegisterState extends State<Register> {
           Navigator.pushReplacementNamed(context, '/photomoto');
           // print('Data submitted successfully');
           Fluttertoast.showToast(
-            msg: 'Login successfully',
+            msg: 'Login successfully✅',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.TOP,
             timeInSecForIosWeb: 3,
@@ -133,7 +133,7 @@ class _RegisterState extends State<Register> {
           onComplete();
         } else {
           Fluttertoast.showToast(
-            msg: '${response.body}',
+            msg: '${response.body}❌',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.TOP,
             timeInSecForIosWeb: 3,
