@@ -27,6 +27,30 @@ public class RegistersService
         return await _registersRepositories.GetByIdAsync(id);
     }
 
+    public async Task DeleteUser(string id)
+    {
+        await _registersRepositories.DeleteAsync(id);
+    }
+
+    public async Task UpdateRegister(string id, Register register)
+    {
+        var result = await GetByIdRegisterAsync(id);
+        if (result == null)
+        {
+            throw new KeyNotFoundException($"Register with Id = {id} not found");
+        }
+
+        result.Username = register.Username ?? result.Username;
+        result.Bio = register.Bio ?? result.Bio;
+        result.FullName = register.FullName ?? result.FullName;
+        result.Password = AesEncryption.Encrypt(register.Password) ?? result.Password;
+        result.ProfileImg = register.ProfileImg ?? result.ProfileImg;
+        result.Gender = register.Gender ?? result.Gender;
+        result.Email = register.Email ?? result.Email;
+
+        await _registersRepositories.UpdateAsync(result);
+    }
+
     public async Task AddRegister(Register register)
     {
 
@@ -55,6 +79,7 @@ public class RegistersService
         }
         else
         {
+            register.Password = AesEncryption.Encrypt(register.Password);
             await _registersRepositories.AddAsync(register);
         }
 

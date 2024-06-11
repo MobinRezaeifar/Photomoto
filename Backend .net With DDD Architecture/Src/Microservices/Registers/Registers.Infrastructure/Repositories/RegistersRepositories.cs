@@ -49,4 +49,13 @@ public class RegistersRepositories : IRegisterRepository
         return await _register.Find(x => x.Id == id).FirstOrDefaultAsync();
     }
 
+    public async Task DeleteAsync(string id)
+    {
+        await _register.DeleteOneAsync(x => x.Id == id);
+    }
+
+    public async Task UpdateAsync(Register register)
+    {
+        await _register.ReplaceOneAsync(x => x.Id == register.Id, register);
+    }
 }

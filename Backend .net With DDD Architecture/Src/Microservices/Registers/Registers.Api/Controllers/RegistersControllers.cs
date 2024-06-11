@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Registers.Utils;
+using MongoDB.Bson;
 
 namespace Registers.Api.Controllers;
 [ApiController]
@@ -86,6 +87,61 @@ public class RegistersControllers : ControllerBase
     }
 
 
+    [HttpDelete]
+    [Route("DeleteRegister")]
+
+    public async Task<IActionResult> DeleteRegister(string id)
+    {
+        try
+        {
+            var register = await _registersService.GetByIdRegisterAsync(id);
+            if (register != null)
+            {
+                await _registersService.DeleteUser(id);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("User Not Found");
+            }
+        }
+        catch (FormatException ex)
+        {
+            return BadRequest("Invalid user ID format");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An error occurred while processing the request");
+        }
+    }
+
+
+    [HttpPatch]
+    [Route("UpdateRegister")]
+    public async Task<IActionResult> PatchAsync(string id, [FromBody] Register register)
+    {
+        var result = await _registersService.GetByIdRegisterAsync(id);
+        if (result != null)
+        {
+            try
+            {
+                _registersService.UpdateRegister(id, register); 
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while updating the register.", Details = ex.Message });
+            }
+        }
+        return BadRequest("User Not Found");
+    }
+
+
+
     [Authorize]
     [HttpPost]
     [Route("CreateRegister")]
@@ -101,7 +157,8 @@ public class RegistersControllers : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-
     }
+
+
 
 }
