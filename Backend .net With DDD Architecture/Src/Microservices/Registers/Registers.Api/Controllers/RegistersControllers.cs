@@ -17,7 +17,6 @@ public class RegistersControllers : ControllerBase
     private readonly RegistersService _registersService;
     private readonly ITokenService _tokenService;
 
-
     public RegistersControllers(RegistersService registersService, ITokenService tokenService)
     {
         _registersService = registersService;
@@ -60,33 +59,7 @@ public class RegistersControllers : ControllerBase
         }
     }
 
-
-
-    [HttpPost]
-    [Route("login")]
-    public async Task<IActionResult> LoginUser([FromBody] Login login)
-    {
-        var user = await _registersService.Login(login.Username, login.Password);
-
-        if (user == null)
-        {
-            return Unauthorized("The username or password is incorrect.");
-        }
-
-
-        var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.Sub, login.Username),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim(ClaimTypes.Name, login.Username)
-    };
-
-        var token = _tokenService.GenerateJwtToken(claims);
-
-        return Ok(new { token });
-    }
-
-
+    [Authorize]
     [HttpDelete]
     [Route("DeleteRegister")]
 
@@ -115,7 +88,7 @@ public class RegistersControllers : ControllerBase
         }
     }
 
-
+    [Authorize]
     [HttpPatch]
     [Route("UpdateRegister")]
     public async Task<IActionResult> PatchAsync(string id, [FromBody] Register register)
@@ -125,7 +98,7 @@ public class RegistersControllers : ControllerBase
         {
             try
             {
-                _registersService.UpdateRegister(id, register); 
+                _registersService.UpdateRegister(id, register);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
@@ -159,6 +132,28 @@ public class RegistersControllers : ControllerBase
         }
     }
 
+    [HttpPost]
+    [Route("login")]
+    public async Task<IActionResult> LoginUser([FromBody] Login login)
+    {
+        var user = await _registersService.Login(login.Username, login.Password);
 
+        if (user == null)
+        {
+            return Unauthorized("The username or password is incorrect.");
+        }
+
+
+        var claims = new List<Claim>
+    {
+        new Claim(JwtRegisteredClaimNames.Sub, login.Username),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(ClaimTypes.Name, login.Username)
+    };
+
+        var token = _tokenService.GenerateJwtToken(claims);
+
+        return Ok(new { token });
+    }
 
 }

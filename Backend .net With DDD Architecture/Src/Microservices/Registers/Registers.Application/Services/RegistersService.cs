@@ -47,7 +47,6 @@ public class RegistersService
         result.ProfileImg = register.ProfileImg ?? result.ProfileImg;
         result.Gender = register.Gender ?? result.Gender;
         result.Email = register.Email ?? result.Email;
-
         await _registersRepositories.UpdateAsync(result);
     }
 
