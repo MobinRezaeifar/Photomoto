@@ -26,6 +26,10 @@ public class RegistersService
     {
         return await _registersRepositories.GetByIdAsync(id);
     }
+    public async Task<Register> GetByUsernameAsync(string username)
+    {
+        return await _registersRepositories.GetByUsernameAsync(username);
+    }
 
     public async Task DeleteUser(string id)
     {

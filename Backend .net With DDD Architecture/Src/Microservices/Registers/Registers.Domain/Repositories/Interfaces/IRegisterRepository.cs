@@ -10,6 +10,7 @@ public interface IRegisterRepository
     Task<Register> UsernameExists(string username);
     Task<Register> EmailExists(string email);
     Task<Register> GetByIdAsync(string id);
+    Task<Register> GetByUsernameAsync(string username);
     Task DeleteAsync(string id);
     Task UpdateAsync(Register register);
 }

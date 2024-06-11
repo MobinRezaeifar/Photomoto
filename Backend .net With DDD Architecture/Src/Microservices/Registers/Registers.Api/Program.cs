@@ -1,4 +1,3 @@
-
 using Registers.Infrastructure.Configuration;
 using Registers.Application.Services;
 using Registers.Infrastructure.Repositories;

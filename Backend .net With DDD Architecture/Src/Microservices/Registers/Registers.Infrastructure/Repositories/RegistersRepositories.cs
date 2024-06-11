@@ -49,6 +49,12 @@ public class RegistersRepositories : IRegisterRepository
         return await _register.Find(x => x.Id == id).FirstOrDefaultAsync();
     }
 
+
+    public async Task<Register> GetByUsernameAsync(string username)
+    {
+        return await _register.Find(x => x.Username == username).FirstOrDefaultAsync();
+    }
+
     public async Task DeleteAsync(string id)
     {
         await _register.DeleteOneAsync(x => x.Id == id);
@@ -58,4 +64,6 @@ public class RegistersRepositories : IRegisterRepository
     {
         await _register.ReplaceOneAsync(x => x.Id == register.Id, register);
     }
+
+
 }

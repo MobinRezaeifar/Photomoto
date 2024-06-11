@@ -58,6 +58,24 @@ public class RegistersControllers : ControllerBase
             return StatusCode(500, "An error occurred while processing the request");
         }
     }
+    [Authorize]
+    [HttpGet]
+    [Route("GetByUsername")]
+    public async Task<IActionResult> GetByUsername(string username)
+    {
+
+        var register = await _registersService.GetByUsernameAsync(username);
+        if (register != null)
+        {
+            return Ok(register);
+        }
+        else
+        {
+            return BadRequest("User Not Found");
+        }
+
+
+    }
 
     [Authorize]
     [HttpDelete]
@@ -124,7 +142,16 @@ public class RegistersControllers : ControllerBase
         try
         {
             await _registersService.AddRegister(register);
-            return CreatedAtAction(nameof(GetByid), new { id = register.Id }, register);
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, register.Username),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Name, register.Username)
+            };
+
+            var token = _tokenService.GenerateJwtToken(claims);
+
+            return Ok(new { token });
         }
         catch (ArgumentException ex)
         {
@@ -145,11 +172,11 @@ public class RegistersControllers : ControllerBase
 
 
         var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.Sub, login.Username),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim(ClaimTypes.Name, login.Username)
-    };
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, login.Username),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Name, login.Username)
+            };
 
         var token = _tokenService.GenerateJwtToken(claims);
 
