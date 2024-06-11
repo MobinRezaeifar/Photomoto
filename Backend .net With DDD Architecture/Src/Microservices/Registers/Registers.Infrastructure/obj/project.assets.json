@@ -1306,11 +1306,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Infrastructure\\Registers.Infrastructure.csproj",
+      "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Infrastructure\\Registers.Infrastructure.csproj",
       "projectName": "Registers.Infrastructure",
-      "projectPath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Infrastructure\\Registers.Infrastructure.csproj",
+      "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Infrastructure\\Registers.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Infrastructure\\obj\\",
+      "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1327,11 +1327,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj": {
-              "projectPath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj"
             },
-            "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Utils\\Registers.Utils.csproj": {
-              "projectPath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Utils\\Registers.Utils.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Utils\\Registers.Utils.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Utils\\Registers.Utils.csproj"
             }
           }
         }

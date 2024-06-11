@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fa7UJmqyJRhGwH3cCZwA6T8u27xys/9QahTo/DajaiKLOfSQUV7UA7x1lDp+kGYR6faee45n/959kdRgXjWNxQ==",
+  "dgSpecHash": "h936YqCrsDWhOo5PoA8RbX//Apjy24JhwqTDd0KstftxfkZw1f20ZqWnks8MncD6YeanwBZhegdLGEIp0kAhVg==",
   "success": true,
-  "projectFilePath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Infrastructure\\Registers.Infrastructure.csproj",
+  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Infrastructure\\Registers.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

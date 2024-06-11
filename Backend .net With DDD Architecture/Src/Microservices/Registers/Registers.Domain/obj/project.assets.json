@@ -787,11 +787,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj",
+      "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj",
       "projectName": "Registers.Domain",
-      "projectPath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj",
+      "projectPath": "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Domain\\Registers.Domain.csproj",
       "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Domain\\obj\\",
+      "outputPath": "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",

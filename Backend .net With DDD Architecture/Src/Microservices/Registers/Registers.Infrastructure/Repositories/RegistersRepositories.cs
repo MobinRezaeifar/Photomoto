@@ -21,8 +21,32 @@ public class RegistersRepositories : IRegisterRepository
         return await _register.Find(p => true).ToListAsync();
     }
 
-    public async Task<Register> FindByUsernameAndPasswordAsync(string username, string encryptedPassword)
+    public async Task<Register> LoginAsync(string username, string encryptedPassword)
     {
         return await _register.Find(user => user.Username == username && user.Password == encryptedPassword).FirstOrDefaultAsync();
     }
+
+    public async Task<Register> UsernameExists(string username)
+    {
+        return await _register
+            .Find(r => r.Username == username)
+            .FirstOrDefaultAsync();
+    }
+    public async Task<Register> EmailExists(string email)
+    {
+        return await _register
+           .Find(r => r.Email == email)
+           .FirstOrDefaultAsync();
+    }
+
+    public async Task AddAsync(Register register)
+    {
+        await _register.InsertOneAsync(register);
+    }
+
+    public async Task<Register> GetByIdAsync(string id)
+    {
+        return await _register.Find(x => x.Id == id).FirstOrDefaultAsync();
+    }
+
 }

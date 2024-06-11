@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "GUlF6LGYQttKq2VVCKu1KIClEOtyzMDWUjG32+OyKnbj1oe9W47lIAf1QvCoAp6TRkd0YGOuQXbYSfF8+6qxrA==",
+  "dgSpecHash": "0e8Hcl6JCLFcyd66MH4oHYXHt3f+fTSpuBfsQ4/7imTtNTDb/E0MuJlOYFGDEVTNXxjFUEmL1M07CNr4u1tTBw==",
   "success": true,
-  "projectFilePath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Api\\Registers.Api.csproj",
+  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Api\\Registers.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
+    "C:\\Users\\I-Tech\\.nuget\\packages\\fluentvalidation\\11.9.2\\fluentvalidation.11.9.2.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.6\\microsoft.aspnetcore.authentication.jwtbearer.8.0.6.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.4\\microsoft.aspnetcore.openapi.8.0.4.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

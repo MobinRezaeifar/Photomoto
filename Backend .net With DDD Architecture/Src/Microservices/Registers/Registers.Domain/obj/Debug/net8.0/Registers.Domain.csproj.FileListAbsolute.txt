@@ -10,3 +10,16 @@ H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Domain
 H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\refint\Registers.Domain.dll
 H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.pdb
 H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\ref\Registers.Domain.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\bin\Debug\net8.0\Registers.Domain.deps.json
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\bin\Debug\net8.0\Registers.Domain.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\bin\Debug\net8.0\Registers.Domain.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.csproj.AssemblyReference.cache
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.GeneratedMSBuildEditorConfig.editorconfig
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.AssemblyInfoInputs.cache
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.AssemblyInfo.cs
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.csproj.CoreCompileInputs.cache
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.sourcelink.json
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\refint\Registers.Domain.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\Registers.Domain.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Domain\obj\Debug\net8.0\ref\Registers.Domain.dll

@@ -32,6 +32,34 @@ public class RegistersControllers : ControllerBase
         return Ok(registers);
     }
 
+    [Authorize]
+    [HttpGet]
+    [Route("GetById")]
+    public async Task<IActionResult> GetByid(string id)
+    {
+        try
+        {
+            var register = await _registersService.GetByIdRegisterAsync(id);
+            if (register != null)
+            {
+                return Ok(register);
+            }
+            else
+            {
+                return BadRequest("User Not Found");
+            }
+        }
+        catch (FormatException ex)
+        {
+            return BadRequest("Invalid user ID format");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "An error occurred while processing the request");
+        }
+    }
+
+
 
     [HttpPost]
     [Route("login")]
@@ -56,4 +84,24 @@ public class RegistersControllers : ControllerBase
 
         return Ok(new { token });
     }
+
+
+    [Authorize]
+    [HttpPost]
+    [Route("CreateRegister")]
+
+    public async Task<IActionResult> PostRegister(Register register)
+    {
+        try
+        {
+            await _registersService.AddRegister(register);
+            return CreatedAtAction(nameof(GetByid), new { id = register.Id }, register);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+    }
+
 }

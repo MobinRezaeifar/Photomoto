@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dJaJ2CD5ikAXZlPPJY9xwk+f2GbbGK/u1J5gXrMk+2EpX9LXOpc8aUO6MK5SG/0NQ2dOyFIeU96bI3RVygx4QA==",
+  "dgSpecHash": "ugqMiBBW/+9OS+7fhHU+cFPx3+9DVuMaocFBIQeaVjp2lybADPTHpqZ/mRWJEagSomNc0d+Kzn8fhZCLYLhG2w==",
   "success": true,
-  "projectFilePath": "H:\\Programming\\asp.net\\Backend .net\\Src\\Microservices\\Registers\\Registers.Utils\\Registers.Utils.csproj",
+  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Registers\\Registers.Utils\\Registers.Utils.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.6\\microsoft.aspnetcore.authentication.jwtbearer.8.0.6.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.6.0\\microsoft.identitymodel.abstractions.7.6.0.nupkg.sha512",
