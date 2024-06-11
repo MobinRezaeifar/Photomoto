@@ -1,0 +1,17 @@
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Registers.Infrastructure.csproj.AssemblyReference.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Registers.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Registers.Infrastructure.AssemblyInfoInputs.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Registers.Infrastructure.AssemblyInfo.cs
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Registers.Infrastructure.csproj.CoreCompileInputs.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\bin\Debug\net8.0\Registers.Infrastructure.deps.json
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\bin\Debug\net8.0\Registers.Infrastructure.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\bin\Debug\net8.0\Registers.Infrastructure.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\bin\Debug\net8.0\Registers.Domain.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\bin\Debug\net8.0\Registers.Domain.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Register.C0FCEF24.Up2Date
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Registers.Infrastructure.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\refint\Registers.Infrastructure.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\Registers.Infrastructure.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\obj\Debug\net8.0\ref\Registers.Infrastructure.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\bin\Debug\net8.0\Registers.Utils.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Infrastructure\bin\Debug\net8.0\Registers.Utils.pdb

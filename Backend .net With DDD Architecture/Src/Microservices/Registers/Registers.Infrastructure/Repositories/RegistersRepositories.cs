@@ -1,0 +1,28 @@
+using MongoDB.Driver;
+using Microsoft.Extensions.Options;
+using Registers.Domain.Entities;
+using Registers.Infrastructure.Configuration;
+using Registers.Domain.Repositories.Interfaces;
+using Registers.Utils;
+namespace Registers.Infrastructure.Repositories;
+
+public class RegistersRepositories : IRegisterRepository
+{
+    private readonly IMongoCollection<Register> _register;
+    public RegistersRepositories(IOptions<MongoDBSettings> settings)
+    {
+        var client = new MongoClient(settings.Value.ConnectionString);
+        var database = client.GetDatabase(settings.Value.DatabaseName);
+        _register = database.GetCollection<Register>("Registers");
+    }
+
+    public async Task<IEnumerable<Register>> GetAllAsync()
+    {
+        return await _register.Find(p => true).ToListAsync();
+    }
+
+    public async Task<Register> FindByUsernameAndPasswordAsync(string username, string encryptedPassword)
+    {
+        return await _register.Find(user => user.Username == username && user.Password == encryptedPassword).FirstOrDefaultAsync();
+    }
+}

@@ -1,0 +1,12 @@
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\bin\Debug\net8.0\Registers.Utils.deps.json
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\bin\Debug\net8.0\Registers.Utils.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\bin\Debug\net8.0\Registers.Utils.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\Registers.Utils.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\Registers.Utils.AssemblyInfoInputs.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\Registers.Utils.AssemblyInfo.cs
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\Registers.Utils.csproj.CoreCompileInputs.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\Registers.Utils.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\refint\Registers.Utils.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\Registers.Utils.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\ref\Registers.Utils.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Utils\obj\Debug\net8.0\Registers.Utils.csproj.AssemblyReference.cache
