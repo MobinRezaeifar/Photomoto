@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v8.0": {
       "Messages.Infrastructure/1.0.0": {
         "dependencies": {
-          "Messages.Core": "1.0.0",
           "Messages.Domain": "1.0.0",
           "Microsoft.Extensions.Options": "8.0.2",
           "MongoDB.Driver": "2.25.0"
@@ -194,11 +193,6 @@
           }
         }
       },
-      "Messages.Core/1.0.0": {
-        "runtime": {
-          "Messages.Core.dll": {}
-        }
-      },
       "Messages.Domain/1.0.0": {
         "dependencies": {
           "MongoDB.Driver": "2.25.0"
@@ -361,11 +355,6 @@
       "sha512": "sha512-U9Ix4l4cl58Kzz1rJzj5hoVTjmbx1qGMwzAcbv1j/d3NzrFaESIurQyg+ow4mivCgkE3S413y+U9k4WdnEIkRA==",
       "path": "zstdsharp.port/0.7.3",
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
-    },
-    "Messages.Core/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "Messages.Domain/1.0.0": {
       "type": "project",

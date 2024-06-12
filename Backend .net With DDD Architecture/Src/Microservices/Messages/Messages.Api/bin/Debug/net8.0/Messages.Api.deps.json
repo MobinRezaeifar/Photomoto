@@ -363,16 +363,10 @@
       },
       "Messages.Application/1.0.0": {
         "dependencies": {
-          "Messages.Core": "1.0.0",
           "Messages.Domain": "1.0.0"
         },
         "runtime": {
           "Messages.Application.dll": {}
-        }
-      },
-      "Messages.Core/1.0.0": {
-        "runtime": {
-          "Messages.Core.dll": {}
         }
       },
       "Messages.Domain/1.0.0": {
@@ -385,7 +379,6 @@
       },
       "Messages.Infrastructure/1.0.0": {
         "dependencies": {
-          "Messages.Core": "1.0.0",
           "Messages.Domain": "1.0.0",
           "Microsoft.Extensions.Options": "8.0.2",
           "MongoDB.Driver": "2.25.0"
@@ -679,11 +672,6 @@
       "hashPath": "zstdsharp.port.0.7.3.nupkg.sha512"
     },
     "Messages.Application/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Messages.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -24,12 +24,10 @@ H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservi
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Application.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Core.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Domain.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Infrastructure.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Infrastructure.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Application.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Core.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\bin\Debug\net8.0\Messages.Domain.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\obj\Debug\net8.0\Messages.Api.csproj.AssemblyReference.cache
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Api\obj\Debug\net8.0\Messages.Api.GeneratedMSBuildEditorConfig.editorconfig

@@ -293,16 +293,6 @@
           "lib/net7.0/ZstdSharp.dll": {}
         }
       },
-      "Messages.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Messages.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Messages.Core.dll": {}
-        }
-      },
       "Messages.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -797,11 +787,6 @@
         "zstdsharp.port.nuspec"
       ]
     },
-    "Messages.Core/1.0.0": {
-      "type": "project",
-      "path": "../Messages.Core/Messages.Core.csproj",
-      "msbuildProject": "../Messages.Core/Messages.Core.csproj"
-    },
     "Messages.Domain/1.0.0": {
       "type": "project",
       "path": "../Messages.Domain/Messages.Domain.csproj",
@@ -810,7 +795,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Messages.Core >= 1.0.0",
       "Messages.Domain >= 1.0.0"
     ]
   },
@@ -841,9 +825,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj": {
-              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj"
-            },
             "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj": {
               "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj"
             }

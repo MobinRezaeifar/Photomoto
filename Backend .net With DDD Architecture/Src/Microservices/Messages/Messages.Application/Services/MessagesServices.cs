@@ -50,4 +50,9 @@ public class MessagesServices
         await _messagesRepository.UpdateAsync(result);
     }
 
+    public async Task<IEnumerable<Message>> GetMessagesByRelationshipAsync(string sender, string recipient)
+    {
+        return await _messagesRepository.GetMessagesByRelationshipAsync(sender, recipient);
+    }
+
 }

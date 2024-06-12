@@ -8,5 +8,7 @@ public interface IMessagesRepository
     Task<Message> GetByIdAsync(string id);
     Task UpdateAsync(Message message);
     Task DeleteAsync(string id);
+    Task<IEnumerable<Message>> GetMessagesByRelationshipAsync(string sender, string recipient);
+
 }
 

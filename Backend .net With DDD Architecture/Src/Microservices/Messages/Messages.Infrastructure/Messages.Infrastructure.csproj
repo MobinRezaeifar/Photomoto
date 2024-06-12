@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Messages.Core\Messages.Core.csproj" />
     <ProjectReference Include="..\Messages.Domain\Messages.Domain.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wiRg12cZu6DbYrxvmYhgrvm+LTkhKRKS1bHukg1Y2UYsPvLw2/xJ0A/kriF+vCiqK+oc25lmjnfqsh2xd0hvbQ==",
+  "dgSpecHash": "VjvzwCuVh9iGRBXLuMKpsyIoWr3WVyJfzy2N0kwlmVRmUc5x5EBSusscsDP0cQsZsMaLG9JOy4eJt4L4doC78g==",
   "success": true,
   "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Infrastructure\\Messages.Infrastructure.csproj",
   "expectedPackageFiles": [

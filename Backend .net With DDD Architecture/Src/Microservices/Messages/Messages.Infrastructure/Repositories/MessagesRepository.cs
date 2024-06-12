@@ -45,4 +45,14 @@ public class MessagesRepository : IMessagesRepository
         await _messages.DeleteOneAsync(x => x.Id == id);
     }
 
+    public async Task<IEnumerable<Message>> GetMessagesByRelationshipAsync(string sender, string recipient)
+    {
+        var filter = Builders<Message>.Filter.Or(
+            Builders<Message>.Filter.Eq(m => m.Relationship, $"{sender},{recipient}"),
+            Builders<Message>.Filter.Eq(m => m.Relationship, $"{recipient},{sender}")
+        );
+
+        return await _messages.Find(filter).ToListAsync();
+    }
+
 }

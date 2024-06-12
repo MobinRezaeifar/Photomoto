@@ -623,7 +623,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "Messages.Core": "1.0.0",
           "Messages.Domain": "1.0.0"
         },
         "compile": {
@@ -631,16 +630,6 @@
         },
         "runtime": {
           "bin/placeholder/Messages.Application.dll": {}
-        }
-      },
-      "Messages.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Messages.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Messages.Core.dll": {}
         }
       },
       "Messages.Domain/1.0.0": {
@@ -660,7 +649,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "Messages.Core": "1.0.0",
           "Messages.Domain": "1.0.0",
           "Microsoft.Extensions.Options": "8.0.2",
           "MongoDB.Driver": "2.25.0"
@@ -1906,11 +1894,6 @@
       "type": "project",
       "path": "../Messages.Application/Messages.Application.csproj",
       "msbuildProject": "../Messages.Application/Messages.Application.csproj"
-    },
-    "Messages.Core/1.0.0": {
-      "type": "project",
-      "path": "../Messages.Core/Messages.Core.csproj",
-      "msbuildProject": "../Messages.Core/Messages.Core.csproj"
     },
     "Messages.Domain/1.0.0": {
       "type": "project",

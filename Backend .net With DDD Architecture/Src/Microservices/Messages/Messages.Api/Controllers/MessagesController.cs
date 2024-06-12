@@ -28,7 +28,7 @@ public class MessagesController : ControllerBase
         return Ok(messages);
     }
 
-
+    [Authorize]
     [HttpGet]
     [Route("GetById")]
     public async Task<IActionResult> GetByidMessage(string id)
@@ -56,6 +56,15 @@ public class MessagesController : ControllerBase
     }
 
 
+    [HttpGet]
+    [Route("relationship")]
+    public async Task<IActionResult> GetMessagesByRelationship(string sender, string recipient)
+    {
+        var messages = await _messagesServices.GetMessagesByRelationshipAsync(sender, recipient);
+        return Ok(messages);
+    }
+
+    [Authorize]
     [HttpDelete]
     [Route("DeleteMessage")]
     public async Task<IActionResult> DeleteMessage(string id)
@@ -83,6 +92,7 @@ public class MessagesController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPatch]
     [Route("UpdateMessage")]
     public async Task<IActionResult> PatchAsync(string id, [FromBody] Message message)
@@ -107,7 +117,7 @@ public class MessagesController : ControllerBase
         return BadRequest("message Not Found");
     }
 
-
+    [Authorize]
     [HttpPost]
     [Route("CreateMessage")]
 

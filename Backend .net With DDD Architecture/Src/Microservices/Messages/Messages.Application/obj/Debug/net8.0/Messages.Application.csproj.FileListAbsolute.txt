@@ -1,9 +1,7 @@
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\bin\Debug\net8.0\Messages.Application.deps.json
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\bin\Debug\net8.0\Messages.Application.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\bin\Debug\net8.0\Messages.Application.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\bin\Debug\net8.0\Messages.Core.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\bin\Debug\net8.0\Messages.Domain.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\bin\Debug\net8.0\Messages.Core.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\bin\Debug\net8.0\Messages.Domain.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\obj\Debug\net8.0\Messages.Application.csproj.AssemblyReference.cache
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Application\obj\Debug\net8.0\Messages.Application.GeneratedMSBuildEditorConfig.editorconfig
