@@ -1,0 +1,13 @@
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\bin\Debug\net8.0\Messages.Domain.deps.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\bin\Debug\net8.0\Messages.Domain.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\bin\Debug\net8.0\Messages.Domain.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.csproj.AssemblyReference.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.AssemblyInfoInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.AssemblyInfo.cs
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.csproj.CoreCompileInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.sourcelink.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\refint\Messages.Domain.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\Messages.Domain.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Domain\obj\Debug\net8.0\ref\Messages.Domain.dll

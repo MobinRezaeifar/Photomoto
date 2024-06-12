@@ -1,0 +1,13 @@
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.AssemblyInfoInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.AssemblyInfo.cs
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.csproj.CoreCompileInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.sourcelink.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.csproj.AssemblyReference.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\bin\Debug\net8.0\Messages.Utils.deps.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\bin\Debug\net8.0\Messages.Utils.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\bin\Debug\net8.0\Messages.Utils.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\refint\Messages.Utils.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\Messages.Utils.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Messages\Messages.Utils\obj\Debug\net8.0\ref\Messages.Utils.dll

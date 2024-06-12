@@ -12,8 +12,11 @@ using Registers.Utils;
 using Registers.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure JWT settings
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
+// Configure Swagger
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
@@ -36,51 +39,53 @@ builder.Services.AddSwaggerGen(c =>
     );
 });
 
+// Configure JWT token service
 builder.Services.AddSingleton<ITokenService>(provider =>
 {
     var jwtSettings = provider.GetRequiredService<IOptions<JwtSettings>>().Value;
     return new TokenService(jwtSettings.Key, jwtSettings.Issuer, jwtSettings.Audience);
 });
 
+// Configure MongoDB settings
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDBSettings"));
 
-
+// Configure MongoDB client
 builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 {
     var settings = sp.GetRequiredService<IOptions<MongoDBSettings>>().Value;
     return new MongoClient(settings.ConnectionString);
 });
 
+// Configure repositories and services
 builder.Services.AddScoped<IRegisterRepository, RegistersRepositories>();
 builder.Services.AddScoped<RegistersService>();
 
+// Configure controllers
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-
-builder
-    .Services.AddAuthentication(options =>
+// Configure authentication with JWT
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(options =>
-    {
-        var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidIssuer = jwtSettings.Issuer,
-            ValidAudience = jwtSettings.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true, 
-            ValidateIssuerSigningKey = true
-        };
-    });
+        ValidIssuer = jwtSettings.Issuer,
+        ValidAudience = jwtSettings.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true, 
+        ValidateIssuerSigningKey = true
+    };
+});
 
 var app = builder.Build();
 

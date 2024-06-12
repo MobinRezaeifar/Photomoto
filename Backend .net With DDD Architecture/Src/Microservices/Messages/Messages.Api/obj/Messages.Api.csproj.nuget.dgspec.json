@@ -1,0 +1,447 @@
+{
+  "format": 1,
+  "restore": {
+    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Api\\Messages.Api.csproj": {}
+  },
+  "projects": {
+    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Api\\Messages.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Api\\Messages.Api.csproj",
+        "projectName": "Messages.Api",
+        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Api\\Messages.Api.csproj",
+        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Api\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Application\\Messages.Application.csproj": {
+                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Application\\Messages.Application.csproj"
+              },
+              "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Infrastructure\\Messages.Infrastructure.csproj": {
+                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Infrastructure\\Messages.Infrastructure.csproj"
+              },
+              "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Utils\\Messages.Utils.csproj": {
+                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Utils\\Messages.Utils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.6.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.25.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Application\\Messages.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Application\\Messages.Application.csproj",
+        "projectName": "Messages.Application",
+        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Application\\Messages.Application.csproj",
+        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj": {
+                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj"
+              },
+              "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj": {
+                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj",
+        "projectName": "Messages.Core",
+        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj",
+        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj",
+        "projectName": "Messages.Domain",
+        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj",
+        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.25.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Infrastructure\\Messages.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Infrastructure\\Messages.Infrastructure.csproj",
+        "projectName": "Messages.Infrastructure",
+        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Infrastructure\\Messages.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj": {
+                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Core\\Messages.Core.csproj"
+              },
+              "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj": {
+                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Domain\\Messages.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.25.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Utils\\Messages.Utils.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Utils\\Messages.Utils.csproj",
+        "projectName": "Messages.Utils",
+        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Utils\\Messages.Utils.csproj",
+        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\Messages\\Messages.Utils\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.6.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
