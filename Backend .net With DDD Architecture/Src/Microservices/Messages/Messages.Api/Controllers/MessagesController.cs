@@ -55,12 +55,17 @@ public class MessagesController : ControllerBase
         }
     }
 
-
+    [Authorize]
     [HttpGet]
     [Route("relationship")]
-    public async Task<IActionResult> GetMessagesByRelationship(string sender, string recipient)
+    public async Task<IActionResult> GetMessagesByRelationship([FromQuery] string sender, [FromQuery] string recipient, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
-        var messages = await _messagesServices.GetMessagesByRelationshipAsync(sender, recipient);
+        if (page < 1 || pageSize < 1)
+        {
+            return BadRequest("Page and pageSize must be greater than 0.");
+        }
+
+        var messages = await _messagesServices.GetMessagesByRelationshipAsync(sender, recipient, page, pageSize);
         return Ok(messages);
     }
 
