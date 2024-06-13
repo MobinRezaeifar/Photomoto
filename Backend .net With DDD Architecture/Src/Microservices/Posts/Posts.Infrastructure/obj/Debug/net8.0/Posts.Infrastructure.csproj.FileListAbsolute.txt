@@ -1,0 +1,16 @@
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\bin\Debug\net8.0\Posts.Infrastructure.deps.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\bin\Debug\net8.0\Posts.Infrastructure.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\bin\Debug\net8.0\Posts.Infrastructure.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\bin\Debug\net8.0\Posts.Domain.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\bin\Debug\net8.0\Posts.Domain.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.csproj.AssemblyReference.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.AssemblyInfoInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.AssemblyInfo.cs
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.csproj.CoreCompileInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.sourcelink.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.In.C5A9E9B7.Up2Date
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\refint\Posts.Infrastructure.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\Posts.Infrastructure.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Infrastructure\obj\Debug\net8.0\ref\Posts.Infrastructure.dll

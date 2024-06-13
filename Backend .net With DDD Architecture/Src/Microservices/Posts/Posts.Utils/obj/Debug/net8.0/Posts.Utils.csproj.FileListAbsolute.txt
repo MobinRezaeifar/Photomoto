@@ -1,0 +1,13 @@
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\bin\Debug\net8.0\Posts.Utils.deps.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\bin\Debug\net8.0\Posts.Utils.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\bin\Debug\net8.0\Posts.Utils.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.csproj.AssemblyReference.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.AssemblyInfoInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.AssemblyInfo.cs
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.csproj.CoreCompileInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.sourcelink.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\refint\Posts.Utils.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\Posts.Utils.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Posts\Posts.Utils\obj\Debug\net8.0\ref\Posts.Utils.dll
