@@ -19,4 +19,20 @@ public class PostsRepository : IPostsRepository
     {
         return await _posts.Find(p => true).ToListAsync();
     }
+    public async Task AddAsync(Post post)
+    {
+        await _posts.InsertOneAsync(post);
+    }
+    public async Task<Post> GetByIdAsync(string id)
+    {
+        return await _posts.Find(x => x.Id == id).FirstOrDefaultAsync();
+    }
+    public async Task DeleteAsync(string id)
+    {
+        await _posts.DeleteOneAsync(x => x.Id == id);
+    }
+    public async Task UpdateAsync(Post post)
+    {
+        await _posts.ReplaceOneAsync(x => x.Id == post.Id, post);
+    }
 }
