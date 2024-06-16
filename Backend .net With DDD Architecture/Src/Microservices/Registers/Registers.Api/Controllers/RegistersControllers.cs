@@ -58,7 +58,7 @@ public class RegistersControllers : ControllerBase
             return StatusCode(500, "An error occurred while processing the request");
         }
     }
-    
+
     [Authorize]
     [HttpGet]
     [Route("GetByUsername")]
@@ -183,5 +183,17 @@ public class RegistersControllers : ControllerBase
 
         return Ok(new { token });
     }
+
+
+    [Authorize]
+    [HttpGet]
+    [Route("ProfileImg")]
+    public async Task<IActionResult> CreatePost(string username)
+    {
+        var User = await _registersService.GetByUsernameAsync(username);
+        if (User == null) return NotFound("User Not Found");
+        return Ok(User.ProfileImg);
+    }
+
 
 }

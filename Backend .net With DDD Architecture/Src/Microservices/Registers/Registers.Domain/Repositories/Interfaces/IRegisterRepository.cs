@@ -13,4 +13,5 @@ public interface IRegisterRepository
     Task<Register> GetByUsernameAsync(string username);
     Task DeleteAsync(string id);
     Task UpdateAsync(Register register);
+
 }

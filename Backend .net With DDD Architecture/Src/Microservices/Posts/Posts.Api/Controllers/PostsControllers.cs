@@ -67,9 +67,9 @@ public class PostsControllers : ControllerBase
         var post = await _postsService.GetByOwnerPost(owner, page, pageSize);
         return Ok(post);
     }
-    // [Authorize]
+    [Authorize]
     [HttpGet]
-    [Route("tag")]
+    [Route("Tag")]
     public async Task<IActionResult> SearchByTagPost([FromQuery] string? tag)
     {
         var posts = await _postsService.SearchByTagPost(tag);
@@ -150,8 +150,5 @@ public class PostsControllers : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-
-
-
-
+  
 }
