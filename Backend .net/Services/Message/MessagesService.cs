@@ -9,7 +9,7 @@ public class MessagesService : IMessagesService
     public MessagesService(IStoreDatabaseSettings settings, IMongoClient mongoClient)
     {
         var database = mongoClient.GetDatabase(settings.DatabaseName);
-        _messages = database.GetCollection<Messages>(settings.MessagesCollection);
+        _messages = database.GetCollection<Messages>(settings.MessagesCollection); 
     }
 
     public Messages Create(Messages messages)
