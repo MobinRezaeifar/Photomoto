@@ -32,9 +32,6 @@ H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservi
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\obj\Debug\net8.0\FileMangager.Api.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\obj\Debug\net8.0\FileMangager.Api.genruntimeconfig.cache
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\obj\Debug\net8.0\ref\FileMangager.Api.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\bin\Debug\net8.0\SixLabors.ImageSharp.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\bin\Debug\net8.0\Xabe.FFmpeg.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\bin\Debug\net8.0\FFMpegCore.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\bin\Debug\net8.0\Instances.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\FileMangager\FileMangager.Api\bin\Debug\net8.0\Magick.NET-Q8-AnyCPU.dll
