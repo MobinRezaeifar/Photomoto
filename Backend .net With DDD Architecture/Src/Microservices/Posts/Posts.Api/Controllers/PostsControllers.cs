@@ -19,9 +19,9 @@ public class PostsControllers : ControllerBase
     [Authorize]
     [HttpGet]
     [Route("GetAll")]
-    public async Task<IActionResult> GetRegisters()
+    public async Task<IActionResult> GetPosts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
     {
-        var post = await _postsService.GetAllRegistersAsync();
+        var post = await _postsService.GetAllRegistersAsync(pageNumber, pageSize);
         return Ok(post);
     }
 
@@ -52,6 +52,34 @@ public class PostsControllers : ControllerBase
             return StatusCode(500, "An error occurred while processing the request");
         }
     }
+
+
+    [Authorize]
+    [HttpGet]
+    [Route("Owner")]
+    public async Task<IActionResult> GetByOwnerPost([FromQuery] string owner, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+    {
+        if (page < 1 || pageSize < 1)
+        {
+            return BadRequest("Page and pageSize must be greater than 0.");
+        }
+
+        var post = await _postsService.GetByOwnerPost(owner, page, pageSize);
+        return Ok(post);
+    }
+    // [Authorize]
+    [HttpGet]
+    [Route("tag")]
+    public async Task<IActionResult> SearchByTagPost([FromQuery] string? tag)
+    {
+        var posts = await _postsService.SearchByTagPost(tag);
+        if (posts == null || !posts.Any())
+        {
+            return NotFound("No posts found with the given tag.");
+        }
+        return Ok(posts);
+    }
+
 
     [Authorize]
     [HttpDelete]
@@ -122,6 +150,8 @@ public class PostsControllers : ControllerBase
             return BadRequest(ex.Message);
         }
     }
+
+
 
 
 }

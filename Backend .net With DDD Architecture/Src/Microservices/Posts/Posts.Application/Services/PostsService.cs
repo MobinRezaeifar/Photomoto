@@ -9,9 +9,9 @@ public class PostsService
     {
         _postsRepository = postsRepository;
     }
-    public async Task<IEnumerable<Post>> GetAllRegistersAsync()
+    public async Task<IEnumerable<Post>> GetAllRegistersAsync(int pageNumber = 1, int pageSize = 10)
     {
-        return await _postsRepository.GetAllAsync();
+        return await _postsRepository.GetAllAsync(pageNumber, pageSize);
     }
     public async Task<Post> GetById(string id)
     {
@@ -61,6 +61,15 @@ public class PostsService
     public async Task DeletePost(string id)
     {
         await _postsRepository.DeleteAsync(id);
+    }
+
+    public async Task<IEnumerable<Post>> GetByOwnerPost(string owner, int pageNumber = 1, int pageSize = 10)
+    {
+        return await _postsRepository.GetByOwner(owner, pageNumber, pageSize);
+    }
+    public async Task<IEnumerable<Post>> SearchByTagPost(string? tag)
+    {
+        return await _postsRepository.SearchByTag(tag);
     }
 
 }

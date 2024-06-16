@@ -1,4 +1,3 @@
-
 using MongoDB.Driver;
 using Posts.Domain.Entities;
 using Posts.Domain.Repositories.Interfaces;
@@ -15,9 +14,12 @@ public class PostsRepository : IPostsRepository
         var database = client.GetDatabase(settings.Value.DatabaseName);
         _posts = database.GetCollection<Post>("Posts");
     }
-    public async Task<IEnumerable<Post>> GetAllAsync()
+    public async Task<IEnumerable<Post>> GetAllAsync(int pageNumber, int pageSize)
     {
-        return await _posts.Find(p => true).ToListAsync();
+        return await _posts.Find(post => true)
+                 .Skip((pageNumber - 1) * pageSize)
+                 .Limit(pageSize)
+                 .ToListAsync();
     }
     public async Task AddAsync(Post post)
     {
@@ -34,5 +36,24 @@ public class PostsRepository : IPostsRepository
     public async Task UpdateAsync(Post post)
     {
         await _posts.ReplaceOneAsync(x => x.Id == post.Id, post);
+    }
+
+    public async Task<IEnumerable<Post>> GetByOwner(string owner, int page, int pageSize)
+    {
+        return await _posts.Find(post => post.Owner == owner)
+                           .Skip((page - 1) * pageSize)
+                           .Limit(pageSize)
+                           .ToListAsync();
+    }
+
+
+    public async Task<IEnumerable<Post>> SearchByTag(string? tag)
+    {
+        var filter = Builders<Post>.Filter.Regex("Tags", new MongoDB.Bson.BsonRegularExpression($"^{tag}"));
+        if (filter != null)
+        {
+            return _posts.Find(filter).ToList();
+        }
+        return new List<Post>();
     }
 }
