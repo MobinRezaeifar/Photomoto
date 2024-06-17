@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
         "v1",
-        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Photomoto", Version = "v85" }
+        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PMC", Version = "v1" } //PMC : Photomoto Messaging & Chat
     );
     var securityScheme = new OpenApiSecurityScheme
     {

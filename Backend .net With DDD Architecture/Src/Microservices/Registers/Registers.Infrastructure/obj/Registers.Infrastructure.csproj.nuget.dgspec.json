@@ -129,6 +129,10 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.25.0, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.7.33, )"
             }
           },
           "imports": [

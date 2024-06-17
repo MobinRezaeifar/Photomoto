@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
         "v1",
-        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Photomoto", Version = "v85" }
+        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PPM", Version = "v1" } //Photomoto Post Management
     );
     var securityScheme = new OpenApiSecurityScheme
     {

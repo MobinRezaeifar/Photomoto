@@ -7,21 +7,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
         "v1",
-        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Photomoto", Version = "v85" }
-    );
-    var securityScheme = new OpenApiSecurityScheme
-    {
-        Name = "Authorization",
-        Description = "Enter 'Bearer {token}'",
-        In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer",
-        BearerFormat = "JWT",
-        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
-    };
-    c.AddSecurityDefinition("Bearer", securityScheme);
-    c.AddSecurityRequirement(
-        new OpenApiSecurityRequirement { { securityScheme, new[] { "Bearer" } } }
+        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PFM", Version = "v1" } //PFM : Photomoto File Management
     );
 });
 builder.Services.AddEndpointsApiExplorer();

@@ -1,4 +1,4 @@
-using Registers.Domain.Entities;
+using Registers.Domain.Entities.Registers;
 using FluentValidation;
 namespace Registers.Application.Configuration;
 public class RegisterValidator : AbstractValidator<Register>

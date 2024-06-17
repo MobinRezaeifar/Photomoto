@@ -126,3 +126,5 @@ H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservi
 H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Api\obj\Debug\net8.0\Registers.Api.genruntimeconfig.cache
 H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Api\obj\Debug\net8.0\ref\Registers.Api.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Api\bin\Debug\net8.0\FluentValidation.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Api\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Api\bin\Debug\net8.0\StackExchange.Redis.dll

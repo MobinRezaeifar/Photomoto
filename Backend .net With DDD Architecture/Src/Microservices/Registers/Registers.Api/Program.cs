@@ -1,13 +1,17 @@
 using Registers.Infrastructure.Configuration;
-using Registers.Application.Services;
-using Registers.Infrastructure.Repositories;
-using Registers.Domain.Repositories.Interfaces;
+using Registers.Application.Services.Registers;
+using Registers.Infrastructure.Repositories.Registers;
+using Registers.Domain.Repositories.Interfaces.Registers;
+using Registers.Domain.Repositories.Interfaces.Connections;
+using Registers.Infrastructure.Repositories.Connections;
+using Registers.Application.Services.Connections;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
+using StackExchange.Redis;
 using Registers.Utils;
 using Registers.Api.Configuration;
 
@@ -16,13 +20,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Configure JWT settings
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 
+// Configure MongoDB settings
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDBSettings"));
+
 // Configure Swagger
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc(
-        "v1",
-        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Photomoto", Version = "v85" }
-    );
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "PUM", Version = "v1" }); // PUM: Photomoto Users Management
     var securityScheme = new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -34,9 +38,7 @@ builder.Services.AddSwaggerGen(c =>
         Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
     };
     c.AddSecurityDefinition("Bearer", securityScheme);
-    c.AddSecurityRequirement(
-        new OpenApiSecurityRequirement { { securityScheme, new[] { "Bearer" } } }
-    );
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement { { securityScheme, new[] { "Bearer" } } });
 });
 
 // Configure JWT token service
@@ -46,9 +48,6 @@ builder.Services.AddSingleton<ITokenService>(provider =>
     return new TokenService(jwtSettings.Key, jwtSettings.Issuer, jwtSettings.Audience);
 });
 
-// Configure MongoDB settings
-builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDBSettings"));
-
 // Configure MongoDB client
 builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 {
@@ -56,14 +55,24 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
     return new MongoClient(settings.ConnectionString);
 });
 
-// Configure repositories and services
-builder.Services.AddScoped<IRegisterRepository, RegistersRepositories>();
-builder.Services.AddScoped<RegistersService>();
+// Configure Redis connection
+builder.Services.AddSingleton<IConnectionMultiplexer>(opt =>
+{
+    var redisUrl = builder.Configuration.GetConnectionString("Redis");
+    return ConnectionMultiplexer.Connect(redisUrl);
+});
 
-// Configure controllers
+// Configure repositories
+builder.Services.AddScoped<IRegisterRepository, RegistersRepositories>();
+builder.Services.AddScoped<IConnectionsRepository, ConnectionsRepositories>();
+
+// Configure services
+builder.Services.AddScoped<RegistersService>();
+builder.Services.AddScoped<ConnectionService>();
+
+// Configure controllers and endpoints
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 // Configure authentication with JWT
 builder.Services.AddAuthentication(options =>
@@ -82,7 +91,7 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateLifetime = true, 
+        ValidateLifetime = true,
         ValidateIssuerSigningKey = true
     };
 });
