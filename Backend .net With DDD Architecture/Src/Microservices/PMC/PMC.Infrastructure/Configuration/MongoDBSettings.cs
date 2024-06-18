@@ -1,7 +1,8 @@
-namespace PMC.Infrastructure.Configuration;
-
-public class MongoDBSettings
+namespace PMC.Infrastructure.Configuration
 {
-    public string ConnectionString { get; set; }
-    public string DatabaseName { get; set; }
+    public class MongoDBSettings
+    {
+        public string ConnectionString { get; set; }
+        public string DatabaseName { get; set; }
+    }
 }

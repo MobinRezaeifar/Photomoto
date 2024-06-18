@@ -23,8 +23,9 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
         "v1",
-        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PMC", Version = "v1" } //PMC : Photomoto Messaging & Chat
+        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PMC", Version = "v1" } // PMC: Photomoto Messaging & Chat
     );
+
     var securityScheme = new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -35,6 +36,7 @@ builder.Services.AddSwaggerGen(c =>
         BearerFormat = "JWT",
         Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
     };
+
     c.AddSecurityDefinition("Bearer", securityScheme);
     c.AddSecurityRequirement(
         new OpenApiSecurityRequirement { { securityScheme, new[] { "Bearer" } } }
@@ -88,26 +90,32 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+
 app.UseRouting();
 
+// Add Swagger in development mode
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Redirect HTTP to HTTPS
 app.UseHttpsRedirection();
+
+// Authenticate and authorize users
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
-
+// Define endpoints for controllers and hubs
 app.UseEndpoints(endpoints =>
 {
+    // Hub endpoints for SignalR
     endpoints.MapHub<Changes>("/change");
     endpoints.MapHub<OnlineUsers>("/onlineUsers");
-    endpoints.MapControllers();
 
+    // Controller endpoints for web API
+    endpoints.MapControllers();
 });
 
 app.Run();

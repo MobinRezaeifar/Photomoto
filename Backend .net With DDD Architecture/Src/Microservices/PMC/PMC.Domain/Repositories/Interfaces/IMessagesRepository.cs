@@ -1,14 +1,17 @@
 using PMC.Domain.Entities.Messages;
-namespace PMC.Domain.Repositories.Interfaces;
 
-public interface IMessagesRepository
+namespace PMC.Domain.Repositories.Interfaces
 {
-    Task<IEnumerable<Message>> GetAllAsync(int pageNumber, int pageSize);
-    Task AddAsync(Message message);
-    Task<Message> GetByIdAsync(string id);
-    Task UpdateAsync(Message message);
-    Task DeleteAsync(string id);
-    Task<IEnumerable<Message>> GetMessagesByRelationshipAsync(string sender, string recipient, int page, int pageSize);
+    public interface IMessagesRepository
+    {
+        Task<IEnumerable<Message>> GetAllAsync(int pageNumber, int pageSize);
+        Task AddAsync(Message message);
+        Task<Message> GetByIdAsync(string id);
+        Task UpdateAsync(Message message);
+        Task DeleteAsync(string id);
+        Task<IEnumerable<Message>> GetMessagesByRelationshipAsync(string sender, string recipient, int page, int pageSize);
+
+    }
 
 }
 
