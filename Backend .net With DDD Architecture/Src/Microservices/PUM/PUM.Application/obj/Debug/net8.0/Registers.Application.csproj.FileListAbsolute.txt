@@ -1,0 +1,39 @@
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Application.deps.json
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Application.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Application.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Domain.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Domain.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.csproj.AssemblyReference.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.AssemblyInfoInputs.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.AssemblyInfo.cs
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.csproj.CoreCompileInputs.cache
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Register.B816A03A.Up2Date
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\refint\Registers.Application.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\ref\Registers.Application.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Infrastructure.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Infrastructure.pdb
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Utils.dll
+H:\Programming\asp.net\Backend .net\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Utils.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Application.deps.json
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Application.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Application.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Domain.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Infrastructure.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Utils.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Domain.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Infrastructure.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\bin\Debug\net8.0\Registers.Utils.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.csproj.AssemblyReference.cache
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.GeneratedMSBuildEditorConfig.editorconfig
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.AssemblyInfoInputs.cache
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.AssemblyInfo.cs
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.csproj.CoreCompileInputs.cache
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.sourcelink.json
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Register.B816A03A.Up2Date
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\refint\Registers.Application.dll
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\Registers.Application.pdb
+H:\programming\react\photomoto\Backend .net With DDD Architecture\Src\Microservices\Registers\Registers.Application\obj\Debug\net8.0\ref\Registers.Application.dll

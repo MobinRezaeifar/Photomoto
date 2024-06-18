@@ -1,0 +1,16 @@
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Application.deps.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Application.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Application.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Domain.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Domain.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.csproj.AssemblyReference.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.AssemblyInfoInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.AssemblyInfo.cs
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.csproj.CoreCompileInputs.cache
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.sourcelink.json
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Appl.C51A28C5.Up2Date
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\refint\PPM.Application.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.pdb
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\ref\PPM.Application.dll

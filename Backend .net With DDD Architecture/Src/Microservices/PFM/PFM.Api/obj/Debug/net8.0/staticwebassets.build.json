@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "wXh9DMMcvcW5+zarAIbZarAm7pMagfuyLQFuNxqFLmQ=",
+  "Source": "PFM.Api",
+  "BasePath": "_content/PFM.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
