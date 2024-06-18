@@ -10,11 +10,13 @@ using MongoDB.Driver;
 using Microsoft.Extensions.Options;
 using PMC.Api.Configuration;
 using PMC.Utils;
+using PMC.Application.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure JwtSettings from appsettings.json
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+builder.Services.AddSignalR();
 
 // Swagger configuration
 builder.Services.AddSwaggerGen(c =>
@@ -86,6 +88,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+app.UseRouting();
 
 if (app.Environment.IsDevelopment())
 {
@@ -98,5 +101,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<Changes>("/change");
+    endpoints.MapHub<OnlineUsers>("/onlineUsers");
+    endpoints.MapControllers();
+
+});
 
 app.Run();

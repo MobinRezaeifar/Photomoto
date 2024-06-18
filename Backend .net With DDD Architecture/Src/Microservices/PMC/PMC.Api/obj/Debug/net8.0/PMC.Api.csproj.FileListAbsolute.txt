@@ -66,3 +66,5 @@ H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservi
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Api\obj\Debug\net8.0\PMC.Api.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Api\obj\Debug\net8.0\PMC.Api.genruntimeconfig.cache
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Api\obj\Debug\net8.0\ref\PMC.Api.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
+H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Api\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using PMC.Application.Services;
-using PMC.Domain.Entities;
+using PMC.Domain.Entities.Messages;
 
 namespace PMC.Api.Controllers;
 

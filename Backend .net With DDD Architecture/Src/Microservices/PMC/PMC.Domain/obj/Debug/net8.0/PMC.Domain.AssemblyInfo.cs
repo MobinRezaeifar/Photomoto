@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PMC.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54394bd5a220d266dfaf26dd57a0adfad5d536d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db5c613e5319113717d88fd750bee852b0a36f1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("PMC.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PMC.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

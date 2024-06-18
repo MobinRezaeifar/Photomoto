@@ -1,4 +1,4 @@
-using PMC.Domain.Entities;
+using PMC.Domain.Entities.Messages;
 using PMC.Domain.Repositories.Interfaces;
 
 namespace PMC.Application.Services;

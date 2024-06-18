@@ -1,4 +1,4 @@
-using PMC.Domain.Entities;
+using PMC.Domain.Entities.Messages;
 namespace PMC.Domain.Repositories.Interfaces;
 
 public interface IMessagesRepository
