@@ -61,9 +61,9 @@ public class ConnectionsController : ControllerBase
     [Authorize]
     [HttpGet]
     [Route("relations")]
-    public async Task<IActionResult> GetRelationConnection(string username)
+    public async Task<IActionResult> GetRelationConnection(string username, string? status)
     {
-        var relations = await _connectionService.GetRelationConnection(username);
+        var relations = await _connectionService.GetRelationConnection(username, status);
         return Ok(relations);
     }
 

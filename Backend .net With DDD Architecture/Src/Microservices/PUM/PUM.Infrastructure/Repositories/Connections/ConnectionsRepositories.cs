@@ -73,12 +73,24 @@ public class ConnectionsRepositories : IConnectionsRepository
         await _db.KeyDeleteAsync(connectionId);
     }
 
-    public async Task<List<Connection>> GetRelationConnection(string username)
+    public async Task<List<Connection>> GetRelationConnection(string username, string status)
     {
         var allConnections = await GetConnections();
         var userConnections = allConnections.Where(c => c.Sender == username || c.Receiver == username).ToList();
-        return userConnections;
+        List<Connection> result;
+
+        if (status == "accept")
+        {
+            result = userConnections.Where(x => x.Status == status).ToList();
+        }
+        else
+        {
+            result = userConnections;
+        }
+
+        return result;
     }
+
 
     // Update an existing connection in Redis
     public async void Update(Connection connection)

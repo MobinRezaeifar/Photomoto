@@ -4,7 +4,7 @@ public interface IConnectionsRepository
 {
     Task<List<Connection>> GetConnections();
     Task<List<RecommendationConnection>> GetRecommendationConnection(string username);
-    Task<List<Connection>> GetRelationConnection(string username);
+    Task<List<Connection>> GetRelationConnection(string username, string status);
     Task<Connection> GetConnection(string connectionId);
     Task<Connection> CreateConnection(Connection connection);
     Task DeleteConnection(string connectionId);
