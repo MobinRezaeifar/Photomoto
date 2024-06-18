@@ -41,7 +41,7 @@ public class ConnectionsController : ControllerBase
     [Authorize]
     [HttpGet]
     [Route("recommendation")]
-    public async Task<ActionResult<List<Register>>> GetRecommendationConnection(string username)
+    public async Task<ActionResult<List<RecommendationConnection>>> GetRecommendationConnection(string username)
     {
         try
         {

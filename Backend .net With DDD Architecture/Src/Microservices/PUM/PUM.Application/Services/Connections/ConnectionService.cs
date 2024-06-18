@@ -46,7 +46,7 @@ public class ConnectionService
         result.Relation = connection.Relation ?? result.Relation;
         _connectionRepository.Update(result);
     }
-    public async Task<List<Register>> GetRecommendationConnection(string username)
+    public async Task<List<RecommendationConnection>> GetRecommendationConnection(string username)
     {
         return await _connectionRepository.GetRecommendationConnection(username);
     }

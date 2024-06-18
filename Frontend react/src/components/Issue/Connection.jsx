@@ -152,11 +152,7 @@ const Connection = ({ Change, change }) => {
             } px-4`}
           >
             {(() => {
-              const sortedConnections = Connections.sort(
-                (a, b) => new Date(b.time) - new Date(a.time)
-              );
-
-              return sortedConnections.map((data) => {
+              return Connections.map((data) => {
                 if (data.sender === mainUser || data.receiver === mainUser) {
                   if (data.sender === mainUser) {
                     return (

@@ -7,7 +7,6 @@ using MongoDB.Driver;
 using PUM.Domain.Entities.Registers;
 using Microsoft.Extensions.Options;
 using PUM.Infrastructure.Configuration;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace PUM.Infrastructure.Repositories.Connections;
 
@@ -15,7 +14,6 @@ public class ConnectionsRepositories : IConnectionsRepository
 {
     private readonly ConnectionMultiplexer _redis;
     private readonly IDatabase _db;
-
     private readonly IMongoCollection<Register> _register;
     // Constructor to initialize Redis connection
     public ConnectionsRepositories(IConfiguration configuration, IOptions<MongoDBSettings> settings)
@@ -47,8 +45,12 @@ public class ConnectionsRepositories : IConnectionsRepository
             }
         }
 
+        // Sort connections by time
+        connections = connections.OrderBy(c => DateTime.Parse(c.Time)).ToList();
+
         return connections;
     }
+
 
     // Retrieve a specific connection by ID
     public async Task<Connection> GetConnection(string connectionId)
@@ -78,7 +80,7 @@ public class ConnectionsRepositories : IConnectionsRepository
         await _db.StringSetAsync(connection.Id, connectionJson);
     }
 
-    public async Task<List<Register>> GetRecommendationConnection(string username)
+    public async Task<List<RecommendationConnection>> GetRecommendationConnection(string username)
     {
         var allConnections = await GetConnections();
         var allRegisters = await _register.Find(_ => true).ToListAsync();
@@ -89,7 +91,6 @@ public class ConnectionsRepositories : IConnectionsRepository
         }
         var connectedUsers = new HashSet<string>();
 
-        // Find all users connected to the given username
         foreach (var connection in allConnections)
         {
             var relation = connection.Relation.Split(',');
@@ -103,9 +104,13 @@ public class ConnectionsRepositories : IConnectionsRepository
             }
         }
 
-        // Filter out users who are already connected
         var recommendedUsers = allRegisters
             .Where(register => register.Username != username && !connectedUsers.Contains(register.Username))
+            .Select(register => new RecommendationConnection
+            {
+                Username = register.Username,
+                ProfileImg = register.ProfileImg
+            })
             .ToList();
 
         return recommendedUsers;
