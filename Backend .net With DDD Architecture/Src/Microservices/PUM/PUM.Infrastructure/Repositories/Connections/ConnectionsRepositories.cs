@@ -7,6 +7,7 @@ using MongoDB.Driver;
 using PUM.Domain.Entities.Registers;
 using Microsoft.Extensions.Options;
 using PUM.Infrastructure.Configuration;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace PUM.Infrastructure.Repositories.Connections;
 
@@ -81,6 +82,11 @@ public class ConnectionsRepositories : IConnectionsRepository
     {
         var allConnections = await GetConnections();
         var allRegisters = await _register.Find(_ => true).ToListAsync();
+        var result = await _register.Find(r => r.Username == username).FirstOrDefaultAsync();
+        if (result == null)
+        {
+            throw new Exception("User not found");
+        }
         var connectedUsers = new HashSet<string>();
 
         // Find all users connected to the given username
@@ -104,5 +110,6 @@ public class ConnectionsRepositories : IConnectionsRepository
 
         return recommendedUsers;
     }
+
 }
 

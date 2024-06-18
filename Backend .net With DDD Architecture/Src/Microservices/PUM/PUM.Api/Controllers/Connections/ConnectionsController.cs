@@ -43,8 +43,19 @@ public class ConnectionsController : ControllerBase
     [Route("recommendation")]
     public async Task<ActionResult<List<Register>>> GetRecommendationConnection(string username)
     {
-        var recommendedConnections = await _connectionService.GetRecommendationConnection(username);
-        return Ok(recommendedConnections);
+        try
+        {
+            var recommendedConnections = await _connectionService.GetRecommendationConnection(username);
+            return Ok(recommendedConnections);
+        }
+        catch (Exception ex)
+        {
+            if (ex.Message == "User not found")
+            {
+                return NotFound(ex.Message);
+            }
+            return StatusCode(500, "Internal server error");
+        }
     }
 
     [Authorize]

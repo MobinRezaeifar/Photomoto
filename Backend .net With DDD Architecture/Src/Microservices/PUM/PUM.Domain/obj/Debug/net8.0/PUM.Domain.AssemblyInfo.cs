@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PUM.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+240387b4b26811ba47d5bccf58b520348c82c48d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9cd5c319bb0e28befc4e58593f00ee36b3d172d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PUM.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PUM.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
