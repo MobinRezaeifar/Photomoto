@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace PMC.Domain.Entities;
+namespace PMC.Domain.Entities.Messages;
 
 [BsonIgnoreExtraElements]
 public class Message

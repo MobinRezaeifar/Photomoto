@@ -159,7 +159,16 @@ public class RegistersControllers : ControllerBase
             };
 
             var token = _tokenService.GenerateJwtToken(claims);
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict,
+                IsEssential = true
+            };
 
+            Response.Cookies.Append("jwt", token, cookieOptions);
+            Response.Cookies.Append("username", register.Username, cookieOptions);
             return Ok(new { token });
         }
         catch (ArgumentException ex)
@@ -179,21 +188,27 @@ public class RegistersControllers : ControllerBase
             return Unauthorized("The username or password is incorrect.");
         }
 
-
         var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, login.Username),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Name, login.Username)
-            };
+    {
+        new Claim(JwtRegisteredClaimNames.Sub, login.Username),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(ClaimTypes.Name, login.Username)
+    };
 
         var token = _tokenService.GenerateJwtToken(claims);
 
+        var cookieOptions = new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.Strict,
+            IsEssential = true
+        };
+
+        Response.Cookies.Append("jwt", token, cookieOptions);
+        Response.Cookies.Append("username", login.Username, cookieOptions);
+
         return Ok(new { token });
     }
-
-
-
-
 
 }

@@ -73,6 +73,13 @@ public class ConnectionsRepositories : IConnectionsRepository
         await _db.KeyDeleteAsync(connectionId);
     }
 
+    public async Task<List<Connection>> GetRelationConnection(string username)
+    {
+        var allConnections = await GetConnections();
+        var userConnections = allConnections.Where(c => c.Sender == username || c.Receiver == username).ToList();
+        return userConnections;
+    }
+
     // Update an existing connection in Redis
     public async void Update(Connection connection)
     {
@@ -115,6 +122,7 @@ public class ConnectionsRepositories : IConnectionsRepository
 
         return recommendedUsers;
     }
+
 
 }
 

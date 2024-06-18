@@ -1,8 +1,8 @@
 using PMC.Domain.Repositories.Interfaces;
-using PMC.Domain.Entities;
 using MongoDB.Driver;
 using Microsoft.Extensions.Options;
 using PMC.Infrastructure.Configuration;
+using PMC.Domain.Entities.Messages;
 
 namespace PMC.Infrastructure.Repositories;
 

@@ -50,4 +50,9 @@ public class ConnectionService
     {
         return await _connectionRepository.GetRecommendationConnection(username);
     }
+
+    public async Task<List<Connection>> GetRelationConnection(string username)
+    {
+        return await _connectionRepository.GetRelationConnection(username);
+    }
 }
