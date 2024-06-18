@@ -1,5 +1,4 @@
 using PMC.Infrastructure.Configuration;
-using PMC.Application.Services;
 using PMC.Infrastructure.Repositories;
 using PMC.Domain.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,6 +10,9 @@ using Microsoft.Extensions.Options;
 using PMC.Api.Configuration;
 using PMC.Utils;
 using PMC.Application.Hubs;
+using PMC.Application.Services.Messages;
+using Microsoft.Extensions.DependencyInjection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +25,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc(
         "v1",
-        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PMC", Version = "v1" } // PMC: Photomoto Messaging & Chat
+        new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PMC", Version = "v1" } // PMC: Photomoto Messaging & communication
     );
 
     var securityScheme = new OpenApiSecurityScheme
@@ -113,9 +115,9 @@ app.UseEndpoints(endpoints =>
     // Hub endpoints for SignalR
     endpoints.MapHub<Changes>("/change");
     endpoints.MapHub<OnlineUsers>("/onlineUsers");
-
     // Controller endpoints for web API
     endpoints.MapControllers();
 });
+// app.MapGrpcService<VideoCallDetail>();
 
 app.Run();

@@ -1,7 +1,6 @@
 using Grpc.Core;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
-using WebApplication1;
 using WebApplication1.Configuration;
 using MongoDB.Driver.Linq;
 

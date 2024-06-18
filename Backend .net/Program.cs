@@ -1,17 +1,12 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using StackExchange.Redis;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApplication1.Configuration;
 using WebApplication1.Hubs;
-using WebApplication1.Modals;
 using WebApplication1.Services;
 using WebApplication1.Services.ManageFile;
 using WebApplication1.Services.Post;

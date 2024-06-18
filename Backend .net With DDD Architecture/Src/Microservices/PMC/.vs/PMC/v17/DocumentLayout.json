@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD3000CF-C36B-48F4-84AB-EB0E1C29553C}|PMC.Protos\\PMC.Protos.csproj|h:\\programming\\react\\photomoto\\backend .net with ddd architecture\\src\\microservices\\pmc\\pmc.protos\\videocalldetail\\videocalldetaill.proto||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{AD3000CF-C36B-48F4-84AB-EB0E1C29553C}|PMC.Protos\\PMC.Protos.csproj|solutionrelative:pmc.protos\\videocalldetail\\videocalldetaill.proto||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4786207-3AB3-4722-8391-055A2D628D3B}|PMC.Application\\PMC.Application.csproj|h:\\programming\\react\\photomoto\\backend .net with ddd architecture\\src\\microservices\\pmc\\pmc.application\\pmc.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D4786207-3AB3-4722-8391-055A2D628D3B}|PMC.Application\\PMC.Application.csproj|solutionrelative:pmc.application\\pmc.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4786207-3AB3-4722-8391-055A2D628D3B}|PMC.Application\\PMC.Application.csproj|h:\\programming\\react\\photomoto\\backend .net with ddd architecture\\src\\microservices\\pmc\\pmc.application\\services\\videocalldetails\\videocalldetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4786207-3AB3-4722-8391-055A2D628D3B}|PMC.Application\\PMC.Application.csproj|solutionrelative:pmc.application\\services\\videocalldetails\\videocalldetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD3000CF-C36B-48F4-84AB-EB0E1C29553C}|PMC.Protos\\PMC.Protos.csproj|h:\\programming\\react\\photomoto\\backend .net with ddd architecture\\src\\microservices\\pmc\\pmc.protos\\pmc.protos.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AD3000CF-C36B-48F4-84AB-EB0E1C29553C}|PMC.Protos\\PMC.Protos.csproj|solutionrelative:pmc.protos\\pmc.protos.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VideoCallDetail.cs",
+              "DocumentMoniker": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Application\\Services\\VideoCallDetails\\VideoCallDetail.cs",
+              "RelativeDocumentMoniker": "PMC.Application\\Services\\VideoCallDetails\\VideoCallDetail.cs",
+              "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Application\\Services\\VideoCallDetails\\VideoCallDetail.cs*",
+              "RelativeToolTip": "PMC.Application\\Services\\VideoCallDetails\\VideoCallDetail.cs*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:52:49.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PMC.Application",
+              "DocumentMoniker": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Application\\PMC.Application.csproj",
+              "RelativeDocumentMoniker": "PMC.Application\\PMC.Application.csproj",
+              "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Application\\PMC.Application.csproj",
+              "RelativeToolTip": "PMC.Application\\PMC.Application.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-18T12:52:44.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VideoCallDetaill.proto",
+              "DocumentMoniker": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Protos\\VideoCallDetail\\VideoCallDetaill.proto",
+              "RelativeDocumentMoniker": "PMC.Protos\\VideoCallDetail\\VideoCallDetaill.proto",
+              "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Protos\\VideoCallDetail\\VideoCallDetaill.proto*",
+              "RelativeToolTip": "PMC.Protos\\VideoCallDetail\\VideoCallDetaill.proto*",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003853|",
+              "WhenOpened": "2024-06-18T12:52:36.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PMC.Protos",
+              "DocumentMoniker": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Protos\\PMC.Protos.csproj",
+              "RelativeDocumentMoniker": "PMC.Protos\\PMC.Protos.csproj",
+              "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Protos\\PMC.Protos.csproj",
+              "RelativeToolTip": "PMC.Protos\\PMC.Protos.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-18T12:52:22.637Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

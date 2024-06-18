@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using PMC.Application.Services;
 using PMC.Domain.Entities.Messages;
+using PMC.Application.Services.Messages;
 
 namespace PMC.Api.Controllers
 {
