@@ -3,6 +3,10 @@ using PUM.Domain.Entities.Connections;
 using PUM.Domain.Repositories.Interfaces.Connections;
 using StackExchange.Redis;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
+using PUM.Domain.Entities.Registers;
+using Microsoft.Extensions.Options;
+using PUM.Infrastructure.Configuration;
 
 namespace PUM.Infrastructure.Repositories.Connections;
 
@@ -11,12 +15,17 @@ public class ConnectionsRepositories : IConnectionsRepository
     private readonly ConnectionMultiplexer _redis;
     private readonly IDatabase _db;
 
+    private readonly IMongoCollection<Register> _register;
     // Constructor to initialize Redis connection
-    public ConnectionsRepositories(IConfiguration configuration)
+    public ConnectionsRepositories(IConfiguration configuration, IOptions<MongoDBSettings> settings)
     {
         var connectionString = configuration.GetConnectionString("Redis");
         _redis = ConnectionMultiplexer.Connect(connectionString);
         _db = _redis.GetDatabase();
+        // 
+        var client = new MongoClient(settings.Value.ConnectionString);
+        var database = client.GetDatabase(settings.Value.DatabaseName);
+        _register = database.GetCollection<Register>("Registers");
     }
 
     // Retrieve all connections from Redis
@@ -66,6 +75,34 @@ public class ConnectionsRepositories : IConnectionsRepository
     {
         var connectionJson = JsonSerializer.Serialize(connection);
         await _db.StringSetAsync(connection.Id, connectionJson);
+    }
+
+    public async Task<List<Register>> GetRecommendationConnection(string username)
+    {
+        var allConnections = await GetConnections();
+        var allRegisters = await _register.Find(_ => true).ToListAsync();
+        var connectedUsers = new HashSet<string>();
+
+        // Find all users connected to the given username
+        foreach (var connection in allConnections)
+        {
+            var relation = connection.Relation.Split(',');
+            if (relation[0] == username)
+            {
+                connectedUsers.Add(relation[1]);
+            }
+            else if (relation[1] == username)
+            {
+                connectedUsers.Add(relation[0]);
+            }
+        }
+
+        // Filter out users who are already connected
+        var recommendedUsers = allRegisters
+            .Where(register => register.Username != username && !connectedUsers.Contains(register.Username))
+            .ToList();
+
+        return recommendedUsers;
     }
 }
 

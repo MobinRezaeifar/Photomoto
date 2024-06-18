@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PUM.Application.Services.Connections;
 using PUM.Domain.Entities.Connections;
+using PUM.Domain.Entities.Registers;
 
 namespace PUM.Api.Controllers.Connections;
 
@@ -34,6 +35,16 @@ public class ConnectionsController : ControllerBase
         if (connection == null)
             return NotFound();
         return Ok(connection);
+    }
+
+
+    [Authorize]
+    [HttpGet]
+    [Route("recommendation")]
+    public async Task<ActionResult<List<Register>>> GetRecommendationConnection(string username)
+    {
+        var recommendedConnections = await _connectionService.GetRecommendationConnection(username);
+        return Ok(recommendedConnections);
     }
 
     [Authorize]

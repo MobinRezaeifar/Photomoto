@@ -1,4 +1,5 @@
 using PUM.Domain.Entities.Connections;
+using PUM.Domain.Entities.Registers;
 using PUM.Domain.Repositories.Interfaces.Connections;
 
 namespace PUM.Application.Services.Connections;
@@ -28,7 +29,7 @@ public class ConnectionService
 
     public async Task DeleteConnection(string connectionId)
     {
-         await _connectionRepository.DeleteConnection(connectionId);
+        await _connectionRepository.DeleteConnection(connectionId);
     }
 
     public async Task UpdateConnection(Connection connection)
@@ -44,5 +45,9 @@ public class ConnectionService
         result.Status = connection.Status ?? result.Status;
         result.Relation = connection.Relation ?? result.Relation;
         _connectionRepository.Update(result);
+    }
+    public async Task<List<Register>> GetRecommendationConnection(string username)
+    {
+        return await _connectionRepository.GetRecommendationConnection(username);
     }
 }

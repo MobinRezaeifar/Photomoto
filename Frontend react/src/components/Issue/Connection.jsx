@@ -19,6 +19,7 @@ const Connection = ({ Change, change }) => {
   const Registers = useSelector((state) => state.Registers);
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
+  let mainUser = decryptAES(sessionStorage.getItem("u"));
   function decryptAES(message) {
     const bytes = CryptoJS.AES.decrypt(message, key, {
       iv: iv,
@@ -60,10 +61,8 @@ const Connection = ({ Change, change }) => {
     Connections.map((Connection) => {
       Registers.map((Register) => {
         if (
-          Connection.relation ==
-            Register.username + "," + decryptAES(sessionStorage.getItem("u")) ||
-          Connection.relation ==
-            decryptAES(sessionStorage.getItem("u")) + "," + Register.username
+          Connection.relation == Register.username + "," + mainUser ||
+          Connection.relation == mainUser + "," + Register.username
         ) {
           test.push(Register.username);
         }
@@ -71,7 +70,7 @@ const Connection = ({ Change, change }) => {
     });
     Registers.map((x) => {
       if (!test.includes(x.username)) {
-        if (x.username != decryptAES(sessionStorage.getItem("u"))) {
+        if (x.username != mainUser) {
           if (!RecommendationConnection.includes(x)) {
             RecommendationConnection.push(x);
           }
@@ -117,12 +116,9 @@ const Connection = ({ Change, change }) => {
                         AddConnection({
                           id: now + "",
                           status: "send",
-                          sender: decryptAES(sessionStorage.getItem("u")),
+                          sender: mainUser,
                           receiver: data.username,
-                          relation:
-                            decryptAES(sessionStorage.getItem("u")) +
-                            "," +
-                            data.username,
+                          relation: mainUser + "," + data.username,
                           time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
                         })
                       );
@@ -161,11 +157,8 @@ const Connection = ({ Change, change }) => {
               );
 
               return sortedConnections.map((data) => {
-                if (
-                  data.sender === decryptAES(sessionStorage.getItem("u")) ||
-                  data.receiver === decryptAES(sessionStorage.getItem("u"))
-                ) {
-                  if (data.sender === decryptAES(sessionStorage.getItem("u"))) {
+                if (data.sender === mainUser || data.receiver === mainUser) {
+                  if (data.sender === mainUser) {
                     return (
                       <SendConnection
                         key={data.time}
@@ -176,9 +169,7 @@ const Connection = ({ Change, change }) => {
                       />
                     );
                   }
-                  if (
-                    data.receiver === decryptAES(sessionStorage.getItem("u"))
-                  ) {
+                  if (data.receiver === mainUser) {
                     return (
                       <ReceiverConnection
                         key={data.time}
@@ -238,12 +229,9 @@ const Connection = ({ Change, change }) => {
                             AddConnection({
                               id: now + "",
                               status: "send",
-                              sender: decryptAES(sessionStorage.getItem("u")),
+                              sender: mainUser,
                               receiver: data.username,
-                              relation:
-                                decryptAES(sessionStorage.getItem("u")) +
-                                "," +
-                                data.username,
+                              relation: mainUser + "," + data.username,
                               time: moment(now).format(
                                 "jYYYY-jMM-jDD HH:mm:ss"
                               ),
