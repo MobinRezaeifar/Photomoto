@@ -201,7 +201,7 @@ public class RegistersControllers : ControllerBase
         {
             HttpOnly = true,
             Secure = true,
-            SameSite = SameSiteMode.Strict,
+            SameSite = SameSiteMode.None,
             IsEssential = true
         };
 

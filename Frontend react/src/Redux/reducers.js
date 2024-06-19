@@ -12,7 +12,14 @@ const initialState = {
   MeBio: "",
   MainUserIdVideoCall: "",
   TargetUserIdVideoCall: "",
-  baseUrlDotenet: "http://localhost:5221/",
+
+  baseUrlRegisters: "http://localhost:5295/Register/v1/api/",
+  baseUrlConnections: "http://localhost:5295/Connection/v1/api/",
+  baseUrlPosts: "http://localhost:5212/Post/v1/api/",
+  baseUrlMessages: "http://localhost:5157/Message/v1/api/",
+  baseUrlOnlineUsers: "http://localhost:5157/onlineUsers/",
+  baseUrlChange: "http://localhost:5157/change/",
+
   baseUrlNode: "http://localhost:5001/",
   baseUrlReact: "http://localhost:3000/",
 };
@@ -153,8 +160,18 @@ const reducer = (state = initialState, action) => {
       return { ...state, MainUserIdVideoCall: action.payload };
     case "TargetUserIdVideoCall":
       return { ...state, TargetUserIdVideoCall: action.payload };
-    case "BASEURLDOTNET":
-      return { ...state, baseUrlDotenet: action.payload };
+    case "baseUrlRegisters":
+      return { ...state, baseUrlRegisters: action.payload };
+    case "baseUrlConnections":
+      return { ...state, baseUrlConnections: action.payload };
+    case "baseUrlPosts":
+      return { ...state, baseUrlPosts: action.payload };
+    case "baseUrlMessages":
+      return { ...state, baseUrlMessages: action.payload };
+    case "baseUrlOnlineUsers":
+      return { ...state, baseUrlOnlineUsers: action.payload };
+    case "baseUrlChange":
+      return { ...state, baseUrlChange: action.payload };
     case "BASEURLNODE":
       return { ...state, baseUrlNode: action.payload };
     case "BASEURLREACT":

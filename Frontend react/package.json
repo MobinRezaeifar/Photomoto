@@ -22,6 +22,7 @@
     "extendable-media-recorder-wav-encoder": "^7.0.109",
     "framer-motion": "^11.0.14",
     "jalali-moment": "^3.3.11",
+    "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "lodash.isequal": "^4.5.0",
     "peerjs": "^1.5.4",

@@ -3,32 +3,21 @@ import usernamePhoto from "../../Assets/username.png";
 import { useDispatch, useSelector } from "react-redux";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { fetchRegister } from "../../Redux/action";
-import CryptoJS from "crypto-js";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Login = ({ ShowLogin, setShowLogin }) => {
-  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
+  const baseUrlRegisters = useSelector((state) => state.baseUrlRegisters);
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const Registers = useSelector((state) => state.Registers);
   let navigate = useNavigate();
-  function encryptAES(message) {
-    return CryptoJS.AES.encrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    }).toString();
-  }
 
   useEffect(() => {
     dispatch(fetchRegister());
   }, [dispatch]);
-
-  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
 
   const handleKeyDown = (event) => {
     if (event.keyCode === 13 && Username && Password) {
@@ -39,14 +28,12 @@ const Login = ({ ShowLogin, setShowLogin }) => {
   const LoginUser = () => {
     if (Username && Password) {
       axios
-        .post(`${baseUrlDotenet}api/Registers/login`, {
+        .post(`${baseUrlRegisters}login`, {
           username: Username,
           password: Password,
         })
         .then(
           (x) => {
-            var responseObject = JSON.parse(x.request.response);
-            sessionStorage.setItem("token", responseObject.token);
             const Toast = Swal.mixin({
               toast: true,
               position: "top-end",
@@ -62,18 +49,11 @@ const Login = ({ ShowLogin, setShowLogin }) => {
               icon: "success",
               title: "Successful Login",
             });
-            Registers.map((data) => {
-              if (data.username == Username) {
-                sessionStorage.setItem("u", encryptAES(data.username));
-                sessionStorage.setItem("g", encryptAES(data.gender));
-                sessionStorage.setItem("p", encryptAES(data.password));
-                sessionStorage.setItem("e", encryptAES(data.email));
-                sessionStorage.setItem("f", encryptAES(data.fullName));
-              }
-            });
             setPassword("");
             setUsername("");
             navigate("/photomoto");
+            Cookies.set("jwt", x.data.token, { expires: 36500 });
+            Cookies.set("username", Username, { expires: 36500 });
           },
           (error) => {
             const Toast = Swal.mixin({
@@ -89,7 +69,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
             });
             Toast.fire({
               icon: "error",
-              title: "The username or password is incorrect.",
+              title: error.response.data,
             });
           }
         );
