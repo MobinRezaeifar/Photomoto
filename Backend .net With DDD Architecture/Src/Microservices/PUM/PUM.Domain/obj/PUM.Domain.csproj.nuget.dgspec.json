@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {}
+    "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {}
   },
   "projects": {
-    "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
+    "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
+        "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
         "projectName": "PUM.Domain",
-        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
+        "projectPath": "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
         "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\obj\\",
+        "outputPath": "H:\\programming\\react\\photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PUM\\PUM.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
