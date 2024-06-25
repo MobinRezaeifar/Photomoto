@@ -14,3 +14,19 @@ H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservi
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\refint\PPM.Application.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\ref\PPM.Application.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Application.deps.json
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Application.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Application.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Domain.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\bin\Debug\net8.0\PPM.Domain.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.csproj.AssemblyReference.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.GeneratedMSBuildEditorConfig.editorconfig
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.AssemblyInfoInputs.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.AssemblyInfo.cs
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.csproj.CoreCompileInputs.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.sourcelink.json
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Appl.C51A28C5.Up2Date
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\refint\PPM.Application.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\PPM.Application.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Application\obj\Debug\net8.0\ref\PPM.Application.dll

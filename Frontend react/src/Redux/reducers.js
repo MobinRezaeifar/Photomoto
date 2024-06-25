@@ -12,14 +12,10 @@ const initialState = {
   MeBio: "",
   MainUserIdVideoCall: "",
   TargetUserIdVideoCall: "",
-
-  baseUrlRegisters: "http://localhost:5295/Register/v1/api/",
-  baseUrlConnections: "http://localhost:5295/Connection/v1/api/",
-  baseUrlPosts: "http://localhost:5212/Post/v1/api/",
-  baseUrlMessages: "http://localhost:5157/Message/v1/api/",
-  baseUrlOnlineUsers: "http://localhost:5157/onlineUsers/",
-  baseUrlChange: "http://localhost:5157/change/",
-
+  PUMbaseApi: "http://localhost:5295/",
+  PPMbaseApi: "http://localhost:5212/",
+  PMCbaseApi: "http://localhost:5157/",
+  PFMbaseApi: "http://localhost:5226/",
   baseUrlNode: "http://localhost:5001/",
   baseUrlReact: "http://localhost:3000/",
 };
@@ -160,18 +156,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, MainUserIdVideoCall: action.payload };
     case "TargetUserIdVideoCall":
       return { ...state, TargetUserIdVideoCall: action.payload };
-    case "baseUrlRegisters":
-      return { ...state, baseUrlRegisters: action.payload };
-    case "baseUrlConnections":
-      return { ...state, baseUrlConnections: action.payload };
-    case "baseUrlPosts":
-      return { ...state, baseUrlPosts: action.payload };
-    case "baseUrlMessages":
-      return { ...state, baseUrlMessages: action.payload };
-    case "baseUrlOnlineUsers":
-      return { ...state, baseUrlOnlineUsers: action.payload };
-    case "baseUrlChange":
-      return { ...state, baseUrlChange: action.payload };
+    case "PUMbaseApi":
+      return { ...state, PUMbaseApi: action.payload };
+    case "PPMbaseApi":
+      return { ...state, PPMbaseApi: action.payload };
+    case "PMCbaseApi":
+      return { ...state, PMCbaseApi: action.payload };
+    case "PFMbaseApi":
+      return { ...state, PFMbaseApi: action.payload };
     case "BASEURLNODE":
       return { ...state, baseUrlNode: action.payload };
     case "BASEURLREACT":

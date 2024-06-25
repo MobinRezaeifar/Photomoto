@@ -99,7 +99,11 @@ app.UseRouting();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+   {
+       c.SwaggerEndpoint("/swagger/v1/swagger.json", "PUM v1");
+       c.DocumentTitle = "PMC";
+   });
 }
 
 // Redirect HTTP to HTTPS

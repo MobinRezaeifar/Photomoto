@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V6h9+UTe5TV8Qcajk9uPAKWwuMIPpvQsca4Zm4wOZzJ65goVls1ojkte8IVV31HuT08CSOCCzYcPLW7sgiWoow==",
+  "dgSpecHash": "wjtIe6UeBFS0cLRo59D3SBk59VZzbtiSW04RnJLCek3XsErf2mRJtJ5u+gWqShbtsC8+t5X52HYhI8WNS1F0hw==",
   "success": true,
-  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PMC\\PMC.Api\\PMC.Api.csproj",
+  "projectFilePath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Api\\PMC.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

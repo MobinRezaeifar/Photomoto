@@ -14,3 +14,19 @@ H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservi
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\refint\PPM.Infrastructure.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\ref\PPM.Infrastructure.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\bin\Debug\net8.0\PPM.Infrastructure.deps.json
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\bin\Debug\net8.0\PPM.Infrastructure.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\bin\Debug\net8.0\PPM.Infrastructure.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\bin\Debug\net8.0\PPM.Domain.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\bin\Debug\net8.0\PPM.Domain.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.csproj.AssemblyReference.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.AssemblyInfoInputs.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.AssemblyInfo.cs
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.csproj.CoreCompileInputs.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.sourcelink.json
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infr.13A00EFC.Up2Date
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\refint\PPM.Infrastructure.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\PPM.Infrastructure.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Infrastructure\obj\Debug\net8.0\ref\PPM.Infrastructure.dll

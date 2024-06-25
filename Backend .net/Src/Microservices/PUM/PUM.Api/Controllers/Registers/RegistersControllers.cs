@@ -142,7 +142,6 @@ public class RegistersControllers : ControllerBase
 
 
 
-    [Authorize]
     [HttpPost]
     [Route("CreateRegister")]
 

@@ -12,9 +12,10 @@ import axios from "axios";
 import Login from "../components/Global/Login";
 import { browserName } from "react-device-detect";
 import { HiEye, HiEyeOff } from "react-icons/hi";
+import Cookies from "js-cookie";
 
 const Register = () => {
-  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
+  const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
   const dispatch = useDispatch();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -62,92 +63,60 @@ const Register = () => {
   }, [dispatch]);
 
   const submitRegister = async () => {
-    if (
-      Username.length >= 5 &&
-      Password.length >= 8 &&
-      Email.includes("@") &&
-      FullName &&
-      Gender
-    ) {
-      axios
-        .post(`${baseUrlDotenet}api/Registers`, {
-          username: Username,
-          password: Password,
-          fullName: FullName,
-          profileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
-          email: Email,
-          gender: Gender,
-          hash: "",
-          connection: [],
-          post: 0,
-          bio: `Hello, Im ${FullName} and I just became a member of Photomoto platform`,
-        })
-        .then(
-          (x) => {
-            var responseObject = JSON.parse(x.request.response);
-            sessionStorage.setItem("token", responseObject.token);
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Successful registration",
-            });
-            setEmail("");
-            setPassword("");
-            setGender("");
-            setUsername("");
-            setFullName("");
-            navigate("/photomoto");
-            sessionStorage.setItem("u", encryptAES(Username));
-            sessionStorage.setItem("g", encryptAES(Gender));
-            sessionStorage.setItem("p", encryptAES(Password));
-            sessionStorage.setItem("e", encryptAES(Email));
-            sessionStorage.setItem("f", encryptAES(FullName));
-          },
-          (error) => {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: "This username is already exist",
-            });
-          }
-        );
-    } else {
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
+    axios
+      .post(`${PUMbaseApi}Register/v1/api/CreateRegister`, {
+        username: Username,
+        password: Password,
+        fullName: FullName,
+        profileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
+        email: Email,
+        gender: Gender,
+        bio: `Hello, Im ${FullName} and I just became a member of Photomoto platform`,
+      })
+      .then(
+        (x) => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Successful Registration",
+          });
+          setEmail("");
+          setPassword("");
+          setGender("");
+          setUsername("");
+          setFullName("");
+          navigate("/photomoto");
+          Cookies.set("jwt", x.data.token, { expires: 36500 });
+          Cookies.set("u", Username, { expires: 36500 });
         },
-      });
-      Toast.fire({
-        icon: "error",
-        title: "Complete The InformationFill out the information correctly.",
-      });
-    }
+        (error) => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "error",
+            title: error.response.data,
+          });
+        }
+      );
   };
 
   return (

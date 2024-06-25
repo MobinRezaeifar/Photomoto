@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PPM.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+203a301255b892465d004bf4b78d004f8858dd2a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+003348b12772560d925fa2363d93d8b69f9d0b2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PPM.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PPM.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PMC.Domain
-build_property.ProjectDir = H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Domain\
+build_property.ProjectDir = H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Domain\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

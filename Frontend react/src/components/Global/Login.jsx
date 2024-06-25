@@ -9,7 +9,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const Login = ({ ShowLogin, setShowLogin }) => {
-  const baseUrlRegisters = useSelector((state) => state.baseUrlRegisters);
+  const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
   const LoginUser = () => {
     if (Username && Password) {
       axios
-        .post(`${baseUrlRegisters}login`, {
+        .post(`${PUMbaseApi}Register/v1/api/login`, {
           username: Username,
           password: Password,
         })
@@ -53,7 +53,7 @@ const Login = ({ ShowLogin, setShowLogin }) => {
             setUsername("");
             navigate("/photomoto");
             Cookies.set("jwt", x.data.token, { expires: 36500 });
-            Cookies.set("username", Username, { expires: 36500 });
+            Cookies.set("u", Username, { expires: 36500 });
           },
           (error) => {
             const Toast = Swal.mixin({

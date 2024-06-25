@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HY/JlOzA0b2DEiSgpE2llaWP3fUMvUWfypvln3XPzbO2DD0p4UtiaivyLDvhw/bofG4yET0tW1oVAD2cgztPoQ==",
+  "dgSpecHash": "xxyDA/3JHQACc/gvXkVQKqQEOdPeqFUFQbX1aRJ8raNKZ1eg5KQEt5cPZJ5cFymeKUQ6ImHO5k/9nOl9NIkYvw==",
   "success": true,
-  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
+  "projectFilePath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\ffmpegcore\\5.1.0\\ffmpegcore.5.1.0.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\instances\\3.0.0\\instances.3.0.0.nupkg.sha512",

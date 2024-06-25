@@ -1,6 +1,5 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import LeftNav from "../components/Nav/LeftNav";
 import BottomNav from "../components/Nav/BottomNav";
 import Connection from "../components/Issue/Connection";
@@ -11,13 +10,14 @@ import { fetchRegister } from "../Redux/action";
 import Home from "../components/Issue/Home";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Me from "../components/Issue/Me";
-import CryptoJS from "crypto-js";
+import Cookies from "js-cookie";
 
 const Main = () => {
-  const baseUrlReact = useSelector((state) => state.baseUrlReact);
+  const baseUrlChange = useSelector((state) => state.baseUrlChange);
+  const baseUrlOnlineUsers = useSelector((state) => state.baseUrlOnlineUsers);
+  const Issue = useSelector((state) => state.Issue);
 
-  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
-  let navigate = useNavigate();
+  const dispatch = useDispatch();
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -39,23 +39,10 @@ const Main = () => {
       }
     };
   }, []);
-  if (sessionStorage.getItem("u") == null) {
+
+  if (Cookies.get("u") == null) {
     window.location.assign("/");
   }
-
-  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
-  function decryptAES(message) {
-    const bytes = CryptoJS.AES.decrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    });
-    return bytes.toString(CryptoJS.enc.Utf8);
-  }
-  const Issue = useSelector((state) => state.Issue);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchRegister());
@@ -66,7 +53,7 @@ const Main = () => {
   const Change = async (change) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl(`${baseUrlDotenet}change`)
+        .withUrl(baseUrlChange)
         .configureLogging(LogLevel.Information)
         .build();
       await connection.start();
@@ -86,7 +73,7 @@ const Main = () => {
   const onlineUsers = async (onlineUser) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl(`${baseUrlDotenet}onlineUsers`)
+        .withUrl(baseUrlOnlineUsers)
         .configureLogging(LogLevel.Information)
         .build();
       await connection.start();
@@ -102,7 +89,7 @@ const Main = () => {
       console.log(e);
     }
   };
-  let mainUser = decryptAES(sessionStorage.getItem("u"));
+  let mainUser = Cookies.get("u");
   useEffect(() => {
     onlineUsers(mainUser);
   }, []);

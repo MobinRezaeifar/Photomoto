@@ -1362,11 +1362,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
+      "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
       "projectName": "PFM.Api",
-      "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
+      "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
       "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net With DDD Architecture\\Src\\Microservices\\PFM\\PFM.Api\\obj\\",
+      "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PFM\\PFM.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",

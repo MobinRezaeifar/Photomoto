@@ -1,3 +1,4 @@
+using Microsoft.IdentityModel.Tokens;
 using PUM.Application.Configuration;
 using PUM.Domain.Entities.Registers;
 using PUM.Domain.Repositories.Interfaces.Registers;
@@ -56,7 +57,10 @@ public class RegistersService
 
     public async Task AddRegister(Register register)
     {
-
+        if (register.Gender.IsNullOrEmpty())
+        {
+            throw new ArgumentException("Choose your gender.");
+        }
         var validator = new RegisterValidator();
         var validationResult = await validator.ValidateAsync(register);
 

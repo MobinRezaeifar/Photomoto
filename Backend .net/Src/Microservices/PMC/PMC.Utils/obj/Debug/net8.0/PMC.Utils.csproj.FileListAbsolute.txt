@@ -11,3 +11,16 @@ H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservi
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\refint\PMC.Utils.dll
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.pdb
 H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\ref\PMC.Utils.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\bin\Debug\net8.0\PMC.Utils.deps.json
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\bin\Debug\net8.0\PMC.Utils.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\bin\Debug\net8.0\PMC.Utils.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.csproj.AssemblyReference.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.GeneratedMSBuildEditorConfig.editorconfig
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.AssemblyInfoInputs.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.AssemblyInfo.cs
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.csproj.CoreCompileInputs.cache
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.sourcelink.json
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\refint\PMC.Utils.dll
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\PMC.Utils.pdb
+H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Utils\obj\Debug\net8.0\ref\PMC.Utils.dll

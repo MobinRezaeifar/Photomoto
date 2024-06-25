@@ -1,19 +1,16 @@
 import axios from "axios";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
-
-let RegisterApi = "http://localhost:5221/api/Registers";
-let PostApi = "http://localhost:5221/api/Posts";
-let MessagesApi = "http://localhost:5221/api/Messages";
-let ConnectionsApi = "http://localhost:5221/api/ConnectionHandel";
+import Cookies from "js-cookie";
+let PUMbaseApi = "http://localhost:5295/";
+let PPMbaseApi = "http://localhost:5212/";
+let PMCbaseApi = "http://localhost:5157/";
+let PFMbaseApi = "http://localhost:5226/";
 let StoryApi = "http://localhost:5001/api/story";
-let baseUrlDotenet = "http://localhost:5221/";
-
-const change = [];
 
 const Change = async (change) => {
   try {
     const connection = new HubConnectionBuilder()
-      .withUrl(`http://localhost:5221/change`)
+      .withUrl(`${PMCbaseApi}change`)
       .configureLogging(LogLevel.Information)
       .build();
     await connection.start();
@@ -132,7 +129,7 @@ export const deleteStorySuccess = (id) => ({
 export const fetchVideoCallDetails = () => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`${baseUrlDotenet}v1/videoCallDetails`);
+      const response = await fetch(`v1/videoCallDetails`);
       const videoCallDetail = await response.json();
       dispatch(fetchvideoCallDetailsSuccess(videoCallDetail));
     } catch (error) {
@@ -145,7 +142,7 @@ export const DownloadMedia = (src) => {
   return async (dispatch) => {
     try {
       axios({
-        url: `http://localhost:5221/api/FileManager/downloadfile?FileName=${src}`,
+        url: `${PFMbaseApi}api/FileManager/downloadfile?FileName=${src}`,
         method: "GET",
         responseType: "blob",
       })
@@ -166,18 +163,21 @@ export const DownloadMedia = (src) => {
   };
 };
 
-export const AddRegister = (newUser) => {
+export const addRegister = (newUser) => {
   return async (dispatch) => {
-    try {
-      const response = await fetch(RegisterApi, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
 
-      const register = await response.json();
+    try {
+      const response = await axios.post(
+        `${PUMbaseApi}Register/v1/api/CreateRegister`,
+        newUser,
+        { headers }
+      );
+
+      const register = response.data;
       dispatch(addRegiaterSuccess(register));
     } catch (error) {
       console.error("Error adding register:", error);
@@ -188,10 +188,13 @@ export const AddRegister = (newUser) => {
 export const fetchRegister = () => {
   return async (dispatch) => {
     const headers = {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
     };
     try {
-      const response = await axios.get(RegisterApi, { headers });
+      const response = await axios.get(`${PUMbaseApi}Register/v1/api/GetAll`, {
+        headers,
+      });
       dispatch(fetchRegistersSuccess(response.data));
     } catch (error) {
       console.error("Error fetching register:", error);
@@ -201,16 +204,19 @@ export const fetchRegister = () => {
 
 export const updateRegister = (id, updatedRegister) => {
   return async (dispatch) => {
-    try {
-      const response = await fetch(`${RegisterApi}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedRegister),
-      });
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
 
-      const register = await response.json();
+    try {
+      const response = await axios.patch(
+        `${PUMbaseApi}Register/v1/api/UpdateRegister?id=${id}`,
+        updatedRegister,
+        { headers }
+      );
+
+      const register = response.data;
       dispatch(updateRegisterSuccess(register));
     } catch (error) {
       console.error(`Error updating register with ID ${id}:`, error);
@@ -220,10 +226,15 @@ export const updateRegister = (id, updatedRegister) => {
 
 export const deleteRegister = (id) => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+    };
+
     try {
-      await fetch(`${RegisterApi}/${id}`, {
-        method: "DELETE",
-      });
+      await axios.delete(
+        `${PUMbaseApi}Register/v1/api/DeleteRegister?id=${id}`,
+        { headers }
+      );
 
       dispatch(deleteRegisterSuccess(id));
     } catch (error) {
@@ -231,19 +242,21 @@ export const deleteRegister = (id) => {
     }
   };
 };
-
-export const AddPost = (newPost) => {
+export const addPost = (newPost) => {
   return async (dispatch) => {
-    try {
-      const response = await fetch(PostApi, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newPost),
-      });
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
 
-      const post = await response.json();
+    try {
+      const response = await axios.post(
+        `${PPMbaseApi}Post/v1/api/CreatePost`,
+        newPost,
+        { headers }
+      );
+
+      const post = response.data;
       dispatch(addPostSuccess(post));
     } catch (error) {
       console.error("Error adding post:", error);
@@ -254,13 +267,13 @@ export const AddPost = (newPost) => {
 export const fetchPosts = () => {
   return async (dispatch) => {
     const headers = {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
     };
     try {
-      const response = await axios.get(
-        PostApi + "?pageNumber=1&pageSize=1000",
-        { headers }
-      );
+      const response = await axios.get(`${PPMbaseApi}Post/v1/api/GetAll`, {
+        headers,
+      });
       dispatch(fetchPostsSuccess(response.data));
     } catch (error) {
       console.error("Error fetching post:", error);
@@ -270,16 +283,19 @@ export const fetchPosts = () => {
 
 export const updatePost = (id, updatePost) => {
   return async (dispatch) => {
-    try {
-      const response = await fetch(`${PostApi}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatePost),
-      });
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
 
-      const post = await response.json();
+    try {
+      const response = await axios.patch(
+        `${PPMbaseApi}Post/v1/api/UpdatePost?id=${id}`,
+        updatePost,
+        { headers }
+      );
+
+      const post = response.data;
       dispatch(updatePostsSuccess(post));
     } catch (error) {
       console.error(`Error updating post with ID ${id}:`, error);
@@ -289,9 +305,14 @@ export const updatePost = (id, updatePost) => {
 
 export const deletePost = (id) => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
+
     try {
-      await fetch(`${PostApi}/${id}`, {
-        method: "DELETE",
+      await axios.delete(`${PPMbaseApi}Post/v1/api/DeletePost?id=${id}`, {
+        headers,
       });
 
       dispatch(deletePostSuccess(id));
@@ -301,18 +322,21 @@ export const deletePost = (id) => {
   };
 };
 
-export const AddMessages = (message) => {
+export const addMessages = (message) => {
   return async (dispatch) => {
-    try {
-      const response = await fetch(MessagesApi, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(message),
-      });
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
 
-      const messages = await response.json();
+    try {
+      const response = await axios.post(
+        `${PMCbaseApi}Message/v1/api/CreateMessage`,
+        message,
+        { headers }
+      );
+
+      const messages = response.data;
       dispatch(addMessagesSuccess(messages));
     } catch (error) {
       console.error("Error adding message:", error);
@@ -335,13 +359,13 @@ export const AddMessages = (message) => {
 export const fetchMessages = () => {
   return async (dispatch) => {
     const headers = {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
     };
     try {
-      const response = await axios.get(
-        MessagesApi + "?pageNumber=1&pageSize=1000",
-        { headers }
-      );
+      const response = await axios.get(`${PMCbaseApi}Message/v1/api/GetAll`, {
+        headers,
+      });
       dispatch(fetchMessagesSuccess(response.data));
     } catch (error) {
       console.error("Error:", error);
@@ -349,33 +373,19 @@ export const fetchMessages = () => {
   };
 };
 
-export const updateMessages = (id, message) => {
-  return async (dispatch) => {
-    try {
-      const response = await fetch(`${MessagesApi}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(message),
-      });
-
-      const messages = await response.json();
-      dispatch(updateMessagesSuccess(messages));
-      await Change("change");
-    } catch (error) {
-      console.error(`Error updating message with ID ${id}:`, error);
-    }
-  };
-};
-
 export const patchMessages = (id, message) => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
     try {
       const response = await axios.patch(
-        `http://localhost:5221/api/Messages/api/messages/${id}`,
-        message
+        `${PMCbaseApi}Message/v1/api/UpdateMessage?id=${id}`,
+        message,
+        { headers }
       );
+
       dispatch(PatchMessagesSuccess(response.data));
       await Change("change");
     } catch (error) {
@@ -386,9 +396,13 @@ export const patchMessages = (id, message) => {
 
 export const deleteMessages = (id) => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
     try {
-      await fetch(`${MessagesApi}/${id}`, {
-        method: "DELETE",
+      await axios.delete(`${PMCbaseApi}Message/v1/api/DeleteMessage?id=${id}`, {
+        headers,
       });
 
       dispatch(deleteMessagesSuccess(id));
@@ -399,18 +413,23 @@ export const deleteMessages = (id) => {
   };
 };
 
-export const AddConnection = (connection) => {
+export const addConnection = (connection) => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
+
     try {
-      const response = await fetch(ConnectionsApi, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(connection),
-      });
+      const response = await axios.post(
+        `${PUMbaseApi}Connection/v1/api/CreateConnection`,
+        connection,
+        { headers }
+      );
+
       await Change("change");
-      const connections = await response.json();
+
+      const connections = response.data;
       dispatch(addConnectionSuccess(connections));
     } catch (error) {
       console.error("Error adding connection:", error);
@@ -421,10 +440,14 @@ export const AddConnection = (connection) => {
 export const fetchConnection = () => {
   return async (dispatch) => {
     const headers = {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
     };
     try {
-      const response = await axios.get(ConnectionsApi, { headers });
+      const response = await axios.get(
+        `${PUMbaseApi}Connection/v1/api/GetAll`,
+        { headers }
+      );
       dispatch(fetchConnectionSuccess(response.data));
     } catch (error) {
       console.error("Error fetching connection:", error);
@@ -434,33 +457,40 @@ export const fetchConnection = () => {
 
 export const deleteConnection = (id) => {
   return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
     try {
-      await fetch(`${ConnectionsApi}?connectionId=${id}`, {
-        method: "DELETE",
-      });
+      await axios.delete(
+        `${PUMbaseApi}Connection/v1/api/DeleteConnection?id=${id}`,
+        { headers }
+      );
 
       dispatch(deleteConnectionSuccess(id));
       await Change("change");
     } catch (error) {
-      console.error(`Error deleting message with ID ${id}:`, error);
+      console.error(`Error deleting connection with ID ${id}:`, error);
     }
   };
 };
-export const UpdateConnection = (id, update) => {
-  return async (dispatch) => {
-    try {
-      const response = await fetch(`${ConnectionsApi}/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(update),
-      });
 
-      const result = await response.json();
-      dispatch(updateConnectionSuccess(result));
+export const updateConnection = (id, update) => {
+  return async (dispatch) => {
+    const headers = {
+      Authorization: `Bearer ${Cookies.get("jwt")}`,
+      "Content-Type": "application/json",
+    };
+    try {
+      const response = await axios.patch(
+        `${PUMbaseApi}Connection/v1/api/UpdateConnection?id=${id}`,
+        update,
+        { headers }
+      );
+
+      dispatch(updateConnectionSuccess(response.data));
     } catch (error) {
-      console.error(`Error updating post with ID ${id}:`, error);
+      console.error(`Error updating connection with ID ${id}:`, error);
     }
   };
 };

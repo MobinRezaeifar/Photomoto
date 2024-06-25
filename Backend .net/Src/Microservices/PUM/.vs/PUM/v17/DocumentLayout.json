@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AC221FF9-546C-480E-B323-DE1F50751CD8}|PUM.Application\\PUM.Application.csproj|h:\\programming\\react\\photomoto\\backend .net\\src\\microservices\\pum\\pum.application\\services\\registers\\registersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC221FF9-546C-480E-B323-DE1F50751CD8}|PUM.Application\\PUM.Application.csproj|solutionrelative:pum.application\\services\\registers\\registersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC221FF9-546C-480E-B323-DE1F50751CD8}|PUM.Application\\PUM.Application.csproj|h:\\programming\\react\\photomoto\\backend .net\\src\\microservices\\pum\\pum.application\\pum.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AC221FF9-546C-480E-B323-DE1F50751CD8}|PUM.Application\\PUM.Application.csproj|solutionrelative:pum.application\\pum.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegistersService.cs",
+              "DocumentMoniker": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\Services\\Registers\\RegistersService.cs",
+              "RelativeDocumentMoniker": "PUM.Application\\Services\\Registers\\RegistersService.cs",
+              "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\Services\\Registers\\RegistersService.cs",
+              "RelativeToolTip": "PUM.Application\\Services\\Registers\\RegistersService.cs",
+              "ViewState": "AQIAAEEAAAAAAAAAAADwv0wAAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T09:52:11.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PUM.Application",
+              "DocumentMoniker": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
+              "RelativeDocumentMoniker": "PUM.Application\\PUM.Application.csproj",
+              "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
+              "RelativeToolTip": "PUM.Application\\PUM.Application.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-25T09:52:04.427Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
