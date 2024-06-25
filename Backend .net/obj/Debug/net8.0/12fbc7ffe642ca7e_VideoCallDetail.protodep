@@ -1,5 +1,0 @@
-obj\Debug\net8.0\Protos/VideoCallDetail.cs \
-obj\Debug\net8.0\Protos/VideoCallDetailGrpc.cs: google/api/http.proto\
- C:/Users/I-Tech/.nuget/packages/grpc.tools/2.64.0/build/native/include/google/protobuf/descriptor.proto\
- google/api/annotations.proto\
- Protos/VideoCallDetail.proto
