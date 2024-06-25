@@ -66,10 +66,22 @@ public class RegistersRepositories : IRegisterRepository
         await _register.DeleteOneAsync(x => x.Id == id);
     }
 
-    // Update an existing register record
-    public async Task UpdateAsync(Register register)
+    // Update an existing register record by Id
+    public async Task UpdateAsyncById(Register register)
     {
         await _register.ReplaceOneAsync(x => x.Id == register.Id, register);
+    }
+    // Update an existing register record by Username
+    public async Task UpdateAsyncByUsername(Register register)
+    {
+        await _register.ReplaceOneAsync(x => x.Username == register.Username, register);
+    }
+
+
+    // Delete All registers
+    public async Task DeleteAllRegistersAsync()
+    {
+        await _register.DeleteManyAsync(FilterDefinition<Register>.Empty);
     }
 }
 

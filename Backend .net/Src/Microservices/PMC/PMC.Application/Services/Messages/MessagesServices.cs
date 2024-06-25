@@ -65,5 +65,10 @@ namespace PMC.Application.Services.Messages
         {
             return await _messagesRepository.GetMessagesByRelationshipAsync(sender, recipient, pageNumber, pageSize);
         }
+
+        public async Task DeleteAllAsync()
+        {
+            await _messagesRepository.DeleteAllAsync();
+        }
     }
 }

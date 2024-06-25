@@ -16,36 +16,23 @@ import CreatePostModel from "../Me/CreatePostModel";
 import { Empty } from "antd";
 import Postss from "../Global/Postss";
 import SettingSideBar from "../Me/SettingSideBar";
+import Cookies from "js-cookie";
 
 const Me = ({ Change, change }) => {
-  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
-  const Registers = useSelector((state) => state.Registers);
-  const Posts = useSelector((state) => state.Posts);
+  const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
+  const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
+  const PPMbaseApi = useSelector((state) => state.PPMbaseApi);
   const [SelecteTab, setSelecteTab] = useState("posts");
   const dispatch = useDispatch();
-  const ProfileImg = useSelector((state) => state.ProfileImg);
   const [Post, setPost] = useState();
+  const [User, setUser] = useState({});
   const [Connection, setConnection] = useState(0);
-  const [Bio, setBio] = useState("");
-  const [UserId, setUserId] = useState("");
+  let mainUser = Cookies.get("u");
   const [ShowSettingSidebar, setShowSettingSidebar] = useState(false);
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  const Connections = useSelector((state) => state.Connections);
-
-  useEffect(() => {
-    dispatch(fetchRegister());
-  }, []);
-
-  useEffect(() => {
-    dispatch(fetchRegister());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchRegister());
-  }, [change]);
 
   const updateSize = () => {
     setDimensions({
@@ -64,57 +51,26 @@ const Me = ({ Change, change }) => {
     };
   }, []);
 
-  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
-
-  function decryptAES(message) {
-    const bytes = CryptoJS.AES.decrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    });
-    return bytes.toString(CryptoJS.enc.Utf8);
-  }
-
-  let mainUser = decryptAES(sessionStorage.getItem("u"));
-
   const handleChange = async (info) => {
     if (info) {
+      const headers = {
+        Authorization: `Bearer ${Cookies.get("jwt")}`,
+        "Content-Type": "application/json",
+      };
       try {
-        Posts.map(async (data) => {
-          if (data.owner == mainUser) {
-            await dispatch(
-              updatePost(data.id, {
-                ...data,
-                profileImg:
-                  `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
-                  info.file.originFileObj.name,
-              })
-            );
-          }
-        });
-        Registers.map(async (data) => {
-          if (data.username == mainUser) {
-            await dispatch(
-              updateRegister(data.id, {
-                ...data,
-                profileImg:
-                  `${baseUrlDotenet}api/FileManager/downloadfile?FileName=` +
-                  info.file.originFileObj.name,
-              })
-            );
+        await axios.patch(
+          `${PUMbaseApi}Register/v1/api/UpdateRegisterByUsername?username=${mainUser}`,
+          {
+            profileImg: info.file.originFileObj.name,
+          },
+          { headers }
+        );
 
-            await dispatch(fetchRegister());
-          }
-          data.connection.map((dataa) => {
-            if (dataa.username == mainUser) {
-              // console.log(dataa);
-            }
-          });
-        });
+        await dispatch(fetchRegister());
+
         var form = new FormData();
         form.append("file", info.file.originFileObj);
-        await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form);
+        await axios.post(`${PFMbaseApi}api/FileManager/uploadfile`, form);
       } catch (err) {
         console.log(err);
       }
@@ -122,71 +78,20 @@ const Me = ({ Change, change }) => {
   };
 
   useEffect(() => {
-    let lenghtt = [];
-    Connections.map((data) => {
-      if (
-        data.sender == decryptAES(sessionStorage.getItem("u")) ||
-        data.receiver == decryptAES(sessionStorage.getItem("u"))
-      ) {
-        if (data.status == "accept") {
-          lenghtt.push(data);
-          return setConnection(lenghtt.length);
-        }
-      }
-    });
+    axios
+      .get(
+        `${PUMbaseApi}Connection/v1/api/relations?username=${mainUser}&status=accept`
+      )
+      .then((x) => setConnection(x.data.length));
+    axios
+      .get(`${PPMbaseApi}Post/v1/api/PostCount?owner=${mainUser}`)
+      .then((x) => setPost(x.data));
 
-    Registers.map(async (data) => {
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        let PostCount = [];
-        Posts.map((data) => {
-          if (data.owner == decryptAES(sessionStorage.getItem("u"))) {
-            PostCount.push(data);
-          }
-        });
-        setPost(PostCount.length);
-        setBio(data.bio);
-        setUserId(data.id);
-        dispatch({
-          type: "MEBIO",
-          payload: data.bio,
-        });
-        if (data.profileImg) {
-          dispatch({
-            type: "PROFILEIMG",
-            payload: data.profileImg,
-          });
-        } else {
-          dispatch({
-            type: "PROFILEIMG",
-            payload: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
-          });
-        }
-      }
-    });
-  });
-  useEffect(() => {
-    Registers.map(async (data) => {
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        setPost(data.post);
-        setBio(data.bio);
-        setUserId(data.id);
-        dispatch({
-          type: "MEBIO",
-          payload: data.bio,
-        });
-        if (data.profileImg) {
-          dispatch({
-            type: "PROFILEIMG",
-            payload: data.profileImg,
-          });
-        } else {
-          dispatch({
-            type: "PROFILEIMG",
-            payload: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
-          });
-        }
-      }
-    });
+    axios
+      .get(
+        `http://localhost:5295/Register/v1/api/GetByUsername?username=string`
+      )
+      .then((x) => setUser(x.data));
   }, []);
 
   const navigate = useNavigate();
@@ -200,7 +105,7 @@ const Me = ({ Change, change }) => {
             dimensions.width > 900 ? "text-4xl" : "text-2xl"
           } font-[600]`}
         >
-          {decryptAES(sessionStorage.getItem("u"))}
+          {/* {decryptAES(sessionStorage.getItem("u"))} */}
         </span>
         <span className="flex items-center gap-2">
           <BiSolidAddToQueue
@@ -225,7 +130,6 @@ const Me = ({ Change, change }) => {
             show={ShowCreatePostModel}
             setShow={setShowCreatePostModel}
             dimensions={dimensions}
-            ProfileImg={ProfileImg}
           />
         </span>
       </div>
@@ -282,11 +186,11 @@ const Me = ({ Change, change }) => {
       <div className="px-10 py-4 flex items-center justify-between ">
         <div className="flex flex-col">
           <span className="text-xl font-serif text-white">
-            {decryptAES(sessionStorage.getItem("f"))}
+            {/* {decryptAES(sessionStorage.getItem("f"))} */}
           </span>
           <span>{Bio}</span>
         </div>
-        {decryptAES(sessionStorage.getItem("u")) != mainUser && (
+        {sessionStorage.getItem("u") != mainUser && (
           <div className="flex gap-2">
             <div
               style={{
@@ -395,10 +299,9 @@ const Me = ({ Change, change }) => {
         ShowSettingSidebar={ShowSettingSidebar}
         setShowSettingSidebar={setShowSettingSidebar}
         dimensions={dimensions}
-        id={UserId}
         username={mainUser}
-        fullName={decryptAES(sessionStorage.getItem("f"))}
-        email={decryptAES(sessionStorage.getItem("e"))}
+        fullName={FullName}
+        email={Email}
         Change={Change}
         change={change}
       />

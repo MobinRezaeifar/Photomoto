@@ -58,7 +58,6 @@ public class ConnectionsController : ControllerBase
         }
     }
 
-    [Authorize]
     [HttpGet]
     [Route("relations")]
     public async Task<IActionResult> GetRelationConnection(string username, string? status)

@@ -10,8 +10,8 @@ public interface IPostsRepository
     Task UpdateAsync(Post post);
     Task<Post> GetByIdAsync(string id);
     Task<IEnumerable<Post>> GetByOwner(string owner, int page, int pageSize);
+    Task<int> GetCountPost(string owner);
     Task<IEnumerable<Post>> SearchByTag(string tag);
-
-
+    Task DeleteAllAsync();
 
 }

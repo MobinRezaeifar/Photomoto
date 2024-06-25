@@ -37,7 +37,7 @@ public class RegistersService
         await _registersRepositories.DeleteAsync(id);
     }
 
-    public async Task UpdateRegister(string id, Register register)
+    public async Task UpdateRegisterById(string id, Register register)
     {
         var result = await GetByIdRegisterAsync(id);
         if (result == null)
@@ -52,7 +52,24 @@ public class RegistersService
         result.ProfileImg = register.ProfileImg ?? result.ProfileImg;
         result.Gender = register.Gender ?? result.Gender;
         result.Email = register.Email ?? result.Email;
-        await _registersRepositories.UpdateAsync(result);
+        await _registersRepositories.UpdateAsyncById(result);
+    }
+    public async Task UpdateRegisterByUsername(string username, Register register)
+    {
+        var result = await GetByUsernameAsync(username);
+        if (result == null)
+        {
+            throw new KeyNotFoundException($"Register with username = {username} not found");
+        }
+
+        result.Username = register.Username ?? result.Username;
+        result.Bio = register.Bio ?? result.Bio;
+        result.FullName = register.FullName ?? result.FullName;
+        result.Password = AesEncryption.Encrypt(register.Password) ?? result.Password;
+        result.ProfileImg = register.ProfileImg ?? result.ProfileImg;
+        result.Gender = register.Gender ?? result.Gender;
+        result.Email = register.Email ?? result.Email;
+        await _registersRepositories.UpdateAsyncByUsername(result);
     }
 
     public async Task AddRegister(Register register)
@@ -90,6 +107,12 @@ public class RegistersService
             await _registersRepositories.AddAsync(register);
         }
 
+    }
+
+
+    public async Task DeleteAllRegistersAsync()
+    {
+        await _registersRepositories.DeleteAllRegistersAsync();
     }
 
 }

@@ -67,6 +67,22 @@ public class PostsControllers : ControllerBase
         var post = await _postsService.GetByOwnerPost(owner, page, pageSize);
         return Ok(post);
     }
+
+
+    [Authorize]
+    [HttpGet]
+    [Route("PostCount")]
+    public async Task<IActionResult> GetByOwnerPost([FromQuery] string owner)
+    {
+        if (string.IsNullOrEmpty(owner))
+        {
+            return BadRequest("Owner is required.");
+        }
+
+        int postCount = await _postsService.GetCountPost(owner);
+        return Ok(postCount);
+    }
+
     [Authorize]
     [HttpGet]
     [Route("Tag")]
@@ -78,6 +94,15 @@ public class PostsControllers : ControllerBase
             return NotFound("No posts found with the given tag.");
         }
         return Ok(posts);
+    }
+
+    [Authorize]
+    [HttpDelete]
+    [Route("DeleteAllPost")]
+    public async Task<IActionResult> DeleteAllAsync()
+    {
+        await _postsService.DeleteAllAsync();
+        return NoContent();
     }
 
 
@@ -150,5 +175,5 @@ public class PostsControllers : ControllerBase
             return BadRequest(ex.Message);
         }
     }
-  
+
 }

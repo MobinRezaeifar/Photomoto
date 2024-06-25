@@ -68,5 +68,10 @@ namespace PMC.Infrastructure.Repositories
                                   .Limit(pageSize)
                                   .ToListAsync();
         }
+
+        public async Task DeleteAllAsync()
+        {
+            await _messages.DeleteManyAsync(FilterDefinition<Message>.Empty);
+        }
     }
 }

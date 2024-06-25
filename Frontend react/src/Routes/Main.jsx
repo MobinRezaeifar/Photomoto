@@ -13,9 +13,8 @@ import Me from "../components/Issue/Me";
 import Cookies from "js-cookie";
 
 const Main = () => {
-  const baseUrlChange = useSelector((state) => state.baseUrlChange);
-  const baseUrlOnlineUsers = useSelector((state) => state.baseUrlOnlineUsers);
   const Issue = useSelector((state) => state.Issue);
+  const PMCbaseApi = useSelector((state) => state.PMCbaseApi);
 
   const dispatch = useDispatch();
   const [dimensions, setDimensions] = useState({
@@ -53,7 +52,7 @@ const Main = () => {
   const Change = async (change) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl(baseUrlChange)
+        .withUrl(`${PMCbaseApi}change`)
         .configureLogging(LogLevel.Information)
         .build();
       await connection.start();
@@ -73,7 +72,7 @@ const Main = () => {
   const onlineUsers = async (onlineUser) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl(baseUrlOnlineUsers)
+        .withUrl(`${PMCbaseApi}onlineUsers`)
         .configureLogging(LogLevel.Information)
         .build();
       await connection.start();

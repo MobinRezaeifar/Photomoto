@@ -211,7 +211,7 @@ export const updateRegister = (id, updatedRegister) => {
 
     try {
       const response = await axios.patch(
-        `${PUMbaseApi}Register/v1/api/UpdateRegister?id=${id}`,
+        `${PUMbaseApi}Register/v1/api/UpdateRegisterById?id=${id}`,
         updatedRegister,
         { headers }
       );
@@ -242,7 +242,7 @@ export const deleteRegister = (id) => {
     }
   };
 };
-export const addPost = (newPost) => {
+export const AddPost = (newPost) => {
   return async (dispatch) => {
     const headers = {
       Authorization: `Bearer ${Cookies.get("jwt")}`,
@@ -322,7 +322,7 @@ export const deletePost = (id) => {
   };
 };
 
-export const addMessages = (message) => {
+export const AddMessages = (message) => {
   return async (dispatch) => {
     const headers = {
       Authorization: `Bearer ${Cookies.get("jwt")}`,
@@ -413,7 +413,7 @@ export const deleteMessages = (id) => {
   };
 };
 
-export const addConnection = (connection) => {
+export const AddConnection = (connection) => {
   return async (dispatch) => {
     const headers = {
       Authorization: `Bearer ${Cookies.get("jwt")}`,
@@ -475,7 +475,7 @@ export const deleteConnection = (id) => {
   };
 };
 
-export const updateConnection = (id, update) => {
+export const UpdateConnection = (id, update) => {
   return async (dispatch) => {
     const headers = {
       Authorization: `Bearer ${Cookies.get("jwt")}`,

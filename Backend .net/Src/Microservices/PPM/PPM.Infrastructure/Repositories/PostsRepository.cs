@@ -47,6 +47,11 @@ public class PostsRepository : IPostsRepository
     }
 
 
+    public async Task<int> GetCountPost(string owner)
+    {
+        return (int)await _posts.CountDocumentsAsync(x => x.Owner == owner);
+    }
+
     public async Task<IEnumerable<Post>> SearchByTag(string? tag)
     {
         var filter = Builders<Post>.Filter.Regex("Tags", new MongoDB.Bson.BsonRegularExpression($"^{tag}"));
@@ -55,5 +60,10 @@ public class PostsRepository : IPostsRepository
             return _posts.Find(filter).ToList();
         }
         return new List<Post>();
+    }
+
+    public async Task DeleteAllAsync()
+    {
+        await _posts.DeleteManyAsync(FilterDefinition<Post>.Empty);
     }
 }

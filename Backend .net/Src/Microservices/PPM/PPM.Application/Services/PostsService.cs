@@ -53,7 +53,6 @@ public class PostsService
             result.Tags = post.Tags;
         }
 
-        result.ProfileImg = post.ProfileImg ?? result.ProfileImg;
         await _postsRepository.UpdateAsync(result);
     }
 
@@ -67,9 +66,21 @@ public class PostsService
     {
         return await _postsRepository.GetByOwner(owner, pageNumber, pageSize);
     }
+
+
+    public async Task<int> GetCountPost(string owner)
+    {
+        return await _postsRepository.GetCountPost(owner);
+    }
     public async Task<IEnumerable<Post>> SearchByTagPost(string? tag)
     {
         return await _postsRepository.SearchByTag(tag);
+    }
+
+
+    public async Task DeleteAllAsync()
+    {
+        await _postsRepository.DeleteAllAsync();
     }
 
 }

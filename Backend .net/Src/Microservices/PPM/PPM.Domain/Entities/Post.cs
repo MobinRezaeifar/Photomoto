@@ -34,7 +34,5 @@ namespace PPM.Domain.Entities
         [BsonElement("tags")]
         public List<string> Tags { get; set; } = new List<string>();
 
-        [BsonElement("profileImg")]
-        public string? ProfileImg { get; set; }
     }
 }

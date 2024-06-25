@@ -69,6 +69,17 @@ namespace PMC.Api.Controllers
             return Ok(messages);
         }
 
+
+        [Authorize]
+        [HttpDelete]
+        [Route("DeleteAllMessage")]
+        public async Task<IActionResult> DeleteAllAsync()
+        {
+            await _messagesServices.DeleteAllAsync();
+            return NoContent();
+        }
+
+
         // Delete a message by its ID.
         [Authorize]
         [HttpDelete]
@@ -140,5 +151,8 @@ namespace PMC.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+
     }
 }

@@ -72,8 +72,6 @@ public class RegistersControllers : ControllerBase
         {
             return BadRequest("User Not Found");
         }
-
-
     }
 
     [Authorize]
@@ -84,6 +82,15 @@ public class RegistersControllers : ControllerBase
         var User = await _registersService.GetByUsernameAsync(username);
         if (User == null) return NotFound("User Not Found");
         return Ok(User.ProfileImg);
+    }
+
+
+    [HttpDelete]
+    [Route("DeleteAllRegisters")]
+    public async Task<IActionResult> DeleteAllRegisters()
+    {
+        await _registersService.DeleteAllRegistersAsync();
+        return NoContent();
     }
 
     [Authorize]
@@ -115,17 +122,43 @@ public class RegistersControllers : ControllerBase
         }
     }
 
+
+
     [Authorize]
     [HttpPatch]
-    [Route("UpdateRegister")]
-    public async Task<IActionResult> PatchAsync(string id, [FromBody] Register register)
+    [Route("UpdateRegisterById")]
+    public async Task<IActionResult> PatchAsyncById(string id, [FromBody] Register register)
     {
         var result = await _registersService.GetByIdRegisterAsync(id);
         if (result != null)
         {
             try
             {
-                _registersService.UpdateRegister(id, register);
+                _registersService.UpdateRegisterById(id, register);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while updating the register.", Details = ex.Message });
+            }
+        }
+        return BadRequest("User Not Found");
+    }
+    [Authorize]
+    [HttpPatch]
+    [Route("UpdateRegisterByUsername")]
+    public async Task<IActionResult> PatchAsyncByUsername(string username, [FromBody] Register register)
+    {
+        var result = await _registersService.GetByUsernameAsync(username);
+        if (result != null)
+        {
+            try
+            {
+                _registersService.UpdateRegisterByUsername(username, register);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)

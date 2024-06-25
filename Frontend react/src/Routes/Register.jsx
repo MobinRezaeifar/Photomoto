@@ -6,7 +6,6 @@ import { MdCamera } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../Redux/action";
 import Swal from "sweetalert2";
-import CryptoJS from "crypto-js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Login from "../components/Global/Login";
@@ -26,15 +25,7 @@ const Register = () => {
   let navigate = useNavigate();
   const [ShowLogin, setShowLogin] = useState(false);
 
-  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
-  function encryptAES(message) {
-    return CryptoJS.AES.encrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    }).toString();
-  }
+ 
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,

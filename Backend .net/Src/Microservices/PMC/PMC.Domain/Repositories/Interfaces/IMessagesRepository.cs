@@ -10,7 +10,7 @@ namespace PMC.Domain.Repositories.Interfaces
         Task UpdateAsync(Message message);
         Task DeleteAsync(string id);
         Task<IEnumerable<Message>> GetMessagesByRelationshipAsync(string sender, string recipient, int page, int pageSize);
-
+        Task DeleteAllAsync();
     }
 
 }

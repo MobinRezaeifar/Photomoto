@@ -32,7 +32,6 @@ function CreatePostModel({
   show,
   dimensions,
   setShow,
-  ProfileImg,
   Change,
   change,
 }) {
@@ -102,7 +101,6 @@ function CreatePostModel({
         type: FileMedia.originFileObj.type,
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         comment: [],
-        profileImg: ProfileImg,
         tags,
       })
     );

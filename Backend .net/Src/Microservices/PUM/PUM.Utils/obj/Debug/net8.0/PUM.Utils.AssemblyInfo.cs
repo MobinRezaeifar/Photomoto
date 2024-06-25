@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PUM.Utils")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+003348b12772560d925fa2363d93d8b69f9d0b2d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e22af90e3aa4064af30e256bd67a07dd5f9e4f7")]
 [assembly: System.Reflection.AssemblyProductAttribute("PUM.Utils")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PUM.Utils")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

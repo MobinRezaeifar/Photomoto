@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5M6oi38Q7SX5huVH4AfC6By4BHAGPlhXaZxfs5LeLKd1E3UPu1HNd1Wivo0Z70qB7pRlV9cEz7Kfallg7lflFg==",
+  "dgSpecHash": "JrS1Vj79vPKk8QuMYnDQATY8/jhW3d4qovOgkPNru5OZuyA3P+V/tZqpKuR8n/oao1eYgxX9Zb+lp5W3C87A0g==",
   "success": true,
-  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
+  "projectFilePath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
