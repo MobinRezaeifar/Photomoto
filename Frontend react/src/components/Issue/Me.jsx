@@ -33,7 +33,10 @@ const Me = ({ Change, change }) => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
+  const headers = {
+    Authorization: `Bearer ${Cookies.get("jwt")}`,
+    "Content-Type": "application/json",
+  };
   const updateSize = () => {
     setDimensions({
       width: window.innerWidth,
@@ -53,10 +56,6 @@ const Me = ({ Change, change }) => {
 
   const handleChange = async (info) => {
     if (info) {
-      const headers = {
-        Authorization: `Bearer ${Cookies.get("jwt")}`,
-        "Content-Type": "application/json",
-      };
       try {
         await axios.patch(
           `${PUMbaseApi}Register/v1/api/UpdateRegisterByUsername?username=${mainUser}`,
@@ -80,17 +79,18 @@ const Me = ({ Change, change }) => {
   useEffect(() => {
     axios
       .get(
-        `${PUMbaseApi}Connection/v1/api/relations?username=${mainUser}&status=accept`
+        `${PUMbaseApi}Connection/v1/api/relations?username=${mainUser}&status=accept`,
+        { headers }
       )
       .then((x) => setConnection(x.data.length));
     axios
-      .get(`${PPMbaseApi}Post/v1/api/PostCount?owner=${mainUser}`)
+      .get(`${PPMbaseApi}Post/v1/api/PostCount?owner=${mainUser}`, { headers })
       .then((x) => setPost(x.data));
 
     axios
-      .get(
-        `http://localhost:5295/Register/v1/api/GetByUsername?username=string`
-      )
+      .get(`${PUMbaseApi}Register/v1/api/GetByUsername?username=string`, {
+        headers,
+      })
       .then((x) => setUser(x.data));
   }, []);
 
@@ -105,7 +105,7 @@ const Me = ({ Change, change }) => {
             dimensions.width > 900 ? "text-4xl" : "text-2xl"
           } font-[600]`}
         >
-          {/* {decryptAES(sessionStorage.getItem("u"))} */}
+          {User.username}
         </span>
         <span className="flex items-center gap-2">
           <BiSolidAddToQueue
@@ -163,7 +163,7 @@ const Me = ({ Change, change }) => {
         >
           <Avatar
             size={dimensions.width > 900 ? 120 : 80}
-            src={ProfileImg}
+            src={User.ProfileImg}
             shape="circle"
           />
         </Badge>
@@ -185,10 +185,8 @@ const Me = ({ Change, change }) => {
       </div>
       <div className="px-10 py-4 flex items-center justify-between ">
         <div className="flex flex-col">
-          <span className="text-xl font-serif text-white">
-            {/* {decryptAES(sessionStorage.getItem("f"))} */}
-          </span>
-          <span>{Bio}</span>
+          <span className="text-xl font-serif text-white">{User.fullName}</span>
+          <span>{User.Bio}</span>
         </div>
         {sessionStorage.getItem("u") != mainUser && (
           <div className="flex gap-2">
@@ -277,7 +275,7 @@ const Me = ({ Change, change }) => {
                 <Postss
                   mainUser={mainUser}
                   dimensions={dimensions}
-                  ProfileImg={ProfileImg}
+                  User={User}
                   Change={Change}
                   change={change}
                 />
@@ -300,8 +298,7 @@ const Me = ({ Change, change }) => {
         setShowSettingSidebar={setShowSettingSidebar}
         dimensions={dimensions}
         username={mainUser}
-        fullName={FullName}
-        email={Email}
+        User={User}
         Change={Change}
         change={change}
       />

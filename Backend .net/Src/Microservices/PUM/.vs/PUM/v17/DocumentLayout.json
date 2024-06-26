@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "PUM.Application\\Services\\Registers\\RegistersService.cs",
               "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\Services\\Registers\\RegistersService.cs",
               "RelativeToolTip": "PUM.Application\\Services\\Registers\\RegistersService.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAADwv0wAAABOAAAA",
+              "ViewState": "AQIAAEEAAAAAAAAAAADwv0wAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-25T09:52:11.383Z",
               "EditorCaption": ""
@@ -36,15 +36,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PUM.Application",
+              "Title": "PUM.Application.csproj",
               "DocumentMoniker": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
               "RelativeDocumentMoniker": "PUM.Application\\PUM.Application.csproj",
               "ToolTip": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
               "RelativeToolTip": "PUM.Application\\PUM.Application.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-06-25T09:52:04.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T09:52:04.427Z"
             }
           ]
         }
