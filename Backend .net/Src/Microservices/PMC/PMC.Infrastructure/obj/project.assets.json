@@ -967,11 +967,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Infrastructure\\PMC.Infrastructure.csproj",
+      "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Infrastructure\\PMC.Infrastructure.csproj",
       "projectName": "PMC.Infrastructure",
-      "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Infrastructure\\PMC.Infrastructure.csproj",
+      "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Infrastructure\\PMC.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Infrastructure\\obj\\",
+      "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -988,8 +988,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Domain\\PMC.Domain.csproj": {
-              "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Domain\\PMC.Domain.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Domain\\PMC.Domain.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PMC\\PMC.Domain\\PMC.Domain.csproj"
             }
           }
         }

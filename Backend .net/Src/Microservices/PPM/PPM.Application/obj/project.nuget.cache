@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SGzbXavQmHlEmJBYIilzaPqmDeE4tXQFxw338sNzR/WOnVDHRm2zxRfZ3lTiT1JatEK5Ya6vTc+nty/Ih2kXsw==",
+  "dgSpecHash": "9lPxz0tK0xx3knd+2k4QOI7A0p2jeCQAb47Z5qb4TjY2y3XtNX3R47MVm3IVEiMPNwZ+PU4zYrYOpoSnI1i6OQ==",
   "success": true,
-  "projectFilePath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj",
+  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

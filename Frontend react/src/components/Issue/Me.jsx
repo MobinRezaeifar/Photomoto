@@ -23,16 +23,16 @@ const Me = ({ Change, change }) => {
   const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
   const PPMbaseApi = useSelector((state) => state.PPMbaseApi);
   const [SelecteTab, setSelecteTab] = useState("posts");
-  const dispatch = useDispatch();
   const [Post, setPost] = useState();
   const [User, setUser] = useState({});
-  const [Connection, setConnection] = useState(0);
+  const [Connection, setConnection] = useState();
   let mainUser = Cookies.get("u");
   const [ShowSettingSidebar, setShowSettingSidebar] = useState(false);
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+  const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
   const headers = {
     Authorization: `Bearer ${Cookies.get("jwt")}`,
     "Content-Type": "application/json",
@@ -54,22 +54,49 @@ const Me = ({ Change, change }) => {
     };
   }, []);
 
-  const handleChange = async (info) => {
+  const GetData = () => {
+    axios
+      .get(
+        `${PUMbaseApi}Connection/v1/api/relations?username=${mainUser}&status=accept`,
+        { headers }
+      )
+      .then((x) => setConnection(x.data.length));
+    try {
+      axios
+        .get(`${PPMbaseApi}Post/v1/api/PostCount?owner=${mainUser}`, {
+          headers,
+        })
+        .then((x) => setPost(x.data))
+        .catch((error) => {
+          console.error("Error occurred during the API call:", error);
+        });
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+    }
+
+    axios
+      .get(`${PUMbaseApi}Register/v1/api/GetByUsername?username=${mainUser}`, {
+        headers,
+      })
+      .then((x) => setUser(x.data));
+  };
+
+  let fileName = Date.now().toString() + ".png";
+  const handleChangeProfile = async (info) => {
     if (info) {
       try {
         await axios.patch(
           `${PUMbaseApi}Register/v1/api/UpdateRegisterByUsername?username=${mainUser}`,
           {
-            profileImg: info.file.originFileObj.name,
+            profileImg: fileName,
           },
           { headers }
         );
-
-        await dispatch(fetchRegister());
-
+        await GetData();
         var form = new FormData();
-        form.append("file", info.file.originFileObj);
+        form.append("file", info.file.originFileObj, fileName);
         await axios.post(`${PFMbaseApi}api/FileManager/uploadfile`, form);
+        await GetData();
       } catch (err) {
         console.log(err);
       }
@@ -77,25 +104,14 @@ const Me = ({ Change, change }) => {
   };
 
   useEffect(() => {
-    axios
-      .get(
-        `${PUMbaseApi}Connection/v1/api/relations?username=${mainUser}&status=accept`,
-        { headers }
-      )
-      .then((x) => setConnection(x.data.length));
-    axios
-      .get(`${PPMbaseApi}Post/v1/api/PostCount?owner=${mainUser}`, { headers })
-      .then((x) => setPost(x.data));
-
-    axios
-      .get(`${PUMbaseApi}Register/v1/api/GetByUsername?username=string`, {
-        headers,
-      })
-      .then((x) => setUser(x.data));
+    GetData();
   }, []);
-
-  const navigate = useNavigate();
-  const [ShowCreatePostModel, setShowCreatePostModel] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      GetData();
+    }, 1000);
+    GetData();
+  }, [change]);
 
   return (
     <div className="h-full overflow-y-auto w-full ">
@@ -142,7 +158,7 @@ const Me = ({ Change, change }) => {
       <div className="px-8 pt-4 flex justify-between">
         <Badge
           count={
-            <Upload accept="image/*" onChange={(e) => handleChange(e)}>
+            <Upload accept="image/*" onChange={(e) => handleChangeProfile(e)}>
               <Button
                 title="Add Profile Image"
                 id="borderrnone"
@@ -161,11 +177,18 @@ const Me = ({ Change, change }) => {
             </Upload>
           }
         >
-          <Avatar
-            size={dimensions.width > 900 ? 120 : 80}
-            src={User.ProfileImg}
-            shape="circle"
-          />
+          {User && (
+            <Avatar
+              size={dimensions.width > 900 ? 120 : 80}
+              src={
+                User.profileImg ==
+                "https://wallpapercave.com/dwp1x/wp9566386.jpg"
+                  ? User.profileImg
+                  : `${PFMbaseApi}api/FileManager/downloadfile?FileName=${User.profileImg}`
+              }
+              shape="circle"
+            />
+          )}
         </Badge>
 
         <div
@@ -186,7 +209,7 @@ const Me = ({ Change, change }) => {
       <div className="px-10 py-4 flex items-center justify-between ">
         <div className="flex flex-col">
           <span className="text-xl font-serif text-white">{User.fullName}</span>
-          <span>{User.Bio}</span>
+          <span>{User.bio}</span>
         </div>
         {sessionStorage.getItem("u") != mainUser && (
           <div className="flex gap-2">
@@ -297,10 +320,9 @@ const Me = ({ Change, change }) => {
         ShowSettingSidebar={ShowSettingSidebar}
         setShowSettingSidebar={setShowSettingSidebar}
         dimensions={dimensions}
-        username={mainUser}
         User={User}
         Change={Change}
-        change={change}
+        headers={headers}
       />
     </div>
   );

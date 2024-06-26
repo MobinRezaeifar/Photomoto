@@ -4,48 +4,31 @@ import { fetchPosts } from "../../Redux/action";
 import ShowPostModel from "./ShowPostModel";
 import { motion } from "framer-motion";
 import axios from "axios";
-const Postss = ({ mainUser, dimensions, ProfileImg, Change, change }) => {
+const Postss = ({ mainUser, dimensions, User, Change, change }) => {
   const dispatch = useDispatch();
   const [Posts, setPosts] = useState([]);
   const [SelectePost, setSelectePost] = useState({});
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
-  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
+  const PPMbaseApi = useSelector((state) => state.PPMbaseApi);
+
+  const GetData = () => {
+    axios
+      .get(`${PPMbaseApi}Post/v1/api/Owner?owner=${mainUser}`)
+      .then((response) => {
+        setPosts(response.data);
+      })
+      .catch(() => {
+        setPosts([]);
+      });
+  };
 
   useEffect(() => {
-    axios
-      .get(`${baseUrlDotenet}api/Posts/searchByOwner?owner=${mainUser}`)
-      .then((response) => {
-        if (response.status !== 404) {
-          setPosts(response.data);
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 404) {
-          console.warn("No posts found for this tag.");
-          setPosts([]);
-        } else {
-          console.error(error);
-        }
-      });
+    GetData();
   }, []);
   useEffect(() => {
-    axios
-      .get(`${baseUrlDotenet}api/Posts/searchByOwner?owner=${mainUser}`)
-      .then((response) => {
-        if (response.status !== 404) {
-          setPosts(response.data);
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 404) {
-          console.warn("No posts found for this tag.");
-          setPosts([]);
-        } else {
-          console.error(error);
-        }
-      });
+    GetData();
   }, [change]);
 
   return (
@@ -101,14 +84,14 @@ const Postss = ({ mainUser, dimensions, ProfileImg, Change, change }) => {
           })}
         </div>
       </div>
-      <ShowPostModel
+      {/* <ShowPostModel
         ProfileImg={ProfileImg}
         SelectePost={SelectePost}
         dimensions={dimensions}
         Posts={Posts}
         Change={Change}
         change={change}
-      />
+      /> */}
     </div>
   );
 };

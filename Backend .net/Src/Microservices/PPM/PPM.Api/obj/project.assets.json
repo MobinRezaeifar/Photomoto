@@ -1927,11 +1927,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Api\\PPM.Api.csproj",
+      "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Api\\PPM.Api.csproj",
       "projectName": "PPM.Api",
-      "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Api\\PPM.Api.csproj",
+      "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Api\\PPM.Api.csproj",
       "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Api\\obj\\",
+      "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1948,14 +1948,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj": {
-              "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj"
             },
-            "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Infrastructure\\PPM.Infrastructure.csproj": {
-              "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Infrastructure\\PPM.Infrastructure.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Infrastructure\\PPM.Infrastructure.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Infrastructure\\PPM.Infrastructure.csproj"
             },
-            "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Utils\\PPM.Utils.csproj": {
-              "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Utils\\PPM.Utils.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Utils\\PPM.Utils.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Utils\\PPM.Utils.csproj"
             }
           }
         }

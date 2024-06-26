@@ -69,6 +69,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:3000")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials());
+});
+
+
 // Configure JWT authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -106,10 +117,8 @@ if (app.Environment.IsDevelopment())
    });
 }
 
-// Redirect HTTP to HTTPS
 app.UseHttpsRedirection();
-
-// Authenticate and authorize users
+app.UseCors("AllowSpecificOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
 

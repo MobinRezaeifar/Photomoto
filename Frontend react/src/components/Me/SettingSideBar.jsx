@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Collapse } from "antd";
 import { MdOutlineDescription } from "react-icons/md";
@@ -7,26 +7,48 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { fetchRegister } from "../../Redux/action";
-import CryptoJS from "crypto-js";
+import Cookies from "js-cookie";
 
 const SettingSideBar = ({
   ShowSettingSidebar,
   setShowSettingSidebar,
   dimensions,
-  username,
-  fullName,
-  email,
-  id,
+  User,
   Change,
-  change,
+  headers,
 }) => {
-  const [Username, setUsername] = useState(username);
-  const [FullName, setFullName] = useState(fullName);
-  const [Email, setEmail] = useState(email);
-  const Bio = useSelector((state) => state.MeBio);
-  const [Bioo, setBioo] = useState(Bio);
+  const [Username, setUsername] = useState(User.username);
+  const [FullName, setFullName] = useState(User.fullName);
+  const [Email, setEmail] = useState(User.email);
+  const [Bio, setBio] = useState(User.bio);
+  const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
+
+  useEffect(() => {
+    setUsername(User.username);
+    setFullName(User.fullName);
+    setEmail(User.email);
+    setBio(User.bio);
+  }, [ShowSettingSidebar]);
+
   let dispatch = useDispatch();
-  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
+
+  const SaveEditProfileDetail = () => {
+    axios.patch(
+      `${PUMbaseApi}Register/v1/api/UpdateRegisterByUsername?username=${User.username}`,
+      {
+        username: Username,
+        email: Email,
+        bio: Bio,
+        fullName: FullName,
+      },
+      { headers }
+    );
+    Change("change");
+    dispatch(fetchRegister());
+    Cookies.set("u", Username, { expires: 36500 });
+    setShowSettingSidebar(false);
+  };
+
   const items = [
     {
       key: "1",
@@ -59,7 +81,7 @@ const SettingSideBar = ({
               type="text"
               id="website-admin"
               class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="elonmusk"
+              placeholder="Username"
             />
           </div>
           <label
@@ -80,7 +102,7 @@ const SettingSideBar = ({
               type="text"
               id="website-admin"
               class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="elonmusk"
+              placeholder="FullName"
             />
           </div>
           <label
@@ -110,7 +132,7 @@ const SettingSideBar = ({
               type="text"
               id="website-admin"
               class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="elonmusk"
+              placeholder="Email"
             />
           </div>
 
@@ -125,25 +147,30 @@ const SettingSideBar = ({
               <MdOutlineDescription size={20} />
             </span>
             <input
-              value={Bioo}
+              value={Bio}
               onChange={(e) => {
-                setBioo(e.target.value);
+                setBio(e.target.value);
               }}
               type="text"
               id="website-admin"
               class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="elonmusk"
+              placeholder="Bio"
             />
           </div>
           <div className="w-full text-right">
             <button
               className="btn glass bg-green-700 text-white"
               style={{ transform: "scale(0.9)" }}
-              onClick={() => {
-                SaveEditProfileDetail();
-              }}
+              onClick={SaveEditProfileDetail}
             >
               Save
+            </button>
+            <button
+              className="btn glass bg-gray-600 text-white"
+              style={{ transform: "scale(0.9)" }}
+              onClick={SaveEditProfileDetail}
+            >
+              Reset
             </button>
           </div>
         </>
@@ -162,32 +189,6 @@ const SettingSideBar = ({
       ),
     },
   ];
-
-  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
-  function encryptAES(message) {
-    return CryptoJS.AES.encrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    }).toString();
-  }
-
-  const SaveEditProfileDetail = () => {
-    axios.patch(`${baseUrlDotenet}api/Registers/api/registers/${id}`, {
-      id: id,
-      username: Username,
-      email: Email,
-      bio: Bioo,
-      fullName: FullName,
-    });
-    Change("change");
-    dispatch(fetchRegister());
-    sessionStorage.setItem("u", encryptAES(Username));
-    sessionStorage.setItem("e", encryptAES(Email));
-    sessionStorage.setItem("f", encryptAES(FullName));
-    setShowSettingSidebar(false);
-  };
 
   return (
     <div

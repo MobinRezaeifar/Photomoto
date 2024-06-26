@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "antd";
 import { deleteStory, fetchStory } from "../../Redux/action";
-import VideoSrory from "./VideoSrory";
+import VideoStory from "./VideoStory";
 import { MdArrowForwardIos } from "react-icons/md";
 import { GrAdd } from "react-icons/gr";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -151,7 +151,7 @@ function ShowStoriesModel({
                             padding: "40px 0",
                           }}
                         >
-                          <VideoSrory
+                          <VideoStory
                             carouselRef={carouselRef}
                             show={show}
                             data={data}

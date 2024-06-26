@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj": {}
+    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj": {}
   },
   "projects": {
-    "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj": {
+    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj",
+        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj",
         "projectName": "PPM.Domain",
-        "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj",
+        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj",
         "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-        "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\obj\\",
+        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",

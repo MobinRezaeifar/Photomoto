@@ -41,6 +41,18 @@ builder.Services.AddSwaggerGen(c =>
     );
 });
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:3000")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials());
+});
+
+
+
 builder.Services.AddSingleton<ITokenService>(provider =>
 {
     var jwtSettings = provider.GetRequiredService<IOptions<JwtSettings>>().Value;
@@ -99,8 +111,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowSpecificOrigin");
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

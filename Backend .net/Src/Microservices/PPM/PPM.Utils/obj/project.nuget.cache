@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EfdLTsSz4APH5E0fBwL1G1GyLboWNUhjCHfF63fcJBX8CtoBZ7iIrc3BiMb+xPUsXbsWdLTlRO9PvaKBLGoZrA==",
+  "dgSpecHash": "nZRmhyw0eEG5ZBMtbBMLWLFmOgC+aO7XfeVVDS/faDGCOJeTmSosxDO0b80NJV2Z7kl2iOTK8fDpVY0Iu0azUw==",
   "success": true,
-  "projectFilePath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Utils\\PPM.Utils.csproj",
+  "projectFilePath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Utils\\PPM.Utils.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\I-Tech\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.6\\microsoft.aspnetcore.authorization.8.0.6.nupkg.sha512",
     "C:\\Users\\I-Tech\\.nuget\\packages\\microsoft.aspnetcore.metadata\\8.0.6\\microsoft.aspnetcore.metadata.8.0.6.nupkg.sha512",
