@@ -1,19 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { Flex, Input, Tag, theme, Tooltip } from "antd";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { BsBodyText } from "react-icons/bs";
-import { InboxOutlined } from "@ant-design/icons";
-import { Upload } from "antd";
-import { SiApostrophe } from "react-icons/si";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { AddPost } from "../../Redux/action";
-import CryptoJS from "crypto-js";
-import moment from "jalali-moment";
-import { AiTwotoneTags } from "react-icons/ai";
 import {
+  PlusOutlined,
   DownloadOutlined,
   RotateLeftOutlined,
   RotateRightOutlined,
@@ -22,89 +9,136 @@ import {
   DeleteOutlined,
   ZoomOutOutlined,
   CloseCircleOutlined,
+  InboxOutlined,
 } from "@ant-design/icons";
-import { Image, Space } from "antd";
+import { Flex, Input, Tag, theme, Tooltip, Upload, Image, Space } from "antd";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { BsBodyText } from "react-icons/bs";
+import { SiApostrophe } from "react-icons/si";
+import { AiTwotoneTags } from "react-icons/ai";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { AddPost } from "../../Redux/action";
+import moment from "jalali-moment";
 import isEqual from "lodash.isequal";
+import { RotatingLines } from "react-loader-spinner";
 
 const { Dragger } = Upload;
 
-function CreatePostModel({
+const CreatePostModel = ({
   show,
   dimensions,
   setShow,
   Change,
-  change,
-}) {
-  const [Desc, setDesc] = useState("");
-  const [PostImg, setPostImg] = useState("");
-  const [PostVideo, setPostVideo] = useState("");
-  const [FileMedia, setFileMedia] = useState({});
-  const baseUrlDotenet = useSelector((state) => state.baseUrlDotenet);
+  mainUser,
+  GetData,
+}) => {
+  const [desc, setDesc] = useState("");
+  const [postImg, setPostImg] = useState("");
+  const [postVideo, setPostVideo] = useState("");
+  const [fileMedia, setFileMedia] = useState({});
+  const [tags, setTags] = useState([]);
+  const [inputVisible, setInputVisible] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [editInputIndex, setEditInputIndex] = useState(-1);
+  const [editInputValue, setEditInputValue] = useState("");
+  const [IsLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
-  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
+  const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
+  const fileName = Date.now().toString();
+  const inputRef = useRef(null);
+  const editInputRef = useRef(null);
+  const { token } = theme.useToken();
 
-  function decryptAES(message) {
-    const bytes = CryptoJS.AES.decrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
+  useEffect(() => {
+    if (inputVisible) {
+      inputRef.current?.focus();
+    }
+  }, [inputVisible]);
+
+  useEffect(() => {
+    editInputRef.current?.focus();
+  }, [editInputValue]);
+
+  const handleUploadChange = async (info) => {
+    setIsLoading(true);
+    const { status, originFileObj } = info.file;
+    if (status === "uploading") return;
+
+    const form = new FormData();
+    form.append(
+      "file",
+      originFileObj,
+      originFileObj.type.startsWith("video")
+        ? `${fileName}.mp4`
+        : `${fileName}.png`
+    );
+    await axios.post(`${PFMbaseApi}api/FileManager/uploadfile`, form);
+
+    setFileMedia({
+      name: originFileObj.type.startsWith("video")
+        ? `${fileName}.mp4`
+        : `${fileName}.png`,
+      type: originFileObj.type,
     });
-    return bytes.toString(CryptoJS.enc.Utf8);
-  }
-  const props = {
-    name: "file",
-    accept: "image/*,video/*",
-    multiple: true,
-    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
-    async onChange(info) {
-      const { status } = info.file;
-      if (status !== "uploading") {
-        var form = new FormData();
-        form.append("file", info.file.originFileObj);
-        await axios.post(`${baseUrlDotenet}api/FileManager/uploadfile`, form);
-        setFileMedia(info.file);
-        if (info.file.originFileObj.type.startsWith("video")) {
-          setPostVideo(
-            `${baseUrlDotenet}api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
-          );
-        } else {
-          setPostImg(
-            `${baseUrlDotenet}api/FileManager/downloadfile?FileName=${info.file.originFileObj.name}`
-          );
-        }
-      }
-      if (status === "done") {
-        // message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === "error") {
-        // message.error(`${info.file.name} file upload failed.`);
-      }
-    },
-    onDrop(e) {
-      console.log("Dropped files", e.dataTransfer.files);
-    },
+    if (originFileObj.type.startsWith("video")) {
+      setPostVideo(
+        `${PFMbaseApi}api/FileManager/downloadfile?FileName=${fileName}.mp4`
+      );
+    } else {
+      setPostImg(
+        `${PFMbaseApi}api/FileManager/downloadfile?FileName=${fileName}.png`
+      );
+    }
+
+    if (status === "done") {
+    } else if (status === "error") {
+    }
   };
-  const now = Date.now();
-  const CreatePost = async () => {
-    setShow(false);
-    setPostImg("");
-    setPostVideo("");
-    setDesc("");
-    setTags([]);
-    setFileMedia({});
+
+  const handleCreatePost = async () => {
+    await setShow(false);
+    const now = Date.now();
     await dispatch(
       AddPost({
-        postMedia: `${baseUrlDotenet}api/FileManager/downloadfile?FileName=${FileMedia.originFileObj.name}`,
-        disc: Desc,
-        owner: decryptAES(sessionStorage.getItem("u")),
+        postMedia: fileMedia.name,
+        disc: desc,
+        owner: mainUser,
         likes: [],
-        type: FileMedia.originFileObj.type,
+        type: fileMedia.type,
         time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
         comment: [],
         tags,
       })
     );
     await Change("change");
+    setPostImg("");
+    setPostVideo("");
+    setDesc("");
+    setTags([]);
+    setFileMedia({});
+    await GetData();
+  };
+
+  const handleTagClose = (removedTag) => {
+    setTags(tags.filter((tag) => tag !== removedTag));
+  };
+
+  const handleInputConfirm = () => {
+    if (inputValue && !tags.includes(inputValue)) {
+      setTags([...tags, inputValue]);
+    }
+    setInputVisible(false);
+    setInputValue("");
+  };
+
+  const handleEditInputConfirm = () => {
+    const newTags = [...tags];
+    newTags[editInputIndex] = editInputValue;
+    setTags(newTags);
+    setEditInputIndex(-1);
+    setEditInputValue("");
   };
 
   const onDownload = (src) => {
@@ -114,7 +148,7 @@ function CreatePostModel({
         const url = URL.createObjectURL(new Blob([blob]));
         const link = document.createElement("a");
         link.href = url;
-        link.download = "image.png";
+        link.download = "media";
         document.body.appendChild(link);
         link.click();
         URL.revokeObjectURL(url);
@@ -122,88 +156,40 @@ function CreatePostModel({
       });
   };
 
-  const tagInputStyle = {
-    width: 64,
-    height: 22,
-    marginInlineEnd: 8,
-    verticalAlign: "top",
+  const props = {
+    name: "file",
+    accept: "image/*,video/*",
+    multiple: true,
+    action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+    onChange: handleUploadChange,
+    onDrop(e) {
+      console.log("Dropped files", e.dataTransfer.files);
+    },
   };
 
-  const { token } = theme.useToken();
-  const [tags, setTags] = useState([]);
-  if (FileMedia.originFileObj) {
-    if (FileMedia.originFileObj.type.startsWith("image")) {
-      tags[0] = "image";
-    }
-    if (FileMedia.originFileObj.type.startsWith("video")) {
-      tags[0] = "video";
-    }
-  }
-  const [inputVisible, setInputVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [editInputIndex, setEditInputIndex] = useState(-1);
-  const [editInputValue, setEditInputValue] = useState("");
-  const inputRef = useRef(null);
-  const editInputRef = useRef(null);
   useEffect(() => {
-    if (inputVisible) {
-      inputRef.current?.focus();
+    if (postImg || postVideo) {
+      return setIsLoading(false);
     }
-  }, [inputVisible]);
-  useEffect(() => {
-    editInputRef.current?.focus();
-  }, [editInputValue]);
-  const handleClose = (removedTag) => {
-    const newTags = tags.filter((tag) => tag !== removedTag);
-    // console.log(newTags);
-    setTags(newTags);
-  };
-  const showInput = () => {
-    setInputVisible(true);
-  };
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value.toLowerCase());
-  };
-  const handleInputConfirm = () => {
-    if (inputValue && !tags.includes(inputValue)) {
-      setTags([...tags, inputValue]);
-    }
-    setInputVisible(false);
-    setInputValue("");
-  };
-  const handleEditInputChange = (e) => {
-    setEditInputValue(e.target.value);
-  };
-  const handleEditInputConfirm = () => {
-    const newTags = [...tags];
-    newTags[editInputIndex] = editInputValue;
-    setTags(newTags);
-    setEditInputIndex(-1);
-    setEditInputValue("");
-  };
-  const tagPlusStyle = {
-    height: 22,
-    background: token.colorBgContainer,
-    borderStyle: "dashed",
-  };
+  }, [postImg || postVideo]);
+
   return (
     <div
-      className={`relative z-10 ${!show && "hidden"} `}
+      className={`relative z-10 ${!show && "hidden"}`}
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
-      id="CreatePostModel"
     >
       <div className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity"></div>
 
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           <div
-            className={`relative transform overflow-hidden rounded-lg bg-gray-700  text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[40rem] ${
+            className={`relative transform overflow-hidden rounded-lg bg-gray-700 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[40rem] ${
               dimensions.width < 640 && "mb-40"
             }`}
           >
-            <div className="bg-gray-700  px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div className="bg-gray-700 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
                 <lord-icon
                   src="https://cdn.lordicon.com/pbhjpofq.json"
@@ -214,64 +200,32 @@ function CreatePostModel({
                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                   <div className="w-full flex justify-between">
                     <h1
-                      className="text-xl font-semibold leading-6 text-[white] mt-1"
+                      className="text-xl font-semibold leading-6 text-white mt-1"
                       id="modal-title"
                     >
                       Create Post
                     </h1>
-
                     <lord-icon
                       src="https://cdn.lordicon.com/snqonmhs.json"
                       trigger="in"
                       colors="primary:#ffffff,secondary:#e83a30"
                       style={{ transform: "scale(1.3)", cursor: "pointer" }}
-                      onClick={() => {
-                        setShow(false);
-                        setDesc("");
-                        setPostImg("");
-                      }}
+                      onClick={() => setShow(false)}
                     ></lord-icon>
                   </div>
 
-                  <div className="col-span-2 mt-8">
-                    <label
-                      htmlFor="description"
-                      className="items-center gap-2  mb-2 text-[18px]  font-medium  flex"
-                    >
-                      <BsBodyText size={24} /> Description
-                    </label>
-                    <div
-                      style={{
-                        width:
-                          dimensions.width < 564
-                            ? dimensions.width - 90
-                            : "500px",
-                      }}
-                    >
-                      <CKEditor
-                        className="test"
-                        editor={ClassicEditor}
-                        data={Desc}
-                        onChange={(event, editor) => {
-                          const data = editor.getData();
-                          setDesc(data);
-                        }}
-                      />
-                    </div>
-                  </div>
                   <br />
                   <span className="flex items-center gap-2 text-[18px] font-medium">
                     <SiApostrophe size={24} /> Post Media
                   </span>
-
                   {(() => {
-                    if (PostImg || PostVideo) {
-                      if (PostImg) {
+                    if (postImg || postVideo) {
+                      if (postImg) {
                         return (
                           <div className="w-full text-center mt-4">
                             <Image
                               width={200}
-                              src={PostImg}
+                              src={postImg}
                               preview={{
                                 toolbarRender: (
                                   _,
@@ -288,7 +242,7 @@ function CreatePostModel({
                                   }
                                 ) => (
                                   <Space
-                                    size={12}
+                                    size={2}
                                     className="toolbar-wrapper rounded-[1.7rem] p-4"
                                     style={{
                                       backgroundColor: "rgba(55, 65, 81, 0.3)",
@@ -297,44 +251,81 @@ function CreatePostModel({
                                     <DeleteOutlined
                                       onClick={() => {
                                         setPostImg("");
-                                        setPostVideo("");
                                         setFileMedia({});
                                         setTags([]);
                                       }}
-                                      style={{ fontSize: "25px" }}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
                                     />
                                     <DownloadOutlined
-                                      style={{ fontSize: "25px" }}
-                                      onClick={() =>
-                                        onDownload(PostImg || PostVideo)
-                                      }
+                                      onClick={() => onDownload(postImg)}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
                                     />
                                     <SwapOutlined
-                                      style={{ fontSize: "25px" }}
-                                      rotate={90}
                                       onClick={onFlipY}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
+                                      rotate={90}
                                     />
                                     <SwapOutlined
                                       onClick={onFlipX}
-                                      style={{ fontSize: "25px" }}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
                                     />
                                     <RotateLeftOutlined
-                                      style={{ fontSize: "25px" }}
                                       onClick={onRotateLeft}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
                                     />
                                     <RotateRightOutlined
-                                      style={{ fontSize: "25px" }}
                                       onClick={onRotateRight}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
                                     />
                                     <ZoomOutOutlined
-                                      style={{ fontSize: "25px" }}
-                                      disabled={scale === 1}
                                       onClick={onZoomOut}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
+                                      disabled={scale === 1}
                                     />
                                     <ZoomInOutlined
-                                      style={{ fontSize: "25px" }}
-                                      disabled={scale === 50}
                                       onClick={onZoomIn}
+                                      style={{
+                                        fontSize:
+                                          dimensions.width > 900
+                                            ? "25px"
+                                            : "15px",
+                                      }}
+                                      disabled={scale === 50}
                                     />
                                   </Space>
                                 ),
@@ -342,19 +333,13 @@ function CreatePostModel({
                             />
                           </div>
                         );
-                      }
-                      if (PostVideo) {
+                      } else {
                         return (
                           <div className="w-full flex justify-center mt-4">
                             <span className="flex items-start justify-end">
-                              <video controls width={400} src={PostVideo} />
+                              <video controls width={400} src={postVideo} />
                               <CloseCircleOutlined
-                                onClick={() => {
-                                  setPostImg("");
-                                  setPostVideo("");
-                                  setFileMedia({});
-                                  setTags([]);
-                                }}
+                                onClick={() => setPostVideo("")}
                                 style={{
                                   fontSize: "25px",
                                   position: "absolute",
@@ -370,6 +355,7 @@ function CreatePostModel({
                         <Dragger
                           {...props}
                           style={{
+                            display: isEqual(IsLoading, true) && "none",
                             marginTop: "10px",
                             width:
                               dimensions.width < 564
@@ -381,7 +367,7 @@ function CreatePostModel({
                             <InboxOutlined />
                           </p>
                           <p
-                            className="ant-upload-text "
+                            className="ant-upload-text"
                             style={{ color: "white" }}
                           >
                             Click or drag file to this area to upload
@@ -390,13 +376,55 @@ function CreatePostModel({
                       );
                     }
                   })()}
+
+                  {IsLoading && (
+                    <div className="w-full flex justify-center">
+                      <RotatingLines
+                        visible={true}
+                        height="40"
+                        width="40"
+                        color="red"
+                        strokeColor="#ff7a01"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        ariaLabel="rotating-lines-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                    </div>
+                  )}
+
+                  <div className="col-span-2 mt-8">
+                    <label
+                      htmlFor="description"
+                      className="items-center gap-2 mb-2 text-[18px] font-medium flex"
+                    >
+                      <BsBodyText size={24} /> Description
+                    </label>
+                    <div
+                      style={{
+                        width:
+                          dimensions.width < 564
+                            ? dimensions.width - 90
+                            : "500px",
+                      }}
+                    >
+                      <CKEditor
+                        editor={ClassicEditor}
+                        data={desc}
+                        onChange={(event, editor) => setDesc(editor.getData())}
+                      />
+                    </div>
+                  </div>
+
                   <div className="mt-4">
-                    {!isEqual(FileMedia, {}) && (
-                      <h1 className="flex items-center text-[18px] font-medium gap-1 ">
+                    {!isEqual(fileMedia, {}) && (
+                      <h1 className="flex items-center text-[18px] font-medium gap-1">
                         <AiTwotoneTags size={24} />
                         Tag
                       </h1>
                     )}
+
                     <Flex gap="4px 0" className="mt-2" wrap="wrap">
                       {tags.map((tag, index) => {
                         if (editInputIndex === index) {
@@ -405,9 +433,16 @@ function CreatePostModel({
                               ref={editInputRef}
                               key={tag}
                               size="small"
-                              style={tagInputStyle}
+                              style={{
+                                width: 64,
+                                height: 22,
+                                marginInlineEnd: 8,
+                                verticalAlign: "top",
+                              }}
                               value={editInputValue}
-                              onChange={handleEditInputChange}
+                              onChange={(e) =>
+                                setEditInputValue(e.target.value)
+                              }
                               onBlur={handleEditInputConfirm}
                               onPressEnter={handleEditInputConfirm}
                             />
@@ -418,17 +453,14 @@ function CreatePostModel({
                           <Tag
                             key={tag}
                             closable={index !== 0}
-                            style={{
-                              userSelect: "none",
-                            }}
-                            onClose={() => handleClose(tag)}
+                            style={{ userSelect: "none" }}
+                            onClose={() => handleTagClose(tag)}
                           >
                             <span
-                              onDoubleClick={(e) => {
+                              onDoubleClick={() => {
                                 if (index !== 0) {
                                   setEditInputIndex(index);
                                   setEditInputValue(tag);
-                                  e.preventDefault();
                                 }
                               }}
                             >
@@ -449,18 +481,29 @@ function CreatePostModel({
                           ref={inputRef}
                           type="text"
                           size="small"
-                          style={tagInputStyle}
+                          style={{
+                            width: 64,
+                            height: 22,
+                            marginInlineEnd: 8,
+                            verticalAlign: "top",
+                          }}
                           value={inputValue}
-                          onChange={handleInputChange}
+                          onChange={(e) =>
+                            setInputValue(e.target.value.toLowerCase())
+                          }
                           onBlur={handleInputConfirm}
                           onPressEnter={handleInputConfirm}
                         />
                       ) : (
-                        !isEqual(FileMedia, {}) && (
+                        !isEqual(fileMedia, {}) && (
                           <Tag
-                            style={tagPlusStyle}
+                            style={{
+                              height: 22,
+                              background: token.colorBgContainer,
+                              borderStyle: "dashed",
+                            }}
                             icon={<PlusOutlined />}
-                            onClick={showInput}
+                            onClick={() => setInputVisible(true)}
                           >
                             New Tag
                           </Tag>
@@ -472,31 +515,27 @@ function CreatePostModel({
               </div>
             </div>
 
-            {(() => {
-              if (PostImg || PostVideo) {
-                return (
-                  <div className="bg-gray-700  px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                    <button
-                      onClick={() => CreatePost()}
-                      type="button"
-                      className="inline-flex w-full justify-center rounded-md mb-3  px-12  text-sm font-semibold text-white shadow-sm  sm:ml-3 sm:w-auto"
-                    >
-                      <lord-icon
-                        src="https://cdn.lordicon.com/dangivhk.json"
-                        trigger="hover"
-                        colors="primary:#ffffff,secondary:#08a88a"
-                        style={{ transform: "scale(1.5)", cursor: "pointer" }}
-                      ></lord-icon>
-                    </button>
-                  </div>
-                );
-              }
-            })()}
+            {postImg || postVideo ? (
+              <div className="bg-gray-700 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                <button
+                  onClick={handleCreatePost}
+                  type="button"
+                  className="inline-flex w-full justify-center rounded-md mb-3 px-12 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+                >
+                  <lord-icon
+                    src="https://cdn.lordicon.com/dangivhk.json"
+                    trigger="hover"
+                    colors="primary:#ffffff,secondary:#08a88a"
+                    style={{ transform: "scale(1.5)", cursor: "pointer" }}
+                  ></lord-icon>
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default CreatePostModel;

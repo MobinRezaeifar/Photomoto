@@ -3,33 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../Redux/action";
 import ShowPostModel from "./ShowPostModel";
 import { motion } from "framer-motion";
-import axios from "axios";
-const Postss = ({ mainUser, dimensions, User, Change, change }) => {
+const Postss = ({
+  mainUser,
+  dimensions,
+  User,
+  Change,
+  change,
+  headers,
+  Posts,
+}) => {
+  const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
   const dispatch = useDispatch();
-  const [Posts, setPosts] = useState([]);
   const [SelectePost, setSelectePost] = useState({});
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
-  const PPMbaseApi = useSelector((state) => state.PPMbaseApi);
-
-  const GetData = () => {
-    axios
-      .get(`${PPMbaseApi}Post/v1/api/Owner?owner=${mainUser}`)
-      .then((response) => {
-        setPosts(response.data);
-      })
-      .catch(() => {
-        setPosts([]);
-      });
-  };
-
-  useEffect(() => {
-    GetData();
-  }, []);
-  useEffect(() => {
-    GetData();
-  }, [change]);
 
   return (
     <div className="container">
@@ -56,7 +44,7 @@ const Postss = ({ mainUser, dimensions, User, Change, change }) => {
                         border: "1px solid #4d4c4c",
                         backgroundSize: "100%",
                       }}
-                      src={post.postMedia}
+                      src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${post.postMedia}`}
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
@@ -66,7 +54,7 @@ const Postss = ({ mainUser, dimensions, User, Change, change }) => {
                     <motion.div
                       className={`box-${index} bg-cover`}
                       style={{
-                        backgroundImage: `url(${post.postMedia})`,
+                        backgroundImage: `url(${PFMbaseApi}api/FileManager/downloadfile?FileName=${post.postMedia})`,
                         border: "1px solid #4d4c4c",
                         backgroundPosition: "center",
                         backgroundRepeat: " no-repeat",
@@ -85,7 +73,7 @@ const Postss = ({ mainUser, dimensions, User, Change, change }) => {
         </div>
       </div>
       {/* <ShowPostModel
-        ProfileImg={ProfileImg}
+        User={User}
         SelectePost={SelectePost}
         dimensions={dimensions}
         Posts={Posts}

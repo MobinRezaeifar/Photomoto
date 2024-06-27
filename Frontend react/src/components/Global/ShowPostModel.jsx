@@ -29,7 +29,14 @@ import moment from "jalali-moment";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 
-const ShowPostModel = ({ SelectePost, dimensions, Posts, change, Change }) => {
+const ShowPostModel = ({
+  User,
+  SelectePost,
+  dimensions,
+  Posts,
+  Change,
+  change,
+}) => {
   const key = CryptoJS.enc.Utf8.parse("1234567890123456");
   const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
   const dispatch = useDispatch();

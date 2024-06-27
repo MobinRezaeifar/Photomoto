@@ -10,6 +10,16 @@ builder.Services.AddSwaggerGen(c =>
         new Microsoft.OpenApi.Models.OpenApiInfo { Title = "PFM", Version = "v1" } //PFM : Photomoto File Management
     );
 });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:3000")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowCredentials());
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IManageFile, ManageFile>();
@@ -27,10 +37,11 @@ if (app.Environment.IsDevelopment())
    });
 }
 
-app.UseHttpsRedirection();
 app.UseRouting();
-app.UseHttpsRedirection();
-app.UseCors();
+app.UseHttpsRedirection();  
+app.UseCors("AllowSpecificOrigin");
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.Run();
 

@@ -12,6 +12,7 @@ import Login from "../components/Global/Login";
 import { browserName } from "react-device-detect";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import Cookies from "js-cookie";
+import { RotatingLines } from "react-loader-spinner";
 
 const Register = () => {
   const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
@@ -24,8 +25,7 @@ const Register = () => {
   const [ShowPassword, setShowPassword] = useState("");
   let navigate = useNavigate();
   const [ShowLogin, setShowLogin] = useState(false);
-
- 
+  const [isLoading, setIsLoading] = useState(false); // Step 1: Add loading state
 
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
@@ -54,6 +54,7 @@ const Register = () => {
   }, [dispatch]);
 
   const submitRegister = async () => {
+    setIsLoading(true);
     axios
       .post(`${PUMbaseApi}Register/v1/api/CreateRegister`, {
         username: Username,
@@ -66,6 +67,7 @@ const Register = () => {
       })
       .then(
         (x) => {
+          setIsLoading(false); // Stop loading
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -91,6 +93,7 @@ const Register = () => {
           Cookies.set("u", Username, { expires: 36500 });
         },
         (error) => {
+          setIsLoading(false); // Stop loading
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -255,6 +258,7 @@ const Register = () => {
                 } `}
               >
                 <a
+                  className="cursor-pointer"
                   onClick={() => {
                     setShowLogin(true);
                   }}
@@ -262,6 +266,7 @@ const Register = () => {
                   Login
                 </a>
                 <a
+                  className="cursor-pointer"
                   onClick={() => {
                     setShowLogin(true);
                   }}
@@ -373,18 +378,34 @@ const Register = () => {
                   </label>
                 </li>
               </ul>
-
-              <div className="button-container cursor-pointer">
-                <div
-                  tabIndex={8}
-                  className="reset-button-container"
-                  onClick={submitRegister}
-                >
-                  <div id="reset-btn" className="reset-button">
-                    Submit
+              {isLoading ? (
+                <div className="flex justify-center w-full">
+                  <RotatingLines
+                    visible={true}
+                    height="40"
+                    width="40"
+                    color="red"
+                    strokeColor="#ff7a01"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    ariaLabel="rotating-lines-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                </div>
+              ) : (
+                <div className="button-container cursor-pointer">
+                  <div
+                    tabIndex={8}
+                    className="reset-button-container"
+                    onClick={submitRegister}
+                  >
+                    <div id="reset-btn" className="reset-button">
+                      Submit
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

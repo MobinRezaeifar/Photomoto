@@ -7,11 +7,13 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { RotatingLines } from "react-loader-spinner";
 
 const Login = ({ ShowLogin, setShowLogin }) => {
   const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
@@ -26,54 +28,55 @@ const Login = ({ ShowLogin, setShowLogin }) => {
   };
 
   const LoginUser = () => {
-    if (Username && Password) {
-      axios
-        .post(`${PUMbaseApi}Register/v1/api/login`, {
-          username: Username,
-          password: Password,
-        })
-        .then(
-          (x) => {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Successful Login",
-            });
-            setPassword("");
-            setUsername("");
-            navigate("/photomoto");
-            Cookies.set("jwt", x.data.token, { expires: 36500 });
-            Cookies.set("u", Username, { expires: 36500 });
-          },
-          (error) => {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "error",
-              title: error.response.data,
-            });
-          }
-        );
-    }
+    setLoading(true);
+    axios
+      .post(`${PUMbaseApi}Register/v1/api/login`, {
+        username: Username,
+        password: Password,
+      })
+      .then(
+        (x) => {
+          setLoading(false);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Successful Login",
+          });
+          setPassword("");
+          setUsername("");
+          navigate("/photomoto");
+          Cookies.set("jwt", x.data.token, { expires: 36500 });
+          Cookies.set("u", Username, { expires: 36500 });
+        },
+        (error) => {
+          setLoading(false);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            },
+          });
+          Toast.fire({
+            icon: "error",
+            title: error.response.data,
+          });
+        }
+      );
   };
 
   return (
@@ -87,7 +90,6 @@ const Login = ({ ShowLogin, setShowLogin }) => {
             : "fixed z-40 w-full overflow-y-auto bg-white border-t border-gray-200 rounded-t-lg dark:border-gray-700 dark:bg-gray-800 transition-transform bottom-0 left-0 right-0 translate-y-full bottom-[60px]"
         } `}
         tabindex="-1"
-        // aria-labelledby="drawer-swipe-label"
         aria-modal="true"
       >
         <div
@@ -113,21 +115,40 @@ const Login = ({ ShowLogin, setShowLogin }) => {
               <span className="text-2xl text-white font-bold">Login</span>
             </div>
             <div>
-              {Password && Username && (
-                <lord-icon
-                  tabIndex={!ShowLogin ? -1 : 3}
-                  onClick={LoginUser}
-                  src="https://cdn.lordicon.com/dangivhk.json"
-                  trigger="hover"
-                  colors="primary:#ffffff,secondary:#ff7a01"
-                  style={{
-                    transform: "scale(1.3)",
-                    cursor: "pointer",
-                    position: "relative",
-                    top: "5px",
-                    right: "10px",
-                  }}
-                ></lord-icon>
+              {(() => {
+                if (Password && Username && !loading) {
+                  return (
+                    <lord-icon
+                      tabIndex={!ShowLogin ? -1 : 3}
+                      onClick={LoginUser}
+                      src="https://cdn.lordicon.com/dangivhk.json"
+                      trigger="hover"
+                      colors="primary:#ffffff,secondary:#ff7a01"
+                      style={{
+                        transform: "scale(1.3)",
+                        cursor: "pointer",
+                        position: "relative",
+                        top: "5px",
+                        right: "10px",
+                      }}
+                    ></lord-icon>
+                  );
+                }
+              })()}
+
+              {loading && (
+                <RotatingLines
+                  visible={true}
+                  height="40"
+                  width="40"
+                  color="red"
+                  strokeColor="#ff7a01"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  ariaLabel="rotating-lines-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
               )}
             </div>
           </h5>

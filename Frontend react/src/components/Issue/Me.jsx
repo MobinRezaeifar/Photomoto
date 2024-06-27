@@ -1,22 +1,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
-import CryptoJS from "crypto-js";
 import { IoSettingsOutline } from "react-icons/io5";
-import { Avatar, Badge } from "antd";
+import { Avatar, Badge, Spin } from "antd";
 import { BiSolidAddToQueue } from "react-icons/bi";
 import { IoIosAddCircle } from "react-icons/io";
 import { Button, Upload } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
-import { fetchRegister, updatePost, updateRegister } from "../../Redux/action";
-import { BsChatText } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 import CreatePostModel from "../Me/CreatePostModel";
 import { Empty } from "antd";
 import Postss from "../Global/Postss";
 import SettingSideBar from "../Me/SettingSideBar";
 import Cookies from "js-cookie";
+import { RotatingLines } from "react-loader-spinner";
 
 const Me = ({ Change, change }) => {
   const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
@@ -26,6 +23,8 @@ const Me = ({ Change, change }) => {
   const [Post, setPost] = useState();
   const [User, setUser] = useState({});
   const [Connection, setConnection] = useState();
+  const [Posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   let mainUser = Cookies.get("u");
   const [ShowSettingSidebar, setShowSettingSidebar] = useState(false);
   const [dimensions, setDimensions] = useState({
@@ -54,31 +53,34 @@ const Me = ({ Change, change }) => {
     };
   }, []);
 
-  const GetData = () => {
-    axios
-      .get(
-        `${PUMbaseApi}Connection/v1/api/relations?username=${mainUser}&status=accept`,
-        { headers }
-      )
-      .then((x) => setConnection(x.data.length));
+  const GetData = async () => {
     try {
-      axios
-        .get(`${PPMbaseApi}Post/v1/api/PostCount?owner=${mainUser}`, {
+      const [connectionRes, postRes, userRes, postsRes] = await Promise.all([
+        axios.get(
+          `${PUMbaseApi}Connection/v1/api/relations?username=${mainUser}&status=accept`,
+          { headers }
+        ),
+        axios.get(`${PPMbaseApi}Post/v1/api/PostCount?owner=${mainUser}`, {
           headers,
-        })
-        .then((x) => setPost(x.data))
-        .catch((error) => {
-          console.error("Error occurred during the API call:", error);
-        });
-    } catch (error) {
-      console.error("An unexpected error occurred:", error);
-    }
+        }),
+        axios.get(
+          `${PUMbaseApi}Register/v1/api/GetByUsername?username=${mainUser}`,
+          { headers }
+        ),
+        axios.get(`${PPMbaseApi}Post/v1/api/Owner?owner=${mainUser}`, {
+          headers,
+        }),
+      ]);
 
-    axios
-      .get(`${PUMbaseApi}Register/v1/api/GetByUsername?username=${mainUser}`, {
-        headers,
-      })
-      .then((x) => setUser(x.data));
+      setConnection(connectionRes.data.length);
+      setPost(postRes.data);
+      setUser(userRes.data);
+      setPosts(postsRes.data);
+    } catch (error) {
+      console.error("Error occurred during the API call:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   let fileName = Date.now().toString() + ".png";
@@ -113,9 +115,28 @@ const Me = ({ Change, change }) => {
     GetData();
   }, [change]);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <RotatingLines
+          visible={true}
+          height="70"
+          width="70"
+          color="red"
+          strokeColor="#ff7a01"
+          strokeWidth="5"
+          animationDuration="0.75"
+          ariaLabel="rotating-lines-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="h-full overflow-y-auto w-full ">
-      <div className="flex justify-between w-full items-center  p-8">
+    <div className="h-full overflow-y-auto w-full">
+      <div className="flex justify-between w-full items-center p-8">
         <span
           className={`${
             dimensions.width > 900 ? "text-4xl" : "text-2xl"
@@ -126,7 +147,6 @@ const Me = ({ Change, change }) => {
         <span className="flex items-center gap-2">
           <BiSolidAddToQueue
             onClick={() => {
-              // navigate("/photomoto/edit");
               setShowCreatePostModel(true);
             }}
             title="Create Post"
@@ -141,8 +161,10 @@ const Me = ({ Change, change }) => {
             size={dimensions.width > 900 ? 38 : 32}
           />
           <CreatePostModel
+            GetData={GetData}
             Change={Change}
             change={change}
+            mainUser={mainUser}
             show={ShowCreatePostModel}
             setShow={setShowCreatePostModel}
             dimensions={dimensions}
@@ -192,7 +214,7 @@ const Me = ({ Change, change }) => {
         </Badge>
 
         <div
-          className={`flex justify-between gap-4  items-center ${
+          className={`flex justify-between gap-4 items-center ${
             dimensions.width > 900 ? "text-2xl" : "text-xl"
           }`}
           style={{ marginTop: dimensions.width > 900 ? "-40px" : "-20px" }}
@@ -206,50 +228,11 @@ const Me = ({ Change, change }) => {
           </div>
         </div>
       </div>
-      <div className="px-10 py-4 flex items-center justify-between ">
+      <div className="px-10 py-4 flex items-center justify-between">
         <div className="flex flex-col">
           <span className="text-xl font-serif text-white">{User.fullName}</span>
           <span>{User.bio}</span>
         </div>
-        {sessionStorage.getItem("u") != mainUser && (
-          <div className="flex gap-2">
-            <div
-              style={{
-                boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-                // backgroundColor: "red",
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              className="bg-slate-600 cursor-pointer"
-            >
-              <lord-icon
-                src="https://cdn.lordicon.com/cvmfhtvr.json"
-                trigger="hover"
-                colors="primary:#e4e4e4,secondary:#e4e4e4"
-                style={{ transform: "scale(1.3)" }}
-              ></lord-icon>
-            </div>
-            <div
-              style={{
-                boxShadow: "1px 3px 13px rgba(0, 0, 0, 0.427)",
-                // backgroundColor: "red",
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              className="bg-slate-600 cursor-pointer "
-            >
-              <BsChatText size={27} className="animated3" />
-            </div>
-          </div>
-        )}
       </div>
       <div className="flex justify-center text-center px-8 mb-2">
         <div
@@ -287,7 +270,6 @@ const Me = ({ Change, change }) => {
           />
         </div>
       </div>
-      {/*  */}
       <div className="px-8 py-4 w-full">
         {(() => {
           if (SelecteTab == "posts") {
@@ -296,6 +278,8 @@ const Me = ({ Change, change }) => {
             } else {
               return (
                 <Postss
+                  Posts={Posts}
+                  headers={headers}
                   mainUser={mainUser}
                   dimensions={dimensions}
                   User={User}
