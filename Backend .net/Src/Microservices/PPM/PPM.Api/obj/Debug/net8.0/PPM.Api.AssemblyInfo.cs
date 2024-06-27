@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PPM.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1463d29c4ae0a2c16e68e91c3895ec774422e4c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+acde4c633961f7eb9dcdb453e9290b55836844a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("PPM.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PPM.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

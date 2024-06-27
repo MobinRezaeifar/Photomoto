@@ -177,7 +177,6 @@ public class RegistersControllers : ControllerBase
 
     [HttpPost]
     [Route("CreateRegister")]
-
     public async Task<IActionResult> PostRegister(Register register)
     {
         try
