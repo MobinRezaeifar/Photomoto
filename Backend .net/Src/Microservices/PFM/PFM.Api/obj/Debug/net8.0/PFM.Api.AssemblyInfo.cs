@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PFM.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1463d29c4ae0a2c16e68e91c3895ec774422e4c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3d5f61181ca26576687367a5b4dd13ebd1d7dbb")]
 [assembly: System.Reflection.AssemblyProductAttribute("PFM.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PFM.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
