@@ -28,82 +28,43 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "jalali-moment";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const ShowPostModel = ({
   User,
   SelectePost,
   dimensions,
-  Posts,
   Change,
   change,
+  showPostModel,
+  setshowPostModel,
+  headers,
 }) => {
-  const key = CryptoJS.enc.Utf8.parse("1234567890123456");
-  const iv = CryptoJS.enc.Utf8.parse("1234567890123456");
   const dispatch = useDispatch();
-  const Registers = useSelector((state) => state.Registers);
-  const Connections = useSelector((state) => state.Connections);
   const [ShowComment, setShowComment] = useState(false);
   const [commentText, setcommentText] = useState("");
-  const [Post, setPost] = useState({});
-  const showPostModel = useSelector((state) => state.ShowPostModel);
-  const [ProfileImg, setProfileImg] = useState("");
-  let navigate = useNavigate();
   const baseUrlReact = useSelector((state) => state.baseUrlReact);
-  useEffect(() => {
-    dispatch(fetchRegister());
-    dispatch(fetchPosts());
-    dispatch(fetchConnection());
-  }, []);
+  const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
+  const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
+  const PPMbaseApi = useSelector((state) => state.PPMbaseApi);
+  let navigate = useNavigate();
 
-  useEffect(() => {
-    Posts.map((data) => {
-      if (data.id == SelectePost) {
-        setPost(data);
-      }
-    });
-  });
-
-  useEffect(() => {
-    dispatch(fetchRegister());
-    dispatch(fetchPosts());
-    dispatch(fetchConnection());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchConnection());
-  }, [change]);
-
-  function decryptAES(message) {
-    const bytes = CryptoJS.AES.decrypt(message, key, {
-      iv: iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    });
-    return bytes.toString(CryptoJS.enc.Utf8);
-  }
   let iconSize = dimensions.width > 900 ? 30 : 25;
   let LikedProfile = dimensions.width > 900 ? "w-10 h-10" : "w-7 h-7";
 
   const LikePost = async () => {
-    await dispatch(
-      updatePost(Post.id, {
-        ...Post,
-        likes: [
-          ...Post.likes,
-          {
-            username: decryptAES(sessionStorage.getItem("u")),
-            profileImg: ProfileImg,
-          },
-        ],
-      })
+    await axios.patch(
+      `${PPMbaseApi}Post/v1/api/UpdatePost?id=${SelectePost.id}`,
+      {
+        likes: [...SelectePost.likes, Cookies.get("u")],
+      },
+      { headers }
     );
-
-    await dispatch(fetchRegister());
-    await dispatch(fetchPosts());
   };
 
   const items = [];
-  if (decryptAES(sessionStorage.getItem("u")) == Post.owner) {
+  if (Cookies.get("u") == SelectePost.owner) {
     items.push({
       key: "1",
       label: (
@@ -122,10 +83,7 @@ const ShowPostModel = ({
             className="flex items-center text-lg "
             onClick={async () => {
               setShowComment(false);
-              dispatch({
-                type: "SHOWPOSTMODEL",
-                payload: false,
-              });
+              setshowPostModel(false);
             }}
           >
             <IoClose size={24} /> Close
@@ -133,13 +91,8 @@ const ShowPostModel = ({
           <span
             className="flex items-center text-lg "
             onClick={async () => {
-              await dispatch(deletePost(Post.id));
-              dispatch({
-                type: "SHOWPOSTMODEL",
-                payload: false,
-              });
-              await dispatch(fetchRegister());
-              await Change("change");
+              await dispatch(deletePost(SelectePost.id));
+              setshowPostModel(false);
             }}
           >
             <RiDeleteBin6Line size={24} /> Delete Post
@@ -162,10 +115,7 @@ const ShowPostModel = ({
           className="flex items-center text-lg text-red-500"
           onClick={async () => {
             setShowComment(false);
-            dispatch({
-              type: "SHOWPOSTMODEL",
-              payload: false,
-            });
+            setshowPostModel(false);
           }}
         >
           <IoClose size={24} /> Close
@@ -177,81 +127,67 @@ const ShowPostModel = ({
   const now = Date.now();
   const SendComment = async () => {
     await dispatch(
-      updatePost(Post.id, {
-        ...Post,
+      updatePost(SelectePost.id, {
+        ...SelectePost,
         comment: [
-          ...Post.comment,
+          ...SelectePost.comment,
           {
             text: commentText,
-            owner: decryptAES(sessionStorage.getItem("u")),
-            profileImg: ProfileImg,
+            owner: Cookies.get("u"),
             time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
           },
         ],
       })
     );
-    await dispatch(fetchPosts());
     setcommentText("");
   };
 
-  useEffect(() => {
-    Registers.map(async (data) => {
-      if (data.username == decryptAES(sessionStorage.getItem("u"))) {
-        if (data.profileImg) {
-          setProfileImg(data.profileImg);
-        } else {
-          setProfileImg("https://wallpapercave.com/dwp1x/wp9566386.jpg");
-        }
-      }
-    });
-  });
-
   const handelConnection = async () => {
-    let ConnectionStatus = Connections.some(
-      (x) =>
-        x.relation ==
-          decryptAES(sessionStorage.getItem("u")) + "," + Post.owner ||
-        x.relation == Post.owner + "," + decryptAES(sessionStorage.getItem("u"))
-    );
-    if (!ConnectionStatus) {
-      await dispatch(
-        AddConnection({
-          id: Date.now() + "",
-          sender: decryptAES(sessionStorage.getItem("u")),
-          receiver: Post.owner,
-          time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-          status: "send",
-          relation: decryptAES(sessionStorage.getItem("u")) + "," + Post.owner,
-        })
-      );
-      await Change("change");
-    }
+    // let ConnectionStatus = Connections.some(
+    //   (x) =>
+    //     x.relation ==
+    //       decryptAES(sessionStorage.getItem("u")) + "," + Post.owner ||
+    //     x.relation == Post.owner + "," + decryptAES(sessionStorage.getItem("u"))
+    // );
+    // if (!ConnectionStatus) {
+    //   await dispatch(
+    //     AddConnection({
+    //       id: Date.now() + "",
+    //       sender: decryptAES(sessionStorage.getItem("u")),
+    //       receiver: Post.owner,
+    //       time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+    //       status: "send",
+    //       relation: decryptAES(sessionStorage.getItem("u")) + "," + Post.owner,
+    //     })
+    //   );
+    //   await Change("change");
+    // }
   };
   const AcceptConnection = (id) => {
-    Connections.map(async (data) => {
-      if (data.id == id) {
-        await dispatch(
-          UpdateConnection(id, {
-            ...data,
-            status: "accept",
-          })
-        );
-        await Change("change");
-      }
-    });
+    // Connections.map(async (data) => {
+    //   if (data.id == id) {
+    //     await dispatch(
+    //       UpdateConnection(id, {
+    //         ...data,
+    //         status: "accept",
+    //       })
+    //     );
+    //     await Change("change");
+    //   }
+    // });
   };
   const RejectConnection = (id) => {
-    Connections.map(async (data) => {
-      if (data.id == id) {
-        await dispatch(
-          UpdateConnection(id, {
-            ...data,
-            status: "reject",
-          })
-        );
-        await Change("change");
-      }
-    });
+    // Connections.map(async (data) => {
+    //   if (data.id == id) {
+    //     await dispatch(
+    //       UpdateConnection(id, {
+    //         ...data,
+    //         status: "reject",
+    //       })
+    //     );
+    //     await Change("change");
+    //   }
+    // });
   };
   const DisConnect = (connectionId) => {
     dispatch(deleteConnection(connectionId));
@@ -275,25 +211,25 @@ const ShowPostModel = ({
                 className={`h-5 flex items-center justify-between px-4 py-8 `}
               >
                 <div className="flex items-center gap-1">
-                  <Avatar src={Post.profileImg} size="large" />
+                  <Avatar
+                    src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${User.profileImg}`}
+                    size="large"
+                  />
                   <span
                     onClick={() => {
                       if (
                         window.location.href !==
-                        `${baseUrlReact}photomoto/${Post.owner}`
+                        `${baseUrlReact}photomoto/${SelectePost.owner}`
                       ) {
-                        navigate(`${Post.owner}`);
-                        dispatch({
-                          type: "SHOWPOSTMODEL",
-                          payload: false,
-                        });
+                        navigate(`${SelectePost.owner}`);
+                        setshowPostModel(false);
                       }
                     }}
                     className="text-2xl cursor-pointer"
                   >
-                    {Post.owner}
+                    {SelectePost.owner}
                   </span>
-                  {(() => {
+                  {/* {(() => {
                     if (Post.owner != decryptAES(sessionStorage.getItem("u"))) {
                       let ConnectionStatus = Connections.some(
                         (x) =>
@@ -381,7 +317,7 @@ const ShowPostModel = ({
                         );
                       }
                     }
-                  })()}
+                  })()} */}
                 </div>
                 <div className="flex items-center">
                   <lord-icon
@@ -390,24 +326,21 @@ const ShowPostModel = ({
                     colors="primary:#ffffff,secondary:#e83a30"
                     style={{ transform: "scale(1.3)", cursor: "pointer" }}
                     onClick={() => {
-                      dispatch({
-                        type: "SHOWPOSTMODEL",
-                        payload: false,
-                      });
+                      setshowPostModel(false);
                     }}
                   ></lord-icon>
                 </div>
               </div>
             )}
-            {Post.type && Post.type.startsWith("video") ? (
+            {SelectePost.type && SelectePost.type.startsWith("video") ? (
               <video
-                src={Post.postMedia}
+                src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${SelectePost.postMedia}`}
                 className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
                 controls
               />
             ) : (
               <img
-                src={Post.postMedia}
+                src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${SelectePost.postMedia}`}
                 className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
                 style={{
                   backgroundSize: "cover",
@@ -420,7 +353,7 @@ const ShowPostModel = ({
                 dimensions.width > 900 ? "px-4" : "px-2"
               }`}
             >
-              {!isEqual(Post.likes, []) ? (
+              {!isEqual(SelectePost.likes, []) ? (
                 <div className="flex items-center gap-1">
                   <Avatar.Group
                     maxCount={4}
@@ -428,11 +361,11 @@ const ShowPostModel = ({
                     size="large"
                     maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
                   >
-                    {(() => {
+                    {/* {(() => {
                       let counter = 0;
                       if (counter < 4) {
-                        if (Post.likes) {
-                          return Post.likes.map((data) => {
+                        if (SelectePost.likes) {
+                          return SelectePost.likes.map((data) => {
                             counter++;
                             return Registers.map((dataa) => {
                               if (data.username == dataa.username) {
@@ -442,10 +375,12 @@ const ShowPostModel = ({
                           });
                         }
                       }
-                    })()}
+                    })()} */}
                   </Avatar.Group>
-                  {Post.likes && (
-                    <span>Liked by {Post.likes[0].username} and other</span>
+                  {SelectePost.likes && (
+                    <span>
+                      Liked by {SelectePost.likes[0].username} and other
+                    </span>
                   )}
                 </div>
               ) : (
@@ -454,12 +389,10 @@ const ShowPostModel = ({
               <div className="flex justify-around px-2 pt-4 gap-2">
                 <span className="flex flex-col items-center">
                   {(() => {
-                    if (!isEqual(Post, {})) {
-                      if (!isEqual(Post.likes, [])) {
-                        let likeStatus = Post.likes.some(
-                          (x) =>
-                            x.username ==
-                            decryptAES(sessionStorage.getItem("u"))
+                    if (!isEqual(SelectePost, {})) {
+                      if (!isEqual(SelectePost.likes, [])) {
+                        let likeStatus = SelectePost.likes.some(
+                          (x) => x.username == Cookies.get("u")
                         );
                         if (likeStatus) {
                           return (
@@ -475,7 +408,7 @@ const ShowPostModel = ({
                               size={iconSize}
                               style={{ cursor: "pointer" }}
                               onClick={() => {
-                                LikePost(Post.id);
+                                LikePost(SelectePost.id);
                               }}
                             />
                           );
@@ -486,7 +419,7 @@ const ShowPostModel = ({
                             size={iconSize}
                             style={{ cursor: "pointer" }}
                             onClick={() => {
-                              LikePost(Post.id);
+                              LikePost(SelectePost.id);
                             }}
                           />
                         );
@@ -494,7 +427,7 @@ const ShowPostModel = ({
                     }
                   })()}
 
-                  <span>{Post.likes && Post.likes.length}</span>
+                  <span>{SelectePost.likes && SelectePost.likes.length}</span>
                 </span>
 
                 <span
@@ -505,7 +438,7 @@ const ShowPostModel = ({
                     size={iconSize}
                     style={{ cursor: "pointer" }}
                   />
-                  {Post.comment && Post.comment.length}
+                  {SelectePost.comment && SelectePost.comment.length}
                 </span>
                 <LuShare2 size={iconSize} style={{ cursor: "pointer" }} />
 
@@ -521,18 +454,19 @@ const ShowPostModel = ({
               </div>
             </div>
             <div className="flex px-4  gap-2 mb-1">
-              <span className=" text-xl">{Post.owner}</span>
+              <span className=" text-xl">{SelectePost.owner}</span>
               <div
-                dangerouslySetInnerHTML={{ __html: Post.disc }}
+                dangerouslySetInnerHTML={{ __html: SelectePost.disc }}
                 style={{ color: "white", fontSize: "20px" }}
               />
             </div>
             <div className="px-4 flex flex-col">
               <div className="flex gap-1 mb-1 text-blue-600">
-                {Post.tags && Post.tags.map((data) => <h1>#{data}</h1>)}
+                {SelectePost.tags &&
+                  SelectePost.tags.map((data) => <h1>#{data}</h1>)}
               </div>
               {(() => {
-                if (!isEqual(Post.comment, [])) {
+                if (!isEqual(SelectePost.comment, [])) {
                   if (ShowComment) {
                     return (
                       <span
@@ -549,7 +483,9 @@ const ShowPostModel = ({
                         onClick={() => setShowComment(true)}
                         className="cursor-pointer"
                       >
-                        View All {Post.comment && Post.comment.length} Comments
+                        View All{" "}
+                        {SelectePost.comment && SelectePost.comment.length}{" "}
+                        Comments
                       </span>
                     );
                   }
@@ -567,10 +503,10 @@ const ShowPostModel = ({
               <div className="h-[70%] w-full  p-4 ">
                 <div
                   className={`overflow-y-auto  ${
-                    isEqual(Post.comment, []) ? "h-[1rem]" : "h-[10rem]"
+                    isEqual(SelectePost.comment, []) ? "h-[1rem]" : "h-[10rem]"
                   }`}
                 >
-                  {Post.comment.map((data) => {
+                  {SelectePost.comment.map((data) => {
                     return (
                       <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700 items-center">
                         <div class="flex-shrink-0">
@@ -616,7 +552,9 @@ const ShowPostModel = ({
               </div>
             )}
             <div className=" w-full text-right px-4 pb-2">
-              <span className=" text-sm text-[#80808085]">°{Post.time}°</span>
+              <span className=" text-sm text-[#80808085]">
+                °{SelectePost.time}°
+              </span>
             </div>
           </div>
         </div>

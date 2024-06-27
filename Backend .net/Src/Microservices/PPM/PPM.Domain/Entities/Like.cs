@@ -6,9 +6,5 @@ namespace PPM.Domain.Entities;
     {
         [BsonElement("username")]
         public string? Username { get; set; }
-        [BsonElement("profileImg")]
-        public string? ProfileImg { get; set; }
-
-    
     }
 

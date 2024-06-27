@@ -3,18 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../Redux/action";
 import ShowPostModel from "./ShowPostModel";
 import { motion } from "framer-motion";
-const Postss = ({
-  mainUser,
-  dimensions,
-  User,
-  Change,
-  change,
-  headers,
-  Posts,
-}) => {
+const Postss = ({ dimensions, User, Change, change, headers, Posts }) => {
   const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
   const dispatch = useDispatch();
   const [SelectePost, setSelectePost] = useState({});
+  const [showPostModel, setshowPostModel] = useState(false);
+
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
@@ -29,11 +23,8 @@ const Postss = ({
                 className="col-span-1 cursor-pointer"
                 key={index}
                 onClick={() => {
-                  dispatch({
-                    type: "SHOWPOSTMODEL",
-                    payload: true,
-                  });
-                  setSelectePost(post.id);
+                  setSelectePost(post);
+                  setshowPostModel(true);
                 }}
               >
                 <a target="_blank">
@@ -72,14 +63,16 @@ const Postss = ({
           })}
         </div>
       </div>
-      {/* <ShowPostModel
+      <ShowPostModel
+        showPostModel={showPostModel}
+        setshowPostModel={setshowPostModel}
         User={User}
         SelectePost={SelectePost}
         dimensions={dimensions}
-        Posts={Posts}
         Change={Change}
         change={change}
-      /> */}
+        headers={headers}
+      />
     </div>
   );
 };

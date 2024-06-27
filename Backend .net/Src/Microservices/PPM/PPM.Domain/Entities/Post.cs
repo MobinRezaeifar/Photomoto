@@ -20,7 +20,7 @@ namespace PPM.Domain.Entities
         public string? Owner { get; set; }
 
         [BsonElement("likes")]
-        public List<Like> Likes { get; set; } = new List<Like>();
+        public List<string> Likes { get; set; } = new List<string>();
 
         [BsonElement("type")]
         public string? Type { get; set; }
