@@ -1357,27 +1357,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\I-Tech\\.nuget\\packages\\": {}
+    "/home/codespace/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
+      "projectUniqueName": "/workspaces/Photomoto/Backend .net/Src/Microservices/PFM/PFM.Api/PFM.Api.csproj",
       "projectName": "PFM.Api",
-      "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PFM\\PFM.Api\\PFM.Api.csproj",
-      "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PFM\\PFM.Api\\obj\\",
+      "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PFM/PFM.Api/PFM.Api.csproj",
+      "packagesPath": "/home/codespace/.nuget/packages/",
+      "outputPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PFM/PFM.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/codespace/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1449,7 +1446,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
