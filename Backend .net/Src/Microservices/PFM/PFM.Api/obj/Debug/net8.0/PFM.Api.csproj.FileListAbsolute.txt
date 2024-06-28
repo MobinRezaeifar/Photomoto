@@ -157,6 +157,9 @@ H:/programming/react/photomoto/Backend .net/Src/Microservices/PFM/PFM.Api/obj/De
 /workspaces/Photomoto/Backend .net/Src/Microservices/PFM/PFM.Api/obj/Debug/net8.0/PFM.Api.pdb
 /workspaces/Photomoto/Backend .net/Src/Microservices/PFM/PFM.Api/obj/Debug/net8.0/PFM.Api.genruntimeconfig.cache
 /workspaces/Photomoto/Backend .net/Src/Microservices/PFM/PFM.Api/obj/Debug/net8.0/ref/PFM.Api.dll
+<<<<<<< HEAD
 H:\programming\react\photomoto\Backend .net\Src\Microservices\PFM\PFM.Api\obj\Debug\net8.0\PFM.Api.dll
 H:\programming\react\photomoto\Backend .net\Src\Microservices\PFM\PFM.Api\obj\Debug\net8.0\refint\PFM.Api.dll
 H:\programming\react\photomoto\Backend .net\Src\Microservices\PFM\PFM.Api\obj\Debug\net8.0\PFM.Api.pdb
+=======
+>>>>>>> 03cff36944b0136eb58c5f230dcf94f1737eff89
