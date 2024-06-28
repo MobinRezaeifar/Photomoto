@@ -8,7 +8,7 @@ namespace PFM.Api.Controllers;
 [ApiController]
 public class FileManagerController : ControllerBase
 {
-    private readonly IManageFile _iManageImage;
+    private readonly IManageFile _iManageImage; 
     public FileManagerController(IManageFile iManageImage)
     {
         _iManageImage = iManageImage;
