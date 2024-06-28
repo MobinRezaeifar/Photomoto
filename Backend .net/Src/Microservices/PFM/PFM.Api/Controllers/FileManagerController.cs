@@ -8,10 +8,10 @@ namespace PFM.Api.Controllers;
 [ApiController]
 public class FileManagerController : ControllerBase
 {
-    private readonly IManageFile _iManageImage; 
-    public FileManagerController(IManageFile iManageImage)
+    private readonly IManageFile _manageFile;
+    public FileManagerController(IManageFile manageFile)
     {
-        _iManageImage = iManageImage;
+        _manageFile = manageFile;
     }
 
     [HttpPost]
@@ -19,16 +19,15 @@ public class FileManagerController : ControllerBase
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> UploadFile(IFormFile file)
     {
-        var result = await _iManageImage.UploadFile(file);
+        var result = await _manageFile.UploadFile(file);
         return Ok(result);
     }
 
     [HttpGet]
     [Route("downloadfile")]
-    public async Task<IActionResult> DownloadFile(string FileName)
+    public async Task<IActionResult> DownloadFile(string fileName)
     {
-        var result = await _iManageImage.DownloadFile(FileName);
+        var result = await _manageFile.DownloadFile(fileName);
         return File(result.Item1, result.Item2, true);
     }
 }
-

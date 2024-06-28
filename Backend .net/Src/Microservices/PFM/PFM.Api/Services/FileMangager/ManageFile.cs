@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.StaticFiles;
-using PFM.Api.Hepler;
+using PFM.Api.Helper;
 using ImageMagick;
 using MediaToolkit;
 using MediaToolkit.Model;
@@ -9,38 +9,38 @@ namespace PFM.Api.Services.FileMangager;
 
 public class ManageFile : IManageFile
 {
-    public async Task<string> UploadFile(IFormFile _IFormFile)
+    public async Task<string> UploadFile(IFormFile formFile)
     {
-        string FileName = "";
+        string fileName = "";
         try
         {
-            FileInfo _FileInfo = new FileInfo(_IFormFile.FileName);
-            FileName = _IFormFile.FileName;
-            var _GetFilePath = Common.GetFilePath(FileName);
+            FileInfo fileInfo = new FileInfo(formFile.FileName);
+            fileName = formFile.FileName;
+            var filePath = Common.GetFilePath(fileName);
 
-            if (_IFormFile.ContentType.StartsWith("image"))
+            if (formFile.ContentType.StartsWith("image"))
             {
                 using (var memoryStream = new MemoryStream())
                 {
-                    await _IFormFile.CopyToAsync(memoryStream);
+                    await formFile.CopyToAsync(memoryStream);
                     using (var image = new MagickImage(memoryStream.ToArray()))
                     {
                         image.Resize(800, 800);
                         image.Quality = 75;
-                        image.Write(_GetFilePath);
+                        image.Write(filePath);
                     }
                 }
             }
-            else if (_IFormFile.ContentType.StartsWith("video"))
+            else if (formFile.ContentType.StartsWith("video"))
             {
                 var tempFilePath = Path.GetTempFileName();
                 using (var tempFileStream = new FileStream(tempFilePath, FileMode.Create))
                 {
-                    await _IFormFile.CopyToAsync(tempFileStream);
+                    await formFile.CopyToAsync(tempFileStream);
                 }
 
                 var inputFile = new MediaFile { Filename = tempFilePath };
-                var outputFile = new MediaFile { Filename = _GetFilePath };
+                var outputFile = new MediaFile { Filename = filePath };
 
                 var conversionOptions = new ConversionOptions
                 {
@@ -58,13 +58,13 @@ public class ManageFile : IManageFile
             }
             else
             {
-                using (var _FileStream = new FileStream(_GetFilePath, FileMode.Create))
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    await _IFormFile.CopyToAsync(_FileStream);
+                    await formFile.CopyToAsync(fileStream);
                 }
             }
 
-            return FileName;
+            return fileName;
         }
         catch (Exception ex)
         {
@@ -72,18 +72,18 @@ public class ManageFile : IManageFile
         }
     }
 
-    public async Task<(byte[], string, string)> DownloadFile(string FileName)
+    public async Task<(byte[], string, string)> DownloadFile(string fileName)
     {
         try
         {
-            var _GetFilePath = Common.GetFilePath(FileName);
+            var filePath = Common.GetFilePath(fileName);
             var provider = new FileExtensionContentTypeProvider();
-            if (!provider.TryGetContentType(_GetFilePath, out var _ContentType))
+            if (!provider.TryGetContentType(filePath, out var contentType))
             {
-                _ContentType = "application/octet-stream";
+                contentType = "application/octet-stream";
             }
-            var _ReadAllBytesAsync = await File.ReadAllBytesAsync(_GetFilePath);
-            return (_ReadAllBytesAsync, _ContentType, Path.GetFileName(_GetFilePath));
+            var fileBytes = await File.ReadAllBytesAsync(filePath);
+            return (fileBytes, contentType, Path.GetFileName(filePath));
         }
         catch (Exception ex)
         {
