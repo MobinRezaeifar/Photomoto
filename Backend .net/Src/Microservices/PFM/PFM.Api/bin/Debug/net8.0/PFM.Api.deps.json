@@ -79,17 +79,17 @@
           "runtimes/win-arm64/native/Magick.Native-Q8-arm64.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "7.1.1.33"
           },
           "runtimes/win-x64/native/Magick.Native-Q8-x64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "7.1.1.33"
           },
           "runtimes/win-x86/native/Magick.Native-Q8-x86.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "7.1.1.33"
           }
         }
       },

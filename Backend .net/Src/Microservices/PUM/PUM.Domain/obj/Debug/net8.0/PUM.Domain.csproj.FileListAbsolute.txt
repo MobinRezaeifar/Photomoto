@@ -37,3 +37,16 @@ H:/programming/react/photomoto/Backend .net/Src/Microservices/PUM/PUM.Domain/obj
 /workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Domain/obj/Debug/net8.0/refint/PUM.Domain.dll
 /workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Domain/obj/Debug/net8.0/PUM.Domain.pdb
 /workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Domain/obj/Debug/net8.0/ref/PUM.Domain.dll
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\bin\Debug\net8.0\PUM.Domain.deps.json
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\bin\Debug\net8.0\PUM.Domain.dll
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\bin\Debug\net8.0\PUM.Domain.pdb
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.csproj.AssemblyReference.cache
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.GeneratedMSBuildEditorConfig.editorconfig
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.AssemblyInfoInputs.cache
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.AssemblyInfo.cs
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.csproj.CoreCompileInputs.cache
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.sourcelink.json
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.dll
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\refint\PUM.Domain.dll
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\PUM.Domain.pdb
+H:\Programming\React\Photomoto\Backend .net\Src\Microservices\PUM\PUM.Domain\obj\Debug\net8.0\ref\PUM.Domain.dll

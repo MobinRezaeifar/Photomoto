@@ -1993,38 +1993,41 @@
     ]
   },
   "packageFolders": {
-    "/home/codespace/.nuget/packages/": {}
+    "C:\\Users\\I-Tech\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Api/PUM.Api.csproj",
+      "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Api\\PUM.Api.csproj",
       "projectName": "PUM.Api",
-      "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Api/PUM.Api.csproj",
-      "packagesPath": "/home/codespace/.nuget/packages/",
-      "outputPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Api/obj/",
+      "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Api\\PUM.Api.csproj",
+      "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
+      "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/codespace/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Application/PUM.Application.csproj": {
-              "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Application/PUM.Application.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj"
             },
-            "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Infrastructure/PUM.Infrastructure.csproj": {
-              "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Infrastructure/PUM.Infrastructure.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj"
             },
-            "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Utils/PUM.Utils.csproj": {
-              "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PUM/PUM.Utils/PUM.Utils.csproj"
+            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj": {
+              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj"
             }
           }
         }
@@ -2096,7 +2099,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

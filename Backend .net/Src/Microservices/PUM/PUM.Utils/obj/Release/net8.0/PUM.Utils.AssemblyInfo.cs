@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PUM.Utils")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45b4c8a4e5aa08d92aa93bc221056d05c2ef9ecc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d3229bbcb9db3de2b87a1342b2510ff83c09766")]
 [assembly: System.Reflection.AssemblyProductAttribute("PUM.Utils")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PUM.Utils")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

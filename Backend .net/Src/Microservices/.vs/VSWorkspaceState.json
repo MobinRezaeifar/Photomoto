@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\PFM",
-    "\\PFM\\PFM.Api",
-    "\\PMC"
+    "\\PFM\\PFM.Api"
   ],
-  "SelectedNode": "\\PMC\\PMC.sln",
+  "SelectedNode": "\\PFM\\PFM.sln",
   "PreviewInSolutionExplorer": false
 }
