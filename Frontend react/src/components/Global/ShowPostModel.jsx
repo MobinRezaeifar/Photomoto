@@ -126,8 +126,9 @@ const ShowPostModel = ({
 
   const now = Date.now();
   const SendComment = async () => {
-    await dispatch(
-      updatePost(SelectePost.id, {
+    await axios.patch(
+      `${PPMbaseApi}Post/v1/api/UpdatePost?id=${SelectePost.id}`,
+      {
         ...SelectePost,
         comment: [
           ...SelectePost.comment,
@@ -137,7 +138,8 @@ const ShowPostModel = ({
             time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
           },
         ],
-      })
+      },
+      { headers }
     );
     setcommentText("");
   };
@@ -192,6 +194,33 @@ const ShowPostModel = ({
   const DisConnect = (connectionId) => {
     dispatch(deleteConnection(connectionId));
   };
+  const [profileImagesComments, setProfileImagesComments] = useState({});
+
+  useEffect(() => {
+    const fetchProfileImages = async () => {
+      const images = {};
+      for (const comment of SelectePost.comment) {
+        try {
+          const response = await axios.get(
+            `${PUMbaseApi}Register/v1/api/ProfileImg?username=${comment.owner}`,
+            {
+              headers,
+            }
+          );
+          const profileComment = response.data;
+          images[
+            comment.owner
+          ] = `${PFMbaseApi}api/FileManager/downloadfile?fileName=${profileComment}`;
+        } catch (error) {
+          console.error("Error fetching profile comment:", error);
+        }
+      }
+      setProfileImagesComments(images);
+    };
+
+    fetchProfileImages();
+  }, [SelectePost && SelectePost.comment]);
+
   return (
     <div
       className={`relative z-10 ${!showPostModel && "hidden"}`}
@@ -212,7 +241,7 @@ const ShowPostModel = ({
               >
                 <div className="flex items-center gap-1">
                   <Avatar
-                    src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${User.profileImg}`}
+                    src={profileImagesComments[SelectePost.owner]}
                     size="large"
                   />
                   <span
@@ -506,24 +535,29 @@ const ShowPostModel = ({
                     isEqual(SelectePost.comment, []) ? "h-[1rem]" : "h-[10rem]"
                   }`}
                 >
-                  {SelectePost.comment.map((data) => {
-                    return (
-                      <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700 items-center">
-                        <div class="flex-shrink-0">
-                          <Avatar size={45} src={data.profileImg} />
-                        </div>
-                        <div class="w-full ps-3">
-                          <div class="text-gray-500 text-xl mb-1.5 dark:text-gray-400">
-                            {data.owner}{" "}
-                            <span className="text-white">{data.text}</span>
+                  {(() => {
+                    return SelectePost.comment.map((data) => {
+                      return (
+                        <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700 items-center">
+                          <div class="flex-shrink-0">
+                            <Avatar
+                              size={45}
+                              src={profileImagesComments[data.owner]}
+                            />{" "}
                           </div>
-                          <div class="text-xs text-blue-600 dark:text-blue-500">
-                            {data.time}
+                          <div class="w-full ps-3">
+                            <div class="text-gray-500 text-xl mb-1.5 dark:text-gray-400">
+                              {data.owner}{" "}
+                              <span className="text-white">{data.text}</span>
+                            </div>
+                            <div class="text-xs text-blue-600 dark:text-blue-500">
+                              {data.time}
+                            </div>
                           </div>
-                        </div>
-                      </span>
-                    );
-                  })}
+                        </span>
+                      );
+                    });
+                  })()}
                 </div>
                 <div className="h-[10%] flex items-center">
                   <input
