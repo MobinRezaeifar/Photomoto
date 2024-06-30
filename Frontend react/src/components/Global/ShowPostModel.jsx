@@ -2,27 +2,14 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { Avatar } from "antd";
-import CryptoJS from "crypto-js";
 import { AiOutlineComment } from "react-icons/ai";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { LuSendHorizonal, LuShare2 } from "react-icons/lu";
 import { FiMoreVertical } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import isEqual from "lodash/isEqual";
-import { MdAvTimer } from "react-icons/md";
-import { RiUserFollowFill } from "react-icons/ri";
-import { RiUserUnfollowFill } from "react-icons/ri";
 
-import {
-  AddConnection,
-  deleteConnection,
-  deletePost,
-  fetchConnection,
-  fetchPosts,
-  fetchRegister,
-  UpdateConnection,
-  updatePost,
-} from "../../Redux/action";
+import { deleteConnection, deletePost } from "../../Redux/action";
 import { Dropdown } from "antd";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import moment from "jalali-moment";
@@ -30,10 +17,12 @@ import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { Spin } from "antd";
+import LoadingPost from "./LoadingPost";
 
 const ShowPostModel = ({
   User,
-  SelectePost,
+  SelectePostId,
   dimensions,
   Change,
   change,
@@ -48,19 +37,50 @@ const ShowPostModel = ({
   const PUMbaseApi = useSelector((state) => state.PUMbaseApi);
   const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
   const PPMbaseApi = useSelector((state) => state.PPMbaseApi);
+  const [SelectePost, setSelectePost] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [profileImagesComments, setProfileImagesComments] = useState({});
+
+  const GetData = async () => {
+    setLoading(true);
+    try {
+      const postRes = await axios.get(
+        `${PPMbaseApi}Post/v1/api/GetById?id=${SelectePostId}`,
+        {
+          headers,
+        }
+      );
+      setSelectePost(postRes.data);
+    } catch (error) {
+      console.error("Error occurred during the API call:", error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    GetData();
+    const commentsContainer = document.getElementById("comments-container");
+    if (commentsContainer) {
+      commentsContainer.scrollTop = commentsContainer.scrollHeight;
+    }
+  }, [SelectePostId]);
+  useEffect(() => {
+    GetData();
+  }, [change]);
+
   let navigate = useNavigate();
 
   let iconSize = dimensions.width > 900 ? 30 : 25;
-  let LikedProfile = dimensions.width > 900 ? "w-10 h-10" : "w-7 h-7";
 
   const LikePost = async () => {
     await axios.patch(
-      `${PPMbaseApi}Post/v1/api/UpdatePost?id=${SelectePost.id}`,
+      `${PPMbaseApi}Post/v1/api/UpdatePost?id=${SelectePostId}`,
       {
         likes: [...SelectePost.likes, Cookies.get("u")],
       },
       { headers }
     );
+    await Change("change");
   };
 
   const items = [];
@@ -126,23 +146,50 @@ const ShowPostModel = ({
 
   const now = Date.now();
   const SendComment = async () => {
-    await axios.patch(
-      `${PPMbaseApi}Post/v1/api/UpdatePost?id=${SelectePost.id}`,
-      {
-        ...SelectePost,
-        comment: [
-          ...SelectePost.comment,
-          {
-            text: commentText,
-            owner: Cookies.get("u"),
-            time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
-          },
-        ],
-      },
-      { headers }
-    );
-    setcommentText("");
+    try {
+      await axios.patch(
+        `${PPMbaseApi}Post/v1/api/UpdatePost?id=${SelectePost.id}`,
+        {
+          ...SelectePost,
+          comment: [
+            ...SelectePost.comment,
+            {
+              text: commentText,
+              owner: Cookies.get("u"),
+              time: moment(now).format("jYYYY-jMM-jDD HH:mm:ss"),
+            },
+          ],
+        },
+        { headers }
+      );
+      setcommentText("");
+      await Change("change");
+      await Change("change");
+      const commentsContainer = document.getElementById("comments-container");
+      if (commentsContainer && !loading) {
+        console.log(commentsContainer);
+        commentsContainer.scrollTop = commentsContainer.scrollHeight;
+      }
+    } catch (error) {
+      console.error("Error occurred during the API call:", error);
+    }
   };
+
+  const DownContainerComment = () => {
+    const commentsContainer = document.getElementById("comments-container");
+    if (commentsContainer) {
+      setTimeout(() => {
+        commentsContainer.scrollTop = commentsContainer.scrollHeight;
+      }, 1000);
+    }
+  };
+
+  useEffect(() => {
+    DownContainerComment();
+  }, [loading]);
+  useEffect(() => {
+    DownContainerComment();
+  }, [ShowComment]);
 
   const handelConnection = async () => {
     // let ConnectionStatus = Connections.some(
@@ -194,12 +241,12 @@ const ShowPostModel = ({
   const DisConnect = (connectionId) => {
     dispatch(deleteConnection(connectionId));
   };
-  const [profileImagesComments, setProfileImagesComments] = useState({});
 
   useEffect(() => {
     const fetchProfileImages = async () => {
       const images = {};
-      for (const comment of SelectePost.comment) {
+      const comments = SelectePost.comment || [];
+      for (const comment of comments) {
         try {
           const response = await axios.get(
             `${PUMbaseApi}Register/v1/api/ProfileImg?username=${comment.owner}`,
@@ -219,7 +266,7 @@ const ShowPostModel = ({
     };
 
     fetchProfileImages();
-  }, [SelectePost && SelectePost.comment]);
+  }, [SelectePost.comment]);
 
   return (
     <div
@@ -231,34 +278,37 @@ const ShowPostModel = ({
       <div className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity"></div>
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-          <div
-            className={`relative transform overflow-hidden rounded-lg bg-gray-700  text-left shadow-xl transition-all sm:my-8 w-[100%]  md:w-[50%] xl:w-[50%] h[60%]`}
-            style={{ marginBottom: dimensions.width < 642 && "200px" }}
-          >
-            {!ShowComment && (
-              <div
-                className={`h-5 flex items-center justify-between px-4 py-8 `}
-              >
-                <div className="flex items-center gap-1">
-                  <Avatar
-                    src={profileImagesComments[SelectePost.owner]}
-                    size="large"
-                  />
-                  <span
-                    onClick={() => {
-                      if (
-                        window.location.href !==
-                        `${baseUrlReact}photomoto/${SelectePost.owner}`
-                      ) {
-                        navigate(`${SelectePost.owner}`);
-                        setshowPostModel(false);
-                      }
-                    }}
-                    className="text-2xl cursor-pointer"
-                  >
-                    {SelectePost.owner}
-                  </span>
-                  {/* {(() => {
+          {loading ? (
+            <LoadingPost />
+          ) : (
+            <div
+              className={`relative transform overflow-hidden rounded-lg bg-gray-700  text-left shadow-xl transition-all sm:my-8 w-[100%]  md:w-[50%] xl:w-[50%] h[60%]`}
+              style={{ marginBottom: dimensions.width < 642 && "200px" }}
+            >
+              {!ShowComment && (
+                <div
+                  className={`h-5 flex items-center justify-between px-4 py-8 `}
+                >
+                  <div className="flex items-center gap-1">
+                    <Avatar
+                      src={profileImagesComments[SelectePost.owner]}
+                      size="large"
+                    />
+                    <span
+                      onClick={() => {
+                        if (
+                          window.location.href !==
+                          `${baseUrlReact}photomoto/${SelectePost.owner}`
+                        ) {
+                          navigate(`${SelectePost.owner}`);
+                          setshowPostModel(false);
+                        }
+                      }}
+                      className="text-2xl cursor-pointer"
+                    >
+                      {SelectePost.owner}
+                    </span>
+                    {/* {(() => {
                     if (Post.owner != decryptAES(sessionStorage.getItem("u"))) {
                       let ConnectionStatus = Connections.some(
                         (x) =>
@@ -347,90 +397,100 @@ const ShowPostModel = ({
                       }
                     }
                   })()} */}
+                  </div>
+                  <div className="flex items-center">
+                    <lord-icon
+                      src="https://cdn.lordicon.com/snqonmhs.json"
+                      trigger="in"
+                      colors="primary:#ffffff,secondary:#e83a30"
+                      style={{ transform: "scale(1.3)", cursor: "pointer" }}
+                      onClick={() => {
+                        setshowPostModel(false);
+                      }}
+                    ></lord-icon>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <lord-icon
-                    src="https://cdn.lordicon.com/snqonmhs.json"
-                    trigger="in"
-                    colors="primary:#ffffff,secondary:#e83a30"
-                    style={{ transform: "scale(1.3)", cursor: "pointer" }}
-                    onClick={() => {
-                      setshowPostModel(false);
-                    }}
-                  ></lord-icon>
-                </div>
-              </div>
-            )}
-            {SelectePost.type && SelectePost.type.startsWith("video") ? (
-              <video
-                src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${SelectePost.postMedia}`}
-                className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
-                controls
-              />
-            ) : (
-              <img
-                src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${SelectePost.postMedia}`}
-                className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
-                style={{
-                  backgroundSize: "cover",
-                }}
-                alt=""
-              />
-            )}
-            <div
-              className={`flex items-center justify-between ${
-                dimensions.width > 900 ? "px-4" : "px-2"
-              }`}
-            >
-              {!isEqual(SelectePost.likes, []) ? (
-                <div className="flex items-center gap-1">
-                  <Avatar.Group
-                    maxCount={4}
-                    className="flex items-center"
-                    size="large"
-                    maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
-                  >
-                    {/* {(() => {
-                      let counter = 0;
-                      if (counter < 4) {
-                        if (SelectePost.likes) {
-                          return SelectePost.likes.map((data) => {
-                            counter++;
-                            return Registers.map((dataa) => {
-                              if (data.username == dataa.username) {
-                                return <Avatar src={dataa.profileImg} />;
-                              }
-                            });
-                          });
-                        }
-                      }
-                    })()} */}
-                  </Avatar.Group>
-                  {SelectePost.likes && (
-                    <span>
-                      Liked by {SelectePost.likes[0].username} and other
-                    </span>
-                  )}
-                </div>
-              ) : (
-                <h1>No One Liked It</h1>
               )}
-              <div className="flex justify-around px-2 pt-4 gap-2">
-                <span className="flex flex-col items-center">
-                  {(() => {
-                    if (!isEqual(SelectePost, {})) {
-                      if (!isEqual(SelectePost.likes, [])) {
-                        let likeStatus = SelectePost.likes.some(
-                          (x) => x.username == Cookies.get("u")
-                        );
-                        if (likeStatus) {
-                          return (
-                            <FaHeart
-                              color="red"
-                              size={iconSize}
-                              style={{ cursor: "pointer" }}
-                            />
+              {SelectePost.type && SelectePost.type.startsWith("video") ? (
+                <video
+                  src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${SelectePost.postMedia}`}
+                  className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
+                  controls
+                />
+              ) : (
+                <img
+                  src={`${PFMbaseApi}api/FileManager/downloadfile?FileName=${SelectePost.postMedia}`}
+                  className={`2xl:w-[100%] ${ShowComment && "hidden"}`}
+                  style={{
+                    backgroundSize: "cover",
+                  }}
+                  alt=""
+                />
+              )}
+              <div
+                className={`flex items-center justify-between ${
+                  dimensions.width > 900 ? "px-4" : "px-2"
+                }`}
+              >
+                {!isEqual(SelectePost.likes, []) ? (
+                  <div className="flex items-center gap-1">
+                    <Avatar.Group
+                      maxCount={4}
+                      className="flex items-center"
+                      size="large"
+                      maxStyle={{
+                        color: "#f56a00",
+                        backgroundColor: "#fde3cf",
+                      }}
+                    >
+                      {(() => {
+                        let counter = 0;
+                        if (counter < 4) {
+                          if (SelectePost.likes) {
+                            return SelectePost.likes.map((data) => {
+                              counter++;
+                              return (
+                                <Avatar src={profileImagesComments[data]} />
+                              );
+                            });
+                          }
+                        }
+                      })()}
+                    </Avatar.Group>
+                    {SelectePost.likes && (
+                      <span>Liked by {SelectePost.likes[0]} and other</span>
+                    )}
+                  </div>
+                ) : (
+                  <h1>No One Liked It</h1>
+                )}
+                <div className="flex justify-around px-2 pt-4 gap-2">
+                  <span className="flex flex-col items-center">
+                    {(() => {
+                      if (!isEqual(SelectePost, {})) {
+                        if (!isEqual(SelectePost.likes, [])) {
+                          let likeStatus = SelectePost.likes.some(
+                            (x) => x == Cookies.get("u")
                           );
+                          if (likeStatus) {
+                            return (
+                              <FaHeart
+                                color="red"
+                                size={iconSize}
+                                style={{ cursor: "pointer" }}
+                              />
+                            );
+                          } else {
+                            return (
+                              <FaRegHeart
+                                size={iconSize}
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                  LikePost(SelectePost.id);
+                                }}
+                              />
+                            );
+                          }
                         } else {
                           return (
                             <FaRegHeart
@@ -442,155 +502,155 @@ const ShowPostModel = ({
                             />
                           );
                         }
-                      } else {
-                        return (
-                          <FaRegHeart
-                            size={iconSize}
-                            style={{ cursor: "pointer" }}
-                            onClick={() => {
-                              LikePost(SelectePost.id);
-                            }}
-                          />
-                        );
                       }
+                    })()}
+
+                    <span>{SelectePost.likes && SelectePost.likes.length}</span>
+                  </span>
+
+                  <span
+                    className="flex flex-col items-center"
+                    onClick={() => setShowComment(!ShowComment)}
+                  >
+                    <AiOutlineComment
+                      size={iconSize}
+                      style={{ cursor: "pointer" }}
+                    />
+                    {SelectePost.comment && SelectePost.comment.length}
+                  </span>
+                  <LuShare2 size={iconSize} style={{ cursor: "pointer" }} />
+
+                  <Dropdown
+                    trigger={["click"]}
+                    menu={{
+                      items,
+                    }}
+                    placement="bottomRight"
+                  >
+                    <FiMoreVertical
+                      className="cursor-pointer"
+                      size={iconSize}
+                    />
+                  </Dropdown>
+                </div>
+              </div>
+              <div className="flex px-4  gap-2 mb-1">
+                <span className=" text-xl">{SelectePost.owner}</span>
+                <div
+                  dangerouslySetInnerHTML={{ __html: SelectePost.disc }}
+                  style={{ color: "white", fontSize: "20px" }}
+                />
+              </div>
+              <div className="px-4 flex flex-col">
+                <div className="flex gap-1 mb-1 text-blue-600">
+                  {SelectePost.tags &&
+                    SelectePost.tags.map((data) => <h1>#{data}</h1>)}
+                </div>
+                {(() => {
+                  if (!isEqual(SelectePost.comment, [])) {
+                    if (ShowComment) {
+                      return (
+                        <span
+                          onClick={() => setShowComment(false)}
+                          className="cursor-pointer"
+                        >
+                          {" "}
+                          Close Comments
+                        </span>
+                      );
+                    } else {
+                      return (
+                        <span
+                          onClick={() => setShowComment(true)}
+                          className="cursor-pointer"
+                        >
+                          View All{" "}
+                          {SelectePost.comment && SelectePost.comment.length}{" "}
+                          Comments
+                        </span>
+                      );
                     }
-                  })()}
-
-                  <span>{SelectePost.likes && SelectePost.likes.length}</span>
-                </span>
-
-                <span
-                  className="flex flex-col items-center"
-                  onClick={() => setShowComment(!ShowComment)}
-                >
-                  <AiOutlineComment
-                    size={iconSize}
-                    style={{ cursor: "pointer" }}
-                  />
-                  {SelectePost.comment && SelectePost.comment.length}
-                </span>
-                <LuShare2 size={iconSize} style={{ cursor: "pointer" }} />
-
-                <Dropdown
-                  trigger={["click"]}
-                  menu={{
-                    items,
-                  }}
-                  placement="bottomRight"
-                >
-                  <FiMoreVertical className="cursor-pointer" size={iconSize} />
-                </Dropdown>
-              </div>
-            </div>
-            <div className="flex px-4  gap-2 mb-1">
-              <span className=" text-xl">{SelectePost.owner}</span>
-              <div
-                dangerouslySetInnerHTML={{ __html: SelectePost.disc }}
-                style={{ color: "white", fontSize: "20px" }}
-              />
-            </div>
-            <div className="px-4 flex flex-col">
-              <div className="flex gap-1 mb-1 text-blue-600">
-                {SelectePost.tags &&
-                  SelectePost.tags.map((data) => <h1>#{data}</h1>)}
-              </div>
-              {(() => {
-                if (!isEqual(SelectePost.comment, [])) {
-                  if (ShowComment) {
-                    return (
-                      <span
-                        onClick={() => setShowComment(false)}
-                        className="cursor-pointer"
-                      >
-                        {" "}
-                        Close Comments
-                      </span>
-                    );
                   } else {
                     return (
-                      <span
-                        onClick={() => setShowComment(true)}
-                        className="cursor-pointer"
-                      >
-                        View All{" "}
-                        {SelectePost.comment && SelectePost.comment.length}{" "}
-                        Comments
+                      <span onClick={() => setShowComment(!ShowComment)}>
+                        There are no comments
                       </span>
                     );
                   }
-                } else {
-                  return (
-                    <span onClick={() => setShowComment(!ShowComment)}>
-                      There are no comments
-                    </span>
-                  );
-                }
-              })()}
-            </div>
-            {/* <br /> */}
-            {ShowComment && (
-              <div className="h-[70%] w-full  p-4 ">
-                <div
-                  className={`overflow-y-auto  ${
-                    isEqual(SelectePost.comment, []) ? "h-[1rem]" : "h-[10rem]"
-                  }`}
-                >
-                  {(() => {
-                    return SelectePost.comment.map((data) => {
-                      return (
-                        <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700 items-center">
-                          <div class="flex-shrink-0">
-                            <Avatar
-                              size={45}
-                              src={profileImagesComments[data.owner]}
-                            />{" "}
-                          </div>
-                          <div class="w-full ps-3">
-                            <div class="text-gray-500 text-xl mb-1.5 dark:text-gray-400">
-                              {data.owner}{" "}
-                              <span className="text-white">{data.text}</span>
-                            </div>
-                            <div class="text-xs text-blue-600 dark:text-blue-500">
-                              {data.time}
-                            </div>
-                          </div>
-                        </span>
-                      );
-                    });
-                  })()}
-                </div>
-                <div className="h-[10%] flex items-center">
-                  <input
-                    value={commentText}
-                    onChange={(e) => {
-                      setcommentText(e.target.value);
-                    }}
-                    type="text"
-                    placeholder="Leave a comment..."
-                    className="w-full"
-                    style={{
-                      height: "3rem",
-                      borderRadius: "4px",
-                      padding: "0 10px",
-                      backgroundColor: "rgba(0, 0, 0, 0.2)",
-                    }}
-                  />
-                  <LuSendHorizonal
-                    className="absolute right-8 cursor-pointer"
-                    size={25}
-                    onClick={() => {
-                      SendComment();
-                    }}
-                  />
-                </div>
+                })()}
               </div>
-            )}
-            <div className=" w-full text-right px-4 pb-2">
-              <span className=" text-sm text-[#80808085]">
-                °{SelectePost.time}°
-              </span>
+              {/* <br /> */}
+              {ShowComment && (
+                <div className="h-[70%] w-full  p-4 ">
+                  <div
+                    id="comments-container"
+                    className={`overflow-y-auto  ${
+                      isEqual(SelectePost.comment, [])
+                        ? "h-[1rem]"
+                        : "h-[10rem]"
+                    }`}
+                  >
+                    {(() => {
+                      if (SelectePost.comment) {
+                        return SelectePost.comment.map((data) => {
+                          return (
+                            <span class="flex  py-3 hover:bg-gray-100 dark:hover:bg-gray-700 items-center">
+                              <div class="flex-shrink-0">
+                                <Avatar
+                                  size={45}
+                                  src={profileImagesComments[data.owner]}
+                                />{" "}
+                              </div>
+                              <div class="w-full ps-3">
+                                <div class="text-gray-500 text-xl mb-1.5 dark:text-gray-400">
+                                  {data.owner}{" "}
+                                  <span className="text-white">
+                                    {data.text}
+                                  </span>
+                                </div>
+                                <div class="text-xs text-blue-600 dark:text-blue-500">
+                                  {data.time}
+                                </div>
+                              </div>
+                            </span>
+                          );
+                        });
+                      }
+                    })()}
+                  </div>
+                  <div className="h-[10%] flex items-center">
+                    <input
+                      value={commentText}
+                      onChange={(e) => {
+                        setcommentText(e.target.value);
+                      }}
+                      type="text"
+                      placeholder="Leave a comment..."
+                      className="w-full"
+                      style={{
+                        height: "3rem",
+                        borderRadius: "4px",
+                        padding: "0 10px",
+                        backgroundColor: "rgba(0, 0, 0, 0.2)",
+                      }}
+                    />
+                    <LuSendHorizonal
+                      className="absolute right-8 cursor-pointer"
+                      size={25}
+                      onClick={() => {
+                        SendComment();
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+              <div className=" w-full text-right px-4 pb-2">
+                <span className=" text-sm text-[#80808085]">
+                  °{SelectePost.time}°
+                </span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

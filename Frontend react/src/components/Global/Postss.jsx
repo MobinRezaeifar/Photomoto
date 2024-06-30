@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../../Redux/action";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import ShowPostModel from "./ShowPostModel";
 import { motion } from "framer-motion";
 const Postss = ({ dimensions, User, Change, change, headers, Posts }) => {
   const PFMbaseApi = useSelector((state) => state.PFMbaseApi);
-  const dispatch = useDispatch();
   const [SelectePost, setSelectePost] = useState({});
   const [showPostModel, setshowPostModel] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
 
   return (
     <div className="container">
@@ -67,7 +61,7 @@ const Postss = ({ dimensions, User, Change, change, headers, Posts }) => {
         showPostModel={showPostModel}
         setshowPostModel={setshowPostModel}
         User={User}
-        SelectePost={SelectePost}
+        SelectePostId={SelectePost.id}
         dimensions={dimensions}
         Change={Change}
         change={change}

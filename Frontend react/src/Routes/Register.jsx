@@ -60,7 +60,7 @@ const Register = () => {
         username: Username,
         password: Password,
         fullName: FullName,
-        profileImg: "https://wallpapercave.com/dwp1x/wp9566386.jpg",
+        profileImg: "DefaultUserIcon.png",
         email: Email,
         gender: Gender,
         bio: `Hello, Im ${FullName} and I just became a member of Photomoto platform`,
