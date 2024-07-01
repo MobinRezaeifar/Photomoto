@@ -21,7 +21,6 @@ public class RegistersControllers : ControllerBase
         _tokenService = tokenService;
     }
 
-    [Authorize]
     [HttpGet]
     [Route("GetAll")]
     public async Task<IActionResult> GetRegisters()
@@ -124,7 +123,6 @@ public class RegistersControllers : ControllerBase
 
 
 
-    [Authorize]
     [HttpPatch]
     [Route("UpdateRegisterById")]
     public async Task<IActionResult> PatchAsyncById(string id, [FromBody] Register register)
