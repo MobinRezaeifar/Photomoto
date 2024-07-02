@@ -1,136 +1,204 @@
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\appsettings.Development.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\appsettings.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.exe
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.deps.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.runtimeconfig.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\AWSSDK.Core.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\DnsClient.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.OpenApi.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Bson.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Driver.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Driver.Core.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\SharpCompress.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Snappier.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\ZstdSharp.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Application.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Domain.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Infrastructure.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Utils.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Application.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Infrastructure.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Utils.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Domain.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.csproj.AssemblyReference.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.GeneratedMSBuildEditorConfig.editorconfig
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.AssemblyInfoInputs.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.AssemblyInfo.cs
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.csproj.CoreCompileInputs.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.MvcApplicationPartsAssemblyInfo.cs
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.MvcApplicationPartsAssemblyInfo.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.sourcelink.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets.build.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets.development.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.PPM.Api.Microsoft.AspNetCore.StaticWebAssets.props
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.build.PPM.Api.props
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.PPM.Api.props
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.PPM.Api.props
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets.pack.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\scopedcss\bundle\PPM.Api.styles.css
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.csproj.Up2Date
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\refint\PPM.Api.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.genruntimeconfig.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\ref\PPM.Api.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\appsettings.Development.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\appsettings.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.exe
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.deps.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.runtimeconfig.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Api.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\AWSSDK.Core.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\DnsClient.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Microsoft.OpenApi.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Bson.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Driver.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Driver.Core.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\SharpCompress.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Snappier.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\ZstdSharp.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Application.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Domain.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Infrastructure.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Utils.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Application.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Infrastructure.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Utils.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\bin\Debug\net8.0\PPM.Domain.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.csproj.AssemblyReference.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.GeneratedMSBuildEditorConfig.editorconfig
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.AssemblyInfoInputs.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.AssemblyInfo.cs
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.csproj.CoreCompileInputs.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.MvcApplicationPartsAssemblyInfo.cs
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.MvcApplicationPartsAssemblyInfo.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.sourcelink.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets.build.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets.development.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.PPM.Api.Microsoft.AspNetCore.StaticWebAssets.props
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.build.PPM.Api.props
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.PPM.Api.props
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.PPM.Api.props
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\staticwebassets.pack.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\scopedcss\bundle\PPM.Api.styles.css
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.csproj.Up2Date
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\refint\PPM.Api.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\PPM.Api.genruntimeconfig.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PPM\PPM.Api\obj\Debug\net8.0\ref\PPM.Api.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/appsettings.Development.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/appsettings.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.exe
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.deps.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.runtimeconfig.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/AWSSDK.Core.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/AWSSDK.SecurityToken.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/DnsClient.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Metadata.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.OpenApi.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Bson.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Driver.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Driver.Core.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Libmongocrypt.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/SharpCompress.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Snappier.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/ZstdSharp.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/linux/native/libmongocrypt.so
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/osx/native/libmongocrypt.dylib
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/win/native/mongocrypt.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Application.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Domain.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Infrastructure.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Utils.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Application.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Infrastructure.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Utils.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Domain.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.AssemblyReference.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.GeneratedMSBuildEditorConfig.editorconfig
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.AssemblyInfoInputs.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.AssemblyInfo.cs
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.CoreCompileInputs.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.MvcApplicationPartsAssemblyInfo.cs
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.MvcApplicationPartsAssemblyInfo.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.sourcelink.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.build.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.development.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.PPM.Api.Microsoft.AspNetCore.StaticWebAssets.props
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.build.PPM.Api.props
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.PPM.Api.props
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.PPM.Api.props
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.pack.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/scopedcss/bundle/PPM.Api.styles.css
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.Up2Date
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/refint/PPM.Api.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.genruntimeconfig.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/ref/PPM.Api.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/appsettings.Development.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/appsettings.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.exe
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.deps.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.runtimeconfig.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/AWSSDK.Core.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/AWSSDK.SecurityToken.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/DnsClient.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Metadata.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.OpenApi.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Bson.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Driver.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Driver.Core.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Libmongocrypt.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/SharpCompress.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Snappier.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/ZstdSharp.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/linux/native/libmongocrypt.so
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/osx/native/libmongocrypt.dylib
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/win/native/mongocrypt.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Application.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Domain.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Infrastructure.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Utils.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Application.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Infrastructure.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Utils.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Domain.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.AssemblyReference.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.GeneratedMSBuildEditorConfig.editorconfig
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.AssemblyInfoInputs.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.AssemblyInfo.cs
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.CoreCompileInputs.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.MvcApplicationPartsAssemblyInfo.cs
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.MvcApplicationPartsAssemblyInfo.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.sourcelink.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.build.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.development.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.PPM.Api.Microsoft.AspNetCore.StaticWebAssets.props
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.build.PPM.Api.props
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.PPM.Api.props
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.PPM.Api.props
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.pack.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/scopedcss/bundle/PPM.Api.styles.css
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.Up2Date
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/refint/PPM.Api.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.genruntimeconfig.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/ref/PPM.Api.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/appsettings.Development.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/appsettings.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.deps.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.runtimeconfig.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Api.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/AWSSDK.Core.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/AWSSDK.SecurityToken.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/DnsClient.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.Metadata.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Bson.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Driver.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Driver.Core.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/MongoDB.Libmongocrypt.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/SharpCompress.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Snappier.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/ZstdSharp.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/linux/native/libmongocrypt.so
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/osx/native/libmongocrypt.dylib
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/runtimes/win/native/mongocrypt.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Application.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Domain.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Infrastructure.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Utils.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Application.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Infrastructure.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Utils.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/bin/Debug/net8.0/PPM.Domain.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.AssemblyReference.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.AssemblyInfoInputs.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.AssemblyInfo.cs
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.CoreCompileInputs.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.MvcApplicationPartsAssemblyInfo.cs
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.MvcApplicationPartsAssemblyInfo.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.sourcelink.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.build.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.development.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.PPM.Api.Microsoft.AspNetCore.StaticWebAssets.props
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.build.PPM.Api.props
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.PPM.Api.props
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.PPM.Api.props
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/staticwebassets.pack.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/scopedcss/bundle/PPM.Api.styles.css
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.csproj.Up2Date
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/refint/PPM.Api.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/PPM.Api.genruntimeconfig.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Api/obj/Debug/net8.0/ref/PPM.Api.dll

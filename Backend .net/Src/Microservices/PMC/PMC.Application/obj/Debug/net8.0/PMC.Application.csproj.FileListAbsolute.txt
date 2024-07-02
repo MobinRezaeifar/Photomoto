@@ -1,32 +1,48 @@
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Application.deps.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Application.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Application.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Domain.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Domain.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.csproj.AssemblyReference.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.GeneratedMSBuildEditorConfig.editorconfig
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.AssemblyInfoInputs.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.AssemblyInfo.cs
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.csproj.CoreCompileInputs.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.sourcelink.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Appl.E517C7BF.Up2Date
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\refint\PMC.Application.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\ref\PMC.Application.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Application.deps.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Application.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Application.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Domain.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\bin\Debug\net8.0\PMC.Domain.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.csproj.AssemblyReference.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.GeneratedMSBuildEditorConfig.editorconfig
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.AssemblyInfoInputs.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.AssemblyInfo.cs
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.csproj.CoreCompileInputs.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.sourcelink.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Appl.E517C7BF.Up2Date
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\refint\PMC.Application.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\PMC.Application.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Application\obj\Debug\net8.0\ref\PMC.Application.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.deps.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Domain.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Domain.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.csproj.AssemblyReference.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.GeneratedMSBuildEditorConfig.editorconfig
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.AssemblyInfoInputs.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.AssemblyInfo.cs
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.csproj.CoreCompileInputs.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.sourcelink.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Appl.E517C7BF.Up2Date
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/refint/PMC.Application.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/ref/PMC.Application.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.deps.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Domain.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Domain.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.csproj.AssemblyReference.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.GeneratedMSBuildEditorConfig.editorconfig
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.AssemblyInfoInputs.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.AssemblyInfo.cs
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.csproj.CoreCompileInputs.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.sourcelink.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Appl.E517C7BF.Up2Date
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/refint/PMC.Application.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/ref/PMC.Application.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.deps.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Application.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Domain.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/bin/Debug/net8.0/PMC.Domain.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.csproj.AssemblyReference.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.AssemblyInfoInputs.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.AssemblyInfo.cs
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.csproj.CoreCompileInputs.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.sourcelink.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Appl.E517C7BF.Up2Date
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/refint/PMC.Application.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/PMC.Application.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Application/obj/Debug/net8.0/ref/PMC.Application.dll

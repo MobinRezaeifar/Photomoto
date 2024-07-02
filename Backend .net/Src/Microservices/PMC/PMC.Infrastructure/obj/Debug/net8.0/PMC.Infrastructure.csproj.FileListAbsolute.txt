@@ -1,32 +1,48 @@
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Infrastructure.deps.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Infrastructure.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Infrastructure.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Domain.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Domain.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.csproj.AssemblyReference.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.AssemblyInfoInputs.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.AssemblyInfo.cs
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.csproj.CoreCompileInputs.cache
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.sourcelink.json
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infr.E472CE51.Up2Date
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\refint\PMC.Infrastructure.dll
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.pdb
-H:\Programming\React\Photomoto\Backend .net With DDD Architecture\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\ref\PMC.Infrastructure.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Infrastructure.deps.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Infrastructure.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Infrastructure.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Domain.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\bin\Debug\net8.0\PMC.Domain.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.csproj.AssemblyReference.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.AssemblyInfoInputs.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.AssemblyInfo.cs
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.csproj.CoreCompileInputs.cache
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.sourcelink.json
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infr.E472CE51.Up2Date
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\refint\PMC.Infrastructure.dll
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\PMC.Infrastructure.pdb
-H:\programming\react\photomoto\Backend .net\Src\Microservices\PMC\PMC.Infrastructure\obj\Debug\net8.0\ref\PMC.Infrastructure.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.deps.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Domain.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Domain.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.csproj.AssemblyReference.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.AssemblyInfoInputs.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.AssemblyInfo.cs
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.csproj.CoreCompileInputs.cache
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.sourcelink.json
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infr.E472CE51.Up2Date
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/refint/PMC.Infrastructure.dll
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.pdb
+H:/Programming/React/Photomoto/Backend .net With DDD Architecture/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/ref/PMC.Infrastructure.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.deps.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Domain.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Domain.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.csproj.AssemblyReference.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.AssemblyInfoInputs.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.AssemblyInfo.cs
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.csproj.CoreCompileInputs.cache
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.sourcelink.json
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infr.E472CE51.Up2Date
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/refint/PMC.Infrastructure.dll
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.pdb
+H:/programming/react/photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/ref/PMC.Infrastructure.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.deps.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Infrastructure.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Domain.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/bin/Debug/net8.0/PMC.Domain.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.csproj.AssemblyReference.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.AssemblyInfoInputs.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.AssemblyInfo.cs
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.csproj.CoreCompileInputs.cache
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.sourcelink.json
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infr.E472CE51.Up2Date
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/refint/PMC.Infrastructure.dll
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/PMC.Infrastructure.pdb
+/workspaces/Photomoto/Backend .net/Src/Microservices/PMC/PMC.Infrastructure/obj/Debug/net8.0/ref/PMC.Infrastructure.dll

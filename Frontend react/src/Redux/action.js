@@ -1,10 +1,19 @@
 import axios from "axios";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Cookies from "js-cookie";
-let PUMbaseApi = "http://localhost:5295/";
-let PPMbaseApi = "http://localhost:5212/";
-let PMCbaseApi = "http://localhost:5157/";
-let PFMbaseApi = "http://localhost:5226/";
+import { ServerRunning } from "./config";
+let PUMbaseApi = ServerRunning
+  ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5295.app.github.dev/"
+  : "http://localhost:5295/";
+let PPMbaseApi = ServerRunning
+  ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5212.app.github.dev/"
+  : "http://localhost:5212/";
+let PMCbaseApi = ServerRunning
+  ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5157.app.github.dev/"
+  : "http://localhost:5157/";
+let PFMbaseApi = ServerRunning
+  ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5226.app.github.dev/"
+  : "http://localhost:5226/";
 let StoryApi = "http://localhost:5001/api/story";
 
 const Change = async (change) => {

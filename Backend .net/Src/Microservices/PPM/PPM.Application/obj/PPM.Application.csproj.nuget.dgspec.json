@@ -1,36 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj": {}
+    "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Application/PPM.Application.csproj": {}
   },
   "projects": {
-    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj": {
+    "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Application/PPM.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj",
+        "projectUniqueName": "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Application/PPM.Application.csproj",
         "projectName": "PPM.Application",
-        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\PPM.Application.csproj",
-        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Application\\obj\\",
+        "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Application/PPM.Application.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj": {
-                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj"
+              "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Domain/PPM.Domain.csproj": {
+                "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Domain/PPM.Domain.csproj"
               }
             }
           }
@@ -65,29 +62,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj": {
+    "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Domain/PPM.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj",
+        "projectUniqueName": "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Domain/PPM.Domain.csproj",
         "projectName": "PPM.Domain",
-        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\PPM.Domain.csproj",
-        "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PPM\\PPM.Domain\\obj\\",
+        "projectPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Domain/PPM.Domain.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/Photomoto/Backend .net/Src/Microservices/PPM/PPM.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -132,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
