@@ -1,3 +1,5 @@
+import { ServerRunning } from "./config";
+
 const initialState = {
   Registers: [],
   Posts: [],
@@ -12,10 +14,18 @@ const initialState = {
   MeBio: "",
   MainUserIdVideoCall: "",
   TargetUserIdVideoCall: "",
-  PUMbaseApi: "http://localhost:5295/",
-  PPMbaseApi: "http://localhost:5212/",
-  PMCbaseApi: "http://localhost:5157/",
-  PFMbaseApi: "http://localhost:5226/",
+  PUMbaseApi: ServerRunning
+    ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5295.app.github.dev/"
+    : "http://localhost:5295/",
+  PPMbaseApi: ServerRunning
+    ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5212.app.github.dev/"
+    : "http://localhost:5212/",
+  PMCbaseApi: ServerRunning
+    ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5157.app.github.dev/"
+    : "http://localhost:5157/",
+  PFMbaseApi: ServerRunning
+    ? "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-5226.app.github.dev/"
+    : "http://localhost:5226/",
   baseUrlNode: "http://localhost:5001/",
   baseUrlReact: "http://localhost:3000/",
 };

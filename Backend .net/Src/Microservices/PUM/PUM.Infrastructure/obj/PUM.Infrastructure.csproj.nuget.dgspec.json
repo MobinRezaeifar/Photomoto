@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj": {}
+    "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj": {}
   },
   "projects": {
-    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
+    "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
+        "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
         "projectName": "PUM.Domain",
-        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
+        "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj",
         "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\obj\\",
+        "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -75,14 +75,14 @@
         }
       }
     },
-    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj": {
+    "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj",
+        "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj",
         "projectName": "PUM.Infrastructure",
-        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj",
+        "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\obj\\",
+        "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -100,11 +100,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
-                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj"
+              "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
+                "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj"
               },
-              "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj": {
-                "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj"
+              "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj": {
+                "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj"
               }
             }
           }
@@ -157,14 +157,14 @@
         }
       }
     },
-    "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj": {
+    "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj",
+        "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj",
         "projectName": "PUM.Utils",
-        "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj",
+        "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\PUM.Utils.csproj",
         "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-        "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\obj\\",
+        "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Utils\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",

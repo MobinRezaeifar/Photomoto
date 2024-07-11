@@ -45,7 +45,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:3000")
+        builder => builder.WithOrigins("http://localhost:3000", "https://symmetrical-waffle-9p7jxvp5w5ph7gvg-3000.app.github.dev/")
                           .AllowAnyHeader()
                           .AllowAnyMethod()
                           .AllowCredentials());
@@ -105,7 +105,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
    {
-       c.SwaggerEndpoint("/swagger/v1/swagger.json", "PUM v1");
+       c.SwaggerEndpoint("/swagger/v1/swagger.json", "PPM v1");
        c.DocumentTitle = "PPM";
    });
 }

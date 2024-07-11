@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PPM.Utils")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f499e3c2154e3b54f591cdff770cca9028ec0893")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d4916d730e378d823e9798ccfab86d25bb415d9")]
+>>>>>>> a7c2101f1ef598dc56bbba12f1888e3f0c9d3204
 [assembly: System.Reflection.AssemblyProductAttribute("PPM.Utils")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PPM.Utils")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

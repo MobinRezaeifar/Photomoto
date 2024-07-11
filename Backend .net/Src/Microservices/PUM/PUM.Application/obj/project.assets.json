@@ -1523,11 +1523,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
+      "projectUniqueName": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
       "projectName": "PUM.Application",
-      "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
+      "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\PUM.Application.csproj",
       "packagesPath": "C:\\Users\\I-Tech\\.nuget\\packages\\",
-      "outputPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\obj\\",
+      "outputPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\I-Tech\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1545,11 +1545,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
-              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj"
+            "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj": {
+              "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Domain\\PUM.Domain.csproj"
             },
-            "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj": {
-              "projectPath": "H:\\Programming\\React\\Photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj"
+            "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj": {
+              "projectPath": "H:\\programming\\react\\photomoto\\Backend .net\\Src\\Microservices\\PUM\\PUM.Infrastructure\\PUM.Infrastructure.csproj"
             }
           }
         }
